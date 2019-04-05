@@ -1,31 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="container">
+    <Header />
+    <Cards />
+    <Footer />
   </div>
 </template>
 
+<script>
+import Header from './components/Header.vue'
+import Cards from './components/Cards.vue'
+import Footer from './components/Footer.vue'
+export default {
+  components: {
+    Header,
+    Cards,
+    Footer
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+.container {
+  display: grid;
+  grid-template-rows: 85px auto 85px;
+  height: 100vh;
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
