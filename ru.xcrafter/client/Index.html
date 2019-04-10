@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="singup-form.css">
+    <script type="text/javascript" src="check-form.js"></script>
     <title>Catalog</title>
 </head>
 <body>
@@ -14,6 +16,26 @@
             <a href="#">
                 <img class="logo" src="img/Logo.png">
             </a>
+        </li>
+        <li class="nav-singup">
+            <a class="show-btn" href="javascript:void(0)"
+               onclick="document.getElementById('singup-form').style.display='block';">
+                <img class="singup-btn" src="./img/User.svg">
+            </a>
+            <div id="singup-form" class="singup-form">
+                <a class="close-btn" href="javascript:void(0)"
+                   onclick="document.getElementById('singup-form').style.display='none';"></a>
+                <h1 class="singup-title">Регистрация</h1>
+                <form method="post" class="singup-list" name="formx" onSubmit='return check();'>
+                    <input type="text" name="firstName" placeholder="Имя" class="form-item" required>
+                    <input type="text" name="secondName" placeholder="Фамилия" class="form-item" required>
+                    <input type="email" name="email" placeholder="E-mail" class="form-item" id="mail" required>
+                    <input type="tel" name="phone" placeholder="Телефон" class="form-item" required>
+                    <input type="text" name="password" placeholder="Пароль" class="form-item" required>
+                    <input type="text" name="repeatPassword" placeholder="Повторите пароль" class="form-item" required>
+                    <input type="submit" value="Отправить" class="btn-send">
+                </form>
+            </div>
         </li>
         <li class="nav-buy">
             <a href="#" class="nav-basket">
@@ -169,6 +191,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <style>
+
     ul, li {
         text-decoration: none;
         list-style-type: none;
