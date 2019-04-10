@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +9,6 @@
     <script type="text/javascript" src="check-form.js"></script>
     <title>Catalog</title>
 </head>
-
 <body>
 <header class="products-header">
     <ul class="nav">
@@ -102,7 +100,7 @@
                     <p>$ 900</p>
                 </div>
                 <div class="product-more">
-                    <a href="./" class="product-buy">
+                    <a  class="product-buy">
                         <img src="img/Buy.svg">
                     </a>
                     <div class="test"></div>
@@ -118,7 +116,7 @@
                     <p>$ 900</p>
                 </div>
                 <div class="product-more">
-                    <a href="./" class="product-buy">
+                    <a class="product-buy">
                         <img src="img/Buy.svg">
                     </a>
                     <div class="test"></div>
@@ -134,7 +132,7 @@
                     <p>$ 900</p>
                 </div>
                 <div class="product-more">
-                    <a href="./" class="product-buy">
+                    <a class="product-buy">
                         <img src="img/Buy.svg">
                     </a>
                     <div class="test"></div>
@@ -150,7 +148,7 @@
                     <p>$ 900</p>
                 </div>
                 <div class="product-more">
-                    <a href="./" class="product-buy">
+                    <a  class="product-buy">
                         <img src="img/Buy.svg">
                     </a>
                     <div class="test"></div>
@@ -166,7 +164,7 @@
                     <p>$ 900</p>
                 </div>
                 <div class="product-more">
-                    <a href="./" class="product-buy">
+                    <a class="product-buy">
                         <img src="img/Buy.svg">
                     </a>
                     <div class="test"></div>
@@ -178,6 +176,69 @@
         </div>
     </ul>
 </section>
+<div class="container m-auto">
+    <form>
+        <h3 class="text text-center mb-3 mt-3">Оформление заказа</h3>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>Доставка</option>
+                            <option value="1">Без доставки</option>
+                            <option value="2">С доставкой</option>
+                        </select>
+                </div>
+                <div class="input-group mb-3">
+                            <select class="custom-select" id="inputGroupSelect02">
+                                <option selected>Способ оплаты</option>
+                                <option value="1">При получении</option>
+                                <option value="2">Оплатить банковской картой</option>
+                            </select>
+                </div>
+
+                    <h5 class="text text-center mb-3 mt-3">Основная информация</h5>
+
+                    <input type="text" class="form-control mb-3" id="firstname" placeholder="Имя">
+                    <input type="text" class="form-control mb-3" id="lastname" placeholder="Фамилия">
+                    <input type="telephone" class="form-control mb-3" id="tel" placeholder="Телефон">
+                    <input type="text" class="form-control mb-3" id="address" placeholder="Адрес">
+                    <input type="email" class="form-control mb-3" id="email" placeholder="Email">
+
+            </div>
+
+            <div class="form-group col-md-6">
+
+                <div class="container mb-3">
+                    <h5 class="product-title text-center mb-3 mt-3">Корзина</h5>
+
+                    <ul class="list-group list-group-flush mb-3" >
+
+
+                    </ul>
+
+
+                </div>
+
+                <button type="btn" class="clear-btn btn btn-dark float-right mb-3">Очистить корзину</button>
+
+                <input type="sum" class="form-control mb-3 mt-3" id="sum" placeholder="Сумма">
+
+            </div>
+
+        </div>
+
+
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-dark btn-lg col-6 mb-3">Заказать</button>
+            </div>
+
+
+
+
+    </form>
+    </div>
 <footer class="products-footer">
     <p class="footer-copy">c. Xcrafter</p>
 </footer>
@@ -192,6 +253,50 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script>
+    const productsList = document.querySelector('.list-group');
+    const products = document.querySelectorAll('.product-buy');
+    const clearBtn = document.querySelector('.clear-btn');
+
+    productsList.addEventListener('click', deleteProduct);
+
+    for(let i=0;i<products.length;i++){
+        products[i].addEventListener('click', addProduct);
+    }
+
+    clearBtn.addEventListener('click', clearCard);
+
+
+    // Add Product
+    function addProduct(e) {
+
+        const li = document.createElement('li');
+
+        li.className = 'list-group-item';
+
+        li.appendChild(document.createTextNode('blabla'));
+
+        const link = document.createElement('a');
+
+        link.className = 'delete-product secondary-content';
+        link.style = 'color: tomato; float: right; cursor: pointer'
+        link.innerHTML = '&#10006;';
+
+        li.appendChild(link);
+
+        productsList.appendChild(li);
+
+      }
+    // Delete Product
+      function deleteProduct(e) {
+        if(e.target.classList.contains('delete-product')) {
+          e.target.parentElement.remove();
+      }}
+
+    // Clear Card
+
+
+    </script>
 <style>
     ul, li {
         text-decoration: none;
@@ -453,22 +558,4 @@
         }
     </script>
 </body>
-
 </html>
-
-<!-- <div class="product-cont">
-        <li class="product-item">
-            <div class="product-price">
-                <p>$ 900</p>
-            </div>
-            <div class="product-more">
-                <a href="./" class="product-buy">
-                    <img src="img/Buy.svg">
-                </a>
-                <div class="test"></div>
-                <a href="./" class="product-search">
-                    <img src="img/Search.svg">
-                </a>
-            </div>
-        </li>
-    </div> -->
