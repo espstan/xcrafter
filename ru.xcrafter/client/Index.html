@@ -1,128 +1,117 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/singup-form.css">
     <link rel="stylesheet" href="css/main-page.css">
-    <script type="text/javascript" src="script/check-form.js"></script>
-    <script type="text/javascript" src="script/main-page.js"></script>
-    <script type="text/javascript" src="script/cart.js"></script>
+
+
     <title>Catalog</title>
 </head>
+
 <body>
-<header class="products-header">
-    <ul class="nav">
-        <li class="nav-logo">
-            <a href="#">
-                <img class="logo" src="img/Logo.png">
-            </a>
-        </li>
-        <li class="nav-singup">
-            <a class="show-btn" href="javascript:void(0)"
-               onclick="document.getElementById('singup-form').style.display='block';">
-                <img class="singup-btn" src="./img/User.svg">
-            </a>
-            <div id="singup-form" class="singup-form">
-                <a class="close-btn" href="javascript:void(0)"
-                   onclick="document.getElementById('singup-form').style.display='none';"></a>
-                <h1 class="singup-title">Регистрация</h1>
-                <form method="post" class="singup-list" name="formx" onSubmit='return check();'>
-                    <input type="text" name="firstName" placeholder="Имя" class="form-item" required>
-                    <input type="text" name="secondName" placeholder="Фамилия" class="form-item" required>
-                    <input type="email" name="email" placeholder="E-mail" class="form-item" id="mail" required>
-                    <input type="tel" name="phone" placeholder="Телефон" class="form-item" required>
-                    <input type="text" name="password" placeholder="Пароль" class="form-item" required>
-                    <input type="text" name="repeatPassword" placeholder="Повторите пароль" class="form-item" required>
-                    <input type="submit" value="Отправить" class="btn-send">
-                </form>
-            </div>
-        </li>
-        <li class="nav-buy">
-            <a href="#" class="nav-basket">
-                <img class="buy" src="img/Buy.svg">
-            </a>
-        </li>
-    </ul>
-</header>
-<section class="catalog">
-    <ul class="product-list"></ul>
-</section>
-<div class="container m-auto">
-    <form>
-        <h3 class="text text-center mb-3 mt-3">Оформление заказа</h3>
-
-        <div class="form-row">
-
-            <div class="form-group col-md-6">
-                <div class="input-group mb-3">
+    <header class="products-header">
+        <ul class="nav">
+            <li class="nav-logo">
+                <a href="#">
+                    <img class="logo" src="img/Logo.png">
+                </a>
+            </li>
+            <li class="nav-singup">
+                <a class="show-btn" href="javascript:void(0)"
+                    onclick="document.getElementById('singup-form').style.display='block';">
+                    <img class="singup-btn" src="./img/User.svg">
+                </a>
+                <div id="singup-form" class="singup-form">
+                    <a class="close-btn" href="javascript:void(0)"
+                        onclick="document.getElementById('singup-form').style.display='none';"></a>
+                    <h1 class="singup-title">Регистрация</h1>
+                    <form method="post" class="singup-list" name="formx" onSubmit='return check();'>
+                        <input type="text" name="firstName" placeholder="Имя" class="form-item" required>
+                        <input type="text" name="secondName" placeholder="Фамилия" class="form-item" required>
+                        <input type="email" name="email" placeholder="E-mail" class="form-item" id="mail" required>
+                        <input type="tel" name="phone" placeholder="Телефон" class="form-item" required>
+                        <input type="text" name="password" placeholder="Пароль" class="form-item" required>
+                        <input type="text" name="repeatPassword" placeholder="Повторите пароль" class="form-item"
+                            required>
+                        <input type="submit" value="Отправить" class="btn-send">
+                    </form>
+                </div>
+            </li>
+            <li class="nav-buy">
+                <a href="#" class="nav-basket">
+                    <img class="buy" src="img/Buy.svg">
+                </a>
+            </li>
+        </ul>
+    </header>
+    <section class="catalog">
+        <ul class="product-list">
+        </ul>
+    </section>
+    <div class="container m-auto">
+        <form>
+            <h3 class="text text-center mb-3 mt-3">Оформление заказа</h3>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="input-group mb-3">
                         <select class="custom-select" id="inputGroupSelect02">
                             <option selected>Доставка</option>
                             <option value="1">Без доставки</option>
                             <option value="2">С доставкой</option>
                         </select>
-                </div>
-                <div class="input-group mb-3">
-                            <select class="custom-select" id="inputGroupSelect02">
-                                <option selected>Способ оплаты</option>
-                                <option value="1">При получении</option>
-                                <option value="2">Оплатить банковской картой</option>
-                            </select>
-                </div>
-
+                    </div>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>Способ оплаты</option>
+                            <option value="1">При получении</option>
+                            <option value="2">Оплатить банковской картой</option>
+                        </select>
+                    </div>
                     <h5 class="text text-center mb-3 mt-3">Основная информация</h5>
-
                     <input type="text" class="form-control mb-3" id="firstname" placeholder="Имя">
                     <input type="text" class="form-control mb-3" id="lastname" placeholder="Фамилия">
-                    <input type="telephone" class="form-control mb-3" id="tel" placeholder="Телефон">
+                    <input type="tel" class="form-control mb-3" id="tel" placeholder="Телефон">
                     <input type="text" class="form-control mb-3" id="address" placeholder="Адрес">
                     <input type="email" class="form-control mb-3" id="email" placeholder="Email">
-
-            </div>
-
-            <div class="form-group col-md-6">
-
-                <div class="container mb-3">
-                    <h5 class="product-title text-center mb-3 mt-3">Корзина</h5>
-
-                    <ul class="list-group list-group-flush mb-3" >
-
-
-                    </ul>
-
-
                 </div>
-
-                <button type="btn" class="clear-btn btn btn-dark float-right mb-3">Очистить корзину</button>
-
-                <input type="sum" class="form-control mb-3 mt-3" id="sum" placeholder="Сумма">
-
+                <div class="form-group col-md-6">
+                    <div class="container mb-3">
+                        <h5 class="product-title text-center mb-3 mt-3">Корзина</h5>
+                        <ul class="list-group list-group-flush mb-3">
+                        </ul>
+                    </div>
+                    <button type="btn" class="clear-btn btn btn-dark float-right mb-3">Очистить корзину</button>
+                    <input type="sum" class="form-control mb-3 mt-3" id="sum" placeholder="Сумма">
+                </div>
             </div>
-
-        </div>
-
             <div class="row justify-content-center">
                 <button type="submit" class="btn btn-dark btn-lg col-6 mb-3">Заказать</button>
             </div>
-
-    </form>
+        </form>
     </div>
-<footer class="products-footer">
-    <p class="footer-copy">c. Xcrafter</p>
-</footer>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-</body>
-</html>
+    <footer class="products-footer">
+        <p class="footer-copy">c. Xcrafter</p>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="script/main-page.js"></script>
+    <script type="text/javascript" src="script/check-form.js"></script>
+    <!-- <script type="text/javascript" src="script/cart.js"></script> -->
+</body>
+
+</html>
