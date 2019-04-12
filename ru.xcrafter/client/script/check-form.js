@@ -4,7 +4,7 @@ function CustomValidation( input ) {
     this.inputNode = input;
     this.registerListener();
   }
-  
+
 CustomValidation.prototype = {
     addInvalidity: function ( message ) {
       this.invalidities.push( message );
@@ -27,14 +27,14 @@ CustomValidation.prototype = {
             requirementElement.classList.remove( 'invalid' );
             requirementElement.classList.add( 'valid' );
           }
-  
+
         }
       }
     },
     checkInput: function () {
       this.inputNode.CustomValidation.invalidities = [];
       this.checkValidity( this.inputNode );
-  
+
       if ( this.inputNode.CustomValidation.invalidities.length === 0 && this.inputNode.value !== '' ) {
         this.inputNode.setCustomValidity( '' );
       } else {
@@ -58,7 +58,7 @@ const userNameValidityChecks = [
       invalidityMessage: 'Имя не должно быть короче 2 символов'
     }
 ];
-  
+
 const userSurnameValidityChecks = [
     {
       isInvalid: function ( input ) {
@@ -67,7 +67,7 @@ const userSurnameValidityChecks = [
       invalidityMessage: 'Фамилия не должна быть короче 2 символов'
     }
 ];
-  
+
 const userMailValidityChecks = [
     {
       isInvalid: function ( input ) {
@@ -76,7 +76,7 @@ const userMailValidityChecks = [
       invalidityMessage: 'Введите корректный e-mail'
     }
 ];
-  
+
 const userPhoneValidityChecks = [
     {
       isInvalid: function ( input ) {
@@ -85,7 +85,7 @@ const userPhoneValidityChecks = [
       invalidityMessage: 'Введите корректный номер телефона'
     }
 ];
-  
+
 const passwordValidityChecks = [
     {
       isInvalid: function ( input ) {
@@ -118,7 +118,7 @@ const passwordValidityChecks = [
       invalidityMessage: 'Пароль должен содержать хотя бы один спецсимвол'
     }
 ];
-  
+
 const passwordRepeatValidityChecks = [
     {
       isInvalid: function () {
@@ -127,7 +127,7 @@ const passwordRepeatValidityChecks = [
       invalidityMessage: 'Введенные пароли не совпадают'
     }
 ];
-  
+
 const userNameInput = document.getElementById( 'userName' );
 const userSurnameInput = document.getElementById( 'userSurname' );
 const userMailInput = document.getElementById( 'userMail' );
@@ -152,18 +152,18 @@ passwordInput.CustomValidation.validityChecks = passwordValidityChecks;
 
 passwordRepeatInput.CustomValidation = new CustomValidation( passwordRepeatInput );
 passwordRepeatInput.CustomValidation.validityChecks = passwordRepeatValidityChecks;
-  
-  
+
+
 const inputs = document.querySelectorAll( 'input:not([type="submit"])' );
 const submit = document.querySelector( 'input[type="submit"' );
 const form = document.getElementById( 'form' );
-  
+
 function validate() {
     for ( let i = 0; i < inputs.length; i++ ) {
       inputs[i].CustomValidation.checkInput();
     }
 }
-  
+
 submit.addEventListener( 'click', validate );
 form.addEventListener( 'submit', validate );
 
@@ -175,7 +175,7 @@ function showPassword( button ) {
       password.type = "password";
     }
 }
-  
+
 function showRepeatPassword( button ) {
     var password = document.getElementById( "password_repeat" );
     if ( password.type == "password" ) {
