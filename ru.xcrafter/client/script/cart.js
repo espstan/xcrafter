@@ -1,10 +1,11 @@
+
 const productsList = document.querySelector('.list-group');
 const products = document.querySelectorAll('.product-buy');
 const clearBtn = document.querySelector('.clear-btn');
 
 productsList.addEventListener('click', deleteProduct);
 
-for(let i=0;i<products.length;i++){
+for (let i = 0; i < products.length; i++) {
     products[i].addEventListener('click', addProduct);
 }
 
@@ -30,11 +31,17 @@ function addProduct(e) {
 
     productsList.appendChild(li);
 
-    }
+}
 // Delete Product
-    function deleteProduct(e) {
+function deleteProduct(e) {
     if(e.target.classList.contains('delete-product')) {
         e.target.parentElement.remove();
-    }}
+    }
+}
+
 
 // Clear Card
+
+function clearCard() {
+    console.log(666);
+}
