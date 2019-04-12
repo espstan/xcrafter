@@ -24,16 +24,16 @@ function createProductContElement(product) {
     let productCont = document.createElement('div');
     productCont.className = 'product-cont';
     productCont.setAttribute('id', product.id)
-    productCont.innerHTML = getProductItem(product);
+    productCont.innerHTML = getProductCard(product);
     productCont.getElementsByClassName('product-buy')[0].addEventListener('click', () => buy(product));
     return productCont;
 }
 
 
-function getProductItem(product) {
+function getProductCard(product) {
     const productPhoto = product.photo ? product.photo : 'img/Img.png';
     const backgroundImage = `url(${productPhoto})`;
-    const elem =
+    const productCard =
         `<li class="product-item" style="background-image: ${backgroundImage};">
             <div class="product-price">
                 <p>${product.price}</p>
@@ -48,7 +48,7 @@ function getProductItem(product) {
                 </a>
             </div>
         </li>`;
-    return elem;
+    return productCard;
 }
 
 function buy(product) {
