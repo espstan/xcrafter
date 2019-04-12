@@ -7,9 +7,9 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/singup-form.css">
     <link rel="stylesheet" href="css/main-page.css">
-    <script type="text/javascript" src="script/check-form.js"></script>
     <script type="text/javascript" src="script/main-page.js"></script>
     <script type="text/javascript" src="script/cart.js"></script>
+    <script type="text/javascript" src="script/check-form.js"></script>
     <title>Catalog</title>
 </head>
 <body>
@@ -29,19 +29,22 @@
                 <a class="close-btn" href="javascript:void(0)"
                    onclick="document.getElementById('singup-form').style.display='none';"></a>
                 <h1 class="singup-title">Регистрация</h1>
-                <form method="post" class="singup-list" id="form" name="form"
-                      onsubmit="return validate('form', 'name', 'surname', 'mail', 'phone', 'password', 'passwordRepeat')">
-                    <input type="text" name="firstName" placeholder="Имя" class="form-item" id="name">
-                    <input type="text" name="secondName" placeholder="Фамилия" class="form-item" id="surname">
-                    <input type="email" name="email" placeholder="E-mail" class="form-item" id="mail">
-                    <input type="tel" name="phone" placeholder="Телефон" class="form-item" id="phone">
+                <form method="post" class="singup-list" id="form" name="form">
+                    <input type="text" name="firstName" placeholder="Имя" class="form-item" id="userName" minlength="2"
+                           maxlength="100" required>
+                    <input type="text" name="secondName" placeholder="Фамилия" class="form-item" id="userSurname"
+                           minlength="2" maxlength="100" required>
+                    <input type="email" name="email" placeholder="E-mail" class="form-item" id="userMail" minlength="5"
+                           maxlength="100" required>
+                    <input type="tel" name="phone" placeholder="Телефон" class="form-item" id="userPhone" minlength="5"
+                           maxlength="100" required>
                     <input type="password" name="password" placeholder="Пароль" class="form-item form-test"
-                           id="password">
+                           id="password" maxlength="100" minlength="8" required>
                     <button class="showPassword" type="button" onclick="showPassword(this)"><img class="showPasswordImg"
                                                                                                  src="img/Eye.svg">
                     </button>
                     <input type="password" name="repeatPassword" placeholder="Повторите пароль" class="form-item"
-                           id="passwordRepeat">
+                           id="password_repeat" maxlength="100" minlength="8" required>
                     <button class="showPassword showRepeatPassword" type="button" onclick="showRepeatPassword(this)">
                         <img class="showPasswordImg" src="img/Eye.svg"></button>
                     <input type="submit" value="Отправить" class="btn-send">
@@ -61,9 +64,7 @@
 <div class="container m-auto">
     <form>
         <h3 class="text text-center mb-3 mt-3">Оформление заказа</h3>
-
         <div class="form-row">
-
             <div class="form-group col-md-6">
                 <div class="input-group mb-3">
                     <select class="custom-select" id="inputGroupSelect02">
@@ -79,42 +80,26 @@
                         <option value="2">Оплатить банковской картой</option>
                     </select>
                 </div>
-
                 <h5 class="text text-center mb-3 mt-3">Основная информация</h5>
-
                 <input type="text" class="form-control mb-3" id="firstname" placeholder="Имя">
                 <input type="text" class="form-control mb-3" id="lastname" placeholder="Фамилия">
                 <input type="telephone" class="form-control mb-3" id="tel" placeholder="Телефон">
                 <input type="text" class="form-control mb-3" id="address" placeholder="Адрес">
                 <input type="email" class="form-control mb-3" id="email" placeholder="Email">
-
             </div>
-
             <div class="form-group col-md-6">
-
                 <div class="container mb-3">
                     <h5 class="product-title text-center mb-3 mt-3">Корзина</h5>
-
                     <ul class="list-group list-group-flush mb-3">
-
-
                     </ul>
-
-
                 </div>
-
                 <button type="btn" class="clear-btn btn btn-dark float-right mb-3">Очистить корзину</button>
-
                 <input type="sum" class="form-control mb-3 mt-3" id="sum" placeholder="Сумма">
-
             </div>
-
         </div>
-
         <div class="row justify-content-center">
             <button type="submit" class="btn btn-dark btn-lg col-6 mb-3">Заказать</button>
         </div>
-
     </form>
 </div>
 <footer class="products-footer">
