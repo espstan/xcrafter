@@ -21,8 +21,8 @@
 }
 
 .form-item {
-    width: 90%;
-    margin-top: 5%;
+    width: 80%;
+    margin-top: 30px;
 }
 
 .singup-list {
@@ -48,5 +48,25 @@
     color: #fff;
     border: none;
     margin-top: 40px;
+}
 
+.showPassword {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 59%;
+    outline: none;
+}
+
+.showPassword:active, .showPassword:focus {
+    outline: none;
+}
+
+.showRepeatPassword {
+    top: 69%;
+}
+
+.showPasswordImg {
+    width: 30px;
+    height: 30px;
 }

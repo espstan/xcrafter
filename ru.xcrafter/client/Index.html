@@ -80,13 +80,24 @@
 <div id="singup-form" class="singup-form closed">
     <a class="close-btn close-signup-form-btn" href="javascript:void(0)"></a>
     <h1 class="singup-title">Регистрация</h1>
-    <form method="post" class="singup-list" name="formx" onSubmit='return check();'>
-        <input type="text" name="firstName" placeholder="Имя" class="form-item" required>
-        <input type="text" name="secondName" placeholder="Фамилия" class="form-item" required>
-        <input type="email" name="email" placeholder="E-mail" class="form-item" id="mail" required>
-        <input type="tel" name="phone" placeholder="Телефон" class="form-item" required>
-        <input type="text" name="password" placeholder="Пароль" class="form-item" required>
-        <input type="text" name="repeatPassword" placeholder="Повторите пароль" class="form-item" required>
+    <form method="post" class="singup-list" id="form" name="form">
+        <input type="text" name="firstName" placeholder="Имя" class="form-item" id="userName" minlength="2"
+                maxlength="100" required>
+        <input type="text" name="secondName" placeholder="Фамилия" class="form-item" id="userSurname"
+                minlength="2" maxlength="100" required>
+        <input type="email" name="email" placeholder="E-mail" class="form-item" id="userMail" minlength="5"
+                maxlength="100" required>
+        <input type="tel" name="phone" placeholder="Телефон" class="form-item" id="userPhone" minlength="5"
+                maxlength="100" required>
+        <input type="password" name="password" placeholder="Пароль" class="form-item form-test"
+                id="password" maxlength="100" minlength="8" required>
+        <button class="showPassword" type="button" onclick="showPassword(this)"><img class="showPasswordImg"
+                                                                                        src="img/Eye.svg">
+        </button>
+        <input type="password" name="repeatPassword" placeholder="Повторите пароль" class="form-item"
+                id="password_repeat" maxlength="100" minlength="8" required>
+        <button class="showPassword showRepeatPassword" type="button" onclick="showRepeatPassword(this)">
+            <img class="showPasswordImg" src="img/Eye.svg"></button>
         <input type="submit" value="Отправить" class="btn-send">
     </form>
 </div>
@@ -106,10 +117,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-<script type="text/javascript" src="dist/main.js"></script>
-<!-- <script type="text/javascript" src="script/main-page.js"></script>
+<script type="text/javascript" src="script/main-page.js"></script>
 <script type="text/javascript" src="script/check-form.js"></script>
-<script type="text/javascript" src="script/cart.js"></script> -->
+<!-- <script type="text/javascript" src="script/cart.js"></script> -->
+<script type="text/javascript" src="script/modal-windows.js"></script>
 </body>
 </html>
 
