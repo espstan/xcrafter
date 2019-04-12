@@ -1,24 +1,22 @@
 const productsList = document.querySelector('.list-group');
-const products = document.querySelectorAll('.product-buy');
+const productsInTheCart = document.querySelectorAll('.product-buy');
 const clearBtn = document.querySelector('.clear-btn');
 
-productsList.addEventListener('click', deleteProduct);
 
-for(let i=0;i<products.length;i++){
-    products[i].addEventListener('click', addProduct);
+for(let i=0;i<productsInTheCart.length;i++){
+    productsInTheCart[i].addEventListener('click', addProduct);
 }
-
-clearBtn.addEventListener('click', clearCard);
+ productsInTheCart.addEventListener('click', deleteProduct);
 
 
 // Add Product
 function addProduct(e) {
-
+     
     const li = document.createElement('li');
 
     li.className = 'list-group-item';
 
-    li.appendChild(document.createTextNode('blabla'));
+    li.appendChild(document.createTextNode("product"));
 
     const link = document.createElement('a');
 
@@ -28,13 +26,18 @@ function addProduct(e) {
 
     li.appendChild(link);
 
-    productsList.appendChild(li);
+     productsInTheCart.appendChild(li);
+
+    
 
     }
+
+   
 // Delete Product
     function deleteProduct(e) {
     if(e.target.classList.contains('delete-product')) {
-        e.target.parentElement.remove();
-    }}
+    e.target.parentElement.remove();
+    // removeProductFromLocalStorage(e.target.parentElement);
+    }
+}
 
-// Clear Card
