@@ -1,0 +1,2 @@
+FLASK_APP=xcrafter.py
+FLASK_DEBUG=1
