@@ -61,7 +61,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <select class="custom-select"
-                            id="inputGroupSelect02">
+                            id="inputGroupSelect03">
                         <option selected>Способ оплаты</option>
                         <option value="1">При получении</option>
                         <option value="2">Оплатить банковской картой</option>
@@ -156,7 +156,7 @@
         <input type="password"
                name="password"
                placeholder="Пароль"
-               class="form-item form-test"
+               class="form-item"
                id="password"
                maxlength="100"
                minlength="8"
@@ -181,7 +181,8 @@
                  src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
         <input type="submit"
                value="Отправить"
-               class="btn-send">
+               class="btn-send"
+               onsubmit="sendForm()">
     </form>
 </div>
 
@@ -190,8 +191,6 @@
 </footer>
 <div class="modal-overlay closed"
      id="modal-overlay"></div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -202,12 +201,13 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script type="text/javascript"
-        src="{{ url_for('static', filename='script/main-page.js') }}"></script>
-<script type="text/javascript"
         src="{{ url_for('static', filename='script/check-form.js') }}"></script>
-<!-- <script type="text/javascript" src="script/cart.js"></script> -->
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/main-page.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/sendForm.js') }}"></script>
 </body>
 </html>
 
