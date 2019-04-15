@@ -1,4 +1,4 @@
-#!/home/elama/projects/xcrafter/xcrafter_flask/venv/bin/python
+#!/home/elama/projects/xcrafter/ru.xcrafter/venv/bin/python
 
 import sys
 import getopt

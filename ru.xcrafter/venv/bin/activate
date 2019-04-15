@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/elama/projects/xcrafter/xcrafter_flask/venv"
+VIRTUAL_ENV="/home/elama/projects/xcrafter/ru.xcrafter/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
