@@ -34,3 +34,4 @@ yarn-error.log*
 venv
 venv.bak/
 ru.xcrafter/venv/bin ru.xcrafter/venv/include ru.xcrafter/venv/lib ru.xcrafter/venv/share
+db_data/
