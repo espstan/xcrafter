@@ -70,3 +70,23 @@
     width: 30px;
     height: 30px;
 }
+
+.form-registration {
+    display: none;
+}
+
+.form-singin {
+    display: block;
+}
+
+.singFormTitle {
+    display: flex;
+    justify-content: space-around;
+}
+
+.open {
+    background-color: #C6D6EF;
+}
+.open {
+    background-color: #C6D6EF;
+}
