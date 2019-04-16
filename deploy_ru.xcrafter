@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git pull
+rsync -rv --delete /home/elama/projects/xcrafter/ru.xcrafter/ xCrafterRoot:/var/www/xcrafter_flask/

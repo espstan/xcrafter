@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+rsync -rv --delete /home/elama/projects/xcrafter/ru.xcrafter/jsons/ xCrafterRoot:/var/www/xcrafter/jsons/
