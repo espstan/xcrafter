@@ -2,7 +2,7 @@ const item = document.getElementsByClassName('product-list')[0];
 
 let xhr = new XMLHttpRequest();
 
-xhr.open('GET', 'http://xcrafter.ru/jsons/document.json', true);
+xhr.open('GET', 'http://localhost:5000//api/1/products', true);
 xhr.send();
 
 xhr.onreadystatechange = function () {

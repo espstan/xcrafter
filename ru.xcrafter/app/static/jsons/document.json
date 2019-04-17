@@ -1,98 +1,86 @@
 [
   {
-    "id": "515252",
     "title": "Сумка",
     "description": "Сумка складная 'TouringBag' / Dark Blue",
     "price": 1990,
-    "photo": "https://www.pichshop.ru/product_img/515252/b1.jpg",
-    "seller": "Seller#1"
+    "photo": ["https://www.pichshop.ru/product_img/515252/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "591042",
     "title": "Копилка",
     "description": "Копилка для винных пробок 'Нельзя купить счастье' / Светлый",
     "price": 2200,
-    "photo": "https://www.pichshop.ru/product_img/591042/b1.jpg",
-    "seller": "Seller#101"
+    "photo": ["https://www.pichshop.ru/product_img/591042/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "362014",
     "title": "Подставка",
     "description": "Подставка-поднос 'Laptray' / Венге",
     "price": 4650,
-    "photo": "https://www.pichshop.ru/product_img/362014/b1.jpg",
-    "seller": "Seller#1"
+    "photo": ["https://www.pichshop.ru/product_img/362014/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "392003",
     "title": "Акваферма",
     "description": "Акваферма 'Gold Fish' Ver.3 ",
     "price": 4890,
-    "photo": "https://www.pichshop.ru/product_img/392003/b1.jpg",
-    "seller": "Seller#12"
+    "photo": ["https://www.pichshop.ru/product_img/392003/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "605010",
     "title": "Набор",
     "description": "Набор для выращивания 'Wood' / Лаванда",
     "price": 440,
-    "photo": "https://www.pichshop.ru/product_img/605010/b1.jpg",
-    "seller": "Seller#11"
+    "photo": ["https://www.pichshop.ru/product_img/605010/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "259012",
     "title": "Скретч-карта",
     "description": "Скретч-карта Мира 'True-Map' - Black Edition",
     "price": 850,
-    "photo": "https://www.pichshop.ru/product_img/259012/b1.jpg",
-    "seller": "Seller#2"
+    "photo": ["https://www.pichshop.ru/product_img/259012/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "685010",
     "title": "Карта",
     "description": "Карта неба флуоресцентная 'Star Map of the SKY",
     "price": 1850,
-    "photo": "https://www.pichshop.ru/product_img/685010/b1.jpg",
-    "seller": "Seller#11457"
+    "photo": ["https://www.pichshop.ru/product_img/685010/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "685001",
     "title": "Карта",
     "description": "Карта визуализации желаний 'Мечтай и Делай'",
     "price": 200,
-    "photo": "https://www.pichshop.ru/product_img/685001/b1.jpg",
-    "seller": "Seller#14"
+    "photo": ["https://www.pichshop.ru/product_img/685001/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "365063",
     "title": "Папка",
     "description": "Папка-органайзер 'Kyoto'/ Черный",
     "price": 1750,
-    "photo": "https://www.pichshop.ru/product_img/365063/b1.jpg",
-    "seller": "Seller#5"
+    "photo": ["https://www.pichshop.ru/product_img/365063/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "365110",
     "title": "Органайзер",
     "description": "Органайзер с беспроводным внешним аккумулятором 'Air'",
     "price": 6290,
-    "photo": "https://www.pichshop.ru/product_img/365110/b1.jpg",
-    "seller": "Seller#1"
+    "photo": ["https://www.pichshop.ru/product_img/365110/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "765288",
     "title": "Ручка",
     "description": "Ручка 'Owl Mix Color'",
     "price": 150,
-    "photo": "https://www.pichshop.ru/product_img/765288/b1.jpg",
-    "seller": "Seller#11"
+    "photo": ["https://www.pichshop.ru/product_img/765288/b1.jpg"],
+    "seller": 1
   },
   {
-    "id": "164101",
     "title": "Зонт",
     "description": "Зонт складной 'London Map'",
     "price": 2150,
-    "photo": "https://www.pichshop.ru/product_img/164101/b1.jpg",
-    "seller": "Seller#15"
+    "photo": ["https://www.pichshop.ru/product_img/164101/b1.jpg"],
+    "seller": 1
   }
 ]

@@ -116,74 +116,81 @@
      class="singup-form closed">
     <a class="close-btn close-signup-form-btn"
        href="javascript:void(0)"></a>
-    <h1 class="singup-title">Регистрация</h1>
-    <form method="post"
-          class="singup-list"
-          id="form"
-          name="form">
-        <input type="text"
-               name="firstName"
-               placeholder="Имя"
-               class="form-item"
-               id="userName"
-               minlength="2"
-               maxlength="100"
-               required>
-        <input type="text"
-               name="secondName"
-               placeholder="Фамилия"
-               class="form-item"
-               id="userSurname"
-               minlength="2"
-               maxlength="100"
-               required>
-        <input type="email"
-               name="email"
-               placeholder="E-mail"
-               class="form-item"
-               id="userMail"
-               minlength="5"
-               maxlength="100"
-               required>
-        <input type="tel"
-               name="phone"
-               placeholder="Телефон"
-               class="form-item"
-               id="userPhone"
-               minlength="5"
-               maxlength="100"
-               required>
-        <input type="password"
-               name="password"
-               placeholder="Пароль"
-               class="form-item"
-               id="password"
-               maxlength="100"
-               minlength="8"
-               required>
-        <button class="showPassword"
-                type="button"
-                onclick="showPassword(this)"><img class="showPasswordImg"
-                                                  src="{{ url_for('static', filename='img/Eye.svg') }}">
-        </button>
-        <input type="password"
-               name="repeatPassword"
-               placeholder="Повторите пароль"
-               class="form-item"
-               id="password_repeat"
-               maxlength="100"
-               minlength="8"
-               required>
-        <button class="showPassword showRepeatPassword"
-                type="button"
-                onclick="showRepeatPassword(this)">
-            <img class="showPasswordImg"
-                 src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
-        <input type="submit"
-               value="Отправить"
-               class="btn-send"
-               onsubmit="sendForm()">
-    </form>
+    <section class="singFormTitle">
+    <a class="singup-title open" href="#0" onclick="openSingIn()" id="open">Вход</a>
+    <a class="singup-title" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
+    </section>
+
+        <form method="POST"
+              action="http://localhost:5000/api/1/user"
+              class="singup-list"
+              id="form"
+              name="form">
+            <input type="text"
+                   name="firstName"
+                   placeholder="Имя"
+                   class="form-item"
+                   id="userName"
+                   minlength="2"
+                   maxlength="100"
+                   required>
+            <input type="text"
+                   name="secondName"
+                   placeholder="Фамилия"
+                   class="form-item"
+                   id="userSurname"
+                   minlength="2"
+                   maxlength="100"
+                   required>
+            <input type="email"
+                   name="email"
+                   placeholder="E-mail"
+                   class="form-item"
+                   id="userMail"
+                   minlength="5"
+                   maxlength="100"
+                   required>
+            <input type="tel"
+                   name="phone"
+                   placeholder="Телефон"
+                   class="form-item"
+                   id="userPhone"
+                   minlength="5"
+                   maxlength="100"
+                   required>
+            <input type="password"
+                   name="password"
+                   placeholder="Пароль"
+                   class="form-item"
+                   id="password"
+                   maxlength="100"
+                   minlength="8"
+                   required>
+            <button class="showPassword"
+                    type="button"
+                    onclick="showPassword(this)"><img class="showPasswordImg"
+                                                      src="{{ url_for('static', filename='img/Eye.svg') }}">
+            </button>
+            <input type="password"
+                   name="repeatPassword"
+                   placeholder="Повторите пароль"
+                   class="form-item"
+                   id="password_repeat"
+                   maxlength="100"
+                   minlength="8"
+                   required>
+            <button class="showPassword showRepeatPassword"
+                    type="button"
+                    onclick="showRepeatPassword(this)">
+                <img class="showPasswordImg"
+                     src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
+            <input type="submit"
+                   value="Отправить"
+                   class="btn-send"
+                   id="btn-send">
+        </form>
+
+
 </div>
 <footer class="products-footer">
     <p class="footer-copy">c. Xcrafter</p>
@@ -205,8 +212,7 @@
         src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/main-page.js') }}"></script>
-<script type="text/javascript"
-        src="{{ url_for('static', filename='script/sendForm.js') }}"></script>
+
 </body>
 </html>
 
