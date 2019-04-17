@@ -14,6 +14,8 @@
           href="{{ url_for('static', filename='css/main-page.css') }}">
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/cart.css') }}">
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='script/choice-singup') }}"></script>
     <title>Catalog</title>
 </head>
 <body>
@@ -111,24 +113,57 @@
         </div>
     </form>
 </div>
-
 <div id="singup-form"
      class="singup-form closed">
     <a class="close-btn close-signup-form-btn"
        href="javascript:void(0)"></a>
     <section class="singFormTitle">
-    <a class="singup-title open" href="#0" onclick="openSingIn()" id="open">Вход</a>
-    <a class="singup-title" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
+        <a class="singup-title open" href="#0" onclick="openSingIn()" id="open">Вход</a>
+        <a class="singup-title close" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
     </section>
-    <div id="form-registration" class="form-registration">
+    <div id="sing-in" class="sing-in">
         <form method="post"
-              class="singup-list"
-              id="form"
-              name="form">
+              action="URL"
+              class="sing-list"
+              id="sing-form"
+              name="sing-form">
+            <input type="email"
+                   name="login"
+                   placeholder="E-mail"
+                   class="form-item form-login"
+                   id="userLogin"
+                   minlength="5"
+                   maxlength="100"
+                   required>
+            <input type="password"
+                   name="password-sing"
+                   placeholder="Пароль"
+                   class="form-item form-password"
+                   id="password-sing"
+                   maxlength="100"
+                   minlength="8"
+                   required>
+            <button class="showPassword showLoginPassword"
+                    type="button"
+                    onclick="showPassword(this)"><img class="showPasswordImg"
+                                                      src="{{ url_for('static', filename='img/Eye.svg') }}">
+            </button>
+            <input type="submit"
+                   value="Отправить"
+                   class="btn-registration"
+                   id="btn-send-sing">
+        </form>
+    </div>
+    <div id="registration" class="registration">
+        <form method="POST"
+              action="http://localhost:5000/api/1/user"
+              class="registration-list"
+              id="registration-form"
+              name="registration-form">
             <input type="text"
                    name="firstName"
                    placeholder="Имя"
-                   class="form-item"
+                   class="form-item form-name"
                    id="userName"
                    minlength="2"
                    maxlength="100"
@@ -136,7 +171,7 @@
             <input type="text"
                    name="secondName"
                    placeholder="Фамилия"
-                   class="form-item"
+                   class="form-item form-surname"
                    id="userSurname"
                    minlength="2"
                    maxlength="100"
@@ -144,7 +179,7 @@
             <input type="email"
                    name="email"
                    placeholder="E-mail"
-                   class="form-item"
+                   class="form-item form-email"
                    id="userMail"
                    minlength="5"
                    maxlength="100"
@@ -152,7 +187,7 @@
             <input type="tel"
                    name="phone"
                    placeholder="Телефон"
-                   class="form-item"
+                   class="form-item form-phone"
                    id="userPhone"
                    minlength="5"
                    maxlength="100"
@@ -160,7 +195,7 @@
             <input type="password"
                    name="password"
                    placeholder="Пароль"
-                   class="form-item"
+                   class="form-item form-password"
                    id="password"
                    maxlength="100"
                    minlength="8"
@@ -173,7 +208,7 @@
             <input type="password"
                    name="repeatPassword"
                    placeholder="Повторите пароль"
-                   class="form-item"
+                   class="form-item form-repeatPassword"
                    id="password_repeat"
                    maxlength="100"
                    minlength="8"
@@ -185,35 +220,8 @@
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
             <input type="submit"
                    value="Отправить"
-                   class="btn-send"
-                   onsubmit="sendForm()">
-        </form>
-    </div>
-    <div id="form-singin" class="form-singin">
-        <form>
-            <form method="post"
-                  class="singup-list">
-                <input type="email"
-                       name="email"
-                       placeholder="E-mail"
-                       class="form-item"
-                       id="userMail"
-                       minlength="5"
-                       maxlength="100"
-                       required>
-                <input type="password"
-                       name="password"
-                       placeholder="Пароль"
-                       class="form-item"
-                       id="password"
-                       maxlength="100"
-                       minlength="8"
-                       required>
-                <button class="showPassword"
-                        type="button"
-                        onclick="showPassword(this)"><img class="showPasswordImg"
-                                                          src="{{ url_for('static', filename='img/Eye.svg') }}">
-                </button>
+                   class="btn-registration"
+                   id="btn-registration">
         </form>
     </div>
 </div>
@@ -237,22 +245,6 @@
         src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/main-page.js') }}"></script>
-<script type="text/javascript"
-        src="{{ url_for('static', filename='script/sendForm.js') }}"></script>
-<script>
-  function openRegistration() {
-    document.getElementById('form-registration').style.display = 'block';
-    document.getElementById('form-singin').style.display = 'none';
-    document.getElementById('open').style.backgroundColor = 'red';
-  }
-
-  function openSingIn() {
-    document.getElementById('form-registration').style.display = 'none';
-    document.getElementById('form-singin').style.display = 'block';
-    document.getElementById('close').style.backgroundColor = 'red';
-  }
-
-</script>
 </body>
 </html>
 
