@@ -2,7 +2,7 @@ const item = document.getElementsByClassName('product-list')[0];
 
 let xhr = new XMLHttpRequest();
 
-xhr.open('GET', 'http://xcrafter.ru/jsons/document.json', true);
+xhr.open('GET', 'http://localhost:5000/jsons/document.json', true);
 xhr.send();
 
 xhr.onreadystatechange = function () {
@@ -53,6 +53,7 @@ function getProductCard(product) {
 
 const productsList = document.querySelector('.list-group');
 const clearBtn = document.querySelector('.clear-btn');
+const totalPayment = document.getElementById('total-payment');
 
 document.addEventListener('DOMContentLoaded', getProductsFromLS);
 productsList.addEventListener('click', deleteProduct);
@@ -60,9 +61,10 @@ clearBtn.addEventListener('click', clearCart);
 
     function buy(product) {
         const li = document.createElement('li');
-
+        
         li.className = 'list-group-item';
-
+        
+        li.setAttribute('data-id', product.id);
         li.appendChild(document.createTextNode(`${product.title}:   ${product.price} руб`));
 
         const link = document.createElement('a');
@@ -72,11 +74,11 @@ clearBtn.addEventListener('click', clearCart);
         link.innerHTML = '&#10006;';
         li.appendChild(link);
         productsList.appendChild(li);
+        calculateTP(product);
         storeProductInLS(product);
     }
     function storeProductInLS(product){
         let productsInLS;
-        // localStorage[productsInLS] = JSON.stringify(product);
         if(localStorage.getItem('productsInLS') === null){
             productsInLS = [];
         } else {
@@ -87,52 +89,49 @@ clearBtn.addEventListener('click', clearCart);
     }
 
 function getProductsFromLS(){
-    // let productsInTheCart = JSON.parse(localStorage.getItem('productsInLS'));
-    // console.log(productsInTheCart);
+    
     let productsInLS;
 
     productsInLS = JSON.parse(localStorage.getItem('productsInLS'));
-
+    if (!productsInLS) { return false }
     productsInLS.forEach(function(product){
     const li = document.createElement('li');
-    li.className = 'list-group-item';
-    li.appendChild(document.createTextNode(`${product.title}:   ${product.price} руб`));
-    const link = document.createElement('a');
-    link.className = 'delete-product secondary-content';
-    link.style = 'color: tomato; float: right; cursor: pointer'
-    link.innerHTML = '&#10006;';
-    li.appendChild(link);
-    productsList.appendChild(li);
+        li.setAttribute('data-id', product.id);
+        li.className = 'list-group-item';
+        li.appendChild(document.createTextNode(`${product.title}:   ${product.price} руб`));
+        const link = document.createElement('a');
+        link.className = 'delete-product secondary-content';
+        link.style = 'color: tomato; float: right; cursor: pointer'
+        link.innerHTML = '&#10006;';
+        li.appendChild(link);
+        productsList.appendChild(li);
+        calculateTP(product);
     })
 }
 
 
 function deleteProduct(e) {
     if(e.target.classList.contains('delete-product')) {
-    e.target.parentElement.remove();
+        e.target.parentElement.remove();
     }
     removeProductFromLS(e.target.parentElement);
 }
 
-function removeProductFromLS(product) {
-    let productsInLS;
-    if(localStorage.getItem('productsInLS') === null){
-        productsInLS = [];
-    } else {
-        productsInLS = JSON.parse(localStorage.getItem('productsInLS'));
-    }
-
-    productsInLS.forEach(function(productInLS, index){
-    if(product.textContent === productInLS){
-        productsInLS.splice(index, 1);
-    }
-    });
-
+function removeProductFromLS(element) {
+    const productsInLS = JSON.parse(localStorage.getItem('productsInLS'));
+    const id = element.dataset.id;
+    const index = productsInLS.findIndex(product => product.id === id);
+    productsInLS.splice(index, 1);
     localStorage.setItem('productsInLS', JSON.stringify(productsInLS));
+    (JSON.parse(localStorage.getItem('productsInLS')));
 }
 
 function clearCart(){
     productsList.innerHTML = '';
     localStorage.clear();
 }
+
+function calculateTP(product){
+    totalPayment.value = totalPayment.value * 1 + product.price * 1;
+};
 

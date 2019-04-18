@@ -72,18 +72,18 @@
             <div class="form-group col-md-6">
                 <div class="input-group mb-3">
                     <select class="custom-select"
-                            id="inputGroupSelect02">
+                            id="delivery">
                         <option selected>Доставка</option>
-                        <option value="1">Без доставки</option>
-                        <option value="2">С доставкой</option>
+                        <option value="1">Самовывоз</option>
+                        <option value="2" disabled="disabled">Доставка</option>
                     </select>
                 </div>
-                <div class="input-group mb-3">
+                <div class="payment">
                     <select class="custom-select"
-                            id="inputGroupSelect03">
+                            id="payment">
                         <option selected>Способ оплаты</option>
-                        <option value="1">При получении</option>
-                        <option value="2">Оплатить банковской картой</option>
+                        <option value="1">Наличные</option>
+                        <option value="2" disabled="disabled">Оплатить банковской картой</option>
                     </select>
                 </div>
                 <h5 class="text text-center mb-3 mt-3">Основная информация</h5>
@@ -114,13 +114,14 @@
                     <ul class="list-group list-group-flush mb-3">
                     </ul>
                 </div>
-                <button type="btn"
+                <button 
                         class="clear-btn btn btn-dark float-right mb-3">Очистить корзину
                 </button>
-                <input type="sum"
-                       class="form-control mb-3 mt-3"
-                       id="sum"
-                       placeholder="Сумма">
+                <div class="input-group col-12 mb-3 mt-3">
+                    <span class="input-group-text">Общая сумма:</span>
+                    <input type="number" class="form-control" id="total-payment" disabled>
+                    <span class="input-group-text">₽</span>
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">

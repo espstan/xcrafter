@@ -26,7 +26,6 @@ def user():
 
 
 @app.route('/api/1/products')
+@app.route('/jsons/document.json')
 def products():
     return send_from_directory('static', 'jsons/document.json')
-
-
