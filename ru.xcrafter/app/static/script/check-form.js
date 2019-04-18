@@ -46,6 +46,7 @@ CustomValidation.prototype = {
     const CustomValidation = this;
     this.inputNode.addEventListener( 'keyup', function () {
       CustomValidation.checkInput();
+
     } );
   }
 };
@@ -154,8 +155,8 @@ passwordRepeatInput.CustomValidation.validityChecks = passwordRepeatValidityChec
 
 
 const inputs = document.querySelectorAll( 'input.form-item' );
-const submit = document.querySelector( 'input[type="submit"' );
-const form = document.getElementById( 'form' );
+const submit = document.querySelector( 'input.btn-registration' );
+const form = document.getElementById( 'registration-form' );
 
 function validate() {
   for ( let i = 0; i < form.elements.length; i++ ) {
@@ -175,3 +176,4 @@ function showRepeatPassword( button ) {
   let password = document.getElementById( "password_repeat" );
   (password.type == "password" ) ? password.type = "text" : password.type = "password"
 }
+
