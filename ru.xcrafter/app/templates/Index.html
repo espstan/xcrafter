@@ -9,7 +9,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/singup-form.css') }}">
+          href="{{ url_for('static', filename='css/signup-form.css') }}">
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/main-page.css') }}">
     <link rel="stylesheet"
@@ -25,10 +25,10 @@
                      src="{{ url_for('static', filename='img/Logo.png') }}">
             </a>
         </li>
-        <li class="nav-singup">
+        <li class="nav-signup">
             <a class="show-btn"
                href="javascript:void(0)">
-                <img class="singup-btn"
+                <img class="signup-btn"
                      src="{{ url_for('static', filename='img/User.svg') }}">
             </a>
         </li>
@@ -131,20 +131,20 @@
         </div>
     </form>
 </div>
-<div id="singup-form"
-     class="singup-form closed">
-    <a class="close-btn close-signup-form-btn"
+<div id="user-form"
+     class="user-form closed">
+    <a class="close-button close-user-form-button"
        href="javascript:void(0)"></a>
-    <section class="singFormTitle">
-        <a class="singup-title open" href="#0" onclick="openSingIn()" id="open">Вход</a>
-        <a class="singup-title close" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
+    <section class="user-form-title">
+        <a class="user-title open" href="#0" onclick="openSignIn()" id="open">Вход</a>
+        <a class="user-title" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
     </section>
-    <div id="sing-in" class="sing-in">
-        <form method="post"
+    <div id="sign-in" class="sign-in">
+        <form method="POST"
               action="http://localhost:5000/api/1/login"
-              class="sing-list"
-              id="sing-form"
-              name="sing-form">
+              class="sign-list"
+              id="sign-form"
+              name="sign-form">
             <input type="email"
                    name="login"
                    placeholder="E-mail"
@@ -154,30 +154,31 @@
                    maxlength="100"
                    required>
             <input type="password"
-                   name="password-sing"
+                   name="password-sign"
                    placeholder="Пароль"
                    class="form-item form-password"
-                   id="password-sing"
+                   id="password-sign"
                    maxlength="100"
                    minlength="8"
                    required>
-            <button class="showPassword showLoginPassword"
+            <button class="visible-password visible-login-password"
                     type="button"
-                    onclick="showPassword(this)"><img class="showPasswordImg"
-                                                      src="{{ url_for('static', filename='img/Eye.svg') }}">
+                    onclick="showPassword(this)">
+                <img class="visible-password-img"
+                     src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
             <input type="submit"
                    value="Отправить"
-                   class="btn-registration"
-                   id="btn-send-sing">
+                   class="user-button"
+                   id="singin-button">
         </form>
     </div>
-    <div id="registration" class="registration">
+    <div id="sing-up" class="sing-up">
         <form method="POST"
               action="http://localhost:5000/api/1/user"
-              class="registration-list"
-              id="registration-form"
-              name="registration-form">
+              class="singup-list"
+              id="singup-form"
+              name="singup-form">
             <input type="text"
                    name="firstName"
                    placeholder="Имя"
@@ -218,28 +219,29 @@
                    maxlength="100"
                    minlength="8"
                    required>
-            <button class="showPassword"
+            <button class="visible-password"
                     type="button"
-                    onclick="showPassword(this)"><img class="showPasswordImg"
-                                                      src="{{ url_for('static', filename='img/Eye.svg') }}">
+                    onclick="showPassword(this)">
+                <img class="visible-password-img"
+                     src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
             <input type="password"
                    name="repeatPassword"
                    placeholder="Повторите пароль"
-                   class="form-item form-repeatPassword"
-                   id="password_repeat"
+                   class="form-item form-repeat-password"
+                   id="password-repeat"
                    maxlength="100"
                    minlength="8"
                    required>
-            <button class="showPassword showRepeatPassword"
+            <button class="visible-password visible-repeat-password"
                     type="button"
                     onclick="showRepeatPassword(this)">
-                <img class="showPasswordImg"
+                <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
             <input type="submit"
                    value="Отправить"
-                   class="btn-registration"
-                   id="btn-registration">
+                   class="user-button"
+                   id="singup-button">
         </form>
     </div>
 </div>
@@ -254,7 +256,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='script/choice-singup.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='script/toggle-sign-mode.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
@@ -263,7 +265,7 @@
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
 <script type="text/javascript"
-        src="{{ url_for('static', filename='script/main-page.js') }}"> </script>
+        src="{{ url_for('static', filename='script/main-page.js') }}"></script>
 
 </body>
 </html>
