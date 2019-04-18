@@ -1,7 +1,19 @@
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 .singup-form {
     position: fixed;
     width: 50%;
-    height: 600px;
     background-color: #C6D6EF;
     z-index: 1010;
     top: 50%;
@@ -16,23 +28,29 @@
     background-image: url('../img/Close.svg');
     width: 20px;
     height: 20px;
-    margin-top: 10px;
-    margin-right: 10px;
+    margin-top: -30px;
+    margin-right: -30px;
 }
 
 .form-item {
     width: 80%;
     margin-top: 30px;
+    padding-left: 50px;
+    position: relative;
 }
 
-.singup-list {
+.registration-list, .sing-list {
     margin-bottom: 20px;
     text-align: center;
 }
 
 .singup-title {
     text-align: center;
-    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 50%;
+    font-size: 30px;
+    font-weight: normal;
 }
 
 .singup-btn {
@@ -41,7 +59,7 @@
     margin-top: 18px;
 }
 
-.btn-send {
+.btn-registration {
     width: 267px;
     height: 55px;
     background: #000000;
@@ -54,7 +72,8 @@
     border: none;
     background-color: transparent;
     position: absolute;
-    top: 59%;
+    top: 64.5%;
+    left: 82%;
     outline: none;
 }
 
@@ -63,10 +82,87 @@
 }
 
 .showRepeatPassword {
-    top: 69%;
+    top: 75%;
+}
+
+.showLoginPassword {
+    top: 57.5%;
 }
 
 .showPasswordImg {
     width: 30px;
     height: 30px;
+}
+
+.registration {
+    display: none;
+}
+
+.sing-in {
+    display: block;
+}
+
+.singFormTitle {
+    display: flex;
+}
+
+.open {
+    background-color: #C6D6EF;
+}
+
+.close {
+    background-color: #000;
+    color: #C6D6EF;
+    opacity: 1;
+}
+
+.close:hover {
+    opacity: 0.5;
+    color: #C6D6EF;
+}
+
+.form-login {
+    background-image: url(../img/Login.svg);
+    background-position: 3px 3px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+
+.form-password {
+    background-image: url(../img/Password.svg);
+    background-position: 9px 3px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+
+.form-name {
+    background-image: url(../img/Name.svg);
+    background-position: 5px 1px;
+    background-repeat: no-repeat;
+}
+
+.form-surname {
+    background-image: url(../img/Surname.svg);
+    background-position: 7px 1px;
+    background-repeat: no-repeat;
+}
+
+.form-email {
+    background-image: url(../img/Mail.svg);
+    background-position: 5px 0;
+    background-repeat: no-repeat;
+}
+
+.form-phone {
+    background-image: url(../img/Phone.svg);
+    background-position: 8px 3px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+}
+
+.form-repeatPassword {
+    background-image: url(../img/Repeat-pass.svg);
+    background-position: 9px 3px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
 }

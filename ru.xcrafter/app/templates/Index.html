@@ -41,7 +41,26 @@
     </ul>
 </header>
 <section class="catalog">
-    <ul class="product-list"></ul>
+    <ul class="product-list">
+        {% for product in products %}
+            <div class="product-cont" data-id="{{ product.id }}">
+                <li class="product-item" style="background-image: url({{ product.photo }});">
+                    <div class="product-price">
+                        <p>{{product.price}}</p>
+                    </div>
+                    <div class="product-more">
+                        <div class="product-buy" onclick="buy({{ product }})">
+                            <img src="static/img/Buy.svg">
+                        </div>
+                        <div class="test"></div>
+                        <a href="./item/{{ product.id }}" class="product-search">
+                            <img src="static/img/Search.svg">
+                        </a>
+                    </div>
+                </li>
+            </div>
+        {% endfor %}
+    </ul>
 </section>
 
 <div class="container m-auto modal-cart closed">
@@ -112,79 +131,117 @@
         </div>
     </form>
 </div>
-
 <div id="singup-form"
      class="singup-form closed">
     <a class="close-btn close-signup-form-btn"
        href="javascript:void(0)"></a>
-    <h1 class="singup-title">Регистрация</h1>
-    <form method="post"
-          class="singup-list"
-          id="form"
-          name="form">
-        <input type="text"
-               name="firstName"
-               placeholder="Имя"
-               class="form-item"
-               id="userName"
-               minlength="2"
-               maxlength="100"
-               required>
-        <input type="text"
-               name="secondName"
-               placeholder="Фамилия"
-               class="form-item"
-               id="userSurname"
-               minlength="2"
-               maxlength="100"
-               required>
-        <input type="email"
-               name="email"
-               placeholder="E-mail"
-               class="form-item"
-               id="userMail"
-               minlength="5"
-               maxlength="100"
-               required>
-        <input type="tel"
-               name="phone"
-               placeholder="Телефон"
-               class="form-item"
-               id="userPhone"
-               minlength="5"
-               maxlength="100"
-               required>
-        <input type="password"
-               name="password"
-               placeholder="Пароль"
-               class="form-item"
-               id="password"
-               maxlength="100"
-               minlength="8"
-               required>
-        <button class="showPassword"
-                type="button"
-                onclick="showPassword(this)"><img class="showPasswordImg"
-                                                  src="{{ url_for('static', filename='img/Eye.svg') }}">
-        </button>
-        <input type="password"
-               name="repeatPassword"
-               placeholder="Повторите пароль"
-               class="form-item"
-               id="password_repeat"
-               maxlength="100"
-               minlength="8"
-               required>
-        <button class="showPassword showRepeatPassword"
-                type="button"
-                onclick="showRepeatPassword(this)">
-            <img class="showPasswordImg"
-                 src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
-        <input type="submit"
-               value="Отправить"
-               class="btn-send"
-               onsubmit="sendForm()">
-    </form>
+    <section class="singFormTitle">
+        <a class="singup-title open" href="#0" onclick="openSingIn()" id="open">Вход</a>
+        <a class="singup-title close" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
+    </section>
+    <div id="sing-in" class="sing-in">
+        <form method="post"
+              action="http://localhost:5000/api/1/login"
+              class="sing-list"
+              id="sing-form"
+              name="sing-form">
+            <input type="email"
+                   name="login"
+                   placeholder="E-mail"
+                   class="form-item form-login"
+                   id="userLogin"
+                   minlength="5"
+                   maxlength="100"
+                   required>
+            <input type="password"
+                   name="password-sing"
+                   placeholder="Пароль"
+                   class="form-item form-password"
+                   id="password-sing"
+                   maxlength="100"
+                   minlength="8"
+                   required>
+            <button class="showPassword showLoginPassword"
+                    type="button"
+                    onclick="showPassword(this)"><img class="showPasswordImg"
+                                                      src="{{ url_for('static', filename='img/Eye.svg') }}">
+            </button>
+            <input type="submit"
+                   value="Отправить"
+                   class="btn-registration"
+                   id="btn-send-sing">
+        </form>
+    </div>
+    <div id="registration" class="registration">
+        <form method="POST"
+              action="http://localhost:5000/api/1/user"
+              class="registration-list"
+              id="registration-form"
+              name="registration-form">
+            <input type="text"
+                   name="firstName"
+                   placeholder="Имя"
+                   class="form-item form-name"
+                   id="userName"
+                   minlength="2"
+                   maxlength="100"
+                   required>
+            <input type="text"
+                   name="secondName"
+                   placeholder="Фамилия"
+                   class="form-item form-surname"
+                   id="userSurname"
+                   minlength="2"
+                   maxlength="100"
+                   required>
+            <input type="email"
+                   name="email"
+                   placeholder="E-mail"
+                   class="form-item form-email"
+                   id="userMail"
+                   minlength="5"
+                   maxlength="100"
+                   required>
+            <input type="tel"
+                   name="phone"
+                   placeholder="Телефон"
+                   class="form-item form-phone"
+                   id="userPhone"
+                   minlength="5"
+                   maxlength="100"
+                   required>
+            <input type="password"
+                   name="password"
+                   placeholder="Пароль"
+                   class="form-item form-password"
+                   id="password"
+                   maxlength="100"
+                   minlength="8"
+                   required>
+            <button class="showPassword"
+                    type="button"
+                    onclick="showPassword(this)"><img class="showPasswordImg"
+                                                      src="{{ url_for('static', filename='img/Eye.svg') }}">
+            </button>
+            <input type="password"
+                   name="repeatPassword"
+                   placeholder="Повторите пароль"
+                   class="form-item form-repeatPassword"
+                   id="password_repeat"
+                   maxlength="100"
+                   minlength="8"
+                   required>
+            <button class="showPassword showRepeatPassword"
+                    type="button"
+                    onclick="showRepeatPassword(this)">
+                <img class="showPasswordImg"
+                     src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
+            <input type="submit"
+                   value="Отправить"
+                   class="btn-registration"
+                   id="btn-registration">
+        </form>
+    </div>
 </div>
 <footer class="products-footer">
     <p class="footer-copy">c. Xcrafter</p>
@@ -197,6 +254,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='script/choice-singup.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
@@ -205,9 +263,8 @@
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
 <script type="text/javascript"
-        src="{{ url_for('static', filename='script/main-page.js') }}"></script>
-<script type="text/javascript"
-        src="{{ url_for('static', filename='script/sendForm.js') }}"></script>
+        src="{{ url_for('static', filename='script/main-page.js') }}"> </script>
+
 </body>
 </html>
 
