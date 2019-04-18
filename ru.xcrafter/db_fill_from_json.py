@@ -8,13 +8,13 @@ test_user_path = '/home/elama/projects/xcrafter/ru.xcrafter/app/static/jsons/use
 test_products_path = '/home/elama/projects/xcrafter/ru.xcrafter/app/static/jsons/document.json'
 
 with open(test_user_path) as user_json:
-    data = json.load(user_json)
-    for user in data:
-        pass_hash = generate_password_hash(data['password'])
-        user = Users(first_name=data['name'], surname=data['surname'], email=data['email'], phone_number=data['phone'],
-                     password_hash=pass_hash)
-        db.session.add(user)
-        db.session.commit()
+    data = json.load(user_json)[0]
+    # for user in data:
+    pass_hash = generate_password_hash(data['password'])
+    user = Users(first_name=data['name'], surname=data['surname'], email=data['email'], phone_number=data['phone'],
+                 password_hash=pass_hash)
+    db.session.add(user)
+    db.session.commit()
 
 with open(test_products_path) as prod_json:
     data = json.load(prod_json)

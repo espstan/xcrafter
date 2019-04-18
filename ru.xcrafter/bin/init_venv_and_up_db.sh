@@ -12,4 +12,3 @@ pip install -r ./requirements.txt
 cd ./db
 docker-compose up -d 
 cd ..
-
