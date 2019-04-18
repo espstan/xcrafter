@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, send_from_directory
 from app import app
 import json
 
@@ -17,5 +17,6 @@ def user():
 
 
 @app.route('/api/1/products')
+@app.route('/jsons/document.json')
 def products():
-    pass
+    return send_from_directory('static', 'jsons/document.json')
