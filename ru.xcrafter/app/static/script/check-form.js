@@ -42,14 +42,15 @@ CustomValidation.prototype = {
       this.inputNode.setCustomValidity( message );
     }
   },
+
   registerListener: function () {
     const CustomValidation = this;
     this.inputNode.addEventListener( 'keyup', function () {
       CustomValidation.checkInput();
-
     } );
   }
 };
+
 const userNameValidityChecks = [
   {
     isInvalid: function ( input ) {
@@ -121,7 +122,7 @@ const passwordValidityChecks = [
 
 const passwordRepeatValidityChecks = [
   {
-    isInvalid: function () {
+    isInvalid: function () { //туть нузна?
       return passwordRepeatInput.value != passwordInput.value;
     },
     invalidityMessage: 'Введенные пароли не совпадают'
@@ -133,7 +134,7 @@ const userSurnameInput = document.getElementById( 'userSurname' );
 const userMailInput = document.getElementById( 'userMail' );
 const userPhoneInput = document.getElementById( 'userPhone' );
 const passwordInput = document.getElementById( 'password' );
-const passwordRepeatInput = document.getElementById( 'password_repeat' );
+const passwordRepeatInput = document.getElementById( 'password-repeat' );
 
 userNameInput.CustomValidation = new CustomValidation( userNameInput );
 userNameInput.CustomValidation.validityChecks = userNameValidityChecks;
@@ -155,25 +156,24 @@ passwordRepeatInput.CustomValidation.validityChecks = passwordRepeatValidityChec
 
 
 const inputs = document.querySelectorAll( 'input.form-item' );
-const submit = document.querySelector( 'input.btn-registration' );
-const form = document.getElementById( 'registration-form' );
+const submit = document.querySelector( 'input.user-button' );
+const form = document.getElementById( 'singup-form' );
 
-function validate() {
-  for ( let i = 0; i < form.elements.length; i++ ) {
+let validate = () => {
+  form.elements.forEach( function ( item, i, form ) {
     form.elements[i].CustomValidation.checkInput();
-  }
-}
+  } );
+};
 
 submit.addEventListener( 'click', validate );
 form.addEventListener( 'submit', validate );
 
-function showPassword( button ) {
+let showPassword = ( button ) => {
   let password = document.getElementById( "password" );
-  (password.type == "password") ? password.type = "text" : password.type = "password"
-}
+  (password.type === "password") ? password.type = "text" : password.type = "password"
+};
 
-function showRepeatPassword( button ) {
-  let password = document.getElementById( "password_repeat" );
-  (password.type == "password" ) ? password.type = "text" : password.type = "password"
-}
-
+let showRepeatPassword = ( button ) => {
+  let password = document.getElementById( "password-repeat" );
+  (password.type === "password") ? password.type = "text" : password.type = "password"
+};
