@@ -120,6 +120,10 @@ a:hover {
     color: #000000;
 }
 
+.open:hover {
+    color: #000000;
+}
+
 .form-login {
     background-image: url(../img/Login.svg);
     background-position: 3px 3px;

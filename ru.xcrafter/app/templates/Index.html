@@ -141,7 +141,7 @@
     </section>
     <div id="sign-in" class="sign-in">
         <form method="POST"
-              action="http://localhost:5000/api/1/login"
+              action="http://api/1/login"
               class="sign-list"
               id="sign-form"
               name="sign-form">
@@ -168,14 +168,14 @@
                      src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
             <input type="submit"
-                   value="Отправить"
+                   value="Войти"
                    class="user-button"
                    id="singin-button">
         </form>
     </div>
     <div id="sing-up" class="sing-up">
         <form method="POST"
-              action="http://localhost:5000/api/1/user"
+              action="http://api/1/user"
               class="singup-list"
               id="singup-form"
               name="singup-form">
@@ -239,7 +239,7 @@
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
             <input type="submit"
-                   value="Отправить"
+                   value="Зарегестрироваться"
                    class="user-button"
                    id="singup-button">
         </form>
