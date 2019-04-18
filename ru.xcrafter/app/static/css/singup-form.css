@@ -36,6 +36,7 @@ a:hover {
     width: 80%;
     margin-top: 30px;
     padding-left: 50px;
+    position: relative;
 }
 
 .registration-list, .sing-list {
