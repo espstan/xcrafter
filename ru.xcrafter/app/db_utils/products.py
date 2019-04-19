@@ -26,7 +26,7 @@ def get_product_by_id(product_id: int) -> {}:
     try:
         data = Products.query.filter(Products.id == product_id).one()
         product = {'id': data.id, 'title': data.title, 'description': data.description,
-                   'price': data.price, 'photo': data.photo, 'seller_id': data.seller_id}
+                   'price': data.price, 'photo': [data.photo], 'seller_id': data.seller_id}
     except NoResultFound:
         product = {}
 
