@@ -1,0 +1,10 @@
+{% extends "base-card-item.html" %}
+{% block content %}
+<div class="main" data-about="card-item">
+    <div class="main-photo"><img src="{{ product.photo[0] }}"></div>
+    <div class="description-card">
+        <h1>{{ product.title }}</h1>
+        {{ product.description }}
+    </div>
+</div>
+{% endblock %}

@@ -40,30 +40,8 @@
         </li>
     </ul>
 </header>
-<section class="catalog">
-    <ul class="product-list">
-        {% for product in products %}
-            <div class="product-cont" data-id="{{ product.id }}">
-                <li class="product-item" style="background-image: url({{ product.photo }});">
-                    <div class="product-price">
-                        <p>{{product.price}}</p>
-                    </div>
-                    <div class="product-more">
-                        <div class="product-buy" onclick="buy({{ product }})">
-                            <img src="static/img/Buy.svg">
-                        </div>
-                        <div class="test"></div>
-                        <a href="./item/{{ product.id }}" class="product-search">
-                            <img src="static/img/Search.svg">
-                        </a>
-                    </div>
-                </li>
-            </div>
-        {% endfor %}
-    </ul>
-</section>
 
-<div class="container m-auto modal-cart closed">
+<div class="container m-auto modal-cart">
     <form>
         <a class="close-btn close-cart-btn"
            href="javascript:void(0)"></a>

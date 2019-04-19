@@ -176,4 +176,3 @@ function showRepeatPassword( button ) {
   let password = document.getElementById( "password_repeat" );
   (password.type == "password" ) ? password.type = "text" : password.type = "password"
 }
-

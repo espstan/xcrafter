@@ -1,0 +1,109 @@
+.menu-actions {
+    display: flex;
+    background: #C6D6EF;
+    justify-content: space-between;
+}
+
+.menu, .actions {
+    display: flex;
+}
+
+.price, .card-item-buy-btn {
+    width: 90px;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.price {
+    background: #FFEECF;
+    color: black;
+}
+
+.menu div a {
+    text-decoration: none;
+    color: rgb(58, 49, 49);
+    display: block;
+    width: 90px;
+    padding: 15px 10px;
+    text-align: center;
+    background-right: 2px solid #C6D6EF;
+    background-left: 2px solid #C6D6EF;
+}
+
+.wrapper {
+    width: 900px;
+    margin: auto;
+}
+
+.active, .active:hover {
+    background: white;
+    color: black;
+    border-right: 2px solid rgb(58, 49, 49);
+    border-left: 2px solid rgb(58, 49, 49);
+}
+
+.card-item-buy-btn {
+    text-align: center;
+    color: white;
+    background: rgb(33, 35, 37);
+}
+
+.card-item-buy-btn {
+    cursor: pointer;
+}
+
+.main {
+    margin-top: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 5fr 4fr;
+}
+
+.main-photo {
+
+}
+
+.main-photo img {
+    width: 100%;
+}
+
+.card-item-photo {
+    display: flex;
+}
+
+.photo-item {
+    width: 300px;
+    margin: 10px;
+}
+
+.photo-item img {
+    width: 100%;
+}
+
+.description-card {
+    background: linear-gradient(to bottom, rgba(198,214,239,1) 0%,rgba(255,255,255,1) 100%);
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.description-card h1 {
+    color: #A68243;
+}
+
+.card-item-buy-btn.add-in-cart {
+    padding: 0px;
+}
+
+.add-in-cart {
+    background: #A68243;
+}
+
+.add-in-cart  a {
+    background: #A68243;
+    color: black;
+    display: block;
+    width: 90px;
+    padding: 15px 10px;
+    text-decoration: none;
+    text-align: center;
+}

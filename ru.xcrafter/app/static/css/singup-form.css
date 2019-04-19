@@ -166,3 +166,7 @@ a:hover {
     background-repeat: no-repeat;
     background-size: 20px 20px;
 }
+
+.success {
+    display: none;
+}
