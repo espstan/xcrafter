@@ -4,8 +4,8 @@ from werkzeug.security import generate_password_hash
 
 import json
 
-test_user_path = '/home/elama/projects/xcrafter/ru.xcrafter/app/static/jsons/user.json'
-test_products_path = '/home/elama/projects/xcrafter/ru.xcrafter/app/static/jsons/document.json'
+test_user_path = 'app/static/jsons/user.json'
+test_products_path = 'app/static/jsons/document.json'
 
 with open(test_user_path) as user_json:
     data = json.load(user_json)[0]
