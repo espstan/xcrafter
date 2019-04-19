@@ -47,6 +47,7 @@ CustomValidation.prototype = {
     const CustomValidation = this;
     this.inputNode.addEventListener( 'keyup', function () {
       CustomValidation.checkInput();
+
     } );
   }
 };
@@ -122,7 +123,7 @@ const passwordValidityChecks = [
 
 const passwordRepeatValidityChecks = [
   {
-    isInvalid: function () { //туть нузна?
+    isInvalid: function () {
       return passwordRepeatInput.value != passwordInput.value;
     },
     invalidityMessage: 'Введенные пароли не совпадают'

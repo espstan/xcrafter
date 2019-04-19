@@ -9,7 +9,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/signup-form.css') }}">
+          href="{{ url_for('static', filename='css/singup-form.css') }}">
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/main-page.css') }}">
     <link rel="stylesheet"
@@ -25,10 +25,10 @@
                      src="{{ url_for('static', filename='img/Logo.png') }}">
             </a>
         </li>
-        <li class="nav-signup">
+        <li class="nav-singup">
             <a class="show-btn"
                href="javascript:void(0)">
-                <img class="signup-btn"
+                <img class="singup-btn"
                      src="{{ url_for('static', filename='img/User.svg') }}">
             </a>
         </li>
@@ -40,30 +40,8 @@
         </li>
     </ul>
 </header>
-<section class="catalog">
-    <ul class="product-list">
-        {% for product in products %}
-            <div class="product-cont" data-id="{{ product.id }}">
-                <li class="product-item" style="background-image: url({{ product.photo[0] }});">
-                    <div class="product-price">
-                        <p>{{product.price}}</p>
-                    </div>
-                    <div class="product-more">
-                        <div class="product-buy" onclick="buy({{ product }})">
-                            <img src="static/img/Buy.svg">
-                        </div>
-                        <div class="test"></div>
-                        <a href="./item/{{ product.id }}" class="product-search">
-                            <img src="static/img/Search.svg">
-                        </a>
-                    </div>
-                </li>
-            </div>
-        {% endfor %}
-    </ul>
-</section>
 
-<div class="container m-auto modal-cart closed">
+<div class="container m-auto modal-cart">
     <form>
         <a class="close-btn close-cart-btn"
            href="javascript:void(0)"></a>
@@ -72,18 +50,18 @@
             <div class="form-group col-md-6">
                 <div class="input-group mb-3">
                     <select class="custom-select"
-                            id="delivery">
+                            id="inputGroupSelect02">
                         <option selected>Доставка</option>
-                        <option value="1">Самовывоз</option>
-                        <option value="2" disabled="disabled">Доставка</option>
+                        <option value="1">Без доставки</option>
+                        <option value="2">С доставкой</option>
                     </select>
                 </div>
-                <div class="payment">
+                <div class="input-group mb-3">
                     <select class="custom-select"
-                            id="payment">
+                            id="inputGroupSelect03">
                         <option selected>Способ оплаты</option>
-                        <option value="1">Наличные</option>
-                        <option value="2" disabled="disabled">Оплатить банковской картой</option>
+                        <option value="1">При получении</option>
+                        <option value="2">Оплатить банковской картой</option>
                     </select>
                 </div>
                 <h5 class="text text-center mb-3 mt-3">Основная информация</h5>
@@ -114,14 +92,13 @@
                     <ul class="list-group list-group-flush mb-3">
                     </ul>
                 </div>
-                <button
+                <button type="btn"
                         class="clear-btn btn btn-dark float-right mb-3">Очистить корзину
                 </button>
-                <div class="input-group col-12 mb-3 mt-3">
-                    <span class="input-group-text">Общая сумма:</span>
-                    <input type="number" class="form-control" id="total-payment" disabled>
-                    <span class="input-group-text">₽</span>
-                </div>
+                <input type="sum"
+                       class="form-control mb-3 mt-3"
+                       id="sum"
+                       placeholder="Сумма">
             </div>
         </div>
         <div class="row justify-content-center">
@@ -131,20 +108,21 @@
         </div>
     </form>
 </div>
-<div id="user-form"
-     class="user-form closed">
-    <a class="close-button close-user-form-button"
+
+<div id="singup-form"
+     class="singup-form closed">
+    <a class="close-btn close-signup-form-btn"
        href="javascript:void(0)"></a>
-    <section class="user-form-title">
-        <a class="user-title open" href="#0" onclick="openSignIn()" id="open">Вход</a>
-        <a class="user-title" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
+    <section class="singFormTitle">
+        <a class="singup-title open" href="#0" onclick="openSingIn()" id="open">Вход</a>
+        <a class="singup-title close" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
     </section>
-    <div id="sign-in" class="sign-in">
-        <form method="POST"
+    <div id="sing-in" class="sing-in">
+        <form method="post"
               action="/api/1/login"
-              class="sign-list"
-              id="sign-form"
-              name="sign-form">
+              class="sing-list"
+              id="sing-form"
+              name="sing-form">
             <input type="email"
                    name="login"
                    placeholder="E-mail"
@@ -154,31 +132,30 @@
                    maxlength="100"
                    required>
             <input type="password"
-                   name="password-sign"
+                   name="password-sing"
                    placeholder="Пароль"
                    class="form-item form-password"
-                   id="password-sign"
+                   id="password-sing"
                    maxlength="100"
                    minlength="8"
                    required>
-            <button class="visible-password visible-login-password"
+            <button class="showPassword showLoginPassword"
                     type="button"
-                    onclick="showPassword(this)">
-                <img class="visible-password-img"
-                     src="{{ url_for('static', filename='img/Eye.svg') }}">
+                    onclick="showPassword(this)"><img class="showPasswordImg"
+                                                      src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
             <input type="submit"
                    value="Отправить"
-                   class="user-button"
-                   id="singin-button">
+                   class="btn-registration"
+                   id="btn-send-sing">
         </form>
     </div>
-    <div id="sing-up" class="sing-up">
+    <div id="registration" class="registration">
         <form method="POST"
               action="/api/1/user"
-              class="singup-list"
-              id="singup-form"
-              name="singup-form">
+              class="registration-list"
+              id="registration-form"
+              name="registration-form">
             <input type="text"
                    name="firstName"
                    placeholder="Имя"
@@ -219,29 +196,28 @@
                    maxlength="100"
                    minlength="8"
                    required>
-            <button class="visible-password"
+            <button class="showPassword"
                     type="button"
-                    onclick="showPassword(this)">
-                <img class="visible-password-img"
-                     src="{{ url_for('static', filename='img/Eye.svg') }}">
+                    onclick="showPassword(this)"><img class="showPasswordImg"
+                                                      src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
             <input type="password"
                    name="repeatPassword"
                    placeholder="Повторите пароль"
-                   class="form-item form-repeat-password"
-                   id="password-repeat"
+                   class="form-item form-repeatPassword"
+                   id="password_repeat"
                    maxlength="100"
                    minlength="8"
                    required>
-            <button class="visible-password visible-repeat-password"
+            <button class="showPassword showRepeatPassword"
                     type="button"
                     onclick="showRepeatPassword(this)">
-                <img class="visible-password-img"
+                <img class="showPasswordImg"
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
             <input type="submit"
                    value="Отправить"
-                   class="user-button"
-                   id="singup-button">
+                   class="btn-registration"
+                   id="btn-registration">
         </form>
     </div>
 </div>
@@ -256,7 +232,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='script/toggle-sign-mode.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='script/choice-singup.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
@@ -265,7 +241,7 @@
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
 <script type="text/javascript"
-        src="{{ url_for('static', filename='script/main-page.js') }}"></script>
+        src="{{ url_for('static', filename='script/main-page.js') }}"> </script>
 
 </body>
 </html>
