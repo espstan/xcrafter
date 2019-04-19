@@ -52,7 +52,7 @@
                         <div class="product-buy" onclick="buy({{ product }})">
                             <img src="static/img/Buy.svg">
                         </div>
-                        <div class="test"></div>
+                        <div class="visible-title"></div>
                         <a href="./item/{{ product.id }}" class="product-search">
                             <img src="static/img/Search.svg">
                         </a>
@@ -131,13 +131,14 @@
         </div>
     </form>
 </div>
-<div id="user-form"
-     class="user-form closed">
-    <a class="close-button close-user-form-button"
+<div id="login-form"
+     class="login-form closed">
+    <a class="close-button close-login-form-button"
        href="javascript:void(0)"></a>
-    <section class="user-form-title">
-        <a class="user-title open" href="#0" onclick="openSignIn()" id="open">Вход</a>
-        <a class="user-title" href="#0" onclick="openRegistration()" id="close">Регистрация</a>
+    <section class="login-form-title">
+        <a class="login-title visible-login-title" href="#0" onclick="openSignIn()" id="singin-title">Вход</a>
+        <a class="login-title" href="#0" onclick="openSingUp()" id="singup-title">Регистрация</a>
+        <a class="login-title recovery-title" href="#0" id="recovery-title">Восстановление пароля</a>
     </section>
     <div id="sign-in" class="sign-in">
         <form method="POST"
@@ -148,41 +149,43 @@
             <input type="email"
                    name="login"
                    placeholder="E-mail"
-                   class="form-item form-login"
-                   id="userLogin"
+                   class="form-item"
+                   id="user-login"
                    minlength="5"
                    maxlength="100"
                    required>
             <input type="password"
                    name="password-sign"
                    placeholder="Пароль"
-                   class="form-item form-password"
-                   id="password-sign"
+                   class="form-item"
+                   id="password-signin"
                    maxlength="100"
-                   minlength="8"
                    required>
             <button class="visible-password visible-login-password"
                     type="button"
-                    onclick="showPassword(this)">
+                    onclick="showLoginPassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
+            <div class="form-item form-forget-password">
+                <a onclick="openRecoveryPassword()">Не помню пароль</a>
+            </div>
             <input type="submit"
                    value="Войти"
-                   class="user-button"
-                   id="singin-button">
+                   class="login-button"
+                   id="signin-button">
         </form>
     </div>
-    <div id="sing-up" class="sing-up">
+    <div id="sign-up" class="sign-up">
         <form method="POST"
               action="http://api/1/user"
-              class="singup-list"
-              id="singup-form"
-              name="singup-form">
+              class="sign-list"
+              id="signup-form"
+              name="signup-form">
             <input type="text"
                    name="firstName"
                    placeholder="Имя"
-                   class="form-item form-name"
+                   class="form-item"
                    id="userName"
                    minlength="2"
                    maxlength="100"
@@ -190,7 +193,7 @@
             <input type="text"
                    name="secondName"
                    placeholder="Фамилия"
-                   class="form-item form-surname"
+                   class="form-item"
                    id="userSurname"
                    minlength="2"
                    maxlength="100"
@@ -198,7 +201,7 @@
             <input type="email"
                    name="email"
                    placeholder="E-mail"
-                   class="form-item form-email"
+                   class="form-item"
                    id="userMail"
                    minlength="5"
                    maxlength="100"
@@ -206,7 +209,7 @@
             <input type="tel"
                    name="phone"
                    placeholder="Телефон"
-                   class="form-item form-phone"
+                   class="form-item"
                    id="userPhone"
                    minlength="5"
                    maxlength="100"
@@ -214,10 +217,10 @@
             <input type="password"
                    name="password"
                    placeholder="Пароль"
-                   class="form-item form-password"
+                   class="form-item"
                    id="password"
                    maxlength="100"
-                   minlength="8"
+                   minlength="6"
                    required>
             <button class="visible-password"
                     type="button"
@@ -228,20 +231,47 @@
             <input type="password"
                    name="repeatPassword"
                    placeholder="Повторите пароль"
-                   class="form-item form-repeat-password"
+                   class="form-item"
                    id="password-repeat"
                    maxlength="100"
-                   minlength="8"
+                   minlength="6"
                    required>
             <button class="visible-password visible-repeat-password"
                     type="button"
                     onclick="showRepeatPassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
+            <div class="form-item form-agreement">
+                <input type="checkbox"
+                       name="agreement"
+                       id="agreement"
+                       required>
+                <p class="agreement-text">Я соглашаюсь на передачу персональных данных согласно <a href="http://www.it-lex.ru/usloviya_ispolzovaniya_servisa/polzovatelskoe_soglashenie" class="agreement-link">политике конфиденциальности</a> и <a href="https://alltarget.ru/shablon-politiki-konfidencialnosti" class="agreement-link">пользовательскому соглашению</a></p>
+            </div>
+
             <input type="submit"
                    value="Зарегестрироваться"
-                   class="user-button"
-                   id="singup-button">
+                   class="login-button signup-button"
+                   id="signup-button">
+        </form>
+    </div>
+    <div id="recovery-form" class="recovery-form">
+        <form method="POST"
+              action="http://api/1/password-recovery"
+              class="sign-list"
+              id="recovery"
+              name="recovery">
+            <p class="recovery-text">Введите адрес электронной почты, который был привязан к аккаунту</p>
+            <input type="email"
+                   name="recovery-password"
+                   placeholder="Email"
+                   class="form-item recovery-item"
+                   id="recovery-password"
+                   required>
+            <input type="submit"
+                   value="Продолжить"
+                   class="login-button"
+                   id="recovery-button">
         </form>
     </div>
 </div>
@@ -256,17 +286,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='script/toggle-sign-mode.js') }}"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/toggle-sign-mode.js') }}"></script>
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/check-form.js') }}"></script>
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/main-page.js') }}"></script>
+<!--<script>-->
+<!--  function openRecoveryPassword() {-->
+<!--    document.getElementById( 'recovery-form' ).style.display = 'block';-->
+<!--    document.getElementById( 'recovery-title' ).style.display = 'block';-->
+<!--    document.getElementById( 'sign-up' ).style.display = 'none';-->
+<!--    document.getElementById( 'sign-in' ).style.display = 'none';-->
+<!--    document.getElementById( 'singin-title' ).style.display = 'none';-->
+<!--    document.getElementById( 'singup-title' ).style.display = 'none';-->
+<!--  }-->
 
+<!--  function openSingUp() {-->
+<!--    document.getElementById( 'sign-up' ).style.display = 'block';-->
+<!--    document.getElementById( 'sign-in' ).style.display = 'none';-->
+<!--    document.getElementById( 'singup-title"' ).classList.add( 'visible-login-title' );-->
+<!--    document.getElementById( 'singin-title"' ).classList.remove( 'visible-login-title' );-->
+<!--  }-->
+
+<!--  function openSignIn() {-->
+<!--    document.getElementById( 'sign-up' ).style.display = 'none';-->
+<!--    document.getElementById( 'sign-in' ).style.display = 'block';-->
+<!--    document.getElementById( 'singin-title"' ).classList.add( 'visible-login-title' );-->
+<!--    document.getElementById( 'singup-title"' ).classList.remove( 'visible-login-title' );-->
+<!--  }-->
+<!--</script>-->
 </body>
 </html>
 

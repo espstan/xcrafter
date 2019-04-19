@@ -11,7 +11,7 @@ a:hover {
     text-decoration: none;
 }
 
-.user-form {
+.login-form {
     position: fixed;
     width: 50%;
     background-color: #C6D6EF;
@@ -35,17 +35,16 @@ a:hover {
 .form-item {
     width: 80%;
     margin-top: 30px;
-    padding-left: 50px;
+    padding-left: 20px;
     position: relative;
 }
 
-.singup-list,
 .sign-list {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.user-title {
+.login-title {
     text-align: center;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -54,12 +53,17 @@ a:hover {
     font-weight: normal;
     background-color: #000;
     color: #C6D6EF;
-    opacity: 1
+    opacity: 1;
+    display: block;
 }
 
-.user-title:hover {
+.login-title:hover {
     opacity: 0.5;
-    color: #C6D6EF;
+}
+
+.visible-login-title {
+    background-color: #C6D6EF;
+    color: #000;
 }
 
 .signup-btn {
@@ -68,20 +72,28 @@ a:hover {
     margin-top: 18px;
 }
 
-.user-button {
+.login-button {
     width: 267px;
     height: 55px;
     background: #000000;
     color: #fff;
     border: none;
-    margin-top: 40px;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    opacity: 0.7;
+}
+
+.login-button:active {
+    opacity: 0.7;
 }
 
 .visible-password {
     border: none;
     background-color: transparent;
     position: absolute;
-    top: 64.5%;
+    top: 59%;
     left: 82%;
     outline: none;
 }
@@ -91,11 +103,11 @@ a:hover {
 }
 
 .visible-repeat-password {
-    top: 75%;
+    top: 68.5%;
 }
 
 .visible-login-password {
-    top: 57.5%;
+    top: 56%;
 }
 
 .visible-password-img {
@@ -103,7 +115,7 @@ a:hover {
     height: 30px;
 }
 
-.sing-up {
+.sign-up {
     display: none;
 }
 
@@ -111,61 +123,67 @@ a:hover {
     display: block;
 }
 
-.user-form-title {
+.login-form-title {
     display: flex;
 }
 
-.open {
-    background-color: #C6D6EF;
-    color: #000000;
+.form-agreement {
+    padding-left: 80px;
+    text-align: left;
+    position: relative;
+    width: 100%;
 }
 
-.open:hover {
-    color: #000000;
+.agreement-text {
+    position: absolute;
+    top: 0;
+    left: 109px;
+    padding-right: 30px;
+    font-size: 12px;
 }
 
-.form-login {
-    background-image: url(../img/Login.svg);
-    background-position: 3px 3px;
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
+.agreement-link {
+    color: #177199;
 }
 
-.form-password {
-    background-image: url(../img/Password.svg);
-    background-position: 9px 3px;
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
+.agreement-link:hover {
+    color: #11557C;
 }
 
-.form-name {
-    background-image: url(../img/Name.svg);
-    background-position: 5px 1px;
-    background-repeat: no-repeat;
+.agreement-link:active {
+    color: #11557C;
 }
 
-.form-surname {
-    background-image: url(../img/Surname.svg);
-    background-position: 7px 1px;
-    background-repeat: no-repeat;
+.form-forget-password {
+    padding: 0;
+    width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #11557C;
+    font-size: 12px;
 }
 
-.form-email {
-    background-image: url(../img/Mail.svg);
-    background-position: 5px 0;
-    background-repeat: no-repeat;
+.signup-button {
+    margin-top: 40px;
 }
 
-.form-phone {
-    background-image: url(../img/Phone.svg);
-    background-position: 8px 3px;
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
+.recovery-form {
+    display: none;
 }
 
-.form-repeat-password {
-    background-image: url(../img/Repeat-pass.svg);
-    background-position: 9px 3px;
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
+.recovery-title {
+    display: none;
+    width: 100%;
+}
+
+.recovery-text {
+    padding-left: 63px;
+    padding-top: 55px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.recovery-item {
+    margin: 0;
+    margin-bottom: 20px;
 }

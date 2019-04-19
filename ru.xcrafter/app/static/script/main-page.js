@@ -34,15 +34,15 @@ function getProductCard(product) {
     const productPhoto = product.photo ? product.photo : 'img/Img.png';
     const backgroundImage = `url(${productPhoto})`;
     const productCard =
-        `<li class="product-item" style="background-image: ${backgroundImage};">
+        `<li class="product-item" style="background-image: ${ backgroundImage };">
             <div class="product-price">
-                <p>${product.price}</p>
+                <p>${ product.price }</p>
             </div>
             <div class="product-more">
                 <div class="product-buy">
                     <img src="static/img/Buy.svg">
                 </div>
-                <div class="test"></div>
+                <div class="visible-title"></div>
                 <a href="./" class="product-search">
                     <img src="static/img/Search.svg">
                 </a>
