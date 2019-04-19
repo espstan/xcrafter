@@ -23,7 +23,7 @@ class Users(db.Model):
     store_alias = db.Column(db.Text)
 
     def __init__(self, first_name, surname, email, phone_number,
-                 password_hash, agree_to_processing_personal_data=True, *args):
+                 password_hash, agree_to_processing_personal_data, *args):
         self.first_name = first_name
         self.surname = surname
         self.email = email
