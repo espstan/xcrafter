@@ -3,14 +3,14 @@ const modalCart = document.getElementsByClassName('modal-cart')[0];
 const modalOverlay = document.getElementById('modal-overlay');
 const closeCartBtn = document.getElementsByClassName('close-cart-btn')[0];
 const modalSignupBtn = document.getElementsByClassName('show-btn')[0];
-const signupForm = document.getElementById('user-form');
-const closeSignupFormBtn = document.getElementsByClassName('close-user-form-button')[0];
+const signupForm = document.getElementById('login-form');
+const closeSignupFormBtn = document.getElementsByClassName('close-login-form-button')[0];
 
-modalSignupBtn.addEventListener('click', (event) => {openModalWindow(event)});
-navBuy.addEventListener('click', (event) => {openModalWindow(event)});
+modalSignupBtn.addEventListener('click', (e) => {openModalWindow(e)});
+navBuy.addEventListener('click', (e) => {openModalWindow(e)});
 
-function openModalWindow(event) {
-    if (event.target.classList.contains('signup-btn')) {
+function openModalWindow(e) {
+    if (e.target.classList.contains('signup-btn')) {
         signupForm.classList.toggle('closed');
     } else {
         modalCart.classList.toggle('closed');

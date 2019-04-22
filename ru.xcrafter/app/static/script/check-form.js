@@ -82,7 +82,7 @@ const userMailValidityChecks = [
 const userPhoneValidityChecks = [
   {
     isInvalid: function ( input ) {
-      return !input.value.match( /^\d[\d\(\)\ -]{4,14}\d$/ );
+      return !input.value.match( /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/ );
     },
     invalidityMessage: 'Введите корректный номер телефона'
   }
@@ -91,33 +91,9 @@ const userPhoneValidityChecks = [
 const passwordValidityChecks = [
   {
     isInvalid: function ( input ) {
-      return input.value.length < 8 | input.value.length > 100;
+      return input.value.length < 6 | input.value.length > 100 | !input.value.match( /[0-9]/g ) | !input.value.match( /[a-z]/g ) | !input.value.match( /[A-Z]/g );
     },
-    invalidityMessage: 'Пароль должен содержать больше 8 символов'
-  },
-  {
-    isInvalid: function ( input ) {
-      return !input.value.match( /[0-9]/g );
-    },
-    invalidityMessage: 'Пароль должен содержать хотя бы одну цифру'
-  },
-  {
-    isInvalid: function ( input ) {
-      return !input.value.match( /[a-z]/g );
-    },
-    invalidityMessage: 'Пароль должен содержать буквы нижнего регистра'
-  },
-  {
-    isInvalid: function ( input ) {
-      return !input.value.match( /[A-Z]/g );
-    },
-    invalidityMessage: 'Пароль должен содержать буквы верхнего регистра'
-  },
-  {
-    isInvalid: function ( input ) {
-      return !input.value.match( /[\!\@\#\$\%\^\&\*]/g );
-    },
-    invalidityMessage: 'Пароль должен содержать хотя бы один спецсимвол'
+    invalidityMessage: 'Пароль должен содержать больше 6 символов, цифру, букву верхнего и нижнего регистра'
   }
 ];
 
@@ -130,12 +106,32 @@ const passwordRepeatValidityChecks = [
   }
 ];
 
+const userLoginValidityChecks = [
+  {
+    isInvalid: function ( input ) {
+      return !input.value.match( /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/ );
+    },
+    invalidityMessage: 'Введите корректный e-mail'
+  }
+];
+
+const recoveryPasswordValidityChecks = [
+  {
+    isInvalid: function ( input ) {
+      return !input.value.match( /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/ );
+    },
+    invalidityMessage: 'Введите корректный e-mail'
+  }
+];
+
 const userNameInput = document.getElementById( 'userName' );
 const userSurnameInput = document.getElementById( 'userSurname' );
 const userMailInput = document.getElementById( 'userMail' );
 const userPhoneInput = document.getElementById( 'userPhone' );
 const passwordInput = document.getElementById( 'password' );
 const passwordRepeatInput = document.getElementById( 'password-repeat' );
+const userLoginInput = document.getElementById( 'user-login' );
+const recoveryPasswordInput = document.getElementById( 'recovery-password' );
 
 userNameInput.CustomValidation = new CustomValidation( userNameInput );
 userNameInput.CustomValidation.validityChecks = userNameValidityChecks;
@@ -155,12 +151,19 @@ passwordInput.CustomValidation.validityChecks = passwordValidityChecks;
 passwordRepeatInput.CustomValidation = new CustomValidation( passwordRepeatInput );
 passwordRepeatInput.CustomValidation.validityChecks = passwordRepeatValidityChecks;
 
+userLoginInput.CustomValidation = new CustomValidation( userLoginInput );
+userLoginInput.CustomValidation.validityChecks = userLoginValidityChecks;
+
+recoveryPasswordInput.CustomValidation = new CustomValidation( recoveryPasswordInput);
+recoveryPasswordInput.CustomValidation.validityChecks = recoveryPasswordValidityChecks;
+
 
 const inputs = document.querySelectorAll( 'input.form-item' );
-const submit = document.querySelector( 'input.user-button' );
-const form = document.getElementById( 'singup-form' );
+const submit = document.querySelector( 'input.login-button' );
+const form = document.getElementById( 'login-form' );
+const checkbox = document.getElementById('agreement');
 
-let validate = () => {
+const validate = () => {
   form.elements.forEach( function ( item, i, form ) {
     form.elements[i].CustomValidation.checkInput();
   } );
@@ -169,12 +172,17 @@ let validate = () => {
 submit.addEventListener( 'click', validate );
 form.addEventListener( 'submit', validate );
 
-let showPassword = ( button ) => {
+const showPassword = ( button ) => {
   let password = document.getElementById( "password" );
-  (password.type === "password") ? password.type = "text" : password.type = "password"
+  password.type === "password" ? password.type = "text" : password.type = "password"
 };
 
-let showRepeatPassword = ( button ) => {
+const showRepeatPassword = ( button ) => {
   let password = document.getElementById( "password-repeat" );
-  (password.type === "password") ? password.type = "text" : password.type = "password"
+  password.type === "password" ? password.type = "text" : password.type = "password"
+};
+
+const showLoginPassword = ( button ) => {
+  let password = document.getElementById( "password-signin" );
+  password.type === "password" ? password.type = "text" : password.type = "password"
 };
