@@ -21,7 +21,7 @@ a:hover {
     transform: translate(-50%, -50%);
 }
 
-.close-btn {
+.close-button {
     position: absolute;
     top: 0;
     right: 0;

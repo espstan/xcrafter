@@ -50,6 +50,16 @@ CustomValidation.prototype = {
     } );
   }
 };
+//
+// const agreementValidityChecks = [
+//   {
+//     isInvalid: function ( ) {
+//       return agreementInput.checked == false;
+//       console.log(agreementInput);
+//     },
+//     invalidityMessage: 'ytnm'
+//   }
+// ];
 
 const userNameValidityChecks = [
   {
@@ -105,19 +115,6 @@ const passwordRepeatValidityChecks = [
   }
 ];
 
-const agreementValidityChecks = [
-  {
-    isInvalid: function () {
-      console.log(agreementInput)
-      if (agreementInput.checked!==true) {
-        console.log('ytnm');
-      }
-      else {
-        console.log('kjhbkj');
-      }
-  }}
-];
-
 const userLoginValidityChecks = [
   {
     isInvalid: function ( input ) {
@@ -142,7 +139,6 @@ const userMailInput = document.getElementById( 'userMail' );
 const userPhoneInput = document.getElementById( 'userPhone' );
 const passwordInput = document.getElementById( 'password' );
 const passwordRepeatInput = document.getElementById( 'password-repeat' );
-const agreementInput = document.getElementById( 'agreement' );
 const userLoginInput = document.getElementById( 'user-login' );
 const recoveryPasswordInput = document.getElementById( 'recovery-password' );
 
@@ -164,9 +160,6 @@ passwordInput.CustomValidation.validityChecks = passwordValidityChecks;
 passwordRepeatInput.CustomValidation = new CustomValidation( passwordRepeatInput );
 passwordRepeatInput.CustomValidation.validityChecks = passwordRepeatValidityChecks;
 
-agreementInput.CustomValidation = new CustomValidation( agreementInput );
-agreementInput.CustomValidation.validityChecks = agreementValidityChecks;
-
 userLoginInput.CustomValidation = new CustomValidation( userLoginInput );
 userLoginInput.CustomValidation.validityChecks = userLoginValidityChecks;
 
@@ -177,6 +170,7 @@ recoveryPasswordInput.CustomValidation.validityChecks = recoveryPasswordValidity
 const inputs = document.querySelectorAll( 'input.form-item' );
 const submit = document.querySelector( 'input.login-button' );
 const form = document.getElementById( 'login-form' );
+const checkbox = document.getElementById('agreement');
 
 const validate = () => {
   form.elements.forEach( function ( item, i, form ) {

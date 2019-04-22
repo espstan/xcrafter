@@ -114,7 +114,7 @@
                     <ul class="list-group list-group-flush mb-3">
                     </ul>
                 </div>
-                <button 
+                <button
                         class="clear-btn btn btn-dark float-right mb-3">Очистить корзину
                 </button>
                 <div class="input-group col-12 mb-3 mt-3">
@@ -136,8 +136,8 @@
     <a class="close-button close-login-form-button"
        href="javascript:void(0)"></a>
     <section class="login-form-title">
-        <a class="login-title visible-login-title" href="#0" onclick="openSignIn()" id="singin-title">Вход</a>
-        <a class="login-title" href="#0" onclick="openSingUp()" id="singup-title">Регистрация</a>
+        <a class="login-title visible-login-title" href="#0" onclick="openSignIn()" id="signin-title">Вход</a>
+        <a class="login-title" href="#0" onclick="openSingUp()" id="signup-title">Регистрация</a>
         <a class="login-title recovery-title" href="#0" id="recovery-title">Восстановление пароля</a>
     </section>
     <div id="sign-in" class="sign-in">
@@ -241,14 +241,13 @@
                     onclick="showRepeatPassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
-            <div class="form-item form-agreement">
+            <label class="form-item form-agreement">
                 <input type="checkbox"
                        name="agreement"
                        id="agreement"
                        required>
                 <p class="agreement-text">Я соглашаюсь на передачу персональных данных согласно <a href="http://www.it-lex.ru/usloviya_ispolzovaniya_servisa/polzovatelskoe_soglashenie" class="agreement-link">политике конфиденциальности</a> и <a href="https://alltarget.ru/shablon-politiki-konfidencialnosti" class="agreement-link">пользовательскому соглашению</a></p>
-            </div>
-
+            </label>
             <input type="submit"
                    value="Зарегестрироваться"
                    class="login-button signup-button"
