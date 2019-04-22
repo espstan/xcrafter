@@ -187,3 +187,7 @@ a:hover {
     margin: 0;
     margin-bottom: 20px;
 }
+
+.success {
+    display: none;
+}

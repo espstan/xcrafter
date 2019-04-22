@@ -1,5 +1,8 @@
 from app import db
-from sqlalchemy import JSON, ARRAY
+from sqlalchemy import JSON, DateTime, Date
+import datetime
+from werkzeug.security import generate_password_hash
+import uuid
 
 
 class Users(db.Model):
@@ -9,13 +12,28 @@ class Users(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     phone_number = db.Column(db.String(64), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
+    created_time = db.Column(DateTime(timezone=False), nullable=False)
+    last_changed_time = db.Column(DateTime(timezone=False), nullable=False)
+    is_active = db.Column(db.Boolean, nullable=False)
+    agree_to_processing_personal_data = db.Column(db.Boolean, nullable=False)
+    gender = db.Column(db.String(32))
+    activate_key = db.Column(db.String(128), nullable=False)
+    birthday = db.Column(Date)
+    store_name = db.Column(db.Text)
+    store_alias = db.Column(db.Text)
 
-    def __init__(self, first_name, surname, email, phone_number, password_hash, *args):
+    def __init__(self, first_name, surname, email, phone_number,
+                 password_hash, agree_to_processing_personal_data, *args):
         self.first_name = first_name
         self.surname = surname
         self.email = email
         self.phone_number = phone_number
         self.password_hash = password_hash
+        self.created_time = datetime.datetime.today()
+        self.last_changed_time = self.created_time
+        self.is_active = False
+        self.agree_to_processing_personal_data = agree_to_processing_personal_data
+        self.activate_key = generate_password_hash(str(uuid.uuid4()))[20:]
 
     def __repr__(self):
         return '<User {}>'.format(self.user_first_name)
@@ -26,9 +44,14 @@ class Products(db.Model):
     title = db.Column(db.String(64), nullable=False)
     description = db.Column(db.Text, nullable=False)
     price = db.Column(db.Integer, nullable=False)
-    # не знаю пока как хранить ссылки на фотографии(возможно массив)
-    photo = db.Column(ARRAY(db.Text), nullable=False)
+    photo = db.Column(db.Text, nullable=False)
     seller_id = db.Column(db.Integer)
+    created_time = db.Column(DateTime(timezone=True), nullable=False)
+    last_changed_time = db.Column(DateTime(timezone=True), nullable=False)
+    alias = db.Column(db.Text)
+    available = db.Column(db.Boolean, nullable=False)
+    view_count = db.Column(db.Integer, nullable=False)
+    category = db.Column(db.String(64))
 
     def __init__(self, title, description, price, photo, seller_id, *args):
         self.title = title
@@ -36,6 +59,10 @@ class Products(db.Model):
         self.price = price
         self.photo = photo
         self.seller_id = seller_id
+        self.created_time = datetime.datetime.today()
+        self.last_changed_time = self.created_time
+        self.available = True
+        self.view_count = 0
 
     def __repr__(self):
         return '<Product {}>'.format(self.title)
@@ -46,10 +73,53 @@ class Orders(db.Model):
     customer_id = db.Column(db.Integer, nullable=False)
     # купленные товары в формате json
     cart = db.Column(JSON, nullable=False)
+    created_time = db.Column(DateTime(timezone=True), nullable=False)
+    address_id = db.Column(db.Integer, nullable=False)
 
     def __init__(self, customer_id, cart, *args):
         self.customer_id = customer_id
         self.cart = cart
+        self.created_time = datetime.datetime.today()
 
     def __repr__(self):
         return '<Order № {}>'.format(self.id)
+
+
+class Address(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    customer_id = db.Column(db.Integer)
+    created_time = db.Column(DateTime(timezone=False), nullable=False)
+    last_changed_time = db.Column(DateTime(timezone=False), nullable=False)
+    city = db.Column(db.Text, nullable=False)
+    street = db.Column(db.Text, nullable=False)
+    house_number = db.Column(db.Integer, nullable=False)
+    house_additional_number = db.Column(db.Text)
+    entrance_number = db.Column(db.Integer, nullable=False)
+    apartment = db.Column(db.Integer)
+
+    def __init__(self, customer_id, city, street, house_number, entrance_number,
+                 house_additional_number=None, apartment=None):
+        self.customer_id = customer_id
+        self.city = city
+        self.street = street
+        self.house_number = house_number
+        self.entrance_number = entrance_number
+        self.house_additional_number = house_additional_number
+        self.apartment = apartment
+        self.created_time = datetime.datetime.today()
+        self.last_changed_time = self.created_time
+
+
+class Photo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, nullable=False)
+    owner_id = db.Column(db.Integer, nullable=False)
+    path = db.Column(db.Text, nullable=False)
+    created_time = db.Column(DateTime(timezone=True), nullable=False)
+    file_size = db.Column(db.Integer)
+
+    def __init__(self, product_id, owner_id, path):
+        self.product_id = product_id
+        self.owner_id = owner_id
+        self.path = path
+        self.created_time = datetime.datetime.today()
