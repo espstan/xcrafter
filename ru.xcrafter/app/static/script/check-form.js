@@ -50,16 +50,6 @@ CustomValidation.prototype = {
     } );
   }
 };
-//
-// const agreementValidityChecks = [
-//   {
-//     isInvalid: function ( ) {
-//       return agreementInput.checked == false;
-//       console.log(agreementInput);
-//     },
-//     invalidityMessage: 'ytnm'
-//   }
-// ];
 
 const userNameValidityChecks = [
   {
