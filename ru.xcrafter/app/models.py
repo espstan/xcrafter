@@ -1,11 +1,12 @@
-from app import db
+from app import db, login
 from sqlalchemy import JSON, DateTime, Date
 import datetime
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
+from flask_login import UserMixin
 
 
-class Users(db.Model):
+class Users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(64), nullable=False)
     surname = db.Column(db.String(64), nullable=False)
@@ -14,13 +15,15 @@ class Users(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
     created_time = db.Column(DateTime(timezone=False), nullable=False)
     last_changed_time = db.Column(DateTime(timezone=False), nullable=False)
-    is_active = db.Column(db.Boolean, nullable=False)
+    active = db.Column(db.Boolean, nullable=False)
     agree_to_processing_personal_data = db.Column(db.Boolean, nullable=False)
     gender = db.Column(db.String(32))
     activate_key = db.Column(db.String(128), nullable=False)
     birthday = db.Column(Date)
     store_name = db.Column(db.Text)
     store_alias = db.Column(db.Text)
+
+    # store tests
 
     def __init__(self, first_name, surname, email, phone_number,
                  password_hash, agree_to_processing_personal_data, *args):
@@ -31,12 +34,26 @@ class Users(db.Model):
         self.password_hash = password_hash
         self.created_time = datetime.datetime.today()
         self.last_changed_time = self.created_time
-        self.is_active = False
+        self.active = True
         self.agree_to_processing_personal_data = agree_to_processing_personal_data
         self.activate_key = generate_password_hash(str(uuid.uuid4()))[20:]
 
+    def is_active(self):
+        return self.active
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
     def __repr__(self):
-        return '<User {}>'.format(self.user_first_name)
+        return '<User {}>'.format(self.first_name)
+
+
+@login.user_loader
+def load_user(id):
+    return Users.query.filter(Users.id == int(id)).one()
 
 
 class Products(db.Model):

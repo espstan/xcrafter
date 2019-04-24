@@ -1,0 +1,20 @@
+.main-profile {
+    width: 900px;
+    margin: auto;
+    display: flex;
+}
+
+.description-profile {
+    margin-left: 10px;
+}
+
+.main-profile a {
+    text-decorator: none;
+    height: 40px;
+    background: #C6D6EF;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 40px;
+    width: 350px;
+}

@@ -20,11 +20,12 @@
 <header class="products-header">
     <ul class="nav">
         <li class="nav-logo">
-            <a href="#">
+            <a href="/">
                 <img class="logo"
                      src="{{ url_for('static', filename='img/Logo.png') }}">
             </a>
         </li>
+        {% if current_user.is_anonymous %}
         <li class="nav-signup">
             <a class="show-btn"
                href="javascript:void(0)">
@@ -32,6 +33,15 @@
                      src="{{ url_for('static', filename='img/User.svg') }}">
             </a>
         </li>
+        {% elif current_user.is_authenticated %}
+        <li class="nav-signup">
+            <a
+               href="/profile">
+                <img class="signup-btn"
+                     src="{{ url_for('static', filename='img/User.svg') }}">
+            </a>
+        </li>
+        {% endif %}
         <li class="nav-buy">
             <div class="nav-basket">
                 <img class="buy"

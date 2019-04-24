@@ -2,7 +2,7 @@ import sqlalchemy
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.orm.exc import NoResultFound
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.models import Users
+from app.models import Users, Products
 from app import db
 
 
@@ -53,3 +53,22 @@ def sign_in(sign_in_data) -> {}:
         sign_in_result["password"] = "ok"
 
     return sign_in_result
+
+
+def get_user_products(user_id: int) -> []:
+    """Получение всех товаров юзера. Принимает user_id.
+    Возвращает массив товаров, которые принадлежат данному юзеру"""
+
+    user_products = []
+
+    try:
+        data = Products.query.filter(Products.seller_id == user_id).all()
+    except NoResultFound:
+        return []
+
+    for product in data:
+        products_for_add = {'id': product.id, 'title': product.title, 'description': product.description,
+                            'price': product.price, 'photo': product.photo, 'seller_id': product.seller_id}
+        user_products.append(products_for_add)
+
+    return user_products

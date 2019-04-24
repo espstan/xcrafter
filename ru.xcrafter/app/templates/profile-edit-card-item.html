@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form onsubmit="editCardItem(event, {{ product.id }})">
+        Наименование: <input name="title" class="input-edit-card-item" type="text" value="{{ product.title }}">
+        <br>
+        Описание: <input name="description" class="input-edit-card-item" type="text" value="{{ product.description }}">
+        <br>
+        Цены: <input name="price" class="input-edit-card-item" type="text" value="{{ product.price }}">
+        <br>
+        Фотография: <input name="photo" class="input-edit-card-item" type="text" value="{{ product.photo[0] }}">
+        <br>
+        <input type="submit" value="Изменить">
+    </form>
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='script/profile-edit-card-item.js') }}"></script>
+</body>
+</html>
