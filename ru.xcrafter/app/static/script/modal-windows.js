@@ -6,7 +6,10 @@ const modalSignupBtn = document.getElementsByClassName('show-btn')[0];
 const signupForm = document.getElementById('login-form');
 const closeSignupFormBtn = document.getElementsByClassName('close-login-form-button')[0];
 
-modalSignupBtn.addEventListener('click', (e) => {openModalWindow(e)});
+if (modalSignupBtn) {
+    modalSignupBtn.addEventListener('click', (e) => {openModalWindow(e)});
+}
+
 navBuy.addEventListener('click', (e) => {openModalWindow(e)});
 
 function openModalWindow(e) {

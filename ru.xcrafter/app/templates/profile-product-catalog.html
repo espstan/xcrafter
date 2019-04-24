@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/profile-product-catalog.css') }}">
+</head>
+<body>
+    <div class="main-profile">
+        {% for product in products %}
+            <div class="profile-product product-id-{{ product.id }}">
+                <img src="{{ product.photo }}">
+                <div class="profile-actions">
+<!--                    <input type="button" value="Изменить">-->
+                    <a href="/profile/editCardItem/{{ product.id }}">Изменить</a>
+                    <input type="button" value="Удалить" onclick="deleteItem({{ product.id }})">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script type="text/javascript"
+        src="{{ url_for('static', filename='script/profile-product-catalog.js') }}"></script>
+
+</body>
+</html>
