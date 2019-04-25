@@ -36,7 +36,7 @@
         {% elif current_user.is_authenticated %}
         <li class="nav-signup">
             <a
-               href="/profile">
+                    href="/profile">
                 <img class="signup-btn"
                      src="{{ url_for('static', filename='img/User.svg') }}">
             </a>
@@ -53,22 +53,22 @@
 <section class="catalog">
     <ul class="product-list">
         {% for product in products %}
-            <div class="product-cont" data-id="{{ product.id }}">
-                <li class="product-item" style="background-image: url({{ product.photo }});">
-                    <div class="product-price">
-                        <p>{{product.price}}</p>
+        <div class="product-cont" data-id="{{ product.id }}">
+            <li class="product-item" style="background-image: url({{ product.photo }});">
+                <div class="product-price">
+                    <p>{{product.price}}</p>
+                </div>
+                <div class="product-more">
+                    <div class="product-buy" onclick="buy({{ product }})">
+                        <img src="static/img/Buy.svg">
                     </div>
-                    <div class="product-more">
-                        <div class="product-buy" onclick="buy({{ product }})">
-                            <img src="static/img/Buy.svg">
-                        </div>
-                        <div class="visible-title"></div>
-                        <a href="./item/{{ product.id }}" class="product-search">
-                            <img src="static/img/Search.svg">
-                        </a>
-                    </div>
-                </li>
-            </div>
+                    <div class="visible-title"></div>
+                    <a href="./item/{{ product.id }}" class="product-search">
+                        <img src="static/img/Search.svg">
+                    </a>
+                </div>
+            </li>
+        </div>
         {% endfor %}
     </ul>
 </section>
@@ -158,8 +158,8 @@
               name="sign-form">
             <input type="email"
                    name="login"
-                   placeholder="E-mail"
                    class="form-item"
+                   placeholder="E-mail"
                    id="user-login"
                    minlength="5"
                    maxlength="100"
@@ -187,7 +187,7 @@
         </form>
     </div>
     <div id="sign-up" class="sign-up">
-        <form method="POST"
+        <form onsubmit="sendRegistration(event)"
               class="sign-list"
               id="signup-form"
               name="signup-form">
@@ -231,20 +231,20 @@
                    maxlength="100"
                    minlength="6"
                    required>
+            <input type="password"
+                   name="repeatPassword"
+                   placeholder="Повторите пароль"
+                   class="form-item"
+                   id="repeatPassword"
+                   maxlength="100"
+                   minlength="6"
+                   required>
             <button class="visible-password"
                     type="button"
                     onclick="showPassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
-            <input type="password"
-                   name="repeatPassword"
-                   placeholder="Повторите пароль"
-                   class="form-item"
-                   id="password-repeat"
-                   maxlength="100"
-                   minlength="6"
-                   required>
             <button class="visible-password visible-repeat-password"
                     type="button"
                     onclick="showRepeatPassword(this)">
@@ -254,6 +254,7 @@
                 <input type="checkbox"
                        name="agreement"
                        id="agreement"
+                       checked
                        required>
                 <p class="agreement-text">Я соглашаюсь на передачу персональных данных согласно <a href="http://www.it-lex.ru/usloviya_ispolzovaniya_servisa/polzovatelskoe_soglashenie" class="agreement-link">политике конфиденциальности</a> и <a href="https://alltarget.ru/shablon-politiki-konfidencialnosti" class="agreement-link">пользовательскому соглашению</a></p>
             </label>
@@ -261,7 +262,7 @@
                    value="Зарегестрироваться"
                    class="login-button signup-button"
                    id="signup-button"
-            onclick="test()">
+            >
         </form>
     </div>
     <div id="recovery-form" class="recovery-form">
