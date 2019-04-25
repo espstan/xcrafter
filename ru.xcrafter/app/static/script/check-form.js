@@ -5,6 +5,8 @@ function CustomValidation( input ) {
   this.registerListener();
 }
 
+let validationFormArray = [];
+
 CustomValidation.prototype = {
   addInvalidity: function ( message ) {
     this.invalidities.push( message );
@@ -38,6 +40,7 @@ CustomValidation.prototype = {
     if ( this.inputNode.CustomValidation.invalidities.length === 0 && this.inputNode.value !== '' ) {
       this.inputNode.setCustomValidity( '' );
     } else {
+      validationFormArray.push( "false" );
       let message = this.inputNode.CustomValidation.getInvalidities();
       this.inputNode.setCustomValidity( message );
     }
@@ -55,7 +58,7 @@ CustomValidation.prototype = {
 const userNameValidityChecks = [
   {
     isInvalid: function ( input ) {
-      return input.value.length < 2;
+      return input.value.length < 2 ;
     },
     invalidityMessage: 'Имя не должно быть короче 2 символов'
   }
@@ -185,4 +188,45 @@ const showRepeatPassword = ( button ) => {
 const showLoginPassword = ( button ) => {
   let password = document.getElementById( "password-signin" );
   password.type === "password" ? password.type = "text" : password.type = "password"
+};
+
+const test = ( e ) => {
+const nameLength = document.getElementById('userName');
+const surnameLength = document.getElementById('userSurname');
+const elailLength = document.getElementById('userMail');
+const phoneLength = document.getElementById('userPhone');
+const passwordLength = document.getElementById('password');
+const passwordRepeatLength = document.getElementById('password-repeat');
+const userAgreement = document.getElementById('agreement');
+
+  if ( (validationFormArray.length > 0) || (nameLength.value.length === 0) || (surnameLength.value.length === 0) || (elailLength.value.length === 0) || (phoneLength.value.length === 0) || (passwordLength.value.length === 0) || (passwordRepeatLength.value.length === 0) || (userAgreement.checked === false)) {
+    return;
+  } else {
+    e.preventDefault();
+
+    fetch( 'http://localhost:5000/api/1/user', { //поменять путь!!!!! пока оставила старый
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify( {
+        name: userName.value,
+        surname: userSurname.value,
+        email: userMail.value,
+        phone: userPhone.value,
+        password: password.value,
+        repeatPassword: repeat.value,
+        agreement: agreement.checked
+      } )
+    } ).then( function ( response ) {
+      return response.json();
+    } ).then( function ( data ) {
+      alert( JSON.stringify( data ) )
+    } ).catch( function ( err ) {
+      alert( err )
+    } );
+  }
+
+  validationFormArray = [];
 };
