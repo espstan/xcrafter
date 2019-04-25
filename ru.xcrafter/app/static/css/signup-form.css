@@ -93,7 +93,7 @@ a:hover {
     border: none;
     background-color: transparent;
     position: absolute;
-    top: 59%;
+    top: 58.5%;
     left: 82%;
     outline: none;
 }
@@ -103,7 +103,7 @@ a:hover {
 }
 
 .visible-repeat-password {
-    top: 68.5%;
+    top: 67.5%;
 }
 
 .visible-login-password {
