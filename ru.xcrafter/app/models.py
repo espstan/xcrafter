@@ -26,7 +26,7 @@ class Users(UserMixin, db.Model):
     # store tests
 
     def __init__(self, first_name, surname, email, phone_number,
-                 password_hash, agree_to_processing_personal_data, *args):
+                 password_hash, agree_to_processing_personal_data, active=False, *args):
         self.first_name = first_name
         self.surname = surname
         self.email = email
@@ -34,7 +34,7 @@ class Users(UserMixin, db.Model):
         self.password_hash = password_hash
         self.created_time = datetime.datetime.today()
         self.last_changed_time = self.created_time
-        self.active = False
+        self.active = active
         self.agree_to_processing_personal_data = agree_to_processing_personal_data
         self.activate_key = generate_password_hash(str(uuid.uuid4()))[20:]
 
@@ -53,7 +53,7 @@ class Users(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    return Users.query.filter(Users.id == int(id)).one()
+    return Users.query.filter(Users.id == int(id)).first()
 
 
 class Products(db.Model):
