@@ -5,6 +5,7 @@
     "email": "someemail@something.com",
     "phone": "1234567",
     "password": "!@QW12qw",
-    "repeatPassword": "!@QW12qw"
+    "repeatPassword": "!@QW12qw",
+    "active": true
   }
 ]
