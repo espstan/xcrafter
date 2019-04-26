@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, send_from_directory
+from flask import render_template, request, redirect, send_from_directory, jsonify
 from werkzeug.security import generate_password_hash
 from app import app, db
 from app.models import Users
@@ -63,3 +63,8 @@ def cart():
 @app.route('/jsons/document.json')
 def products():
     return send_from_directory('static', 'jsons/document.json')
+
+@app.route('/api/item/<id>')
+def item(id):
+    product = get_product_by_id(id)
+    return jsonify(product)
