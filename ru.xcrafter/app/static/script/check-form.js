@@ -204,7 +204,7 @@ const sendRegistration = ( e ) => {
     console.log( validationFormArray );
     return;
   } else {
-    fetch( '/api/1/user', { //поменять путь!!!!! пока оставила старый
+    fetch( '/api/registration', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
