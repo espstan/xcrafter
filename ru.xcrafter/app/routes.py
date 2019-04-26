@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, send_from_directory
+from flask import render_template, request, redirect, send_from_directory, jsonify
 from werkzeug.security import generate_password_hash
 from app import app, db
 from app.models import Users
@@ -72,7 +72,6 @@ def add_card_item():
 def products():
     return send_from_directory('static', 'jsons/document.json')
 
-
 @app.route('/api/1/login', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
@@ -119,4 +118,5 @@ def profile_edit_card_item(id):
 def logout():
     logout_user()
     return redirect('/')
-
+  
+  
