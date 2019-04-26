@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/add-card-item.css') }}">
+</head>
+<body>
+
+<div class="main-add-card-item">
+    <form onsubmit="addItemInCatalog(event)">
+        <input type="text" class="input-add-card-item" name="title" placeholder="Title" value="Ноутбук LENOVO">
+        <input type="text" class="input-add-card-item" name="description" placeholder="Description" value="LENOVO IdeaPad 330-15AST, 81D60054RU">
+        <input type="text" class="input-add-card-item" name="price" placeholder="Price" value="22000">
+        <input type="text" class="input-add-card-item" name="photo" placeholder="Photo"
+               value="https://image1280.macovi.de/images/product_images/1280/1236036_1__52147133_2246843903.jpg">
+        <input type="text" class="input-add-card-item" name="seller_id" placeholder="Seller_id" value="1">
+        <input type="submit" value="Добавить">
+    </form>
+</div>
+
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/add-card-item.js') }}"></script>
+</body>
+</html>

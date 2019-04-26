@@ -4,15 +4,14 @@ from werkzeug.security import generate_password_hash
 
 import json
 
-test_user_path = '/home/elama/projects/xcrafter/ru.xcrafter/app/static/jsons/user.json'
-test_products_path = '/home/elama/projects/xcrafter/ru.xcrafter/app/static/jsons/document.json'
+test_user_path = 'app/static/jsons/user.json'
+test_products_path = 'app/static/jsons/document.json'
 
 with open(test_user_path) as user_json:
     data = json.load(user_json)[0]
-    # for user in data:
     pass_hash = generate_password_hash(data['password'])
     user = Users(first_name=data['name'], surname=data['surname'], email=data['email'], phone_number=data['phone'],
-                 password_hash=pass_hash)
+                 password_hash=pass_hash, agree_to_processing_personal_data=True)
     db.session.add(user)
     db.session.commit()
 

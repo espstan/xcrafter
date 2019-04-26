@@ -1,0 +1,22 @@
+.main-profile {
+    width: 900px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.profile-product {
+    width: 280px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.profile-product img {
+    width: 100%;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: space-evenly;
+}

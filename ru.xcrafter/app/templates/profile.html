@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/profile.css') }}">
+</head>
+<body>
+    <div class="main-profile">
+        <div class="actions-profile">
+            <div>
+                <a href="/profile/productCatalog">Просмотреть каталог собственных товаров</a>
+            </div>
+            <div>
+                <a href="/profile/addCardItem">Добавить товар в каталог</a>
+            </div>
+            <div>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="description-profile">
+            Lorem
+        </div>
+    </div>
+</body>
+</html>
