@@ -28,7 +28,7 @@ function buy(product) {
             </span>
             <span class = "d-flex float-right">
                 <span type = "button" class = "minus${product.id} btn" style = "width:10%" >-</span>
-                <input class="form-control col-3 " id="quantity${product.id}" value = "1" disabled>
+                <input type = "number" class="form-control col-3 " id="quantity${product.id}" value = "1" disabled>
                 <span type = "button" class = "plus${product.id} btn" style = "width:10%" >+
                 </span>
             </span>
@@ -41,7 +41,7 @@ function buy(product) {
         li.appendChild(inLi);
         li.appendChild(link);
         productsList.appendChild(li);
-        calculateTotalPrice(product);
+        // calculateTotalPrice(product);
         storeProductInLS(product); 
        
         document.querySelector(`.prod-price${product.id}`).innerHTML = `${product.price}`;
@@ -62,6 +62,7 @@ function buy(product) {
         }  
     
         function minusProduct(){
+            if (count < 1) { return false }
             count--;
             quantity.value = count;
             totalProductPrice.innerHTML = `${product.price * quantity.value}`;
@@ -73,19 +74,6 @@ function buy(product) {
         }
 
     }
-     
-    // } else {
-        // const plus = document.querySelector('.plus');    
-        // plus.addEventListener('click', () => {console.log(666)}); 
-        //console.log('dbcfdg')
-        // count++;
-        // const quantity = document.getElementById(`quantity ${product.id}`);
-        // quantity.value = count;
-        // console.log(quantity);
-        // document.querySelector(".prod-price").innerHTML = `${product.price * quantity.value}`;
-    // }  
-    // onclick="storeProductInLS(product);const quantity = document.getElementById('quantity ${product.id}');quantity.value=++count;document.querySelector('.prod-price${product.id}').innerHTML = ${product.price} * quantity.value;storeProductInLS('${product.id}')"
-    // onclick="const quantity = document.getElementById('quantity ${product.id}');quantity.value=--count;document.querySelector('.prod-price${product.id}').innerHTML = ${product.price} * quantity.value;"     
 }
 
 function storeProductInLS(product){
@@ -124,7 +112,7 @@ function getProductsFromLS(){
             </span>
             <span class = "d-flex float-right">
                 <span type = "button" class = "minus${product} btn" style = "width:10%" >-</span>
-                <input class="form-control col-3 " id="quantity${product}" value = "${cart[product]['count']}" disabled>
+                <input type = "number" class="form-control col-3 " id="quantity${product}" value = "${cart[product]['count']}"disabled>
                 <span type = "button" class = "plus${product} btn" style = "width:10%" >+
                 </span>
             </span>
@@ -159,6 +147,7 @@ function getProductsFromLS(){
             localStorage.setItem('cart', JSON.stringify(cart));
         }  
         function minusProduct(){
+            if (count < 1) { return false }
             count--;
             quantity.value = count;
             totalProductPrice.innerHTML = cart[product]['price'] * quantity.value;
