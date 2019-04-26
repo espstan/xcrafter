@@ -38,3 +38,4 @@ ru.xcrafter/venv/bin ru.xcrafter/venv/include ru.xcrafter/venv/lib ru.xcrafter/v
 db_data
 ru.xcrafter/db/db_data
 db_data/
+send_mail.config
