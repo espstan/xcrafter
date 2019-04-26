@@ -2,7 +2,7 @@
   {
     "name": "Test_Name",
     "surname": "Test_Surname",
-    "email": "someemail@something.somthing",
+    "email": "someemail@something.com",
     "phone": "1234567",
     "password": "!@QW12qw",
     "repeatPassword": "!@QW12qw"
