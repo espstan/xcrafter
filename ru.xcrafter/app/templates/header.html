@@ -1,0 +1,70 @@
+{% block header %}
+<header class="products-header">
+    <ul class="nav">
+        <li class="nav-logo">
+            <a href="/">
+                <img class="logo"
+                     src="{{ url_for('static', filename='img/Logo.png') }}">
+            </a>
+        </li>
+
+        {% if current_user.is_anonymous %}
+        <li class="nav-search">
+            <button class="nav-search-button">
+                <div class="hamburger">
+                    <div class="hamburger-bar"></div>
+                    <div class="hamburger-bar"></div>
+                    <div class="hamburger-bar"></div>
+                </div>
+                <div>Каталог товаров</div>
+            </button>
+            <form class="nav-search-form">
+                <div class="search-form-container">
+                    <input type="search"
+                           placeholder="я хочу найти"
+                           class="search-item"
+                           maxlength="30">
+                    <input type="submit"
+                           value="Искать"
+                           class="search-button">
+                </div>
+            </form>
+        </li>
+        <li class="nav-signup nav-item">
+            <a class="show-btn nav-signup"
+               href="javascript:void(0)">
+                <img class="signup-btn"
+                     src="{{ url_for('static', filename='img/User.svg') }}">
+                <a class="signup-title">Войти в аккаунт</a>
+            </a>
+        </li>
+        {% elif current_user.is_authenticated %}
+        <li class="nav-signup nav-item">
+<!--            добавить условие по исчезновени когда ты уже находишься в каталоге товаров-->
+            <a href="/">
+                <button class="nav-catalog">Каталог товаров</button>
+            </a>
+        </li>
+        <li class="nav-signup nav-item">
+            <a href="/profile">
+                <img class="signup-btn"
+                     src="{{ url_for('static', filename='img/User.svg') }}">
+                <a class="signup-title">Личный кабинет</a>
+            </a>
+        </li>
+        <section class="user-account">
+            <li class="user-account-item">Мои заказы</li>
+            <li class="user-account-item">Информация обо мне</li>
+            <li class="user-account-item"><a  href="/logout">Выйти</a></li>
+        </section>
+        {% endif %}
+        <li class="nav-buy nav-item">
+            <div class="nav-basket">
+                <img class="buy"
+                     src="{{ url_for('static', filename='img/Buy.svg') }}">
+                <a class="buy-title">Корзина</a>
+            </div>
+        </li>
+    </ul>
+</header>
+{% endblock %}

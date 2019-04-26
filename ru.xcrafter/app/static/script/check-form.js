@@ -164,9 +164,10 @@ recoveryPasswordInput.CustomValidation.validityChecks = recoveryPasswordValidity
 const inputs = document.querySelectorAll( 'input.form-item' );
 const submit = document.querySelector( 'input.login-button' );
 const form = document.getElementById( 'signup-form' );
+const signupInputAmount = 6;
 
 const validate = () => {
-  for ( let i = 0; i < 6; i++ ) {
+  for ( let i = 0; i < signupInputAmount; i++ ) {
     form.elements[i].CustomValidation.checkInput();
   }
 };
@@ -192,19 +193,18 @@ const showLoginPassword = ( button ) => {
 const sendRegistration = ( e ) => {
   validationFormArray = [];
   e.preventDefault();
-  const nameLength = document.getElementById( 'userName' );
-  const surnameLength = document.getElementById( 'userSurname' );
-  const emailLength = document.getElementById( 'userMail' );
-  const phoneLength = document.getElementById( 'userPhone' );
-  const passwordLength = document.getElementById( 'password' );
-  const passwordRepeatLength = document.getElementById( 'repeatPassword' );
-  const userAgreement = document.getElementById( 'agreement' );
+  const nameValue = document.getElementById( 'userName' ).value;
+  const surnameValue = document.getElementById( 'userSurname' ).value;
+  const emailValue = document.getElementById( 'userMail' ).value;
+  const phoneValue = document.getElementById( 'userPhone' ).value;
+  const passwordValue = document.getElementById( 'password' );
+  const passwordRepeatValue = document.getElementById( 'repeatPassword' ).value;
+  const userAgreement = document.getElementById( 'agreement' ).value;
 
-  if ( (validationFormArray.length > 0) || (nameLength.value.length === 0) || (surnameLength.value.length === 0) || (emailLength.value.length === 0) || (phoneLength.value.length === 0) || (passwordLength.value.length === 0) || (passwordRepeatLength.value.length === 0) || (userAgreement.checked === false)) {
-    console.log( validationFormArray );
+  if ( validationFormArray.length > 0 || nameValue.length === 0 || surnameValue.length === 0 || emailValue.length === 0 || phoneValue.length === 0 || passwordValue.length === 0 || passwordRepeatValue.length === 0 || userAgreement.checked === false) {
     return;
   } else {
-    fetch( '/api/1/user', { //поменять путь!!!!! пока оставила старый
+    fetch( '/api/1/logo', { //поменять путь!!!!! пока оставила старый
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
