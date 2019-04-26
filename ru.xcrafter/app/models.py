@@ -34,7 +34,7 @@ class Users(UserMixin, db.Model):
         self.password_hash = password_hash
         self.created_time = datetime.datetime.today()
         self.last_changed_time = self.created_time
-        self.active = True
+        self.active = False
         self.agree_to_processing_personal_data = agree_to_processing_personal_data
         self.activate_key = generate_password_hash(str(uuid.uuid4()))[20:]
 
