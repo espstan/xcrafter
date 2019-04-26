@@ -204,7 +204,7 @@ const sendRegistration = ( e ) => {
     console.log( validationFormArray );
     return;
   } else {
-    fetch( '/api/1/user', { //поменять путь!!!!! пока оставила старый
+    fetch( '/api/registration', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -219,11 +219,18 @@ const sendRegistration = ( e ) => {
         agreement: agreement.checked
       } )
     } ).then( function ( response ) {
+      if (response.ok) {
+        const signupForm = document.getElementById('login-form');
+        const modalOverlay = document.getElementById('modal-overlay');
+        signupForm.classList.toggle('closed');
+        modalOverlay.classList.toggle('closed');
+        document.body.style.overflow = '';
+      }
       return response.json();
     } ).then( function ( data ) {
-      alert( JSON.stringify( data ) )
+//      alert( JSON.stringify( data ) )
     } ).catch( function ( err ) {
-      alert( err )
+//      alert( err )
     } );
   }
 };
