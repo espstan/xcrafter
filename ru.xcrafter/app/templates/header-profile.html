@@ -1,4 +1,4 @@
-{% block header %}
+{% block headerProfile %}
 <header class="products-header">
     <ul class="nav">
         <li class="nav-logo">
@@ -7,7 +7,6 @@
                      src="{{ url_for('static', filename='img/Logo.png') }}">
             </a>
         </li>
-
         {% if current_user.is_anonymous %}
         <li class="nav-search">
             <button class="nav-search-button">
@@ -40,22 +39,42 @@
         </li>
         {% elif current_user.is_authenticated %}
         <li class="nav-signup nav-item">
-<!--            добавить условие по исчезновени когда ты уже находишься в каталоге товаров-->
             <a href="/">
-                <button class="nav-catalog">Каталог товаров</button>
+                <button class="nav-catalog nav-search-button">
+                    <div class="hamburger">
+                        <div class="hamburger-bar"></div>
+                        <div class="hamburger-bar"></div>
+                        <div class="hamburger-bar"></div>
+                    </div>
+                    <div>Каталог товаров</div>
+                </button>
             </a>
         </li>
-        <li class="nav-signup nav-item">
-            <a href="/profile">
-                <img class="signup-btn"
+        <section class="user-account user-account-closed" id="user-account">
+            <button class="user-account-toggle" type="button">
+                <img class="signup-btn user-account-btn"
                      src="{{ url_for('static', filename='img/User.svg') }}">
-                <a class="signup-title">Личный кабинет</a>
-            </a>
-        </li>
-        <section class="user-account">
-            <li class="user-account-item">Мои заказы</li>
-            <li class="user-account-item">Информация обо мне</li>
-            <li class="user-account-item"><a  href="/logout">Выйти</a></li>
+                <img class="signup-btn signup-btn-close"
+                     src="{{ url_for('static', filename='img/Close-user.svg') }}">
+                <a class="user-account-title ">Личный кабинет</a>
+            </button>
+            <ul class="user-account-list">
+                <li class="user-account-item">
+                    <a href="/#" class="user-account-link">Мои заказы</a>
+                </li>
+                <li class="user-account-item">
+                    <a href="/profile/productCatalog" class="user-account-link">Мои товары</a>
+                </li>
+                <li class="user-account-item">
+                    <a href="/#" class="user-account-link">Личные данные</a>
+                </li>
+                <li class="user-account-item">
+                    <a href="/#" class="user-account-link">Мои адреса доставки</a>
+                </li>
+                <li class="user-account-item">
+                    <a href="/logout" class="user-account-link">Выход</a>
+                </li>
+            </ul>
         </section>
         {% endif %}
         <li class="nav-buy nav-item">

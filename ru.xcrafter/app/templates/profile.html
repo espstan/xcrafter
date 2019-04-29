@@ -13,27 +13,30 @@
           href="{{ url_for('static', filename='css/main-page.css') }}">
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/cart.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/profile.css') }}">
 </head>
 <body>
-{% include 'header.html' %}
-{% block content %}
+{% include 'header-profile.html' %}
+{% block headerProfile %}
 {% endblock %}
-    <div class="main-profile">
-        <div class="actions-profile">
-            <div>
-                <a href="/profile/productCatalog">Просмотреть каталог собственных товаров</a>
-            </div>
-            <div>
+<div class="main-profile">
+    <div class="actions-profile">
+        <section class="actions-profile-orders">
+            <h2 class="actions-profile-title">Мои заказы</h2>
+            <p class="actions-profile-text">Здесь будет храниться история Ваших заказов</p>
+            <button class="actions-profile-button profile-button"><a href="/">Продолжить покупки</a></button>
+        </section>
+        <section class="actions-profile-userproducts">
+            <button class="profile-button">
+                <a href="/profile/productCatalog" >Просмотреть каталог собственных товаров</a>
+            </button>
+            <button class="profile-button">
                 <a href="/profile/addCardItem">Добавить товар в каталог</a>
-            </div>
-<!--            <div>-->
-<!--                <a href="/logout">Logout</a>-->
-<!--            </div>-->
-        </div>
-        <div class="description-profile">
-            Lorem
-        </div>
+            </button>
+        </section>
     </div>
+</div>
 {% include 'footer.html' %}
 {% block footer %}
 {% endblock %}
@@ -53,5 +56,21 @@
         src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
 <script type="text/javascript"
         src="{{ url_for('static', filename='script/main-page.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/profile-product-catalog.js') }}"></script>
+<script>
+  const navToggle = document.querySelector( '.user-account-toggle' );
+  const userAccount = document.getElementById( 'user-account' )
+
+  navToggle.addEventListener( 'click', function () {
+    if ( userAccount.classList.contains( 'user-account-closed' ) ) {
+      userAccount.classList.remove( 'user-account-closed' );
+      userAccount.classList.add( 'user-account-opened' );
+    } else {
+      userAccount.classList.add( 'user-account-closed' );
+      userAccount.classList.remove( 'user-account-opened' );
+    }
+  } );
+</script>
 </body>
 </html>

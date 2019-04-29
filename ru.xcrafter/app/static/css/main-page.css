@@ -10,6 +10,14 @@ a {
     padding: 0;
 }
 
+p {
+    margin: 0;
+}
+
+button:active, button:focus {
+    outline: none;
+}
+
 .catalog {
     background-color: #C6D6EF;
 }
@@ -137,7 +145,6 @@ a {
 
 .nav {
     display: flex;
-    justify-content: space-between;
 }
 
 .logo {
@@ -157,7 +164,7 @@ a {
     position: relative;
 }
 .nav-logo {
-    width: 4%;
+    width: 10%;
 }
 
 .nav-item {
@@ -167,28 +174,7 @@ a {
 
 .nav-item:hover,
 .nav-item:active {
-    opacity: 0.4;
-}
-
-.nav-buy::before {
-    position: absolute;
-    content: '';
-    width: 1px;
-    height: 48px;
-    background-color: #C6D6EF;
-    top: 50%;
-    margin-top: -24px;
-    left: -25px;
-}
-
-.nav-logo::after {
-    position: absolute;
-    content: '';
-    width: 1px;
-    height: 48px;
-    background-color: #C6D6EF;
-    top: 50%;
-    margin-top: -24px;
+    opacity: 0.8;
 }
 
 .visible-title {
@@ -227,6 +213,10 @@ a {
     flex-wrap: nowrap;
 }
 
+.nav-signup, .nav-buy {
+    width: 12.5%;
+}
+
 .signup-title {
     margin-top: 20px;
     margin-left: 5px;
@@ -236,8 +226,12 @@ a {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 40%;
+    width: 65%;
     display: flex;
+}
+
+.nav-search-form {
+    width: 500px;
 }
 
 .hamburger {
@@ -264,7 +258,7 @@ a {
     align-items: center;
     background-color: #17a2b8;
     border: none;
-    padding: 4px 15px;
+    padding: 8px 16px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -273,9 +267,10 @@ a {
 }
 
 .search-item {
-    width: 260px;
+    width: 500px;
     background-color: #fff;
     border: none;
+    padding: 8px 4px;
 }
 
 .search-item:focus::placeholder {
@@ -289,8 +284,7 @@ a {
     align-items: center;
     background-color: #17a2b8;
     border: none;
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding: 8px 18px;
     color: #fff;
 }
 
@@ -306,6 +300,6 @@ a {
     margin-top: 15px;
 }
 
-.user-account {
-    background-color: #C6D6EF;
+.nav-catalog:hover {
+    opacity: 0.8;
 }

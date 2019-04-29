@@ -1,20 +1,167 @@
-.main-profile {
-    width: 900px;
-    margin: auto;
-    display: flex;
+a {
+    color: #ffffff;
+}
+
+a:hover {
+    color: #11557C;
+}
+
+a:active {
+    color: #11557C;
 }
 
 .description-profile {
     margin-left: 10px;
 }
 
-.main-profile a {
-    text-decorator: none;
-    height: 40px;
-    background: #C6D6EF;
-    display: block;
-    margin-bottom: 10px;
-    text-align: center;
-    line-height: 40px;
-    width: 350px;
+/*.main-profile a {*/
+/*    text-decorator: none;*/
+/*    height: 40px;*/
+/*    background: #C6D6EF;*/
+/*    display: block;*/
+/*    margin-bottom: 10px;*/
+/*    text-align: center;*/
+/*    line-height: 40px;*/
+/*    width: 350px;*/
+/*}*/
+
+.user-account {
+    position: relative;
 }
+
+.user-account-closed .user-account-list {
+    display: none;
+}
+
+.user-account-opened .user-account-list {
+    display: block;
+    background-color: #17a2b8;
+}
+
+.user-account-opened .user-account-toggle {
+    background-color: #17a2b8;
+}
+
+.signup-btn {
+    position: absolute;
+    left: 12px;
+}
+
+.signup-btn-close {
+    display: none;
+}
+
+.user-account-opened .signup-btn-close{
+    display: block;
+    margin: 0;
+}
+
+.signup-btn-close{
+    width: 20px;
+    height: 20px;
+}
+
+.user-account-opened .user-account-btn {
+    display: none;
+}
+
+.user-account-toggle {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.user-account-toggle {
+    color: #FFFFFF;
+    padding: 0;
+    padding-top: 20px;
+}
+
+.user-account-link{
+    color: #FFFFFF;
+    padding-top: 5px;
+}
+
+.user-account-link:hover{
+    color: #11557C;
+}
+
+.user-account-btn {
+    margin: 0;
+}
+
+.user-account-item {
+    text-align: center;
+    height: 50px;
+    width: 220px;
+    padding-top: 10px;
+}
+
+.user-account-item:hover {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.user-account-toggle:hover {
+    opacity: 0.8;
+}
+
+.user-account-title {
+    padding-top: 0;
+    text-align: center;
+    height: 50px;
+    width: 220px;
+}
+
+.actions-profile {
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.actions-profile-orders {
+    width: 70%;
+    margin-left: 60px;
+    margin-top: 55px;
+    padding-right: 70px;
+}
+
+.actions-profile-userproducts {
+    width: 30%;
+    text-align: center;
+    margin-top: 112px;
+}
+
+.actions-profile-title {
+    border-bottom: 2px solid #f1f1f1;
+    font-weight: 900;
+    padding-bottom: 16px;
+}
+
+.actions-profile-text {
+    padding-bottom: 40px;
+    padding-top: 18px;
+}
+
+.profile-button {
+    text-decoration: none;
+    background-color: #17a2b8;
+    border: none;
+    width: 350px;
+    height: 60px;
+    margin-bottom: 30px;
+}
+
+.profile-button:hover {
+    opacity: 0.8;
+}
+
+.profile-button:hover a {
+    color: #11557C;
+}
+
+
+
+
