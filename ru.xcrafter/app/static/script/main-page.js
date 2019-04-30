@@ -1,12 +1,13 @@
 const productsList = document.querySelector('.list-group');
 const clearBtn = document.querySelector('.clear-btn');
 const totalPayment = document.getElementById('total-payment');
+const productBadge = document.getElementById('countOfProductInBadge');
 
 document.addEventListener('DOMContentLoaded', getProductsFromLS);
 productsList.addEventListener('click', deleteProduct);
 clearBtn.addEventListener('click', clearCart);
 
-let cartIsEmpty = document.createElement('h5');
+const cartIsEmpty = document.createElement('h5');
 cartIsEmpty.innerHTML='В корзине пусто:(';
 productsList.appendChild(cartIsEmpty);
 
@@ -26,10 +27,10 @@ function buy(product) {
                 <span class = "prod-price${product.id}"></span>
                 руб
             </span>
-            <span class = "d-flex float-right">
-                <span type = "button" class = "minus${product.id} btn" style = "width:10%" >-</span>
-                <input type = "number" class="form-control col-3 " id="quantity${product.id}" value = "1" disabled>
-                <span type = "button" class = "plus${product.id} btn" style = "width:10%" >+
+            <span class = "d-flex float-right w-50">
+                <span  class = "minus${product.id} btn" w-10 >-</span>
+                <input class="form-control col-3 " id="quantity${product.id}" value = "1" disabled>
+                <span  class = "plus${product.id} btn" w-10>+
                 </span>
             </span>
         </span>`;
@@ -41,7 +42,7 @@ function buy(product) {
         li.appendChild(inLi);
         li.appendChild(link);
         productsList.appendChild(li);
-        // calculateTotalPrice(product);
+        calculateTotalPrice(product);
         storeProductInLS(product); 
        
         document.querySelector(`.prod-price${product.id}`).innerHTML = `${product.price}`;
@@ -59,21 +60,39 @@ function buy(product) {
             quantity.value = count;
             totalProductPrice.innerHTML = `${product.price * quantity.value}`;
             storeProductInLS(product);
+            calculateTotalPrice(product);
+            calculateProductBadge()
         }  
     
         function minusProduct(){
-            if (count < 1) { return false }
+            if (count < 2) { return false }
             count--;
             quantity.value = count;
             totalProductPrice.innerHTML = `${product.price * quantity.value}`;
             localStorage.getItem('cart'); 
             cart = JSON.parse(localStorage.getItem('cart'));
-            console.log(cart[product.id]);
             cart[product.id]['count'] = cart[product.id]['count'] - 1;    
             localStorage.setItem('cart', JSON.stringify(cart));
+            totalPayment.value = totalPayment.value*1 - product.price*1;
+            calculateProductBadge()
         }
-
+    
+        
     }
+    calculateProductBadge()
+}
+function calculateProductBadge(){
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    if (!cart) { return false }
+    let sum = [];
+    let totalsum=0;
+    for(let item in cart){    
+        sum.push(cart[item]['count']);         
+    }
+    for (let i=0; i<sum.length; i++){
+        totalsum += sum[i]
+    }
+    productBadge.innerHTML=`${totalsum}`
 }
 
 function storeProductInLS(product){
@@ -110,10 +129,10 @@ function getProductsFromLS(){
                 <span class = "prod-price${product}"></span>
                 руб
             </span>
-            <span class = "d-flex float-right">
-                <span type = "button" class = "minus${product} btn" style = "width:10%" >-</span>
-                <input type = "number" class="form-control col-3 " id="quantity${product}" value = "${cart[product]['count']}"disabled>
-                <span type = "button" class = "plus${product} btn" style = "width:10%" >+
+            <span class = "d-flex float-right w-50">
+                <span class = "minus${product} btn" w-10 >-</span>
+                <input class="form-control col-3 " id="quantity${product}" value = "${cart[product]['count']}"disabled>
+                <span class = "plus${product} btn" w-10" >+
                 </span>
             </span>
         </span>`;
@@ -143,22 +162,28 @@ function getProductsFromLS(){
             totalProductPrice.innerHTML = cart[product]['price'] * quantity.value;
             localStorage.getItem('cart') 
             cart = JSON.parse(localStorage.getItem('cart'));
-            cart[product]['count'] = cart[product]['count'] + 1;  
+            cart[product]['count'] = cart[product]['count'] + 1; 
+            totalPayment.value = totalPayment.value*1 + cart[product]['price']*1; 
             localStorage.setItem('cart', JSON.stringify(cart));
+            calculateProductBadge()
         }  
         function minusProduct(){
-            if (count < 1) { return false }
+            if (count < 2) { return false }
             count--;
             quantity.value = count;
             totalProductPrice.innerHTML = cart[product]['price'] * quantity.value;
             localStorage.getItem('cart') 
             cart = JSON.parse(localStorage.getItem('cart'));
-            cart[product]['count'] = cart[product]['count'] - 1;    
-            localStorage.setItem('cart', JSON.stringify(cart));
+            cart[product]['count'] = cart[product]['count'] - 1; 
+            totalPayment.value = totalPayment.value*1 - cart[product]['price']*1;   
+            localStorage.setItem('cart', JSON.stringify(cart)); 
+            calculateProductBadge()   
         }
     }
-
+    calculateProductBadge()
 }
+
+
 
 function deleteProduct(e) {
     if(e.target.classList.contains('delete-product')) {
@@ -170,10 +195,8 @@ function deleteProduct(e) {
 function removeProductFromLS(element) {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const id = element.id;
-    console.log(id)
     for(const product in cart){
         if(cart[product]['id']==id){
-            console.log(cart[product]);
             delete cart[product];
             localStorage.setItem('cart', JSON.stringify(cart));
         }
