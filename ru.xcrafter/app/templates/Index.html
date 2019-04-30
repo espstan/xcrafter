@@ -14,6 +14,8 @@
           href="{{ url_for('static', filename='css/main-page.css') }}">
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/cart.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/popup-window.css') }}">
     <title>Catalog</title>
 </head>
 <body>
@@ -53,16 +55,16 @@
                     <select class="custom-select"
                             id="delivery">
                         <option selected>Доставка</option>
-                        <option value="1">Самовывоз</option>
-                        <option value="2" disabled="disabled">Доставка</option>
+                        <option value = 'delivery'>Самовывоз</option>
+                        <option value = 'pickup_self' disabled="disabled">Доставка</option>
                     </select>
                 </div>
                 <div class="payment">
                     <select class="custom-select"
                             id="payment">
                         <option selected>Способ оплаты</option>
-                        <option value="1">Наличные</option>
-                        <option value="2" disabled="disabled">Оплатить банковской картой</option>
+                        <option value = 'cash'>Наличные</option>
+                        <option value = 'card' disabled="disabled">Оплатить банковской картой</option>
                     </select>
                 </div>
                 <h5 class="text text-center mb-3 mt-3">Основная информация</h5>
@@ -253,10 +255,10 @@
         </form>
     </div>
 </div>
-
 {% include 'footer.html' %}
 {% block footer %}
 {% endblock %}
+<div id="popup-window" class="closed"></div>
 <div class="modal-overlay closed"
      id="modal-overlay"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

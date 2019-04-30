@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, send_from_directory, jsonify
+from flask import render_template, request, redirect, send_from_directory, url_for
 from werkzeug.security import generate_password_hash
 from app import app, db
 from app.models import Users
@@ -72,6 +72,7 @@ def add_card_item():
 def products():
     return send_from_directory('static', 'jsons/document.json')
 
+
 @app.route('/api/1/login', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
@@ -87,7 +88,7 @@ def login():
         user_test = Users.query.filter(Users.email == email).one()
         login_user(user_test, remember=remember_me) #remember=remember_me
         return redirect("/profile")
-    return render_template("Index.html")
+    return redirect(url_for('index'))
 
 
 @app.route('/profile')
@@ -132,5 +133,4 @@ def Index():
 @login_required
 def recoveryPassword():
     return render_template('recovery-password.html')
-
 
