@@ -2,19 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
     <title>Title</title>
 </head>
 <body>
-    <form onsubmit="editCardItem(event, {{ product.id }})">
-        Наименование: <input name="title" class="input-edit-card-item" type="text" value="{{ product.title }}">
+    <form onsubmit="editCardItem(event, {{ product.id }})" class="container m-auto">
+        <div class="card-columns">
+            <div class="card">
+                <img class="card-img-top img-fluid" src="{{ product.photo[0] }}" alt="">
+                <div class="card-body">
+                        <a class="btn btn-outline-info" href="#">Изменить фото</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top img-fluid" src="{{ product.photo[0] }}" alt="">
+                <div class="card-body">
+                    <a class="btn btn-outline-info" href="#">Изменить фото</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top img-fluid" src="{{ product.photo[0] }}" alt="">
+                <div class="card-body">
+                        <a class="btn btn-outline-info" href="#">Изменить фото</a>
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Наименование:</span>
+            </div>
+            <input name="title" class="input-edit-card-item form-control" type="text" value="{{ product.title }}">
+        </div>
         <br>
-        Описание: <input name="description" class="input-edit-card-item" type="text" value="{{ product.description }}">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Описание:</span>
+            </div>
+            <textarea class="input-edit-card-item form-control" aria-label="With textarea">{{ product.description }}</textarea>
+        </div>
+       
         <br>
-        Цены: <input name="price" class="input-edit-card-item" type="text" value="{{ product.price }}">
+        <div class="input-group">
+                <span class="input-group-text">Цена:</span>
+                <input type="text" class="form-control input-edit-card-item" name="price" id="total-payment" value="{{ product.price }}">
+                <span class="input-group-text">₽</span>
+        </div>
         <br>
-        Фотография: <input name="photo" class="input-edit-card-item" type="text" value="{{ product.photo[0] }}">
-        <br>
-        <input type="submit" value="Изменить">
+        <div class="row justify-content-end">
+        <input type="submit" class="btn btn-dark btn-lg" value="Изменить">
+        </div>
     </form>
     <script type="text/javascript"
         src="{{ url_for('static', filename='script/profile-edit-card-item.js') }}"></script>
