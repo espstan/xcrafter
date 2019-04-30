@@ -14,16 +14,11 @@ a:active {
     margin-left: 10px;
 }
 
-/*.main-profile a {*/
-/*    text-decorator: none;*/
-/*    height: 40px;*/
-/*    background: #C6D6EF;*/
-/*    display: block;*/
-/*    margin-bottom: 10px;*/
-/*    text-align: center;*/
-/*    line-height: 40px;*/
-/*    width: 350px;*/
-/*}*/
+.profile-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
 
 .user-account {
     position: relative;
@@ -122,16 +117,15 @@ a:active {
 }
 
 .actions-profile-orders {
-    width: 70%;
+    width: 50%;
     margin-left: 60px;
     margin-top: 55px;
     padding-right: 70px;
 }
 
 .actions-profile-userproducts {
-    width: 30%;
-    text-align: center;
-    margin-top: 112px;
+    width: 50%;
+    margin-top: 150px;
 }
 
 .actions-profile-title {
@@ -152,16 +146,10 @@ a:active {
     width: 350px;
     height: 60px;
     margin-bottom: 30px;
+    color: #ffffff;
 }
 
 .profile-button:hover {
     opacity: 0.8;
-}
-
-.profile-button:hover a {
     color: #11557C;
 }
-
-
-
-

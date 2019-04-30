@@ -7,38 +7,7 @@
                      src="{{ url_for('static', filename='img/Logo.png') }}">
             </a>
         </li>
-        {% if current_user.is_anonymous %}
-        <li class="nav-search">
-            <button class="nav-search-button">
-                <div class="hamburger">
-                    <div class="hamburger-bar"></div>
-                    <div class="hamburger-bar"></div>
-                    <div class="hamburger-bar"></div>
-                </div>
-                <div>Каталог товаров</div>
-            </button>
-            <form class="nav-search-form">
-                <div class="search-form-container">
-                    <input type="search"
-                           placeholder="я хочу найти"
-                           class="search-item"
-                           maxlength="30">
-                    <input type="submit"
-                           value="Искать"
-                           class="search-button">
-                </div>
-            </form>
-        </li>
-        <li class="nav-signup nav-item">
-            <a class="show-btn nav-signup"
-               href="javascript:void(0)">
-                <img class="signup-btn"
-                     src="{{ url_for('static', filename='img/User.svg') }}">
-                <a class="signup-title">Войти в аккаунт</a>
-            </a>
-        </li>
-        {% elif current_user.is_authenticated %}
-        <li class="nav-signup nav-item">
+        <li class="nav-item nav-item-catalog">
             <a href="/">
                 <button class="nav-catalog nav-search-button">
                     <div class="hamburger">
@@ -76,7 +45,6 @@
                 </li>
             </ul>
         </section>
-        {% endif %}
         <li class="nav-buy nav-item">
             <div class="nav-basket">
                 <img class="buy"

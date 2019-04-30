@@ -128,3 +128,9 @@ def Index():
     return render_template('Index.html')
 
 
+@app.route('/password-recovery')
+@login_required
+def recoveryPassword():
+    return render_template('recovery-password.html')
+
+

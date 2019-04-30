@@ -142,7 +142,7 @@
                    required>
             <button class="visible-password visible-login-password"
                     type="button"
-                    onclick="showLoginPassword(this)">
+                    onclick="showChangeRepeatPassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
@@ -156,7 +156,7 @@
         </form>
     </div>
     <div id="sign-up" class="sign-up">
-        <form onsubmit="sendRegistration(event)"
+        <form onsubmit="sendChangePassword(event)"
               class="sign-list"
               id="signup-form"
               name="signup-form">
@@ -216,7 +216,7 @@
             </button>
             <button class="visible-password visible-repeat-password"
                     type="button"
-                    onclick="showRepeatPassword(this)">
+                    onclick="showChangePassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
             <label class="form-item form-agreement">
