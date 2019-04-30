@@ -1,5 +1,6 @@
-#! /bin/bash
+#!/bin/bash
 
+source ./bin/init_mail_config.sh
 source ./bin/clean.sh
 source ./bin/init_venv_and_up_db.sh
 sleep 3

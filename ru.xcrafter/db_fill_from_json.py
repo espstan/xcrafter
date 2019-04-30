@@ -11,7 +11,7 @@ with open(test_user_path) as user_json:
     data = json.load(user_json)[0]
     pass_hash = generate_password_hash(data['password'])
     user = Users(first_name=data['name'], surname=data['surname'], email=data['email'], phone_number=data['phone'],
-                 password_hash=pass_hash, agree_to_processing_personal_data=True)
+                 password_hash=pass_hash, agree_to_processing_personal_data=True, active=data['active'])
     db.session.add(user)
     db.session.commit()
 
