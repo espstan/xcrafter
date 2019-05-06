@@ -164,12 +164,6 @@ recoveryPasswordInput.CustomValidation.validityChecks = recoveryPasswordValidity
 const submit = document.querySelector( 'input.login-button' );
 const form = document.getElementById( 'signup-form' );
 
-// const validate = () => {
-//   for ( let i = 0; i < signupInputAmount; i++ ) {
-//     form.elements[i].CustomValidation.checkInput();
-//   }
-// };
-
 const validate = () => {
   form.elements.map(element => element.CustomValidation.checkInput())
 };
