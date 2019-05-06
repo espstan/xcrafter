@@ -4,17 +4,26 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/profile-product-catalog.css') }}">
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
 </head>
 <body>
-    <div class="main-profile">
+    <div class="main-profile container m-auto">
+        <div class="d-flex row justify-content-between mt-3"><h1>Мои товары</h1>
+        <button class="btn btn-info">Добавить товар</button>
+        </div>
         {% for product in products %}
-            <div class="profile-product product-id-{{ product.id }}">
-                <img src="{{ product.photo }}">
-                <div class="profile-actions">
-<!--                    <input type="button" value="Изменить">-->
-                    <a href="/profile/editCardItem/{{ product.id }}">Изменить</a>
-                    <input type="button" value="Удалить" onclick="deleteItem({{ product.id }})">
+            <div class="profile-product product-id-{{ product.id }} d-flex flex-wrap mt-5 mb-5 border">                
+                <img class="card-img col-5" src="{{ product.photo }}">                
+                <div class="profile-actions ml-5 mt-5">
+                    <h1> {{ product.price }} руб</h1>
+                    <h2> {{ product.title }} </h2>
+                    <p> {{ product.description }} </p>
+                    
+                    <a href="/profile/editCardItem/{{ product.id }}" class="btn btn-info">Изменить</a>
+                    <input type="button" class="btn btn-dark" value="Удалить" onclick="deleteItem({{ product.id }})">
+                    
                 </div>
             </div>
         {% endfor %}

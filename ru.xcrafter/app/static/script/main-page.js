@@ -16,7 +16,6 @@ const popupWindow = document.getElementById('popup-window');
 function buy(product) {
     popupWindowActive(product);
     if(document.getElementById(product.id) == undefined){
-
         cartIsEmpty.remove();
         const li = document.createElement('li');
         li.className = 'list-group-item col-12 d-flex';
@@ -64,7 +63,7 @@ function buy(product) {
             storeProductInLS(product);
             calculateTotalPrice(product);
             calculateProductBadge()
- 
+        }
         function minusProduct(){
             if (count < 2) { return false }
             count--;
@@ -76,12 +75,11 @@ function buy(product) {
             localStorage.setItem('cart', JSON.stringify(cart));
             totalPayment.value = totalPayment.value*1 - product.price*1;
             calculateProductBadge()
-        }
-    
-        
+        }  
     }
-    calculateProductBadge()
+    calculateProductBadge();
 }
+
 function calculateProductBadge(){
     let cart = JSON.parse(localStorage.getItem('cart'));
     if (!cart) { return false }
