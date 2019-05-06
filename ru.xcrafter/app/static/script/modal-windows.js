@@ -36,3 +36,9 @@ function closedModalWindow() {
     }
 }
 
+if (~location.search.indexOf('next=%2F')) {
+    const signupBtn = document.getElementsByClassName('signup-btn')[0];
+    signupForm.classList.toggle('closed');
+    modalOverlay.classList.toggle('closed');
+    document.body.style.overflow = 'hidden';
+}
