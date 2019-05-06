@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,10 +28,25 @@
                 </div>
             </div>
         {% endfor %}
+=======
+{% block productCatalog %}
+<button class="profile-button">
+    <a href="/profile/addCardItem">Добавить товар в каталог</a>
+</button>
+<div class="main-profile">
+    {% for product in products %}
+    <div class="profile-product product-id-{{ product.id }}">
+        <img src="{{ product.photo }}">
+        <div class="profile-actions">
+            <a href="/profile/editCardItem/{{ product.id }}">Изменить</a>
+            <input type="button" value="Удалить" onclick="deleteItem({{ product.id }})">
+        </div>
+>>>>>>> 94289f997bf7bc0d26c2a12c2dd3c3345b55117b
     </div>
+    {% endfor %}
+</div>
 
-    <script type="text/javascript"
+<script type="text/javascript"
         src="{{ url_for('static', filename='script/profile-product-catalog.js') }}"></script>
 
-</body>
-</html>
+{% endblock %}

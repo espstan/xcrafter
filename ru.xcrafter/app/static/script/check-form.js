@@ -18,7 +18,7 @@ CustomValidation.prototype = {
     for ( let i = 0; i < this.validityChecks.length; i++ ) {
       const isInvalid = this.validityChecks[i].isInvalid( input );
       if ( isInvalid ) {
-        this.addInvalidity( this.validityChecks[i].invalidityMessage );
+        this.addInvalidity( this.validityChecks[i].errorMessage );
       }
       const requirementElement = this.validityChecks[i].element;
       if ( requirementElement ) {
@@ -60,7 +60,7 @@ const userNameValidityChecks = [
     isInvalid: function ( input ) {
       return input.value.length < 2;
     },
-    invalidityMessage: 'Имя не должно быть короче 2 символов'
+    errorMessage: 'Имя не должно быть короче 2 символов'
   }
 ];
 
@@ -69,7 +69,7 @@ const userSurnameValidityChecks = [
     isInvalid: function ( input ) {
       return input.value.length < 2;
     },
-    invalidityMessage: 'Фамилия не должна быть короче 2 символов'
+    errorMessage: 'Фамилия не должна быть короче 2 символов'
   }
 ];
 
@@ -78,7 +78,7 @@ const userMailValidityChecks = [
     isInvalid: function ( input ) {
       return !input.value.match( /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/ );
     },
-    invalidityMessage: 'Введите корректный e-mail'
+    errorMessage: 'Введите корректный e-mail'
   }
 ];
 
@@ -87,7 +87,7 @@ const userPhoneValidityChecks = [
     isInvalid: function ( input ) {
       return !input.value.match( /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/ );
     },
-    invalidityMessage: 'Введите корректный номер телефона'
+    errorMessage: 'Введите корректный номер телефона'
   }
 ];
 
@@ -96,7 +96,7 @@ const passwordValidityChecks = [
     isInvalid: function ( input ) {
       return input.value.length < 6 | input.value.length > 100 | !input.value.match( /[0-9]/g ) | !input.value.match( /[a-z]/g ) | !input.value.match( /[A-Z]/g );
     },
-    invalidityMessage: 'Пароль должен содержать больше 6 символов, цифру, букву верхнего и нижнего регистра'
+    errorMessage: 'Пароль должен содержать больше 6 символов, цифру, букву верхнего и нижнего регистра'
   }
 ];
 
@@ -105,7 +105,7 @@ const passwordRepeatValidityChecks = [
     isInvalid: function () {
       return passwordRepeatInput.value != passwordInput.value;
     },
-    invalidityMessage: 'Введенные пароли не совпадают'
+    errorMessage: 'Введенные пароли не совпадают'
   }
 ];
 
@@ -114,7 +114,7 @@ const userLoginValidityChecks = [
     isInvalid: function ( input ) {
       return !input.value.match( /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/ );
     },
-    invalidityMessage: 'Введите корректный e-mail'
+    errorMessage: 'Введите корректный e-mail'
   }
 ];
 
@@ -123,7 +123,7 @@ const recoveryPasswordValidityChecks = [
     isInvalid: function ( input ) {
       return !input.value.match( /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/ );
     },
-    invalidityMessage: 'Введите корректный e-mail'
+    errorMessage: 'Введите корректный e-mail'
   }
 ];
 
@@ -161,14 +161,17 @@ recoveryPasswordInput.CustomValidation = new CustomValidation( recoveryPasswordI
 recoveryPasswordInput.CustomValidation.validityChecks = recoveryPasswordValidityChecks;
 
 
-const inputs = document.querySelectorAll( 'input.form-item' );
 const submit = document.querySelector( 'input.login-button' );
 const form = document.getElementById( 'signup-form' );
 
+// const validate = () => {
+//   for ( let i = 0; i < signupInputAmount; i++ ) {
+//     form.elements[i].CustomValidation.checkInput();
+//   }
+// };
+
 const validate = () => {
-  for ( let i = 0; i < 6; i++ ) {
-    form.elements[i].CustomValidation.checkInput();
-  }
+  form.elements.map(element => element.CustomValidation.checkInput())
 };
 
 submit.addEventListener( 'click', validate );
@@ -192,16 +195,15 @@ const showLoginPassword = ( button ) => {
 const sendRegistration = ( e ) => {
   validationFormArray = [];
   e.preventDefault();
-  const nameLength = document.getElementById( 'userName' );
-  const surnameLength = document.getElementById( 'userSurname' );
-  const emailLength = document.getElementById( 'userMail' );
-  const phoneLength = document.getElementById( 'userPhone' );
-  const passwordLength = document.getElementById( 'password' );
-  const passwordRepeatLength = document.getElementById( 'repeatPassword' );
-  const userAgreement = document.getElementById( 'agreement' );
+  const name = document.getElementById( 'userName' ).value;
+  const surname = document.getElementById( 'userSurname' ).value;
+  const email = document.getElementById( 'userMail' ).value;
+  const phone = document.getElementById( 'userPhone' ).value;
+  const password = document.getElementById( 'password' );
+  const passwordRepeat = document.getElementById( 'repeatPassword' ).value;
+  const userAgreement = document.getElementById( 'agreement' ).value;
 
-  if ( (validationFormArray.length > 0) || (nameLength.value.length === 0) || (surnameLength.value.length === 0) || (emailLength.value.length === 0) || (phoneLength.value.length === 0) || (passwordLength.value.length === 0) || (passwordRepeatLength.value.length === 0) || (userAgreement.checked === false)) {
-    console.log( validationFormArray );
+  if ( validationFormArray.length > 0 || name.length === 0 || surname.length === 0 || email.length === 0 || phone.length === 0 || password.length === 0 || passwordRepeat.length === 0 || userAgreement.checked === false) {
     return;
   } else {
     fetch( '/api/registration', {

@@ -19,40 +19,9 @@
     <title>Catalog</title>
 </head>
 <body>
-<header class="products-header">
-    <ul class="nav">
-        <li class="nav-logo">
-            <a href="/">
-                <img class="logo"
-                     src="{{ url_for('static', filename='img/Logo.png') }}">
-            </a>
-        </li>
-        {% if current_user.is_anonymous %}
-        <li class="nav-signup">
-            <a class="show-btn"
-               href="javascript:void(0)">
-                <img class="signup-btn"
-                     src="{{ url_for('static', filename='img/User.svg') }}">
-            </a>
-        </li>
-        {% elif current_user.is_authenticated %}
-        <li class="nav-signup">
-            <a
-                    href="/profile">
-                <img class="signup-btn"
-                     src="{{ url_for('static', filename='img/User.svg') }}">
-            </a>
-        </li>
-        {% endif %}
-        <li class="nav-buy">
-            <div class="nav-basket">
-                <img class="buy"
-                     src="{{ url_for('static', filename='img/Buy.svg') }}">
-                     <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
-            </div>
-        </li>
-    </ul>
-</header>
+{% include 'header-catalog.html' %}
+{% block headerCatalog %}
+{% endblock %}
 <section class="catalog">
     <ul class="product-list">
         {% for product in products %}
@@ -75,7 +44,6 @@
         {% endfor %}
     </ul>
 </section>
-
 <div class="container m-auto modal-cart closed">
     <form>
         <a class="close-btn close-cart-btn"
@@ -128,7 +96,7 @@
                     </ul>
                 </div>
                 <button
-                        class="clear-btn btn btn-dark float-right mb-3 mr-3">Очистить корзину
+                        class="clear-btn btn btn-dark float-right mb-3">Очистить корзину
                 </button>
                 <div class="input-group col-12 mb-3 mt-3">
                     <span class="input-group-text">Общая сумма:</span>
@@ -176,7 +144,7 @@
                    required>
             <button class="visible-password visible-login-password"
                     type="button"
-                    onclick="showLoginPassword(this)">
+                    onclick="showChangeRepeatPassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
@@ -190,7 +158,7 @@
         </form>
     </div>
     <div id="sign-up" class="sign-up">
-        <form onsubmit="sendRegistration(event)"
+        <form onsubmit="sendChangePassword(event)"
               class="sign-list"
               id="signup-form"
               name="signup-form">
@@ -250,7 +218,7 @@
             </button>
             <button class="visible-password visible-repeat-password"
                     type="button"
-                    onclick="showRepeatPassword(this)">
+                    onclick="showChangePassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
             <label class="form-item form-agreement">
@@ -264,8 +232,7 @@
             <input type="submit"
                    value="Зарегестрироваться"
                    class="login-button signup-button"
-                   id="signup-button"
-            >
+                   id="signup-button">
         </form>
     </div>
     <div id="recovery-form" class="recovery-form">
@@ -288,9 +255,9 @@
         </form>
     </div>
 </div>
-<footer class="products-footer">
-    <p class="footer-copy">&copy;Xcrafter</p>
-</footer>
+{% include 'footer.html' %}
+{% block footer %}
+{% endblock %}
 <div id="popup-window" class="closed"></div>
 <div class="modal-overlay closed"
      id="modal-overlay"></div>
