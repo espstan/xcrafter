@@ -90,7 +90,6 @@ def card_item_photo(id):
                            product=product)
 
 
-@app.route('/item/description/<id>')
 @app.route('/item/<id>/description')
 def card_item_description(id):
     product = get_product_by_id(id)
