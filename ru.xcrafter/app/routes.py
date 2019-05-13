@@ -119,3 +119,18 @@ def profile_edit_card_item(id):
 def logout():
     logout_user()
     return redirect('/')
+
+
+@app.route('/')
+@app.route('/Index')
+@login_required
+def Index():
+    id = current_user
+    return render_template('Index.html')
+
+
+@app.route('/password-recovery')
+@login_required
+def recoveryPassword():
+    return render_template('recovery-password.html')
+
