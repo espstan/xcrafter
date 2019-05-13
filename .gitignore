@@ -30,12 +30,4 @@ yarn-error.log*
 *.sln
 *.sw*
 
-.venv
-venv
-venv.bak/
-ru.xcrafter/venv/bin ru.xcrafter/venv/include ru.xcrafter/venv/lib ru.xcrafter/venv/share
-.db/db_data/
-db_data
-ru.xcrafter/db/db_data
-db_data/
-send_mail.config
+/venv
