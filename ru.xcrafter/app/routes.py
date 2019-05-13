@@ -30,12 +30,6 @@ def index() -> 'html':
                            products=products)
 
 
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect('/')
-
-
 @app.route('/contacts')
 def contacts():
     return render_template('contacts.html')
@@ -145,3 +139,9 @@ def login():
         login_user(user_test, remember=remember_me)  # remember=remember_me
         return redirect("/profile")
     return redirect(url_for('index'))
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
