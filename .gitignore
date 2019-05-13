@@ -10,7 +10,6 @@ __pycache__
 
 .DS_Store
 node_modules
-/dist
 package-lock.json
 
 # local env files
@@ -29,13 +28,3 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
-
-.venv
-venv
-venv.bak/
-ru.xcrafter/venv/bin ru.xcrafter/venv/include ru.xcrafter/venv/lib ru.xcrafter/venv/share
-.db/db_data/
-db_data
-ru.xcrafter/db/db_data
-db_data/
-send_mail.config
