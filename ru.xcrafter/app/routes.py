@@ -25,11 +25,10 @@ from werkzeug.security import generate_password_hash
 
 @app.route('/')
 def index() -> 'html':
-    meta_title = 'XCrafter - маркетплейс хендмейд товаров'
     products = get_all_products()
     return render_template('index.html',
                            products=products,
-                           meta_title=meta_title)
+                           meta_title='XCrafter - маркетплейс хендмейд товаров')
 
 
 @app.route('/logout')
