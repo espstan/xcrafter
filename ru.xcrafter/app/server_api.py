@@ -2,6 +2,12 @@ import json
 
 from app import api
 
+from flask import redirect
+from flask import url_for
+from flask import abort
+from flask import jsonify
+from flask import Response
+
 from flask_login import login_required
 
 from flask_restful import Resource
@@ -16,12 +22,6 @@ from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
 from app.db_utils.users import send_mail
 from app.db_utils.users import activate
-
-from flask import redirect
-from flask import url_for
-from flask import abort
-from flask import jsonify
-from flask import Response
 
 
 class GetProductInfoById(Resource):
