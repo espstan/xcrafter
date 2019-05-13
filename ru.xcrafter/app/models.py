@@ -107,7 +107,7 @@ class Orders(db.Model):
         self.created_time = datetime.datetime.today()
 
     def __repr__(self):
-        return '<Order № {}>'.format(self.id)
+        return '<Order ID {}>'.format(self.id)
 
 
 class Address(db.Model):
