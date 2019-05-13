@@ -120,9 +120,13 @@ def logout():
     logout_user()
     return redirect('/')
 
+  
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html')
+
 
 @app.route('/password-recovery')
 @login_required
 def recoveryPassword():
     return render_template('recovery-password.html')
-
