@@ -119,7 +119,7 @@ def user():
 
     db.session.add(signin_user)
     db.session.commit()
-    return redirect('/')
+    return redirect(url_for('index'))
 
 
 @app.route('/api/1/products')
@@ -142,11 +142,11 @@ def login():
         # авторизуем и делаем редирект
         user_test = Users.query.filter(Users.email == email).one()
         login_user(user_test, remember=remember_me)  # remember=remember_me
-        return redirect("/profile")
+        return redirect(url_for('profile'))
     return redirect(url_for('index'))
 
 
 @app.route('/api/1/logout')
 def logout():
     logout_user()
-    return redirect('/')
+    return redirect(url_for('index'))
