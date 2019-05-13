@@ -131,8 +131,9 @@ button:active, button:focus {
     font-size: 20px;
     color: #FFFFFF;
     opacity: 0.8;
-    line-height: 80px;
+    float: right;
     text-align: right;
+    padding-top: 10px;
     padding-right: 56px;
 }
 
