@@ -50,8 +50,8 @@ def recoveryPassword():
 @app.route('/profile')
 @login_required
 def profile():
-    id = current_user
-    return render_template('profile.html')
+    return render_template('profile.html',
+                           current_user=current_user)
 
 
 @app.route('/profile/add-сard-item')
