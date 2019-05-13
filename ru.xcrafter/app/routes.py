@@ -8,7 +8,6 @@ from flask_login import current_user, login_user, login_required, logout_user
 
 
 @app.route('/')
-@app.route('/index')
 def index() -> 'html':
     products = get_all_products()
     return render_template('index.html',
