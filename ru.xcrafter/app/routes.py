@@ -1,10 +1,26 @@
-from flask import render_template, request, redirect, send_from_directory, url_for
-from werkzeug.security import generate_password_hash
-from app import app, db
+from app import app
+from app import db
+
+from app.db_utils.products import get_all_products
+from app.db_utils.products import get_product_by_id
+
+from app.db_utils.users import sign_in
+from app.db_utils.users import get_user_products
+
 from app.models import Users
-from app.db_utils.products import get_all_products, get_product_by_id
-from app.db_utils.users import sign_in, get_user_products
-from flask_login import current_user, login_user, login_required, logout_user
+
+from flask import redirect
+from flask import render_template
+from flask import request
+from flask import send_from_directory
+from flask import url_for
+
+from flask_login import current_user
+from flask_login import login_user
+from flask_login import login_required
+from flask_login import logout_user
+
+from werkzeug.security import generate_password_hash
 
 
 @app.route('/')
