@@ -1,8 +1,12 @@
-from sqlalchemy.orm.exc import NoResultFound
-from sqlalchemy.exc import OperationalError
-from flask_login import current_user
-from app.models import Products
 from app import db
+
+from app.models import Products
+
+from flask_login import current_user
+
+from sqlalchemy.orm.exc import NoResultFound
+
+from sqlalchemy.exc import OperationalError
 
 
 def get_all_products() -> []:
