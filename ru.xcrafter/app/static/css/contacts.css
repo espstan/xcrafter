@@ -1,0 +1,33 @@
+main {
+    width: 900px;
+    margin: auto;
+    display: flex;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+.about-us {
+    width: 50%;
+    display: flex;
+}
+
+.about-us div {
+    width: 50%;
+    padding-right: 10px;
+}
+
+.feedback {
+    width: 50%;
+}
+
+.about-us span {
+    line-height: 1.5;
+    font-stretch: ultra-condensed;
+}
+
+.feedback input {
+    width: 98%;
+    height: 20px;
+}
