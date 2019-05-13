@@ -1,0 +1,57 @@
+{% block headerProfile %}
+<header class="products-header">
+    <ul class="nav">
+        <li class="nav-logo">
+            <a href="/">
+                <img class="logo"
+                     src="{{ url_for('static', filename='img/Logo.png') }}">
+            </a>
+        </li>
+        <li class="nav-item nav-item-catalog">
+            <a href="/">
+                <button class="nav-catalog nav-search-button">
+                    <div class="hamburger">
+                        <div class="hamburger-bar"></div>
+                        <div class="hamburger-bar"></div>
+                        <div class="hamburger-bar"></div>
+                    </div>
+                    <div>Каталог товаров</div>
+                </button>
+            </a>
+        </li>
+        <section class="user-account user-account-closed" id="user-account">
+            <button class="user-account-toggle" type="button">
+                <img class="signup-btn user-account-btn"
+                     src="{{ url_for('static', filename='img/User.svg') }}">
+                <img class="signup-btn signup-btn-close"
+                     src="{{ url_for('static', filename='img/Close-user.svg') }}">
+                <a class="user-account-title ">Личный кабинет</a>
+            </button>
+            <ul class="user-account-list">
+                <li class="user-account-item">
+                    <a href="/#" class="user-account-link">Мои заказы</a>
+                </li>
+                <li class="user-account-item">
+                    <a href="/profile/productCatalog" class="user-account-link">Мои товары</a>
+                </li>
+                <li class="user-account-item">
+                    <a href="/#" class="user-account-link">Личные данные</a>
+                </li>
+                <li class="user-account-item">
+                    <a href="/#" class="user-account-link">Мои адреса доставки</a>
+                </li>
+                <li class="user-account-item">
+                    <a href="/logout" class="user-account-link">Выход</a>
+                </li>
+            </ul>
+        </section>
+        <li class="nav-buy nav-item">
+            <div class="nav-basket">
+                <img class="buy"
+                     src="{{ url_for('static', filename='img/Buy.svg') }}">
+                <a class="buy-title">Корзина</a>
+            </div>
+        </li>
+    </ul>
+</header>
+{% endblock %}

@@ -16,4 +16,4 @@ login = LoginManager(app)
 login.login_view = 'index'
 mail = Mail(app)
 
-from app import routes, models, serever_api
+from app import routes, models, server_api

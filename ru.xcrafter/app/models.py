@@ -1,8 +1,16 @@
-from app import db, login
-from sqlalchemy import JSON, DateTime, Date
 import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
+
+from app import db
+from app import login
+
+from sqlalchemy import JSON
+from sqlalchemy import DateTime
+from sqlalchemy import Date
+
+from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
+
 from flask_login import UserMixin
 
 

@@ -19,40 +19,9 @@
     <title>Catalog</title>
 </head>
 <body>
-<header class="products-header">
-    <ul class="nav">
-        <li class="nav-logo">
-            <a href="/">
-                <img class="logo"
-                     src="{{ url_for('static', filename='img/Logo.png') }}">
-            </a>
-        </li>
-        {% if current_user.is_anonymous %}
-        <li class="nav-signup">
-            <a class="show-btn"
-               href="javascript:void(0)">
-                <img class="signup-btn"
-                     src="{{ url_for('static', filename='img/User.svg') }}">
-            </a>
-        </li>
-        {% elif current_user.is_authenticated %}
-        <li class="nav-signup">
-            <a
-                    href="/profile">
-                <img class="signup-btn"
-                     src="{{ url_for('static', filename='img/User.svg') }}">
-            </a>
-        </li>
-        {% endif %}
-        <li class="nav-buy">
-            <div class="nav-basket">
-                <img class="buy"
-                     src="{{ url_for('static', filename='img/Buy.svg') }}">
-                     <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
-            </div>
-        </li>
-    </ul>
-</header>
+{% include 'header-catalog.html' %}
+{% block headerCatalog %}
+{% endblock %}
 <section class="catalog">
     <ul class="product-list">
         {% for product in products %}
@@ -75,7 +44,6 @@
         {% endfor %}
     </ul>
 </section>
-
 <div class="container m-auto modal-cart closed">
     <form>
         <a class="close-btn close-cart-btn"
@@ -128,7 +96,7 @@
                     </ul>
                 </div>
                 <button
-                        class="clear-btn btn btn-dark float-right mb-3 mr-3">Очистить корзину
+                        class="clear-btn btn btn-dark float-right mb-3">Очистить корзину
                 </button>
                 <div class="input-group col-12 mb-3 mt-3">
                     <span class="input-group-text">Общая сумма:</span>
@@ -161,7 +129,7 @@
               name="sign-form">
             <input type="email"
                    name="login"
-                   class="form-item"
+                   class="form-item check-input"
                    placeholder="E-mail"
                    id="user-login"
                    minlength="5"
@@ -170,13 +138,13 @@
             <input type="password"
                    name="password-sign"
                    placeholder="Пароль"
-                   class="form-item"
+                   class="form-item check-input"
                    id="password-signin"
                    maxlength="100"
                    required>
             <button class="visible-password visible-login-password"
                     type="button"
-                    onclick="showLoginPassword(this)">
+                    onclick="showChangeRepeatPassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}">
             </button>
@@ -190,14 +158,14 @@
         </form>
     </div>
     <div id="sign-up" class="sign-up">
-        <form onsubmit="sendRegistration(event)"
+        <form onsubmit="sendChangePassword(event)"
               class="sign-list"
               id="signup-form"
               name="signup-form">
             <input type="text"
                    name="firstName"
                    placeholder="Имя"
-                   class="form-item"
+                   class="form-item check-input"
                    id="userName"
                    minlength="2"
                    maxlength="100"
@@ -205,7 +173,7 @@
             <input type="text"
                    name="secondName"
                    placeholder="Фамилия"
-                   class="form-item"
+                   class="form-item check-input"
                    id="userSurname"
                    minlength="2"
                    maxlength="100"
@@ -213,7 +181,7 @@
             <input type="email"
                    name="email"
                    placeholder="E-mail"
-                   class="form-item"
+                   class="form-item check-input"
                    id="userMail"
                    minlength="5"
                    maxlength="100"
@@ -221,7 +189,7 @@
             <input type="tel"
                    name="phone"
                    placeholder="Телефон"
-                   class="form-item"
+                   class="form-item check-input"
                    id="userPhone"
                    minlength="5"
                    maxlength="100"
@@ -229,7 +197,7 @@
             <input type="password"
                    name="password"
                    placeholder="Пароль"
-                   class="form-item"
+                   class="form-item check-input"
                    id="password"
                    maxlength="100"
                    minlength="6"
@@ -237,7 +205,7 @@
             <input type="password"
                    name="repeatPassword"
                    placeholder="Повторите пароль"
-                   class="form-item"
+                   class="form-item check-input"
                    id="repeatPassword"
                    maxlength="100"
                    minlength="6"
@@ -250,7 +218,7 @@
             </button>
             <button class="visible-password visible-repeat-password"
                     type="button"
-                    onclick="showRepeatPassword(this)">
+                    onclick="showChangePassword(this)">
                 <img class="visible-password-img"
                      src="{{ url_for('static', filename='img/Eye.svg') }}"></button>
             <label class="form-item form-agreement">
@@ -264,8 +232,7 @@
             <input type="submit"
                    value="Зарегестрироваться"
                    class="login-button signup-button"
-                   id="signup-button"
-            >
+                   id="signup-button">
         </form>
     </div>
     <div id="recovery-form" class="recovery-form">
@@ -278,7 +245,7 @@
             <input type="email"
                    name="recovery-password"
                    placeholder="Email"
-                   class="form-item recovery-item"
+                   class="form-item recovery-item check-input"
                    id="recovery-password"
                    required>
             <input type="submit"
@@ -288,9 +255,9 @@
         </form>
     </div>
 </div>
-<footer class="products-footer">
-    <p class="footer-copy">&copy;Xcrafter</p>
-</footer>
+{% include 'footer.html' %}
+{% block footer %}
+{% endblock %}
 <div id="popup-window" class="closed"></div>
 <div class="modal-overlay closed"
      id="modal-overlay"></div>
