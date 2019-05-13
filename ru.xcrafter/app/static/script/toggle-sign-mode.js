@@ -7,7 +7,7 @@ function openRecoveryPassword() {
   document.getElementById( 'signup-title' ).style.display = 'none';
 }
 
-function openSingUp() {
+function openSignUp() {
   document.getElementById( 'sign-up' ).style.display = 'block';
   document.getElementById( 'sign-in' ).style.display = 'none';
   document.getElementById( 'signup-title' ).classList.add( 'visible-login-title' );
