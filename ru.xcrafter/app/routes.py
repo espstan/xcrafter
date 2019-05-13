@@ -11,7 +11,7 @@ from flask_login import current_user, login_user, login_required, logout_user
 @app.route('/index')
 def index() -> 'html':
     products = get_all_products()
-    return render_template('Index.html',
+    return render_template('index.html',
                            products=products)
 
 
@@ -119,14 +119,6 @@ def profile_edit_card_item(id):
 def logout():
     logout_user()
     return redirect('/')
-
-
-@app.route('/')
-@app.route('/Index')
-@login_required
-def Index():
-    id = current_user
-    return render_template('Index.html')
 
 
 @app.route('/password-recovery')
