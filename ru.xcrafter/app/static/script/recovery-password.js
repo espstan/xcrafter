@@ -24,10 +24,8 @@ CustomValidation.prototype = {
       if ( requirementElement ) {
         if ( isInvalid ) {
           requirementElement.classList.add( 'invalid' );
-          requirementElement.classList.remove( 'valid' );
         } else {
           requirementElement.classList.remove( 'invalid' );
-          requirementElement.classList.add( 'valid' );
         }
 
       }
@@ -54,6 +52,7 @@ CustomValidation.prototype = {
     } );
   }
 };
+
 
 const changePasswordValidityChecks = [
   {
@@ -87,8 +86,13 @@ changePasswordInput.CustomValidation.validityChecks = changePasswordValidityChec
 const submit = document.querySelector( 'input.change-button' );
 const form = document.getElementById( 'form-change' );
 
+
 const validate = () => {
-  form.elements.map(element => element.CustomValidation.checkInput())
+  for ( let i = 0; i < form.elements.length; i++ ) {
+    if (form.elements[i].classList.contains('change-item') === true) {
+      form.elements[i].CustomValidation.checkInput();
+    }
+  }
 };
 
 submit.addEventListener( 'click', validate );

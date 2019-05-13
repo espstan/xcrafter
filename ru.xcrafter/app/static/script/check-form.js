@@ -24,10 +24,8 @@ CustomValidation.prototype = {
       if ( requirementElement ) {
         if ( isInvalid ) {
           requirementElement.classList.add( 'invalid' );
-          requirementElement.classList.remove( 'valid' );
         } else {
           requirementElement.classList.remove( 'invalid' );
-          requirementElement.classList.add( 'valid' );
         }
 
       }
@@ -165,7 +163,11 @@ const submit = document.querySelector( 'input.login-button' );
 const form = document.getElementById( 'signup-form' );
 
 const validate = () => {
-  form.elements.map(element => element.CustomValidation.checkInput())
+  for ( let i = 0; i < form.elements.length; i++ ) {
+    if (form.elements[i].classList.contains('check-input') === true) {
+      form.elements[i].CustomValidation.checkInput();
+    }
+  }
 };
 
 submit.addEventListener( 'click', validate );
@@ -176,17 +178,17 @@ const showPassword = ( button ) => {
   password.type === "password" ? password.type = "text" : password.type = "password"
 };
 
-const showRepeatPassword = ( button ) => {
+const showChangePassword = ( button ) => {
   let password = document.getElementById( "repeatPassword" );
   password.type === "password" ? password.type = "text" : password.type = "password"
 };
 
-const showLoginPassword = ( button ) => {
+const showChangeRepeatPassword = ( button ) => {
   let password = document.getElementById( "password-signin" );
   password.type === "password" ? password.type = "text" : password.type = "password"
 };
 
-const sendRegistration = ( e ) => {
+const sendChangePassword = ( e ) => {
   validationFormArray = [];
   e.preventDefault();
   const name = document.getElementById( 'userName' ).value;
@@ -224,9 +226,7 @@ const sendRegistration = ( e ) => {
       }
       return response.json();
     } ).then( function ( data ) {
-//      alert( JSON.stringify( data ) )
     } ).catch( function ( err ) {
-//      alert( err )
     } );
   }
 };
