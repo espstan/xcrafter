@@ -30,16 +30,51 @@ def index() -> 'html':
                            products=products)
 
 
-@app.route('/api/1/user', methods=['POST'])
-def user():
-    data = request.form
-    password_hash = generate_password_hash(data['password'])
-    signin_user = Users(first_name=data['firstName'], surname=data['secondName'], email=data['email'],
-                        phone_number=data['phone'], password_hash=password_hash)
-
-    db.session.add(signin_user)
-    db.session.commit()
+@app.route('/logout')
+def logout():
+    logout_user()
     return redirect('/')
+
+
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html')
+
+
+@app.route('/password-recovery')
+@login_required
+def recoveryPassword():
+    return render_template('recovery-password.html')
+
+
+@app.route('/profile')
+@login_required
+def profile():
+    id = current_user
+    return render_template('profile.html')
+
+
+@app.route('/profile/addCardItem')
+@login_required
+def add_card_item():
+    return render_template('add-card-item.html')
+
+
+@app.route('/profile/editCardItem/<id>')
+@login_required
+def profile_edit_card_item(id):
+    product = get_product_by_id(id)
+    return render_template('profile-edit-card-item.html',
+                           product=product)
+
+
+@app.route('/profile/productCatalog')
+@login_required
+def profile_product_catalog():
+    id = current_user.id
+    products = get_user_products(id)
+    return render_template('profile-product-catalog.html',
+                           products=products)
 
 
 @app.route('/item/<id>')
@@ -76,10 +111,16 @@ def cart():
     return render_template('cart.html')
 
 
-@app.route('/profile/addCardItem')
-@login_required
-def add_card_item():
-    return render_template('add-card-item.html')
+@app.route('/api/1/user', methods=['POST'])
+def user():
+    data = request.form
+    password_hash = generate_password_hash(data['password'])
+    signin_user = Users(first_name=data['firstName'], surname=data['secondName'], email=data['email'],
+                        phone_number=data['phone'], password_hash=password_hash)
+
+    db.session.add(signin_user)
+    db.session.commit()
+    return redirect('/')
 
 
 @app.route('/api/1/products')
@@ -101,47 +142,6 @@ def login():
         # если пользователь с тамим логином и паролем существует -
         # авторизуем и делаем редирект
         user_test = Users.query.filter(Users.email == email).one()
-        login_user(user_test, remember=remember_me) #remember=remember_me
+        login_user(user_test, remember=remember_me)  # remember=remember_me
         return redirect("/profile")
     return redirect(url_for('index'))
-
-
-@app.route('/profile')
-@login_required
-def profile():
-    id = current_user
-    return render_template('profile.html')
-
-
-@app.route('/profile/productCatalog')
-@login_required
-def profile_product_catalog():
-    id = current_user.id
-    products = get_user_products(id)
-    return render_template('profile-product-catalog.html',
-                           products=products)
-
-
-@app.route('/profile/editCardItem/<id>')
-@login_required
-def profile_edit_card_item(id):
-    product = get_product_by_id(id)
-    return render_template('profile-edit-card-item.html',
-                           product=product)
-
-
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect('/')
-
-  
-@app.route('/contacts')
-def contacts():
-    return render_template('contacts.html')
-
-
-@app.route('/password-recovery')
-@login_required
-def recoveryPassword():
-    return render_template('recovery-password.html')
