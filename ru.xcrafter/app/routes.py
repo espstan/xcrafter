@@ -55,13 +55,13 @@ def profile():
     return render_template('profile.html')
 
 
-@app.route('/profile/addCardItem')
+@app.route('/profile/add-сard-item')
 @login_required
 def add_card_item():
     return render_template('add-card-item.html')
 
 
-@app.route('/profile/editCardItem/<id>')
+@app.route('/profile/edit-card-item/<id>')
 @login_required
 def profile_edit_card_item(id):
     product = get_product_by_id(id)
@@ -69,7 +69,7 @@ def profile_edit_card_item(id):
                            product=product)
 
 
-@app.route('/profile/productCatalog')
+@app.route('/profile/product-catalog')
 @login_required
 def profile_product_catalog():
     id = current_user.id
@@ -105,7 +105,7 @@ def card_item_description(id):
                            product=product)
 
 
-@app.route('/item/aboutSeller/<id>')
+@app.route('/item/about-seller/<id>')
 def card_item_about_seller(id):
     product = get_product_by_id(id)
     return render_template('card-item-about-seller.html',
