@@ -1,10 +1,19 @@
 import sqlalchemy
+
 from sqlalchemy.exc import InvalidRequestError
+
 from sqlalchemy.orm.exc import NoResultFound
-from werkzeug.security import generate_password_hash, check_password_hash
-from app.models import Users, Products
-from app import db, mail
+
 from flask_mail import Message
+
+from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
+
+from app.models import Users
+from app.models import Products
+
+from app import db
+from app import mail
 
 
 def sign_up(sign_up_data: {}) -> {}:
