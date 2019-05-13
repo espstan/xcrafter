@@ -78,6 +78,11 @@ def profile_product_catalog():
                            products=products)
 
 
+@app.route('/product/<product_id>')
+def product(product_id):
+    return render_template('product.html')
+
+
 @app.route('/item/<id>')
 def card_item(id):
     product = get_product_by_id(id)
