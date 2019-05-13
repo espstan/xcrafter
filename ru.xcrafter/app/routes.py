@@ -119,3 +119,8 @@ def profile_edit_card_item(id):
 def logout():
     logout_user()
     return redirect('/')
+
+
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html')
