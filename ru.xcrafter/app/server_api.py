@@ -1,10 +1,27 @@
-from app import api
-from app.db_utils.products import get_product_by_id, add_product, delete_product_by_id, edit_product
-from app.db_utils.users import sign_up, get_user_by_id, send_mail, activate
-from flask_restful import Resource, reqparse
 import json
+
+from app import api
+
 from flask_login import login_required
-from flask import redirect, url_for, abort, jsonify, Response
+
+from flask_restful import Resource
+from flask_restful import reqparse
+
+from app.db_utils.products import get_product_by_id
+from app.db_utils.products import add_product
+from app.db_utils.products import delete_product_by_id
+from app.db_utils.products import edit_product
+
+from app.db_utils.users import sign_up
+from app.db_utils.users import get_user_by_id
+from app.db_utils.users import send_mail
+from app.db_utils.users import activate
+
+from flask import redirect
+from flask import url_for
+from flask import abort
+from flask import jsonify
+from flask import Response
 
 
 class GetProductInfoById(Resource):
