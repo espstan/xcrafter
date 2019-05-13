@@ -141,7 +141,7 @@ def login():
     return redirect(url_for('index'))
 
 
-@app.route('/logout')
+@app.route('/api/logout')
 def logout():
     logout_user()
     return redirect('/')
