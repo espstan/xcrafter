@@ -95,8 +95,8 @@ class ActivateUserAccount(Resource):
 
 
 api.add_resource(Registration, '/api/registration')
-api.add_resource(GetProductInfoById, '/getProductById/<int:id>')
-api.add_resource(AddItemInCatalog, '/api/addCardItemInCatalog')
-api.add_resource(DeleteItemInDB, '/api/deleteItem/<int:id>')
-api.add_resource(EditCardItem, '/api/editCardItem')
-api.add_resource(ActivateUserAccount, '/api/v1/activate_user_account/<string:activate_key>')
+api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
+api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
+api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
+api.add_resource(EditCardItem, '/api/edit-card-item')
+api.add_resource(ActivateUserAccount, '/api/v1/activate-user-account/<string:activate_key>')
