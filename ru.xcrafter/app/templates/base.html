@@ -5,16 +5,107 @@
     <meta name="description" content="{{ meta_desc }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{{ url_for('static', filename='favicon.png') }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ url_for('static', filename='favicon.png') }}" rel="shortcut icon" type="image/x-icon"/>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/main-page.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/signup-form.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/cart.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/popup-window.css') }}">
     <title>{{ meta_title }}</title>
 </head>
 <body>
+<header class="products-header">
+    <ul class="nav">
+        <li class="nav-logo">
+            <a href="/">
+                <img class="logo"
+                     src="{{ url_for('static', filename='img/Logo.png') }}">
+            </a>
+        </li>
+        {% if current_user.is_anonymous %}
+        <li class="nav-search">
+            <button class="nav-search-button">
+                <div class="hamburger">
+                    <div class="hamburger-bar"></div>
+                    <div class="hamburger-bar"></div>
+                    <div class="hamburger-bar"></div>
+                </div>
+                <div>Каталог товаров</div>
+            </button>
+            <form class="nav-search-form">
+                <div class="search-form-container">
+                    <input type="search"
+                           placeholder="я хочу найти"
+                           class="search-item"
+                           maxlength="30">
+                    <input type="submit"
+                           value="Искать"
+                           class="search-button">
+                </div>
+            </form>
+        </li>
+        <li class="nav-signup nav-item">
+            <a class="show-btn nav-signup"
+               href="javascript:void(0)">
+                <img class="signup-btn"
+                     src="{{ url_for('static', filename='img/User.svg') }}">
+                <a class="signup-title">Войти в аккаунт</a>
+            </a>
+        </li>
+        {% elif current_user.is_authenticated %}
+        <li class="nav-search">
+            <button class="nav-search-button">
+                <div class="hamburger">
+                    <div class="hamburger-bar"></div>
+                    <div class="hamburger-bar"></div>
+                    <div class="hamburger-bar"></div>
+                </div>
+                <div>Каталог товаров</div>
+            </button>
+            <form class="nav-search-form">
+                <div class="search-form-container">
+                    <input type="search"
+                           placeholder="я хочу найти"
+                           class="search-item"
+                           maxlength="30">
+                    <input type="submit"
+                           value="Искать"
+                           class="search-button">
+                </div>
+            </form>
+        </li>
+        <li class="nav-signup nav-item">
+            <a href="/profile">
+                <img class="signup-btn"
+                     src="{{ url_for('static', filename='img/User.svg') }}">
+                <a class="signup-title">Личный кабинет</a>
+            </a>
+        </li>
+        {% endif %}
+        <li class="nav-buy nav-item">
+            <div class="nav-basket">
+                <img class="buy"
+                     src="{{ url_for('static', filename='img/Buy.svg') }}">
+                <a class="buy-title">Корзина</a>
+            </div>
+        </li>
+    </ul>
+</header>
 {% block content %}
 {% endblock %}
+<footer class="products-footer">
+    <div class="footer-copy">© 2019 XCrafter<br>Маркетплейс изделий ручной работы</div>
+</footer>
+<div id="popup-window" class="closed"></div>
+<div class="modal-overlay closed"
+     id="modal-overlay"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -24,5 +115,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/main-page.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/toggle-sign-mode.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/check-form.js') }}"></script>
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script/modal-windows.js') }}"></script>
 </body>
 </html>
