@@ -24,7 +24,10 @@ login = LoginManager(app)
 login.login_view = 'index'
 mail = Mail(app)
 assets = Environment(app)
-js = Bundle('script/toggle-sign-mode.js', 'script/check-form.js', 'script/modal-windows.js', 'script/main-page.js',
+js = Bundle('script/toggle-sign-mode.js',
+            'script/check-form.js',
+            'script/modal-windows.js',
+            'script/main-page.js',
             filters='jsmin', output='bundle.min.js')
 assets.register('js_all', js)
 
