@@ -21,6 +21,7 @@
     <title>{{ meta_title }}</title>
 </head>
 <body>
+{% block header %}
 <header>
     <ul class="nav justify-content-center">
         <li class="nav-item">
@@ -49,11 +50,14 @@
         </li>
     </ul>
 </header>
+{% endblock %}
 {% block content %}
 {% endblock %}
+{% block footer %}
 <footer class="products-footer">
     <div class="footer-copy">© 2019 XCrafter<br>Маркетплейс изделий ручной работы</div>
 </footer>
+{% endblock %}
 <div id="popup-window" class="closed"></div>
 <div class="modal-overlay closed"
      id="modal-overlay"></div>
