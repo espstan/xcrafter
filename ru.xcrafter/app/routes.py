@@ -95,7 +95,7 @@ def card_item_photo(product_id):
                            product=product)
 
 
-@app.route('/item/<product_id>/description')
+@app.route('/item/<product_id>/description')  # TODO: Исправить порядок в URL
 def card_item_description(product_id):
     product = get_product_by_id(product_id)
     return render_template('card-item-description.html',
