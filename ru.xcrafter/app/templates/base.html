@@ -24,7 +24,7 @@
 <header>
     <ul class="nav justify-content-center">
         <li class="nav-item">
-            <a class="nav-link disabled" href="#">Xcrafter</a>
+            <a class="nav-link disabled" href="{{ url_for('index') }}">Xcrafter</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Каталог</a>
@@ -36,10 +36,10 @@
             <a class="nav-link" href="#">Свежие</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/profile">Личный кабинет</a>
+            <a class="nav-link" href="{{ url_for('profile') }}">Личный кабинет</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Корзина</a>
+            <a class="nav-link" href="{{ url_for('cart') }}">Корзина</a>
         </li>
     </ul>
 </header>
