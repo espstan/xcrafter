@@ -59,10 +59,10 @@ def add_card_item():
     return render_template('add-card-item.html')
 
 
-@app.route('/profile/edit-card-item/<id>')
+@app.route('/profile/edit-card-item/<product_id>')
 @login_required
-def profile_edit_card_item(id):
-    product = get_product_by_id(id)
+def profile_edit_card_item(product_id):
+    product = get_product_by_id(product_id)
     return render_template('profile-edit-card-item.html',
                            product=product)
 
@@ -70,8 +70,8 @@ def profile_edit_card_item(id):
 @app.route('/profile/product-catalog')
 @login_required
 def profile_product_catalog():
-    id = current_user.id
-    products = get_user_products(id)
+    user_id = current_user.id
+    products = get_user_products(user_id)
     return render_template('profile-product-catalog.html',
                            products=products)
 
@@ -81,30 +81,30 @@ def product(product_id):
     return render_template('product.html')
 
 
-@app.route('/item/<id>')
-def card_item(id):
-    product = get_product_by_id(id)
+@app.route('/item/<product_id>')
+def card_item(product_id):
+    product = get_product_by_id(product_id)
     return render_template('card-item.html',
                            product=product)
 
 
-@app.route('/item/photo/<id>')
-def card_item_photo(id):
-    product = get_product_by_id(id)
+@app.route('/item/photo/<product_id>')
+def card_item_photo(product_id):
+    product = get_product_by_id(product_id)
     return render_template('card-item-photo.html',
                            product=product)
 
 
-@app.route('/item/<id>/description')
-def card_item_description(id):
-    product = get_product_by_id(id)
+@app.route('/item/<product_id>/description')  # TODO: Исправить порядок в URL
+def card_item_description(product_id):
+    product = get_product_by_id(product_id)
     return render_template('card-item-description.html',
                            product=product)
 
 
-@app.route('/item/about-seller/<id>')
-def card_item_about_seller(id):
-    product = get_product_by_id(id)
+@app.route('/item/about-seller/<product_id>')
+def card_item_about_seller(product_id):
+    product = get_product_by_id(product_id)
     return render_template('card-item-about-seller.html',
                            product=product)
 
