@@ -1,22 +1,22 @@
 {% extends "base.html" %}
 {% block base_сard %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card-item.css') }}">
-    <div class="wrapper" data-item-id="{{ product.id }}">
-        <div class="menu-actions">
-            <div class="menu">
-                <div class="menu-item card-item"><a href="/item/{{product.id}}">Home</a></div>
-                <div class="menu-item about-seller"><a href="/item/about-seller/{{product.id}}">О продавце</a></div>
-                <div class="menu-item description"><a href="/item/{{product.id}}/description">Описание</a></div>
-                <div class="menu-item photo"><a href="/item/photo/{{product.id}}">Фотографии</a></div>
-                <div class="menu-item"><a href="/">На главную</a></div>
-            </div>
-            <div class="actions">
-                <div class="price">{{ product.price }}&nbsp;₽</div>
-                <div class="card-item-buy-btn" onclick="storeProductInLS({{ product }})">Купить</div>
-            </div>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card-item.css') }}">
+<div class="wrapper" data-item-id="{{ product.id }}">
+    <div class="menu-actions">
+        <div class="menu">
+            <div class="menu-item card-item"><a href="/item/{{product.id}}">Home</a></div>
+            <div class="menu-item about-seller"><a href="/item/about-seller/{{product.id}}">О продавце</a></div>
+            <div class="menu-item description"><a href="/item/{{product.id}}/description">Описание</a></div>
+            <div class="menu-item photo"><a href="/item/photo/{{product.id}}">Фотографии</a></div>
+            <div class="menu-item"><a href="/">На главную</a></div>
         </div>
-        {% block content %}
-        {% endblock %}
+        <div class="actions">
+            <div class="price">{{ product.price }}&nbsp;₽</div>
+            <div class="card-item-buy-btn" onclick="storeProductInLS({{ product }})">Купить</div>
+        </div>
     </div>
-    <script src="{{ url_for('static', filename='script/card-item.js') }}"></script>
+    {% block content %}
+    {% endblock %}
+</div>
+<script src="{{ url_for('static', filename='script/card-item.js') }}"></script>
 {% endblock %}
