@@ -1,7 +1,8 @@
 version: '3.1'
 
 volumes:
-  xcrafter.db
+  xcrafter.db:
+    external: true
 
 services:
 
@@ -10,6 +11,8 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: example
+    volumes:
+      - "xcrafter.db:/var/lib/postgresql:rw"
     ports:
       - "127.0.0.1:5432:5432"
 
