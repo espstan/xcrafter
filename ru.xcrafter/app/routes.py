@@ -31,6 +31,11 @@ def index() -> 'html':
                            meta_title='XCrafter - маркетплейс хендмейд товаров')
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error404.html')
+
+
 @app.route('/contacts')
 def contacts():
     return render_template('contacts.html')
