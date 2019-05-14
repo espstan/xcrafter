@@ -127,21 +127,25 @@ def products():
     return send_from_directory('static', 'jsons/document.json')
 
 
-@app.route('/api/1/login', methods=['GET', 'POST'])
+@app.route('/api/1/login', methods=['POST'])
 def login():
     if request.method == "POST":
-        email = request.form["login"]
-        password = request.form["password-sign"]
-        # remember_me = request.form["remember"]
-        # ищем пользователя по логину и паролю
-        remember_me = True
-        user = sign_in({"email": email, "password": password})
-    if user['email'] == 'ok' and user['password'] == 'ok':
-        # если пользователь с тамим логином и паролем существует -
-        # авторизуем и делаем редирект
-        user_test = Users.query.filter(Users.email == email).one()
-        login_user(user_test, remember=remember_me)  # remember=remember_me
-        return redirect(url_for('profile'))
+        if "login" in request.form:
+            if "password-sign" in request.form:
+                email = request.form["login"]
+                password = request.form["password-sign"]
+                # remember_me = request.form["remember"]
+                remember_me = True  # TODO: временное решение - пока в форме нет флага "Запомнить меня"
+
+                # проверяем правильность сочетания email/password
+                check_result = sign_in({"email": email, "password": password})
+                if check_result['password'] == 'ok':
+                    # если проверка соответствия email/password прошла успешно -
+                    # авторизуем и делаем редирект
+                    user_for_login = Users.query.filter(Users.email == email).first()
+                    login_user(user_for_login, remember=remember_me)
+                    return redirect(url_for('profile'))
+    # при неудачной попытке - пока перенаправляем на главную
     return redirect(url_for('index'))
 
 
