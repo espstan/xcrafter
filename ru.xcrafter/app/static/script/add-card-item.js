@@ -6,7 +6,7 @@ function addItemInCatalog(event) {
         product[i.name] = i.value;
     }
     const productJSON = JSON.stringify(product);
-    fetch('/api/addCardItemInCatalog', {
+    fetch('/api/add-card-item-in-catalog', {
         method: 'post',
         headers: {
             'content-type': 'application/json'
@@ -19,7 +19,7 @@ function addItemInCatalog(event) {
     })
     .then(function(data){
         console.log('Request succeeded with JSON response', data);
-        window.location.href = '/profile/productCatalog';
+        window.location.href = '/profile-product-catalog';
     })
     .catch(function (error) {
         console.log('Request failed', error);
