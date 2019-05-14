@@ -1,6 +1,6 @@
 function deleteItem(id) {
     const productDeleted = document.getElementsByClassName(`product-id-${id}`)[0];
-    fetch(`/api/deleteItem/${id}`, {
+    fetch(`/api/delete-item/${id}`, {
         method: 'delete'
     })
     .then(response => {
