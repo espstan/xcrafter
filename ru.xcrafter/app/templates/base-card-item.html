@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block base_сard %}
+{% block content %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card-item.css') }}">
 <div class="wrapper" data-item-id="{{ product.id }}">
     <div class="menu-actions">
@@ -16,7 +16,7 @@
             <div class="card-item-buy-btn" onclick="storeProductInLS({{ product }})">Купить</div>
         </div>
     </div>
-    {% block content %}
+    {% block content_card_item %}
     {% endblock %}
 </div>
 <script src="{{ url_for('static', filename='script/card-item.js') }}"></script>
