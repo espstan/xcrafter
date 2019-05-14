@@ -130,19 +130,21 @@ def products():
 @app.route('/api/1/login', methods=['POST'])
 def login():
     if request.method == "POST":
-        email = request.form["login"]
-        password = request.form["password-sign"]
-        # remember_me = request.form["remember"]
-        remember_me = True  # временное решение - пока в форме нет флага "Запомнить меня"
+        if "login" in request.form:
+            if "password-sign" in request.form:
+                email = request.form["login"]
+                password = request.form["password-sign"]
+                # remember_me = request.form["remember"]
+                remember_me = True  # TODO: временное решение - пока в форме нет флага "Запомнить меня"
 
-        # проверяем правильность сочетания email/password
-        check_result = sign_in({"email": email, "password": password})
-        if check_result['password'] == 'ok':
-            # если проверка соответствия email/password прошла успешно -
-            # авторизуем и делаем редирект
-            user_for_login = Users.query.filter(Users.email == email).first()
-            login_user(user_for_login, remember=remember_me)
-            return redirect(url_for('profile'))
+                # проверяем правильность сочетания email/password
+                check_result = sign_in({"email": email, "password": password})
+                if check_result['password'] == 'ok':
+                    # если проверка соответствия email/password прошла успешно -
+                    # авторизуем и делаем редирект
+                    user_for_login = Users.query.filter(Users.email == email).first()
+                    login_user(user_for_login, remember=remember_me)
+                    return redirect(url_for('profile'))
     # при неудачной попытке - пока перенаправляем на главную
     return redirect(url_for('index'))
 
