@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block base_сard %}
-<div>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card-item.css') }}">
     <div class="wrapper" data-item-id="{{ product.id }}">
         <div class="menu-actions">
@@ -20,5 +19,4 @@
         {% endblock %}
     </div>
     <script src="{{ url_for('static', filename='script/card-item.js') }}"></script>
-</div>
 {% endblock %}
