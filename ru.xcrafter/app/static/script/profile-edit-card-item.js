@@ -7,7 +7,7 @@ function editCardItem(event, id) {
         result[input.name] = input.value;
     }
     const resultJSON = JSON.stringify(result);
-    fetch('/api/editCardItem', {
+    fetch('/api/edit-card-item', {
         method: 'put',
         headers: {
             'content-type': 'application/json'
