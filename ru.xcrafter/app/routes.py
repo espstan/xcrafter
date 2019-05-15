@@ -26,24 +26,24 @@ from werkzeug.security import generate_password_hash
 @app.route('/')
 def index() -> 'html':
     products = get_all_products()
-    return render_template('index.html',
+    return render_template('public/index.html',
                            products=products,
                            meta_title='XCrafter - маркетплейс хендмейд товаров')
 
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('error404.html')
+    return render_template('public/error404.html')
 
 
 @app.route('/contacts')
 def contacts():
-    return render_template('contacts.html')
+    return render_template('public/contacts.html')
 
 
 @app.route('/password-recovery')
 def recoveryPassword():
-    return render_template('recovery-password.html')
+    return render_template('public/recovery-password.html')
 
 
 @app.route('/profile')
@@ -111,7 +111,7 @@ def card_item_about_seller(product_id):
 
 @app.route('/cart')
 def cart():
-    return render_template('cart.html')
+    return render_template('public/cart.html')
 
 
 @app.route('/api/1/user', methods=['POST'])
