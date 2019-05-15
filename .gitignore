@@ -31,3 +31,4 @@ yarn-error.log*
 
 bundle.min.js
 vendors.min.js
+bundle.min.css
