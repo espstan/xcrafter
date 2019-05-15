@@ -4,6 +4,7 @@ from app import db
 from app.db_utils.products import get_all_products
 from app.db_utils.products import get_product_by_id
 
+from app.db_utils.users import activate
 from app.db_utils.users import sign_in
 from app.db_utils.users import get_user_products
 
@@ -26,24 +27,24 @@ from werkzeug.security import generate_password_hash
 @app.route('/')
 def index() -> 'html':
     products = get_all_products()
-    return render_template('index.html',
+    return render_template('public/index.html',
                            products=products,
                            meta_title='XCrafter - маркетплейс хендмейд товаров')
 
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('error404.html')
+    return render_template('public/error404.html')
 
 
 @app.route('/contacts')
 def contacts():
-    return render_template('contacts.html')
+    return render_template('public/contacts.html')
 
 
 @app.route('/password-recovery')
 def recoveryPassword():
-    return render_template('recovery-password.html')
+    return render_template('public/recovery-password.html')
 
 
 @app.route('/profile')
@@ -51,6 +52,13 @@ def recoveryPassword():
 def profile():
     return render_template('profile.html',
                            current_user=current_user)
+
+
+@app.route('/api/v1/activate-user-account/<string:activate_key>')
+@login_required
+def activate_account(activate_key):
+    activate(activate_key)
+    return redirect(url_for('index'))
 
 
 @app.route('/profile/add-сard-item')
@@ -111,7 +119,7 @@ def card_item_about_seller(product_id):
 
 @app.route('/cart')
 def cart():
-    return render_template('cart.html')
+    return render_template('public/cart.html')
 
 
 @app.route('/api/1/user', methods=['POST'])
@@ -158,3 +166,7 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/search')
+def search():
+    return render_template('search.html')

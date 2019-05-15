@@ -17,11 +17,11 @@ from app.db_utils.products import get_product_by_id
 from app.db_utils.products import add_product
 from app.db_utils.products import delete_product_by_id
 from app.db_utils.products import edit_product
+from app.db_utils.products import get_all_products
 
 from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
 from app.db_utils.users import send_mail
-from app.db_utils.users import activate
 
 
 class GetProductInfoById(Resource):
@@ -88,15 +88,20 @@ class Registration(Resource):
         return abort(403)
 
 
-class ActivateUserAccount(Resource):
-    def get(self, activate_key: str):
-        activate(activate_key)
-        return redirect(url_for('index'))
+class GetAllProducts(Resource):
+    def get(self):
+        try:
+            products = get_all_products()
+            result = {'products': products, 'total': len(products), 'success': 'true'}
+        except:
+            result = {'success': 'false'}
 
+        return json.dumps(result)
 
 api.add_resource(Registration, '/api/registration')
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
 api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
-api.add_resource(ActivateUserAccount, '/api/v1/activate-user-account/<string:activate_key>')
+api.add_resource(GetAllProducts, '/api/v1/products/all')
+

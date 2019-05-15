@@ -30,6 +30,11 @@ js = Bundle('script/toggle-sign-mode.js',
             'script/main-page.js',
             filters='jsmin', output='bundle.min.js')
 assets.register('js_all', js)
+assets_vendors = Environment(app)
+js_vendors = Bundle('static/lib/bootstrap/4.3.1/js/bootstrap.min.js',
+                    '/static/lib/jquery/3.4.0/jquery-3.4.0.min.js',
+                    filters='jsmin', output='vendors.min.js')
+assets_vendors.register('js_vendors', js_vendors)
 
 from app import routes, models, server_api
 
