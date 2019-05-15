@@ -4,6 +4,8 @@ from sqlalchemy.exc import InvalidRequestError
 
 from sqlalchemy.orm.exc import NoResultFound
 
+from flask import url_for
+
 from flask_mail import Message
 
 from werkzeug.security import generate_password_hash
@@ -113,7 +115,7 @@ def send_mail(email, activate_key):
                       # Пока все активационные письма будут отправляться на тестовую почту
                       recipients=['juniorlabtest@gmail.com'])
 
-        link = "http://localhost:5000/api/v1/activate_user_account/" + activate_key
+        link = url_for('activate_account')
         msg.html = 'Для активации аккаунта ' + '<a href="{}">Перейдите по ссылке</a>'.format(link) + \
                    '(User email: {})'.format(email)
         mail.send(msg)
