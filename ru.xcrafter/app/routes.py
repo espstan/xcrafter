@@ -4,6 +4,7 @@ from app import db
 from app.db_utils.products import get_all_products
 from app.db_utils.products import get_product_by_id
 
+from app.db_utils.users import activate
 from app.db_utils.users import sign_in
 from app.db_utils.users import get_user_products
 
@@ -51,6 +52,13 @@ def recoveryPassword():
 def profile():
     return render_template('profile.html',
                            current_user=current_user)
+
+
+@app.route('/api/v1/activate-user-account/<string:activate_key>')
+@login_required
+def activate_account(activate_key):
+    activate(activate_key)
+    return redirect(url_for('index'))
 
 
 @app.route('/profile/add-сard-item')
