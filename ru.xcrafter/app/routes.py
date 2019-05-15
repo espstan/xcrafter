@@ -50,7 +50,7 @@ def recoveryPassword():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html',
+    return render_template('profile/profile.html',
                            current_user=current_user)
 
 
@@ -71,7 +71,7 @@ def add_card_item():
 @login_required
 def profile_edit_card_item(product_id):
     product = get_product_by_id(product_id)
-    return render_template('profile-edit-card-item.html',
+    return render_template('profile/profile-edit-card-item.html',
                            product=product)
 
 
@@ -80,7 +80,7 @@ def profile_edit_card_item(product_id):
 def profile_product_catalog():
     user_id = current_user.id
     products = get_user_products(user_id)
-    return render_template('profile-product-catalog.html',
+    return render_template('profile/profile-product-catalog.html',
                            products=products)
 
 
