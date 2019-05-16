@@ -12,5 +12,5 @@ excludes=(--exclude=pyc \
           --exclude=venv
           )
 
-rsync -avr ${excludes[@]} --delete  ~/projects/xcrafter/ xcrafter.ru:/home/xcrafter/production/xcrafter.ru
+rsync -avr ${excludes[@]} --delete ./ xcrafter.ru:/home/xcrafter/production/xcrafter.ru
 
