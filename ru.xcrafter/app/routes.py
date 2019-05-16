@@ -1,5 +1,6 @@
 from app import app
 from app import db
+from app import load_test_data
 
 from app.db_utils.products import get_all_products
 from app.db_utils.products import get_product_by_id
@@ -138,6 +139,12 @@ def user():
 @app.route('/jsons/document.json')
 def products():
     return send_from_directory('static', 'jsons/document.json')
+
+
+@app.route('/load')
+def load_data():
+    load_test_data.load_data()
+    return redirect(url_for('index'))
 
 
 @app.route('/api/1/login', methods=['POST'])
