@@ -13,6 +13,8 @@ from werkzeug.security import check_password_hash
 
 from flask_login import UserMixin
 
+from loguru import logger
+
 
 class Users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -61,7 +63,10 @@ class Users(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    return Users.query.filter(Users.id == int(id)).first()
+    try:
+        return Users.query.filter(Users.id == int(id)).first()
+    except Exception as e:
+        logger.warning('Ошибка при обращении к БД пользователей: {}'.format(e))
 
 
 class Products(db.Model):
