@@ -66,7 +66,7 @@ def load_user(id):
     try:
         return Users.query.filter(Users.id == int(id)).first()
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД пользователей')
+        logger.warning('Ошибка при обращении к БД пользователей: {}'.format(e))
 
 
 class Products(db.Model):

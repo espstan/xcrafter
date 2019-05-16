@@ -33,7 +33,7 @@ def index() -> 'html':
                                products=products,
                                meta_title='XCrafter - маркетплейс хендмейд товаров')
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров')
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
 @app.errorhandler(404)
@@ -70,7 +70,7 @@ def activate_account(activate_key):
         activate(activate_key)
         return redirect(url_for('index'))
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД пользвателей')
+        logger.warning('Ошибка при обращении к БД пользвателей: {}'.format(e))
 
 
 @app.route('/profile/add-сard-item')
@@ -87,7 +87,7 @@ def profile_edit_card_item(product_id):
         return render_template('profile/profile-edit-card-item.html',
                                product=product)
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров')
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
 @app.route('/profile/product-catalog')
@@ -99,7 +99,7 @@ def profile_product_catalog():
         return render_template('profile/profile-product-catalog.html',
                                products=products)
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров и/или пользователей')
+        logger.warning('Ошибка при обращении к БД товаров и/или пользователей: {}'.format(e))
 
 
 @app.route('/product/<product_id>')
@@ -114,7 +114,7 @@ def card_item(product_id):
         return render_template('public/product/card-item.html',
                                product=product)
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров')
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
 @app.route('/item/photo/<product_id>')
@@ -124,7 +124,7 @@ def card_item_photo(product_id):
         return render_template('public/product/card-item-photo.html',
                                product=product)
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров')
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
 @app.route('/item/<product_id>/description')  # TODO: Исправить порядок в URL
@@ -134,7 +134,7 @@ def card_item_description(product_id):
         return render_template('public/product/card-item-description.html',
                                product=product)
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров')
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
 @app.route('/item/about-seller/<product_id>')
@@ -144,7 +144,7 @@ def card_item_about_seller(product_id):
         return render_template('public/product/card-item-about-seller.html',
                                product=product)
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров')
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
 @app.route('/cart')
@@ -164,7 +164,7 @@ def user():
         db.session.commit()
         return redirect(url_for('index'))
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров')
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
         return redirect(url_for('index'))
 
 
@@ -196,7 +196,7 @@ def login():
         # при неудачной попытке - пока перенаправляем на главную
         return redirect(url_for('index'))
     except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров')
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
         return redirect(url_for('index'))
 
 
