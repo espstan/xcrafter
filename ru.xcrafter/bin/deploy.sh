@@ -12,5 +12,6 @@ excludes=(--exclude=pyc \
           --exclude=venv
           )
 
-rsync -av ${excludes[@]} --chown=xcrafter:xcrafter --delete ./ xcrafter@xcrafter.ru:/home/xcrafter/production/xcrafter.ru
+rsync -av ${excludes[@]} --chown=xcrafter:xcrafter --delete \
+  ./ xcrafter@xcrafter.ru:/home/xcrafter/production/xcrafter.ru
 
