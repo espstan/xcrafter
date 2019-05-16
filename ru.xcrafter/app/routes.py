@@ -63,16 +63,6 @@ def profile():
                            current_user=current_user)
 
 
-@app.route('/api/v1/activate-user-account/<string:activate_key>')
-@login_required
-def activate_account(activate_key):
-    try:
-        activate(activate_key)
-        return redirect(url_for('index'))
-    except Exception as e:
-        logger.warning('Ошибка при обращении к БД пользвателей: {}'.format(e))
-
-
 @app.route('/profile/add-сard-item')
 @login_required
 def add_card_item():
@@ -152,6 +142,13 @@ def cart():
     return render_template('public/cart.html')
 
 
+@app.route('/search')
+def search():
+    return render_template('search.html')
+
+
+# Роуты для api
+
 @app.route('/api/1/user', methods=['POST'])
 def user():
     try:
@@ -205,6 +202,13 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/search')
-def search():
-    return render_template('search.html')
+
+@app.route('/api/v1/activate-user-account/<string:activate_key>')
+@login_required
+def activate_account(activate_key):
+    try:
+        activate(activate_key)
+        return redirect(url_for('index'))
+    except Exception as e:
+        logger.warning('Ошибка при обращении к БД пользвателей: {}'.format(e))
+
