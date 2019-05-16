@@ -13,5 +13,6 @@ excludes=(--exclude=pyc \
           )
 
 rsync -av ${excludes[@]} --chown=xcrafter:xcrafter --delete \
-  ./ xcrafter@xcrafter.ru:/home/xcrafter/production/xcrafter.ru
+  ./ru.xcrafter/ \
+  xcrafter@xcrafter.ru:/home/xcrafter/production/xcrafter.ru
 
