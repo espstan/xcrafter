@@ -86,34 +86,34 @@ def profile_product_catalog():
 
 @app.route('/product/<product_id>')
 def product(product_id):
-    return render_template('product.html')
+    return render_template('public/product/product.html')
 
 
 @app.route('/item/<product_id>')
 def card_item(product_id):
     product = get_product_by_id(product_id)
-    return render_template('card-item.html',
+    return render_template('public/product/card-item.html',
                            product=product)
 
 
 @app.route('/item/photo/<product_id>')
 def card_item_photo(product_id):
     product = get_product_by_id(product_id)
-    return render_template('card-item-photo.html',
+    return render_template('public/product/card-item-photo.html',
                            product=product)
 
 
 @app.route('/item/<product_id>/description')  # TODO: Исправить порядок в URL
 def card_item_description(product_id):
     product = get_product_by_id(product_id)
-    return render_template('card-item-description.html',
+    return render_template('public/product/card-item-description.html',
                            product=product)
 
 
 @app.route('/item/about-seller/<product_id>')
 def card_item_about_seller(product_id):
     product = get_product_by_id(product_id)
-    return render_template('card-item-about-seller.html',
+    return render_template('public/product/card-item-about-seller.html',
                            product=product)
 
 
