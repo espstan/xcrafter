@@ -6,11 +6,11 @@ excludes=(--exclude=pyc \
           --exclude=bundle.min.js \
           --exclude=vendors.min.js \
           --exclude=.env.dev \
-          --exclude=.env.stage
+          --exclude=.env.stage \
           --exclude=.idea \
           --exclude=*.log \
           --exclude=venv
           )
 
-rsync -avr ${excludes[@]} --delete ./ xcrafter.ru:/home/xcrafter/production/xcrafter.ru
+rsync -av ${excludes[@]} --chown=xcrafter:xcrafter --delete ./ xcrafter@xcrafter.ru:/home/xcrafter/production/xcrafter.ru
 
