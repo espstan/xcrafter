@@ -4,22 +4,25 @@
 <section class="catalog">
     <ul class="product-list">
         {% for product in products %}
-        <div class="product-cont" data-id="{{ product.id }}" onclick="gotoCardItem(event, {{ product.id }})">
-            <li class="product-item" style="background-image: url({{ product.photo }});">
-                <div class="product-price">
-                    <p>{{product.price}}</p>
-                </div>
-                <div class="product-more">
-                    <div class="product-buy" onclick="buy({{ product }})">
-                        <img src="static/img/Buy.svg">
+        <a href="{{ url_for('card_item', product_id=product.id) }}">
+            <div class="product-cont" data-id="{{ product.id }}">
+                <li class="product-item" style="background-image: url({{ product.photo }});">
+                    <div class="product-price">
+                        <p>{{product.price}}</p>
                     </div>
-                    <div class="visible-title"></div>
-                    <a href="./item/{{ product.id }}" class="product-search">
-                        <img src="static/img/Search.svg">
-                    </a>
-                </div>
-            </li>
-        </div>
+                    <div class="product-more">
+                        <div class="product-buy" onclick="buy({{ product }})">
+                            <img src="static/img/Buy.svg">
+                        </div>
+                        <div class="visible-title">
+                        </div>
+                        <div class="product-search">
+                            <img src="static/img/Search.svg">
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </a>
         {% endfor %}
     </ul>
 </section>
