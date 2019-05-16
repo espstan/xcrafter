@@ -37,6 +37,11 @@ def page_not_found(e):
     return render_template('public/error404.html')
 
 
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('public/error500.html')
+
+
 @app.route('/contacts')
 def contacts():
     return render_template('public/contacts.html')
