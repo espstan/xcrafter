@@ -19,7 +19,7 @@ function addItemInCatalog(event) {
     })
     .then(function(data){
         console.log('Request succeeded with JSON response', data);
-        window.location.href = '/profile-product-catalog';
+        window.location.href = '/profile/product-catalog';
     })
     .catch(function (error) {
         console.log('Request failed', error);
