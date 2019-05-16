@@ -262,9 +262,3 @@ function popupWindowHide() {
 function popupWindowHideSetTimeout() {
     timeoutEz = setTimeout(popupWindowHide, 5000);
 }
-
-// function gotoCardItem(event, id) {
-//     if (event.target.classList.contains('product-item')) {
-//         document.location.href = `/item/${id}`;
-//     }
-// }
