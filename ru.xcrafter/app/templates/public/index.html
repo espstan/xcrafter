@@ -4,7 +4,7 @@
 <section class="catalog">
     <ul class="product-list">
         {% for product in products %}
-        <a href="{{ url_for('card_item', product_id=product.id) }}">
+        <!-- <a href="{{ url_for('card_item', product_id=product.id) }}"> -->
             <div class="product-cont" data-id="{{ product.id }}">
                 <li class="product-item" style="background-image: url({{ product.photo }});">
                     <div class="product-price">
@@ -22,7 +22,7 @@
                     </div>
                 </li>
             </div>
-        </a>
+        <!-- </a> -->
         {% endfor %}
     </ul>
 </section>
