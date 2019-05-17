@@ -8,7 +8,7 @@ from app.db_utils.users import activate
 from app.db_utils.users import sign_in
 from app.db_utils.users import get_user_products
 
-from app.models import Users
+from app.models import User
 
 from flask import redirect
 from flask import render_template
@@ -154,7 +154,7 @@ def user():
     try:
         data = request.form
         password_hash = generate_password_hash(data['password'])
-        signin_user = Users(first_name=data['firstName'], surname=data['secondName'], email=data['email'],
+        signin_user = User(first_name=data['firstName'], surname=data['secondName'], email=data['email'],
                             phone_number=data['phone'], password_hash=password_hash)
 
         db.session.add(signin_user)
@@ -187,7 +187,7 @@ def login():
                     if check_result['password'] == 'ok':
                         # если проверка соответствия email/password прошла успешно -
                         # авторизуем и делаем редирект
-                        user_for_login = Users.query.filter(Users.email == email).first()
+                        user_for_login = User.query.filter(User.email == email).first()
                         login_user(user_for_login, remember=remember_me)
                         return redirect(url_for('profile'))
         # при неудачной попытке - пока перенаправляем на главную
