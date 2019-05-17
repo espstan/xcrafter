@@ -36,6 +36,11 @@ def index() -> 'html':
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
+@app.route('/robots.txt')
+def get_robots_txt():
+    return send_from_directory('static', 'robots.txt')
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('public/error404.html')
