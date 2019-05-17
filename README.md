@@ -7,25 +7,27 @@
 файл send_mail.config поместить в ru.xcrafter/
 из папки проекта(ru.xcrafter) source bin/init_mail_config.sh потом  source bin/init_venv_and_up_db.sh  потом source bin/init_and_fill_db.sh
 
-Скрипт для запуска сервера с миграций БД (к примеру, если таблицы в БД былт удалены):
+---
 
-1 Запускаем виртуальное окружение и устанавливаем все зависимости: 
+#####Скрипт для запуска сервера с миграций БД (к примеру, если таблицы в БД были удалены):
 
-#####source bin/deploy_virtualenv.sh 
+- Запускаем виртуальное окружение и устанавливаем все зависимости: 
 
-2 Инициализация БД:
+`source bin/deploy_virtualenv.sh` 
 
-#####python manage.py db init 
+- Инициализация БД:
 
-3 Миграция:
+`python manage.py db init` 
 
-#####python manage.py db migrate -m '<Ваш комментарий к миграции>'
+- Миграция:
 
-4 Запуск БД:
+`python manage.py db migrate -m '<Ваш комментарий к миграции>'`
 
-#####python manage.py db upgrade
+- Запуск БД:
 
-5 Запуск сервера:
+`python manage.py db upgrade`
 
-######python manage.py runserver
+- Запуск сервера:
+
+`python manage.py runserver`
 
