@@ -20,12 +20,9 @@ def load():
     """
     Загрузка тестовых данных в базу данных
     """
-    path = app.root_path
-    path1 = '/static/jsons/user.json'
-    path2 = '/static/jsons/document.json'
+    test_user_data_path = join(app.root_path, 'static/jsons/user.json')
+    test_products_data_path = join(app.root_path, 'static/jsons/document.json')
 
-    test_user_data_path = join(path, path1)
-    test_products_data_path = join(path, path2)
     with open(test_user_data_path) as user_json:
         data = json.load(user_json)[0]
     pass_hash = generate_password_hash(data['password'])
