@@ -9,7 +9,10 @@
         <br>Возможно, она была удалена или устарела.
     </h3>
     <div class="row justify-content-center mt-3">
-        <button class="btn btn-dark btn-lg">Перейти на главную страницу</button>
+        <a class="btn btn-dark btn-lg"
+           href="{{ url_for('index') }}">
+            Перейти на главную страницу
+        </a>
     </div>
 </div>
 {% endblock %}
