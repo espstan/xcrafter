@@ -17,6 +17,9 @@ from loguru import logger
 
 
 class Users(UserMixin, db.Model):
+
+    __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(64), nullable=False)
     surname = db.Column(db.String(64), nullable=False)
@@ -70,6 +73,9 @@ def load_user(id):
 
 
 class Products(db.Model):
+
+    __tablename__ = 'products'
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), nullable=False)
     description = db.Column(db.Text, nullable=False)
@@ -99,6 +105,9 @@ class Products(db.Model):
 
 
 class Orders(db.Model):
+
+    __tablename__ = 'orders'
+
     id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, nullable=False)
     # купленные товары в формате json
@@ -116,6 +125,9 @@ class Orders(db.Model):
 
 
 class Address(db.Model):
+
+    __tablename__ = 'address'
+
     id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer)
     created_time = db.Column(DateTime(timezone=False), nullable=False)
@@ -141,6 +153,9 @@ class Address(db.Model):
 
 
 class Photo(db.Model):
+
+    __tablename__ = 'photos'
+
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
