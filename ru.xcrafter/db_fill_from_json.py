@@ -13,7 +13,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 @click.command()
-@click.option('--load', '-l', help='Загрузить товары по умолчанию в базу данных')
+@click.option('--load', '-l', help='Загрузить демо-товары в базу данных')
 def load_data():
     test_user_data_path = app.root_path + 'app/static/jsons/user.json'
     test_products_data_path = app.root_path + 'app/static/jsons/document.json'
