@@ -2,9 +2,11 @@ import click
 
 import json
 
+from app import app
+
 from werkzeug.security import generate_password_hash
 
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import SQLAlchemyError
 
 from app import db
 
@@ -13,11 +15,12 @@ from app.models import Products
 
 
 @click.command()
-@click.option('--load', '-l', help='Загрузить демо-товары в базу данных')
-def load_data():
-    test_user_data_path = app.root_path + 'app/static/jsons/user.json'
-    test_products_data_path = app.root_path + 'app/static/jsons/document.json'
-
+def load():
+    """
+    Загрузка тестовых данных в базу данных
+    """
+    test_user_data_path = app.root_path + '/static/jsons/user.json'
+    test_products_data_path = app.root_path + '/static/jsons/document.json'
     with open(test_user_data_path) as user_json:
         data = json.load(user_json)[0]
         pass_hash = generate_password_hash(data['password'])
@@ -31,9 +34,9 @@ def load_data():
         try:
             db.session.add(user)
             db.session.commit()
-        except SQLAlchemy.OperationalError:
-            click.echo('db error')
-            return
+        except SQLAlchemyError as e:
+            error = str(e.__class__.__name__)
+            click.echo("SQLAlchemy error: " + error)
 
     with open(test_products_data_path) as prod_json:
         data = json.load(prod_json)
@@ -46,6 +49,10 @@ def load_data():
             try:
                 db.session.add(product)
                 db.session.commit()
-            except SQLAlchemy.OperationalError:
-                click.echo('db error')
-                return
+            except SQLAlchemyError as e:
+                error = str(e.__class__.__name__)
+                click.echo("SQLAlchemy error: " + error)
+
+
+if __name__ == '__main__':
+    load()
