@@ -16,3 +16,10 @@ rsync -av ${excludes[@]} --chown=xcrafter:xcrafter --delete \
   ./ru.xcrafter/ \
   xcrafter@xcrafter.ru:/home/xcrafter/production/xcrafter.ru
 
+ssh root@xcrafter.ru<<EOF
+cd /home/xcrafter/production/
+source venv/bin/activate
+pip install -r ./xcrafter.ru/requirements.txt
+service xcrafter restart
+EOF
+
