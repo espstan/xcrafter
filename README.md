@@ -3,31 +3,30 @@
 
 [trello](https://trello.com/b/ithVxG0P/2019-03)
 
-Запуск скрипта для виртуального окружения и бд:
-файл send_mail.config поместить в ru.xcrafter/
-из папки проекта(ru.xcrafter) source bin/init_mail_config.sh потом  source bin/init_venv_and_up_db.sh  потом source bin/init_and_fill_db.sh
-
 ---
 
-#### Скрипт для запуска сервера с миграций БД (к примеру, если таблицы в БД были удалены):
+### Скрипт для запуска сервера с миграций БД 
 
-- Запускаем виртуальное окружение и устанавливаем все зависимости: 
+Запускаем виртуальное окружение и устанавливаем все зависимости: 
 
-`source bin/deploy_virtualenv.sh` 
+```sh
+source bin/deploy_virtualenv.sh
+``` 
 
-- Инициализация БД:
-
-`python manage.py db init` 
-
-- Миграция:
-
-`python manage.py db migrate -m '<Ваш комментарий к миграции>'`
-
-- Запуск БД:
-
-`python manage.py db upgrade`
-
-- Запуск сервера:
-
-`python manage.py runserver`
+Инициализация БД:
+```sh
+python manage.py db init
+```
+Миграция:
+```sh
+python manage.py db migrate -m '<Ваш комментарий к миграции>'
+```
+Запуск БД:
+```sh
+python manage.py db upgrade
+```
+Запуск сервера:
+```sh
+python manage.py runserver
+```
 
