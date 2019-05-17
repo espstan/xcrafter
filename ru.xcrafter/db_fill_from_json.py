@@ -1,3 +1,5 @@
+import click
+
 from app.models import Users
 from app.models import Products
 
@@ -10,6 +12,8 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 
 
+@click.command()
+@click.option('--load', '-l', help='Загрузить товары по умолчанию в базу данных')
 def load_data():
     test_user_data_path = app.root_path + 'app/static/jsons/user.json'
     test_products_data_path = app.root_path + 'app/static/jsons/document.json'
@@ -43,3 +47,7 @@ def load_data():
                 db.session.commit()
             except SQLAlchemy.OperationalError:
                 return
+
+
+if __name__ == '__main__':
+    load_data()
