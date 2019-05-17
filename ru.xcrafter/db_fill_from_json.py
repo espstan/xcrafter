@@ -1,15 +1,15 @@
 import click
 
-from app.models import Users
-from app.models import Products
-
-from app import db
+import json
 
 from werkzeug.security import generate_password_hash
 
-import json
-
 from flask_sqlalchemy import SQLAlchemy
+
+from app import db
+
+from app.models import Users
+from app.models import Products
 
 
 @click.command()
@@ -32,6 +32,7 @@ def load_data():
             db.session.add(user)
             db.session.commit()
         except SQLAlchemy.OperationalError:
+            click.echo('db error')
             return
 
     with open(test_products_data_path) as prod_json:
@@ -46,8 +47,5 @@ def load_data():
                 db.session.add(product)
                 db.session.commit()
             except SQLAlchemy.OperationalError:
+                click.echo('db error')
                 return
-
-
-if __name__ == '__main__':
-    load_data()
