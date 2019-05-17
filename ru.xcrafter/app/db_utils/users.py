@@ -38,18 +38,6 @@ def sign_up(sign_up_data: {}) -> {}:
     except sqlalchemy.exc.IntegrityError as e:
         db.session.rollback()
         return None
-        # try:
-        #     User.query.filter(User.email == sign_up_data['email']).one()
-        #     sign_up_result['email'] = 'err'
-        # except NoResultFound:
-        #     # ignore (если не нашлось такого поля - значит проблема не в дубликате email)
-        #     pass
-        # try:
-        #     User.query.filter(User.phone_number == sign_up_data['phone']).one()
-        #     sign_up_result['phone'] = 'err'
-        # except NoResultFound:
-        #     # ignore (если не нашлось такого поля - значит проблема не в дубликате phone)
-        #     pass
 
     return user.id
 
