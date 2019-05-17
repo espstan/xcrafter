@@ -9,7 +9,7 @@ from app import db
 from app.models import User
 from app.models import Product
 from app.models import Order
-from app.models import Adress
+from app.models import Address
 from app.models import Photo
 
 migrate = Migrate(app, db)
