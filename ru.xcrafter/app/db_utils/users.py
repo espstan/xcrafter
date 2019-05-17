@@ -11,8 +11,8 @@ from flask_mail import Message
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
-from app.models import Users
-from app.models import Products
+from app.models import User
+from app.models import Product
 
 from app import db
 from app import mail
@@ -28,7 +28,7 @@ def sign_up(sign_up_data: {}) -> {}:
     # sign_up_result = {"email": "ok", "phone": "ok"}
 
     password_hash = generate_password_hash(sign_up_data['password'])
-    user = Users(first_name=sign_up_data['name'], surname=sign_up_data['surname'], email=sign_up_data['email'],
+    user = User(first_name=sign_up_data['name'], surname=sign_up_data['surname'], email=sign_up_data['email'],
                  phone_number=sign_up_data['phone'], password_hash=password_hash,
                  agree_to_processing_personal_data=sign_up_data['agreement'])
 
@@ -39,13 +39,13 @@ def sign_up(sign_up_data: {}) -> {}:
         db.session.rollback()
         return None
         # try:
-        #     Users.query.filter(Users.email == sign_up_data['email']).one()
+        #     User.query.filter(User.email == sign_up_data['email']).one()
         #     sign_up_result['email'] = 'err'
         # except NoResultFound:
         #     # ignore (если не нашлось такого поля - значит проблема не в дубликате email)
         #     pass
         # try:
-        #     Users.query.filter(Users.phone_number == sign_up_data['phone']).one()
+        #     User.query.filter(User.phone_number == sign_up_data['phone']).one()
         #     sign_up_result['phone'] = 'err'
         # except NoResultFound:
         #     # ignore (если не нашлось такого поля - значит проблема не в дубликате phone)
@@ -61,7 +61,7 @@ def sign_in(sign_in_data) -> {}:
     sign_in_result = {"email": "err", "password": "err"}
 
     try:
-        user = Users.query.filter(Users.email == sign_in_data['email']).one()
+        user = User.query.filter(User.email == sign_in_data['email']).one()
         if user.active:
             sign_in_result['email'] = 'ok'
     except NoResultFound:
@@ -80,7 +80,7 @@ def get_user_products(user_id: int) -> []:
     user_products = []
 
     try:
-        data = Products.query.filter(Products.seller_id == user_id).all()
+        data = Product.query.filter(Product.seller_id == user_id).all()
     except NoResultFound:
         return []
 
@@ -92,11 +92,11 @@ def get_user_products(user_id: int) -> []:
     return user_products
 
 
-def get_user_by_id(user_id: int) -> Users:
+def get_user_by_id(user_id: int) -> User:
     """Получение пользователя из бд по id"""
 
     try:
-        user = Users.query.filter(Users.id == user_id).one()
+        user = User.query.filter(User.id == user_id).one()
         return user
     except NoResultFound:
         return None
@@ -127,7 +127,7 @@ def send_mail(email, activate_key):
 def activate(activate_hash: str):
     """Активаци аккаунта. Сверяются ключи - если совпадают - выставляется флаг 'активен'"""
     try:
-        user = Users.query.filter(Users.activate_key == activate_hash).one()
+        user = User.query.filter(User.activate_key == activate_hash).one()
     except NoResultFound:
         # пока не знаю как обработать
         pass
