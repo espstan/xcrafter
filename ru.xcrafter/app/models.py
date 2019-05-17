@@ -16,7 +16,7 @@ from flask_login import UserMixin
 from loguru import logger
 
 
-class Users(UserMixin, db.Model):
+class User(UserMixin, db.Model):
 
     __tablename__ = 'users'
 
@@ -72,7 +72,7 @@ def load_user(id):
         logger.warning('Ошибка при обращении к БД пользователей: {}'.format(e))
 
 
-class Products(db.Model):
+class Product(db.Model):
 
     __tablename__ = 'products'
 
@@ -104,7 +104,7 @@ class Products(db.Model):
         return '<Product {}>'.format(self.title)
 
 
-class Orders(db.Model):
+class Order(db.Model):
 
     __tablename__ = 'orders'
 
