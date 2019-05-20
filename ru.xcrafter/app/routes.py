@@ -152,6 +152,16 @@ def search():
     return render_template('search.html')
 
 
+@app.route('/subscription-mail-success')
+def subscription_mail_success():
+    return render_template('public/mail-list/subscription-mail-success.html')
+
+
+@app.route('/subscription-mail-error')
+def subscription_mail_error():
+    return render_template('public/mail-list/subscription-mail-error.html')
+
+
 # Роуты для api
 
 @app.route('/api/1/user', methods=['POST'])
@@ -217,13 +227,4 @@ def activate_account(activate_key):
     except Exception as e:
         logger.warning('Ошибка при обращении к БД пользвателей: {}'.format(e))
 
-
-@app.route('/subscription-mail-success')
-def subscription_mail_success():
-    return render_template('public/mail-list/subscription-mail-success.html')
-
-
-@app.route('/subscription-mail-error')
-def subscription_mail_error():
-    return render_template('public/mail-list/subscription-mail-error.html')
 
