@@ -51,7 +51,7 @@ source bin/deploy_virtualenv.sh
 Для активации режима 'Next version mode', надо в браузере перейти по ссылке:
 
 ```sh
-<Имя сайта>/cookie-next-version-mode-on
+/cookie-next-version-mode-on
 ```
 
 ### Скрипт для деактивации режима 'Next version mode'
@@ -61,5 +61,5 @@ source bin/deploy_virtualenv.sh
 Для деактивации режима 'Next version mode', надо в браузере перейти по ссылке:
 
 ```sh
-<Имя сайта>/cookie-next-version-mode-remove
+/cookie-next-version-mode-remove
 ```
