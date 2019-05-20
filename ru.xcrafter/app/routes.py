@@ -157,19 +157,6 @@ def search():
     return render_template('search.html')
 
 
-@app.route('/download/photo', methods=['POST'])
-def upload_file():
-    def allowed_file(filename):
-        file = filename.lower()
-        ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
-        return '.' in file and file.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-    file = request.files['file']
-    if file and allowed_file(file.filename):
-        filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
-        path = app.root_path + '/static/uploads/'
-        file.save(path + filename)
-
-
 @app.route('/subscription-mail-success')
 def subscription_mail_success():
     return render_template('public/mail-list/subscription-mail-success.html')

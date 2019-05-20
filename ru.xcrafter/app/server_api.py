@@ -1,12 +1,14 @@
 import json
 
 from app import api
+from app import app
 
 from flask import redirect
 from flask import url_for
 from flask import abort
 from flask import jsonify
 from flask import Response
+from flask import request
 
 from flask_login import login_required
 
@@ -22,6 +24,8 @@ from app.db_utils.products import get_all_products
 from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
 from app.db_utils.users import send_mail
+
+from uuid import  uuid1
 
 
 class GetProductInfoById(Resource):
@@ -98,10 +102,28 @@ class GetAllProducts(Resource):
 
         return json.dumps(result)
 
+
+class UploadPhoto(Resource):
+    @login_required
+    def post(self):
+        def allowed_file(filename):
+            file = filename.lower()
+            ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
+            return '.' in file and file.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
+            path = app.root_path + '/static/uploads/'
+            file.save(path + filename)
+            return json.dumps({'sucess': 'true'})
+        return json.dumps({'sucess': 'false'})
+
+
 api.add_resource(Registration, '/api/registration')
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
 api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
+api.add_resource(UploadPhoto, '/api/v1/uploads/photo')
 
