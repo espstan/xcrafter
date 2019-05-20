@@ -18,6 +18,7 @@ from app.models import Products
 @click.group()
 def cli():
     """A simple command line tool."""
+    pass
 
 
 @cli.command('demo', short_help='Загрузить демо-товары в базу данных')
