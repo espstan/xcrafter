@@ -101,11 +101,6 @@ def profile_product_catalog():
 
 
 @app.route('/product/<product_id>')
-def product(product_id):
-    return render_template('public/product/product.html')
-
-
-@app.route('/product/<product_id>')
 def card_item(product_id):
     try:
         product = get_product_by_id(product_id)
