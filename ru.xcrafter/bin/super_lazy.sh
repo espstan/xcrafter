@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 source ./bin/init_mail_config.sh
 source ./bin/clean.sh
 docker volume create --name=xcrafter.db
