@@ -12,6 +12,9 @@
             <div class="menu-item"><a href="/">На главную</a></div>
         </div>
         <div class="actions">
+            {% if request.cookies.get('next_version_mode') %}
+                <a href="#" class="btn btn-danger">Пожаловаться</a>
+            {% endif %}
             <div class="price">{{ product.price }}&nbsp;₽</div>
             <div class="card-item-buy-btn" onclick="storeProductInLS({{ product }})">Купить</div>
         </div>
