@@ -42,3 +42,24 @@ python manage.py runserver
 source bin/deploy_virtualenv.sh
 ``` 
 
+---
+
+### Скрипт для активации режима 'Next version mode'
+
+**Запуск режима 'Next version'**
+
+Для активации режима 'Next version mode', надо в браузере перейти по ссылке:
+
+```sh
+<Имя сайта>/cookie-next-version-mode-on
+```
+
+### Скрипт для деактивации режима 'Next version mode'
+
+**Выход из режима 'Next version'**
+
+Для деактивации режима 'Next version mode', надо в браузере перейти по ссылке:
+
+```sh
+<Имя сайта>/cookie-next-version-mode-remove
+```
