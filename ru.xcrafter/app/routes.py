@@ -71,13 +71,13 @@ def profile():
                            current_user=current_user)
 
 
-@app.route('/profile/add-сard-item')
+@app.route('/profile/add-сard-product')
 @login_required
 def add_card_item():
     return render_template('add-card-item.html')
 
 
-@app.route('/profile/edit-card-item/<product_id>')
+@app.route('/profile/edit-card-product/<product_id>')
 @login_required
 def profile_edit_card_item(product_id):
     try:
@@ -105,7 +105,7 @@ def product(product_id):
     return render_template('public/product/product.html')
 
 
-@app.route('/item/<product_id>')
+@app.route('/product/<product_id>')
 def card_item(product_id):
     try:
         product = get_product_by_id(product_id)
@@ -115,7 +115,7 @@ def card_item(product_id):
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
-@app.route('/item/photo/<product_id>')
+@app.route('/product/photo/<product_id>')
 def card_item_photo(product_id):
     try:
         product = get_product_by_id(product_id)
@@ -125,7 +125,7 @@ def card_item_photo(product_id):
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
-@app.route('/item/<product_id>/description')  # TODO: Исправить порядок в URL
+@app.route('/product/<product_id>/description')  # TODO: Исправить порядок в URL
 def card_item_description(product_id):
     try:
         product = get_product_by_id(product_id)
@@ -135,7 +135,7 @@ def card_item_description(product_id):
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
-@app.route('/item/about-seller/<product_id>')
+@app.route('/product/about-seller/<product_id>')
 def card_item_about_seller(product_id):
     try:
         product = get_product_by_id(product_id)
