@@ -19,8 +19,7 @@ from app.models import Products
 @click.option('--demo', help='Загрузка демо-данных в БД')
 def load(demo):
     """Загрузка демо-товаров и демо-пользователя в БД"""
-    test_products_data_path = join(app.root_path, 'static/jsons/document.json')
-
+    test_products_data_path = join(app.root_path, 'static', 'jsons', 'document.json')
     with open(test_products_data_path) as prod_json:
         data = json.load(prod_json)
         for prod in data:
@@ -37,7 +36,7 @@ def load(demo):
                 click.echo("SQLAlchemy error: " + error)
 
     """Загрузка демо-пользователя в БД"""
-    test_user_data_path = join(app.root_path, 'static/jsons/user.json')
+    test_user_data_path = join(app.root_path, 'static', 'jsons', 'user.json')
     with open(test_user_data_path) as user_json:
         data = json.load(user_json)[0]
     pass_hash = generate_password_hash(data['password'])
