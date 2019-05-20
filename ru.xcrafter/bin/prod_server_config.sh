@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 ssh xcrafter.ru << EOF
 apt-get update
 apt install -y nginx python3-pip virtualenv letsencrypt
