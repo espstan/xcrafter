@@ -153,16 +153,6 @@ button:active, button:focus {
     margin-left: 20px;
 }
 
-.nav-item {
-    color: #ffffff;
-    cursor: pointer;
-}
-
-.nav-item:hover,
-.nav-item:active {
-    opacity: 0.8;
-}
-
 .nav-item-catalog {
     width: 65%;
 }
