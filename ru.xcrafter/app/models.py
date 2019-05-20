@@ -36,8 +36,6 @@ class User(UserMixin, db.Model):
     store_name = db.Column(db.Text)
     store_alias = db.Column(db.Text)
 
-    # store tests
-
     def __init__(self, first_name, surname, email, phone_number,
                  password_hash, agree_to_processing_personal_data, active=False, *args):
         self.first_name = first_name
