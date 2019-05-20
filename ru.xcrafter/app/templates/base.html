@@ -46,6 +46,9 @@
     </header>
     {% block content %}
     {% endblock %}
+    {% if products == [] %}
+        <h3>Информация на данной странице временно недоступна.</h3>
+    {% endif %}
     <footer class="products-footer">
         <div class="footer-copy">© 2019 XCrafter<br>Маркетплейс изделий ручной работы</div>
     </footer>
