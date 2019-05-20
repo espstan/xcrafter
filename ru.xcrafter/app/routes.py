@@ -229,18 +229,6 @@ def activate_account(activate_key):
         logger.warning('Ошибка при обращении к БД пользвателей: {}'.format(e))
 
 
-<<<<<<< HEAD
-=======
-@app.route('/subscription-mail-success')
-def subscription_mail_success():
-    return render_template('public/mail-list/subscription-mail-success.html')
-
-
-@app.route('/subscription-mail-error')
-def subscription_mail_error():
-    return render_template('public/mail-list/subscription-mail-error.html')
-
-
 # Роуты для тестирования
 
 @app.route('/cookie-next-version-mode-on')
@@ -256,4 +244,3 @@ def cookie_next_version_mode_remove():
     res.set_cookie('next_version_mode', 'off', max_age=0)
     return res
 
->>>>>>> 875ec7713270003748d529ad50ceaaf9379774d4
