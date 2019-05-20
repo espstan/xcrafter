@@ -15,6 +15,7 @@ from flask import render_template
 from flask import request
 from flask import send_from_directory
 from flask import url_for
+from flask import make_response
 
 from flask_login import current_user
 from flask_login import login_user
@@ -217,3 +218,18 @@ def activate_account(activate_key):
     except Exception as e:
         logger.warning('Ошибка при обращении к БД пользвателей: {}'.format(e))
 
+
+# Роуты для тестирования
+
+@app.route('/cookie-next-version-mode-on')
+def cookie_next_version_mode_on():
+    res = make_response('Setting a cookie. Next version mode: on')
+    res.set_cookie('next_version_mode', 'on', max_age=60 * 60)
+    return res
+
+
+@app.route('/cookie-next-version-mode-remove')
+def cookie_next_version_mode_remove():
+    res = make_response('Setting a cookie. Next version mode: remove')
+    res.set_cookie('next_version_mode', 'on', max_age=0)
+    return res
