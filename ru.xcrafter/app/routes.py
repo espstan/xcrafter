@@ -165,6 +165,16 @@ def subscription_mail_error():
     return render_template('public/mail-list/subscription-mail-error.html')
 
 
+@app.route('/sing-in')
+def sing_in():
+    return render_template('public/sing-in-user.html')
+
+
+@app.route('/sing-up')
+def sing_up():
+    return render_template('public/sing-up-user.html')
+
+
 # Роуты для api
 
 @app.route('/api/1/user', methods=['POST'])
