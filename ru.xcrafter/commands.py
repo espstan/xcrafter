@@ -35,7 +35,6 @@ def load(demo):
                 error = str(e.__class__.__name__)
                 click.echo("SQLAlchemy error: " + error)
 
-    """Загрузка демо-пользователя в БД"""
     test_user_data_path = join(app.root_path, 'static', 'jsons', 'user.json')
     with open(test_user_data_path) as user_json:
         data = json.load(user_json)[0]
