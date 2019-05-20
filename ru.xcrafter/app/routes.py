@@ -217,3 +217,13 @@ def activate_account(activate_key):
     except Exception as e:
         logger.warning('Ошибка при обращении к БД пользвателей: {}'.format(e))
 
+
+@app.route('/mail-ok')
+def mailOk():
+    return render_template('public/mail-list/mail-send-ok.html')
+
+
+@app.route('/mail-error')
+def mailError():
+    return render_template('public/mail-list/mail-send-fail.html')
+
