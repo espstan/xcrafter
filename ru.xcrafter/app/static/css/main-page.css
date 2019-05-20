@@ -19,10 +19,6 @@ button:active, button:focus {
     outline: none;
 }
 
-.catalog {
-    background-color: #C6D6EF;
-}
-
 .product-list {
     display: flex;
     flex-wrap: wrap;
@@ -32,17 +28,7 @@ button:active, button:focus {
 }
 
 .product-item {
-    width: 300px;
-    height: 340px;
-    background: #FFFFFF;
-    margin-right: 56px;
-    margin-left: 56px;
-    margin-top: 40px;
-    /* background-image: url('img/Img.png'); */
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: 100% 100%;
-    position: relative;
+    max-width: 300px
 }
 
 .product-price {
@@ -77,12 +63,6 @@ button:active, button:focus {
 
 .product-cont {
     cursor: pointer;
-}
-
-.product-buy {
-    padding-top: 10px;
-    float: left;
-    padding-left: 65px;
 }
 
 .product-search {

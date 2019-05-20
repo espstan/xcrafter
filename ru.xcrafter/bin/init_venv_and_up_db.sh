@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -x
+
 virtualenv -p python3 ./venv
 
 
