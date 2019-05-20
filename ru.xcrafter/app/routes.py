@@ -172,6 +172,16 @@ def upload_file():
         file.save(path + filename)
 
 
+@app.route('/subscription-mail-success')
+def subscription_mail_success():
+    return render_template('public/mail-list/subscription-mail-success.html')
+
+
+@app.route('/subscription-mail-error')
+def subscription_mail_error():
+    return render_template('public/mail-list/subscription-mail-error.html')
+
+
 # Роуты для api
 
 @app.route('/api/1/user', methods=['POST'])
@@ -252,3 +262,4 @@ def cookie_next_version_mode_remove():
     res = make_response('Next version mode: off')
     res.set_cookie('next_version_mode', 'off', max_age=0)
     return res
+
