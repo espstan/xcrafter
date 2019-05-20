@@ -23,7 +23,7 @@ def load(demo):
     with open(test_products_data_path) as prod_json:
         data = json.load(prod_json)
         for prod in data:
-            product = Products(title=prod['title'],
+            product = Product(title=prod['title'],
                                description=prod['description'],
                                price=prod['price'],
                                photo=prod['photo'],
@@ -39,7 +39,7 @@ def load(demo):
     with open(test_user_data_path) as user_json:
         data = json.load(user_json)[0]
         pass_hash = generate_password_hash(data['password'])
-        user = Users(first_name=data['name'],
+        user = User(first_name=data['name'],
                      surname=data['surname'],
                      email=data['email'],
                      phone_number=data['phone'],
