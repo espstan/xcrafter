@@ -47,5 +47,7 @@ css = Bundle('css/main-page.css',
 assets.register('css_all', css)
 
 
-from app import routes, models, server_api
+from app import routes
+from app import models
+from app import server_api
 
