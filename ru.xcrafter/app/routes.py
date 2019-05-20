@@ -220,10 +220,10 @@ def activate_account(activate_key):
 
 @app.route('/subscription_mail_ok')
 def subscriptionMailOk():
-    return render_template('public/mail-list/mail-send-ok.html')
+    return render_template('public/mail-list/subscription-mail-ok.html')
 
 
 @app.route('/subscription_mail_error')
 def subscriptionMailError():
-    return render_template('public/mail-list/mail-send-fail.html')
+    return render_template('public/mail-list/subscription-mail-error.html')
 
