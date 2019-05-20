@@ -11,8 +11,8 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from os.path import join
 
-from app.models import Users
-from app.models import Products
+from app.models import User
+from app.models import Product
 
 
 @click.command()
