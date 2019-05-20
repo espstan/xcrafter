@@ -1,5 +1,3 @@
-import uuid
-
 from app import app
 from app import db
 
@@ -26,7 +24,7 @@ from flask_login import logout_user
 
 from werkzeug.security import generate_password_hash
 
-from werkzeug.utils import secure_filename
+from uuid import uuid1
 
 from loguru import logger
 
@@ -167,7 +165,7 @@ def upload_file():
         return '.' in file and file.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
     file = request.files['file']
     if file and allowed_file(file.filename):
-        filename = str(uuid.uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
+        filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
         path = app.root_path + '/static/uploads/'
         file.save(path + filename)
 
