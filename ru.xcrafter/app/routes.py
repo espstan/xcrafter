@@ -218,12 +218,12 @@ def activate_account(activate_key):
         logger.warning('Ошибка при обращении к БД пользвателей: {}'.format(e))
 
 
-@app.route('/mail-ok')
-def mailOk():
+@app.route('/subscription_mail_ok')
+def subscriptionMailOk():
     return render_template('public/mail-list/mail-send-ok.html')
 
 
-@app.route('/mail-error')
-def mailError():
+@app.route('/subscription_mail_error')
+def subscriptionMailError():
     return render_template('public/mail-list/mail-send-fail.html')
 
