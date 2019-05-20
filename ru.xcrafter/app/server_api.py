@@ -104,19 +104,21 @@ class GetAllProducts(Resource):
 
 
 class UploadPhoto(Resource):
-    @login_required
+    #@login_required
     def post(self):
         def allowed_file(filename):
             file = filename.lower()
             ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
             return '.' in file and file.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
-            path = app.root_path + '/static/uploads/'
-            file.save(path + filename)
-            return json.dumps({'sucess': 'true'})
-        return json.dumps({'sucess': 'false'})
+        try:
+            file = request.files['file']
+            if file and allowed_file(file.filename):
+                filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
+                path = app.root_path + '/static/uploads/'
+                file.save(path + filename)
+                return json.dumps({'sucess': 'true', 'path': path + filename})
+        except:
+            return json.dumps({'sucess': 'false'})
 
 
 api.add_resource(Registration, '/api/registration')
