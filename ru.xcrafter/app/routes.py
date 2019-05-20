@@ -125,7 +125,7 @@ def card_item_photo(product_id):
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
-@app.route('/product/<product_id>/description')  # TODO: Исправить порядок в URL
+@app.route('/product/<product_id>/description')
 def card_item_description(product_id):
     try:
         product = get_product_by_id(product_id)
