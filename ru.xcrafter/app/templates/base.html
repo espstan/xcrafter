@@ -21,17 +21,41 @@
 
 <body>
     <header>
-        <nav class="nav nav-pills nav-fill">
-            <a class="nav-item nav-link" href="{{ url_for('index') }}">Xcrafter</a>
-            <a class="nav-item nav-link" href="#">Каталог</a>
-            <a class="nav-item nav-link" href="#">Популярные</a>
-            <a class="nav-item nav-link" href="#">Свежие</a>
-            <a class="nav-item nav-link" href="{{ url_for('profile') }}">Личный кабинет</a>
-            <a class="nav-item nav-link" href="#">Войти</a>
-            <a class="nav-item nav-link" href="#">Зарегистрироваться</a>
-            <a class="nav-item nav-link nav-basket" href="{{ url_for('cart') }}">Корзина
-                <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
-            </a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Xcrafter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Популярные</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Свежие</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('profile') }}">Личный кабинет</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Зарегистрироваться</a>
+                    </li>
+                    <li class="nav-item nav-basket">
+                        <a class="nav-link" href="{{ url_for('cart') }}">Корзина
+                            <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
         </nav>
     </header>
     {% block content %}
