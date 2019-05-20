@@ -30,11 +30,13 @@ from loguru import logger
 def index() -> 'html':
     try:
         products = get_all_products()
+    except Exception as e:
+        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
+        products = []
+    finally:
         return render_template('public/index.html',
                                products=products,
                                meta_title='XCrafter - маркетплейс хендмейд товаров')
-    except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
 @app.route('/robots.txt')
