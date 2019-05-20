@@ -1,3 +1,5 @@
+import uuid
+
 from app import app
 from app import db
 
@@ -23,6 +25,8 @@ from flask_login import login_required
 from flask_login import logout_user
 
 from werkzeug.security import generate_password_hash
+
+from werkzeug.utils import secure_filename
 
 from loguru import logger
 
@@ -153,6 +157,19 @@ def cart():
 @app.route('/search')
 def search():
     return render_template('search.html')
+
+
+@app.route('/download/photo', methods=['POST'])
+def upload_file():
+    def allowed_file(filename):
+        file = filename.lower()
+        ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
+        return '.' in file and file.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = str(uuid.uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
+        path = app.root_path + '/static/uploads/'
+        file.save(path + filename)
 
 
 # Роуты для api

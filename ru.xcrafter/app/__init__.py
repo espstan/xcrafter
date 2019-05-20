@@ -17,6 +17,7 @@ from flask_mail import Mail
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = Api(app)
