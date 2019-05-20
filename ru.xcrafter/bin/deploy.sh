@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 excludes=(--exclude=pyc \
           --exclude=__pycache__ \
           --exclude=.git \
