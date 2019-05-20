@@ -224,6 +224,6 @@ def subscription_mail_success():
 
 
 @app.route('/subscription-mail-error')
-def subscription_mil_error():
+def subscription_mail_error():
     return render_template('public/mail-list/subscription-mail-error.html')
 
