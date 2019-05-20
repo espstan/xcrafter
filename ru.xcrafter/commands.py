@@ -1,5 +1,3 @@
-from os.path import join
-
 import click
 
 import json
@@ -10,6 +8,8 @@ from app import db
 from werkzeug.security import generate_password_hash
 
 from sqlalchemy.exc import SQLAlchemyError
+
+from os.path import join
 
 from app.models import Users
 from app.models import Products
