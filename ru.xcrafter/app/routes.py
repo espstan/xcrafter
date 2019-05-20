@@ -77,7 +77,7 @@ def add_card_item():
     return render_template('add-card-item.html')
 
 
-@app.route('/profile/<product_id>/edit-product/')
+@app.route('/profile/<product_id>/edit-product')
 @login_required
 def profile_edit_card_item(product_id):
     try:
