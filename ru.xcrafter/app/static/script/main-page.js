@@ -8,95 +8,29 @@ productsList.addEventListener('click', deleteProduct);
 clearBtn.addEventListener('click', clearCart);
 
 const cartIsEmpty = document.createElement('h5');
-cartIsEmpty.innerHTML='В корзине пусто:(';
+cartIsEmpty.innerHTML = 'В корзине пусто:(';
 productsList.appendChild(cartIsEmpty);
 
 const popupWindow = document.getElementById('popup-window');
 
-function buy(product) {
-    popupWindowActive(product);
-    if(document.getElementById(product.id) == undefined){
-        cartIsEmpty.remove();
-        const li = document.createElement('li');
-        li.className = 'list-group-item col-12 d-flex';
-        li.setAttribute('id', product.id);
-        const inLi = document.createElement('span');
-        inLi.className = 'input-group'
-        inLi.innerHTML =
-        `<span>
-            <span>${product.title}:
-                <span class = "prod-price${product.id}"></span>
-                руб
-            </span>
-            <span class = "d-flex float-right w-50">
-                <span  class = "minus${product.id} btn" w-10 >-</span>
-                <input class="form-control col-3 " id="quantity${product.id}" value = "1" disabled>
-                <span  class = "plus${product.id} btn" w-10>+
-                </span>
-            </span>
-        </span>`;
-
-        const link = document.createElement('a');
-        link.className = 'delete-product secondary-content';
-        link.style = 'color: tomato; float: right; cursor: pointer'
-        link.innerHTML = '&#10006;';
-        li.appendChild(inLi);
-        li.appendChild(link);
-        productsList.appendChild(li);
-        calculateTotalPrice(product);
-        storeProductInLS(product);
-
-        document.querySelector(`.prod-price${product.id}`).innerHTML = `${product.price}`;
-        const plus = document.querySelector(`.plus${product.id}`);
-        const minus = document.querySelector(`.minus${product.id}`);
-        const totalProductPrice = document.querySelector(`.prod-price${product.id}`);
-        const quantity = document.getElementById(`quantity${product.id}`);
-        let count = 1;
-
-        plus.addEventListener('click',plusProduct);
-        minus.addEventListener('click',minusProduct);
-
-        function plusProduct(){
-            count++;
-            quantity.value = count;
-            totalProductPrice.innerHTML = `${product.price * quantity.value}`;
-            storeProductInLS(product);
-            calculateTotalPrice(product);
-            calculateProductBadge()
-        }
-        function minusProduct(){
-            if (count < 2) { return false }
-            count--;
-            quantity.value = count;
-            totalProductPrice.innerHTML = `${product.price * quantity.value}`;
-            localStorage.getItem('cart');
-            cart = JSON.parse(localStorage.getItem('cart'));
-            cart[product.id]['count'] = cart[product.id]['count'] - 1;    
-            localStorage.setItem('cart', JSON.stringify(cart));
-            totalPayment.value = totalPayment.value*1 - product.price*1;
-            calculateProductBadge()
-        }  
-    }
-    calculateProductBadge();
-}
-
-function calculateProductBadge(){
+function calculateProductBadge() {
     let cart = JSON.parse(localStorage.getItem('cart'));
     if (!cart) { return false }
     let sum = [];
-    let totalsum=0;
-    for(let item in cart){    
-        sum.push(cart[item]['count']);         
+    let totalsum = 0;
+    for (let item in cart) {
+        sum.push(cart[item]['count']);
     }
-    for (let i=0; i<sum.length; i++){
+    for (let i = 0; i < sum.length; i++) {
         totalsum += sum[i]
     }
-    productBadge.innerHTML=`${totalsum}`
+    productBadge.innerHTML = `${totalsum}`
 }
 
-function storeProductInLS(product){
+function buy(product) {
+    // popupWindowActive(product);
     let cart = {};
-    let item = {'id': product.id, 'title': product.title, 'price': product.price };
+    let item = { 'id': product.id, 'title': product.title, 'price': product.price };
     if (localStorage.getItem('cart')) {
         cart = JSON.parse(localStorage.getItem('cart'));
         if (cart[product.id]) {
@@ -112,10 +46,10 @@ function storeProductInLS(product){
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-function getProductsFromLS(){
+function getProductsFromLS() {
     let cart = JSON.parse(localStorage.getItem('cart'));
     if (!cart) { return false }
-    for(const product in cart){
+    for (const product in cart) {
         cartIsEmpty.remove();
         const li = document.createElement('li');
         li.className = 'list-group-item col-12 d-flex';
@@ -123,7 +57,7 @@ function getProductsFromLS(){
         const inLi = document.createElement('span');
         inLi.className = 'input-group'
         inLi.innerHTML =
-        `<span>
+            `<span>
             <span>${cart[product]['title']}:
                 <span class = "prod-price${product}"></span>
                 руб
@@ -143,6 +77,7 @@ function getProductsFromLS(){
         li.appendChild(inLi);
         li.appendChild(link);
         productsList.appendChild(li);
+        calculateTotalPayment(cart[product])
 
         let count = cart[product]['count'];
 
@@ -152,41 +87,44 @@ function getProductsFromLS(){
         const quantity = document.getElementById(`quantity${product}`);
 
         totalProductPrice.innerHTML = `${cart[product]['price'] * count}`;
-        plus.addEventListener('click',plusProduct);
-        minus.addEventListener('click',minusProduct);
+        plus.addEventListener('click', plusProduct);
+        minus.addEventListener('click', minusProduct);
 
-        function plusProduct(){
+        function plusProduct() {
             count++;
             quantity.value = count;
             totalProductPrice.innerHTML = cart[product]['price'] * quantity.value;
             localStorage.getItem('cart')
             cart = JSON.parse(localStorage.getItem('cart'));
-            cart[product]['count'] = cart[product]['count'] + 1; 
-            totalPayment.value = totalPayment.value*1 + cart[product]['price']*1; 
+            cart[product]['count'] = cart[product]['count'] + 1;
+            totalPayment.value = totalPayment.value * 1 + cart[product]['price'] * 1;
             localStorage.setItem('cart', JSON.stringify(cart));
             calculateProductBadge()
-        }  
+        }
 
-        function minusProduct(){
+        function minusProduct() {
             if (count < 2) { return false }
             count--;
             quantity.value = count;
             totalProductPrice.innerHTML = cart[product]['price'] * quantity.value;
             localStorage.getItem('cart')
             cart = JSON.parse(localStorage.getItem('cart'));
-            cart[product]['count'] = cart[product]['count'] - 1; 
-            totalPayment.value = totalPayment.value*1 - cart[product]['price']*1;   
-            localStorage.setItem('cart', JSON.stringify(cart)); 
-            calculateProductBadge()   
-        }
+            cart[product]['count'] = cart[product]['count'] - 1;
+            totalPayment.value = totalPayment.value * 1 - cart[product]['price'] * 1;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            calculateProductBadge()
+        }  
+
     }
     calculateProductBadge()
 }
 
-
+function calculateTotalPayment(product){
+    totalPayment.value = totalPayment.value * 1 + product.price * product.count;
+}
 
 function deleteProduct(e) {
-    if(e.target.classList.contains('delete-product')) {
+    if (e.target.classList.contains('delete-product')) {
         e.target.parentElement.remove();
     }
     removeProductFromLS(e.target.parentElement);
@@ -195,23 +133,19 @@ function deleteProduct(e) {
 function removeProductFromLS(element) {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const id = element.id;
-    for(const product in cart){
-        if(cart[product]['id']==id){
+    for (const product in cart) {
+        if (cart[product]['id'] == id) {
             delete cart[product];
             localStorage.setItem('cart', JSON.stringify(cart));
         }
     }
 }
 
-function clearCart(){
+function clearCart() {
     productsList.innerHTML = '';
     localStorage.clear();
     totalPayment.value = '';
 }
-
-function calculateTotalPrice(product){
-    totalPayment.value = totalPayment.value*1 + product.price*1;
-};
 
 let timeoutEz = undefined;
 
@@ -262,3 +196,4 @@ function popupWindowHide() {
 function popupWindowHideSetTimeout() {
     timeoutEz = setTimeout(popupWindowHide, 5000);
 }
+
