@@ -43,6 +43,18 @@
     </header>
     {% block content %}
     {% endblock %}
+    <article>
+        <form class="mailing-form"
+              action="URL"
+              method="post">
+            <input type="email"
+                   placeholder="Введите адрес электронной формы"
+                   maxlength="100"
+                   required>
+            <input type="submit"
+                   value="Подписаться">
+        </form>
+    </article>
     <footer class="products-footer">
         <div class="footer-copy">© 2019 XCrafter<br>Маркетплейс изделий ручной работы</div>
     </footer>
