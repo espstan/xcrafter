@@ -15,16 +15,10 @@ from app.models import Users
 from app.models import Products
 
 
-@click.group()
-def cli():
-    """A simple command line tool."""
-    pass
-
-
-@cli.command('demo', short_help='Загрузить демо-товары в базу данных')
-def load_products():
-    """Загрузка демо-товаров в БД."""
-
+@click.command()
+@click.option('--demo', help='Загрузка демо-данных в БД')
+def load(demo):
+    """Загрузка демо-товаров и демо-пользователя в БД."""
     test_products_data_path = join(app.root_path, 'static/jsons/document.json')
 
     with open(test_products_data_path) as prod_json:
@@ -42,9 +36,6 @@ def load_products():
                 error = str(e.__class__.__name__)
                 click.echo("SQLAlchemy error: " + error)
 
-
-@cli.command('user', short_help='Загрузить демо-пользователя в базу данных')
-def load_user():
     """Загрузка демо-пользователя в БД."""
     test_user_data_path = join(app.root_path, 'static/jsons/user.json')
     with open(test_user_data_path) as user_json:
@@ -66,4 +57,4 @@ def load_user():
 
 
 if __name__ == '__main__':
-    cli()
+    load()
