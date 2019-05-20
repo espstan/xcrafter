@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 service nginx stop
 letsencrypt certonly --standalone \
 -d xcrafter.ru \
