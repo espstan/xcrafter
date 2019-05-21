@@ -77,6 +77,9 @@
                             <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contacts') }}">Контакты</a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Я хочу найти..." aria-label="Поиск">
@@ -126,7 +129,7 @@
                     <ul class="col-4">
                         <spanp>About</span>
                         <li><a class="" href="#">Services</a></li>
-                        <li><a class="" href="#">Contact</a></li>
+                        <li><a class="" href="{{ url_for('contacts') }}">Contact</a></li>
                         <li><a class="" href="#">Careers</a></li>
                     </ul>
                     <ul class="col-4">
