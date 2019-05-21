@@ -113,9 +113,9 @@ class GetAllProducts(Resource):
 class UploadPhoto(Resource):
     @login_required
     def post(self):
-        cur_id_str = str(current_user.id)
-        hash_user_id = hashlib.md5(cur_id_str.encode('UTF-8')).hexdigest()
-        path = app.root_path + '/static/uploads/' + hash_user_id
+        cur_id = str(current_user.id)
+        hash_user_id = hashlib.md5(cur_id.encode('UTF-8')).hexdigest()
+        path = os.path.join(app.root_path, 'static/uploads/', hash_user_id)
         if not os.path.exists(path):
             os.makedirs(path)
 
@@ -128,7 +128,7 @@ class UploadPhoto(Resource):
         file = request.files['file']
 
         if not file.filename:
-            return json.dumps({'sucess': 'false', 'причина': 'Нет файла'})
+            return json.dumps({'sucess': 'false', 'error': 'Нет файла'})
 
         try:
             allowed_file(file.filename)
@@ -137,10 +137,10 @@ class UploadPhoto(Resource):
             return json.dumps({'sucess': 'true', 'path': path + filename})
         except Exception as e:
             if str(e) == 'Файл не правильного формата':
-                return json.dumps({'sucess': 'false', 'причина': 'Файл должен быть формата png, jpg или jpeg'})
+                return json.dumps({'sucess': 'false', 'error': 'Файл должен быть формата png, jpg или jpeg'})
             else:
                 logger.warning('Ошибка при сохранении фотографии пользователем: {}'.format(e))
-                return json.dumps({'sucess': 'false', 'причина': 'По техническим причинам сейчас нет возможности сохранить Вашу фотографию, попробуйте, пожалуйста, позже.'})
+                return json.dumps({'sucess': 'false', 'error': 'По техническим причинам сейчас нет возможности сохранить Вашу фотографию, попробуйте, пожалуйста, позже.'})
 
 
 api.add_resource(Registration, '/api/registration')
