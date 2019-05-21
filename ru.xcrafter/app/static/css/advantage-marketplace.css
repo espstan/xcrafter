@@ -1,0 +1,4 @@
+.advantage-list {
+    display: flex;
+    flex-wrap: wrap;
+}
