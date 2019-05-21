@@ -15,11 +15,13 @@
           crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" 
           rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" 
+    <link rel="stylesheet" 
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" 
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" 
           crossorigin="anonymous">
     {% assets "css_all" %}
-    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    <link rel="stylesheet" 
+          href="{{ ASSET_URL }}">
     {% endassets %}
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
@@ -89,8 +91,8 @@
         </form>
     </section>
     <footer class="products-footer">
-        <div class="m-auto container">    
-            <div class="d-grid container row m-5 pl-0 content align-items-center">
+        <div class="m-auto container m-5">    
+            <div class="d-grid container row pl-0 content align-items-center">
                 <div class="col-6 justify-content-start pl-0 description">
                     <h3>XCrafter</h3>
                     <p class="about">
@@ -122,15 +124,19 @@
                     </ul>
                 </div>
             </div>
-            <div class="d-grid container row footer-copy m-5">
-                <div class="col-6 row justify-content-start pl-0">
-                © 2019 XCrafter. Маркетплейс изделий ручной работы
+            <div class="d-grid container row footer-copy">
+                <div class="col-6 pl-0">
+                    <div class="row justify-content-start">
+                        &copy; 2019 XCrafter. Маркетплейс изделий ручной работы
+                    </div>
                 </div>
-                <div class="col-6 row justify-content-end">
-                    <a href="#"><i class="fab fa-vk mr-4"></i></a>
-                    <a href="#"><i class="fab fa-instagram mr-4"></i></a>
-                    <a href="#"> <i class="fab fa-github mr-4"></i></a>
-                    <a href="#"><i class="fab fa-facebook-square mr-4"></i></a>      
+                <div class="col-6">
+                    <div class="row justify-content-end">
+                        <a href="#"><i class="fab fa-vk mr-4"></i></a>
+                        <a href="#"><i class="fab fa-instagram mr-4"></i></a>
+                        <a href="#"> <i class="fab fa-github mr-4"></i></a>
+                        <a href="#"><i class="fab fa-facebook-square mr-4 pr-4"></i></a>
+                    </div>      
                 </div>
             </div>
         </div> 

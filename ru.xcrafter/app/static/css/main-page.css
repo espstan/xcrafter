@@ -106,20 +106,24 @@ button:active, button:focus {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
 }
-.products-footer a{
+
+.products-footer a {
     color: #1971c2;
 }
-.content{
+
+.content {
     height: 260px;
 }
-.content p{
+
+.content p {
     padding-right: 100px;
 }
-.content .links{
+
+.content .links {
     width: 50%;
 }
 
-.content li{
+.content li {
     padding-top: 10px
 }
 
@@ -299,6 +303,7 @@ button:active, button:focus {
 .nav-catalog:hover {
     opacity: 0.8;
 }
+
 @media (max-width: 768px) {
     .products-footer .content .about{
         display: none;
@@ -311,12 +316,12 @@ button:active, button:focus {
     }
     .products-footer .content {
         justify-content: space-between;
-        margin: auto!important;
+        margin: auto;
     }
     .products-footer .content .links{
         width: 100%;
     }
     .footer-copy{
-        margin: auto!important;
+        margin: auto;
     }
 }
