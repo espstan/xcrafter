@@ -13,8 +13,15 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
           crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" 
+          rel="stylesheet">
+    <link rel="stylesheet" 
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" 
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" 
+          crossorigin="anonymous">
     {% assets "css_all" %}
-    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    <link rel="stylesheet" 
+          href="{{ ASSET_URL }}">
     {% endassets %}
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
@@ -97,7 +104,55 @@
         </form>
     </section>
     <footer class="products-footer">
-        <div class="footer-copy">© 2019 XCrafter<br>Маркетплейс изделий ручной работы</div>
+        <div class="m-auto container m-5">    
+            <div class="d-grid container row content align-items-center">
+                <div class="col-6 justify-content-start pl-0 description">
+                    <h3>XCrafter</h3>
+                    <p class="about">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Pariatur hic quasi, mollitia cumque, soluta unde iusto 
+                        excepturi veniam facere aspernatur aut cupiditate sint 
+                        amet veritatis nisi blanditiis a nobis omnis!
+                    </p>
+                </div>
+                <div class="row justify-content-around links">
+                    <ul class="col-4">
+                        <span>Account</span>
+                        <li><a class="" href="#">Profile</a></li>
+                        <li><a class="" href="#">Settings</a></li>
+                        <li><a class="" href="#">Billing</a></li>
+                        <li><a class="" href="#">Notifications</a></li>                                                            
+                    </ul>
+                    <ul class="col-4">
+                        <spanp>About</span>
+                        <li><a class="" href="#">Services</a></li>
+                        <li><a class="" href="#">Contact</a></li>
+                        <li><a class="" href="#">Careers</a></li>
+                    </ul>
+                    <ul class="col-4">
+                        <span>Company</span>
+                        <li><a class="" href="#">Terms</a></li>
+                        <li><a class="" href="#">Privacy</a></li>
+                        <li><a class="" href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-grid container row footer-copy">
+                <div class="col-6">
+                    <div class="row justify-content-start">
+                        &copy;&nbsp;2019 XCrafter. Маркетплейс изделий ручной работы
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row justify-content-end">
+                        <a href="#"><i class="fab fa-vk mr-4"></i></a>
+                        <a href="#"><i class="fab fa-instagram mr-4"></i></a>
+                        <a href="#"><i class="fab fa-github mr-4"></i></a>
+                        <a href="#"><i class="fab fa-facebook-square mr-4 pr-4"></i></a>
+                    </div>      
+                </div>
+            </div>
+        </div> 
     </footer>
     <div id="popup-window" class="closed"></div>
     <div class="modal-overlay closed" id="modal-overlay"></div>
