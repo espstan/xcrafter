@@ -42,7 +42,7 @@ def get_product_by_id(product_id: int) -> {}:
     return product
 
 
-def get_product_from_base(product_id: int):
+def get_product(product_id: int):
     try:
         product = Product.query.filter(Product.id == product_id).one()
     except NoResultFound as e:
