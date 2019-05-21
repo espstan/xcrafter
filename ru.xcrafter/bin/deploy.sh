@@ -11,7 +11,8 @@ excludes=(--exclude=pyc \
           --exclude=.env.stage \
           --exclude=.idea \
           --exclude=*.log \
-          --exclude=venv
+          --exclude=venv \
+          --exclude=migrations
           )
 
 rsync -av ${excludes[@]} --chown=xcrafter:xcrafter --delete \
