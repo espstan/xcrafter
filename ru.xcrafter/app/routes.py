@@ -62,6 +62,12 @@ def contacts():
 def get_registration():
     return render_template('public/registration.html')
 
+
+@app.route('/sign-in')
+def get_sign_in():
+    return render_template('public/sign-in.html')
+
+
 @app.route('/password-recovery')
 def recoveryPassword():
     return render_template('public/recovery-password.html')
