@@ -102,19 +102,29 @@ button:active, button:focus {
 }
 
 .products-footer {
-    background-color: #000;
-    height: 80px;
+    min-height: 310px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+.products-footer a{
+    color: #1971c2;
+}
+.content{
+    height: 260px;
+}
+.content p{
+    padding-right: 100px;
+}
+.content .links{
+    width: 50%;
+}
+
+.content li{
+    padding-top: 10px
 }
 
 .footer-copy {
-    font-weight: normal;
-    font-size: 20px;
-    color: #FFFFFF;
-    opacity: 0.8;
-    float: right;
-    text-align: right;
-    padding-top: 10px;
-    padding-right: 56px;
+    font-size: 13px;
 }
 
 .products-header {
@@ -288,4 +298,25 @@ button:active, button:focus {
 
 .nav-catalog:hover {
     opacity: 0.8;
+}
+@media (max-width: 768px) {
+    .products-footer .content .about{
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .products-footer .description{
+        display: none;
+    }
+    .products-footer .content {
+        justify-content: space-between;
+        margin: auto!important;
+    }
+    .products-footer .content .links{
+        width: 100%;
+    }
+    .footer-copy{
+        margin: auto!important;
+    }
 }
