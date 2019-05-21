@@ -1,4 +1,8 @@
 .advantage-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+}
+
+.advantage-marketplace {
+    text-align: center;
 }
