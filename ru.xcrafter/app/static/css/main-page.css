@@ -305,23 +305,26 @@ button:active, button:focus {
 }
 
 @media (max-width: 768px) {
-    .products-footer .content .about{
+    .products-footer .content .about {
         display: none;
     }
 }
 
 @media (max-width: 640px) {
-    .products-footer .description{
+    .products-footer .description {
         display: none;
     }
+
     .products-footer .content {
         justify-content: space-between;
         margin: auto;
     }
-    .products-footer .content .links{
+
+    .products-footer .content .links {
         width: 100%;
     }
-    .footer-copy{
+
+    .footer-copy {
         margin: auto;
     }
 }
