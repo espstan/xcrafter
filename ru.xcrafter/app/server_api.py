@@ -104,7 +104,7 @@ class GetAllProducts(Resource):
 
 
 class UploadPhoto(Resource):
-    #@login_required
+    @login_required
     def post(self):
         def allowed_file(filename):
             file = filename.lower()
