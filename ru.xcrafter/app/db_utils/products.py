@@ -16,8 +16,12 @@ def get_all_products() -> []:
     products = []
 
     for product in data:
-        products_for_add = {'id': product.id, 'title': product.title, 'description': product.description,
-                            'price': product.price, 'photo': product.photo, 'seller_id': product.seller_id}
+        products_for_add = {'id': product.id,
+                            'title': product.title,
+                            'description': product.description,
+                            'price': product.price,
+                            'photo': product.photo,
+                            'seller_id': product.seller_id}
         products.append(products_for_add)
 
     return products
@@ -34,8 +38,7 @@ def get_product_by_id(product_id: int) -> {}:
                    'description': data.description,
                    'price': data.price,
                    'photo': [data.photo],
-                   'seller_id': data.seller_id,
-                   'view_count': data.view_count}
+                   'seller_id': data.seller_id}
     except NoResultFound:
         product = {}
 
@@ -59,8 +62,7 @@ def add_product(product: {}) -> str:
                               product['description'],
                               product['price'],
                               product['photo'],
-                              product['seller_id'],
-                              product['view_count'])
+                              product['seller_id'])
 
     db.session.add(product_for_add)
 
