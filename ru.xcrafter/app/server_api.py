@@ -128,7 +128,7 @@ class UploadPhoto(Resource):
         file = request.files['file']
 
         if not file.filename:
-            return json.dumps({'sucess': 'false', 'error': 'Нет файла'})
+            return jsonify({'sucess': 'false', 'error': 'Нет файла'})
 
         try:
             allowed_file(file.filename)
@@ -137,10 +137,10 @@ class UploadPhoto(Resource):
             return json.dumps({'sucess': 'true', 'path': path + filename})
         except Exception as e:
             if str(e) == 'Файл не правильного формата':
-                return json.dumps({'sucess': 'false', 'error': 'Файл должен быть формата png, jpg или jpeg'})
+                return jsonify({'sucess': 'false', 'error': 'Файл должен быть формата png, jpg или jpeg'})
             else:
                 logger.warning('Ошибка при сохранении фотографии пользователем: {}'.format(e))
-                return json.dumps({'sucess': 'false', 'error': 'По техническим причинам сейчас нет возможности сохранить Вашу фотографию, попробуйте, пожалуйста, позже.'})
+                return jsonify({'sucess': 'false', 'error': 'По техническим причинам сейчас нет возможности сохранить Вашу фотографию, попробуйте, пожалуйста, позже.'})
 
 
 api.add_resource(Registration, '/api/registration')
