@@ -140,7 +140,9 @@ class UploadPhoto(Resource):
                 return jsonify({'sucess': 'false', 'error': 'Файл должен быть формата png, jpg или jpeg'})
             else:
                 logger.warning('Ошибка при сохранении фотографии пользователем: {}'.format(e))
-                return jsonify({'sucess': 'false', 'error': 'По техническим причинам сейчас нет возможности сохранить Вашу фотографию, попробуйте, пожалуйста, позже.'})
+                return jsonify({'sucess': 'false',
+                                'error': 'По техническим причинам сейчас нет возможности сохранить '
+                                         'Вашу фотографию, попробуйте, пожалуйста, позже.'})
 
 
 api.add_resource(Registration, '/api/registration')
