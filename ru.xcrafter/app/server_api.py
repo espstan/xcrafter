@@ -14,6 +14,7 @@ from flask_restful import Resource
 from flask_restful import reqparse
 
 from app.db_utils.products import get_product_by_id
+from app.db_utils.products import get_product_from_base
 from app.db_utils.products import add_product
 from app.db_utils.products import delete_product_by_id
 from app.db_utils.products import edit_product
@@ -102,9 +103,10 @@ class GetAllProducts(Resource):
 
 
 class SetViewCount(Resource):
-    def post(self, product_id):
-        product = get_product_by_id(product_id)
+    def get(self, product_id):
+        product = get_product_from_base(product_id)
         product.change_view_count()
+        return product.view_count
 
 
 api.add_resource(Registration, '/api/registration')
@@ -113,5 +115,4 @@ api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
 api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
-api.add_resource(SetViewCount, '/api/product/<int:product_id>')
-
+api.add_resource(SetViewCount, '/api/<int:product_id>/product_view/')
