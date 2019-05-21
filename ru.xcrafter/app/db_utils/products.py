@@ -27,7 +27,8 @@ def get_all_products() -> []:
     return products
 
 
-def get_product_by_id(product_id: int) -> {}:
+def get_product_by_id(product_id: int) -> {}: #TODO переименовать функцию -> внести ясноть, когда запускать get_product_by_id()
+                                              # TODO а когда get_product(), или объединить эти функции
     """Возвращает словарь с информацией о товаре с определённым id.
     При запросе по не существующему id - возвращает пустой словарь."""
 
