@@ -29,11 +29,24 @@ def get_product_by_id(product_id: int) -> {}:
 
     try:
         data = Product.query.filter(Product.id == product_id).one()
-        product = {'id': data.id, 'title': data.title, 'description': data.description,
-                   'price': data.price, 'photo': [data.photo], 'seller_id': data.seller_id}
+        product = {'id': data.id,
+                   'title': data.title,
+                   'description': data.description,
+                   'price': data.price,
+                   'photo': [data.photo],
+                   'seller_id': data.seller_id,
+                   'view_count': data.view_count}
     except NoResultFound:
         product = {}
 
+    return product
+
+
+def get_product_from_base(product_id: int):
+    try:
+        product = Product.query.filter(Product.id == product_id).one()
+    except NoResultFound as e:
+        print("В БД отсутсвует пользователь с идентификатором " + product_id + e)
     return product
 
 
@@ -42,8 +55,12 @@ def add_product(product: {}) -> str:
     Принимает словарь {'title': '', 'description': '', 'price': '', 'photo': '', 'seller_id': ''}.
     Возвращает строку ok/err -  добавилось/база не доступна"""
 
-    product_for_add = Product(product['title'], product['description'], product['price'], product['photo'],
-                               product['seller_id'])
+    product_for_add = Product(product['title'],
+                              product['description'],
+                              product['price'],
+                              product['photo'],
+                              product['seller_id'],
+                              product['view_count'])
 
     db.session.add(product_for_add)
 
