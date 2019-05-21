@@ -1,5 +1,9 @@
 import json
 
+import os
+
+from uuid import  uuid1
+
 from app import api
 from app import app
 
@@ -11,6 +15,7 @@ from flask import Response
 from flask import request
 
 from flask_login import login_required
+from flask_login import current_user
 
 from flask_restful import Resource
 from flask_restful import reqparse
@@ -25,7 +30,7 @@ from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
 from app.db_utils.users import send_mail
 
-from uuid import  uuid1
+from loguru import logger
 
 
 class GetProductInfoById(Resource):
@@ -104,21 +109,33 @@ class GetAllProducts(Resource):
 
 
 class UploadPhoto(Resource):
-    @login_required
+    #@login_required
     def post(self):
+        path = app.root_path + '/static/uploads/' + str(hash('123'))
+        if not os.path.exists(path):
+            os.makedirs(path)
         def allowed_file(filename):
             file = filename.lower()
-            ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
-            return '.' in file and file.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+            #ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
+            #app.config['ALLOWED_EXTENSIONS']
+            if '.' in file and file.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']:
+                return True
+            else:
+                raise Exception('Файл не правильного формата')
         try:
             file = request.files['file']
             if file and allowed_file(file.filename):
                 filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
-                path = app.root_path + '/static/uploads/'
-                file.save(path + filename)
+                file.save(os.path.join(path, filename))
                 return json.dumps({'sucess': 'true', 'path': path + filename})
-        except:
-            return json.dumps({'sucess': 'false'})
+        except Exception as e:
+            if str(e) == '413 Request Entity Too Large: The data value transmitted exceeds the capacity limit.':
+                return json.dumps({'sucess': 'false', 'причина': 'Объем фотографии не должен превышать 5Мб'})
+            elif str(e) == 'Файл не правильного формата':
+                return json.dumps({'sucess': 'false', 'причина': 'Файл должен быть формата png, jpg или jpeg'})
+            else:
+                logger.warning('Ошибка при сохранении фотографии пользователем: {}'.format(e))
+                return json.dumps({'sucess': 'false', 'причина': 'По техническим причинам сейчас нет возможности сохранить Вашу фотографию, попробуйте, пожалуйста, позже.'})
 
 
 api.add_resource(Registration, '/api/registration')
