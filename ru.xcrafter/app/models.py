@@ -101,6 +101,9 @@ class Product(db.Model):
     def __repr__(self):
         return '<Product {}>'.format(self.title)
 
+    def change_view_count(self):
+        self.view_count += 1
+
 
 class Order(db.Model):
 
