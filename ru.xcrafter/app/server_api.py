@@ -14,7 +14,7 @@ from flask_restful import Resource
 from flask_restful import reqparse
 
 from app.db_utils.products import get_product_by_id
-from app.db_utils.products import get_product_from_base
+from app.db_utils.products import get_product
 from app.db_utils.products import add_product
 from app.db_utils.products import delete_product_by_id
 from app.db_utils.products import edit_product
@@ -104,7 +104,7 @@ class GetAllProducts(Resource):
 
 class SetViewCount(Resource):
     def get(self, product_id):
-        product = get_product_from_base(product_id)
+        product = get_product(product_id)
         product.change_view_count()
         return product.view_count
 
