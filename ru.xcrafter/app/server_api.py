@@ -23,6 +23,8 @@ from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
 from app.db_utils.users import send_mail
 
+from app.models.Product import change_view_count
+
 
 class GetProductInfoById(Resource):
     def get(self, id):
@@ -98,10 +100,19 @@ class GetAllProducts(Resource):
 
         return json.dumps(result)
 
+
+class SetViewCount(Resource):
+    def get(self, product_id):
+        product = get_product_by_id(product_id)
+        product.change_view_count()
+
+
+
 api.add_resource(Registration, '/api/registration')
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
 api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
+api.add_resource(SetViewCount, 'api/product/<int: product_id>')
 
