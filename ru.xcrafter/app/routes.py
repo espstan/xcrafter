@@ -58,6 +58,9 @@ def page_not_found(e):
 def contacts():
     return render_template('public/contacts.html')
 
+@app.route('/registration')
+def get_registration():
+    return render_template('public/registration.html')
 
 @app.route('/password-recovery')
 def recoveryPassword():
