@@ -109,29 +109,30 @@ class GetAllProducts(Resource):
 
 
 class UploadPhoto(Resource):
-    #@login_required
+    @login_required
     def post(self):
-        path = app.root_path + '/static/uploads/' + str(hash('123'))
+        path = app.root_path + '/static/uploads/' + str(current_user.id)
         if not os.path.exists(path):
             os.makedirs(path)
-        def allowed_file(filename):
-            file = filename.lower()
-            #ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
-            #app.config['ALLOWED_EXTENSIONS']
-            if '.' in file and file.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']:
+
+        def allowed_file(filenames):
+            files = filenames.lower()
+            if '.' in files and files.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']:
                 return True
-            else:
-                raise Exception('Файл не правильного формата')
+            raise Exception('Файл не правильного формата')
+
+        file = request.files['file']
+
+        if not file.filename:
+            return json.dumps({'sucess': 'false', 'причина': 'Нет файла'})
+
         try:
-            file = request.files['file']
-            if file and allowed_file(file.filename):
-                filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
-                file.save(os.path.join(path, filename))
-                return json.dumps({'sucess': 'true', 'path': path + filename})
+            allowed_file(file.filename)
+            filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
+            file.save(os.path.join(path, filename))
+            return json.dumps({'sucess': 'true', 'path': path + filename})
         except Exception as e:
-            if str(e) == '413 Request Entity Too Large: The data value transmitted exceeds the capacity limit.':
-                return json.dumps({'sucess': 'false', 'причина': 'Объем фотографии не должен превышать 5Мб'})
-            elif str(e) == 'Файл не правильного формата':
+            if str(e) == 'Файл не правильного формата':
                 return json.dumps({'sucess': 'false', 'причина': 'Файл должен быть формата png, jpg или jpeg'})
             else:
                 logger.warning('Ошибка при сохранении фотографии пользователем: {}'.format(e))
