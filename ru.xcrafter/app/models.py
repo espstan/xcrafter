@@ -8,6 +8,8 @@ from sqlalchemy import JSON
 from sqlalchemy import DateTime
 from sqlalchemy import Date
 
+from sqlalchemy.exc import SQLAlchemyError
+
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
@@ -35,8 +37,6 @@ class User(UserMixin, db.Model):
     birthday = db.Column(Date)
     store_name = db.Column(db.Text)
     store_alias = db.Column(db.Text)
-
-    # store tests
 
     def __init__(self, first_name, surname, email, phone_number,
                  password_hash, agree_to_processing_personal_data, active=False, *args):
@@ -102,6 +102,15 @@ class Product(db.Model):
 
     def __repr__(self):
         return '<Product {}>'.format(self.title)
+
+    def change_view_count(self):
+        try:
+            self.view_count += 1
+            db.session.commit()
+        except SQLAlchemyError as e:
+            error = str(e.__class__.__name__)
+            print("SQLAlchemy error: " + error)
+        return self.view_count
 
 
 class Order(db.Model):

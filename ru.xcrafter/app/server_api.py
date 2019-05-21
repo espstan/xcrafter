@@ -23,6 +23,7 @@ from flask_restful import Resource
 from flask_restful import reqparse
 
 from app.db_utils.products import get_product_by_id
+from app.db_utils.products import get_product
 from app.db_utils.products import add_product
 from app.db_utils.products import delete_product_by_id
 from app.db_utils.products import edit_product
@@ -33,6 +34,8 @@ from app.db_utils.users import get_user_by_id
 from app.db_utils.users import send_mail
 
 from loguru import logger
+
+from app.models import Product
 
 
 class GetProductInfoById(Resource):
@@ -144,6 +147,13 @@ class UploadPhoto(Resource):
                                 'error': 'По техническим причинам сейчас нет возможности сохранить '
                                          'Вашу фотографию, попробуйте, пожалуйста, позже.'})
 
+              
+class SetViewCount(Resource):
+    def get(self, product_id):
+        product = get_product(product_id)
+        product.change_view_count()
+        return product.view_count
+
 
 api.add_resource(Registration, '/api/registration')
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
@@ -152,4 +162,4 @@ api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
 api.add_resource(UploadPhoto, '/api/v1/uploads/photo')
-
+api.add_resource(SetViewCount, '/api/<int:product_id>/product_view')

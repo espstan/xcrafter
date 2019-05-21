@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'Super Secret Key'
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:example@localhost:5432'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:{}@127.0.0.1:5432'.format(os.environ.get('DB_PASS'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     MAIL_SERVER = 'smtp.gmail.com'

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if request.cookies.get('next_version_mode') %}
+<script>
+  const markerCardPage = true;
+</script>
+{% endif %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card-item.css') }}">
 <div class="wrapper" data-item-id="{{ product.id }}">
     <div class="menu-actions">

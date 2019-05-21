@@ -34,6 +34,7 @@ js = Bundle('script/toggle-sign-mode.js',
             'script/check-form.js',
             'script/modal-windows.js',
             'script/main-page.js',
+            'script/count-view-product.js',
             filters='jsmin', output='bundle.min.js')
 assets.register('js_all', js)
 

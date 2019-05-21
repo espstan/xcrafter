@@ -58,6 +58,9 @@ def page_not_found(e):
 def contacts():
     return render_template('public/contacts.html')
 
+@app.route('/registration')
+def get_registration():
+    return render_template('public/registration.html')
 
 @app.route('/password-recovery')
 def recoveryPassword():
@@ -71,13 +74,13 @@ def profile():
                            current_user=current_user)
 
 
-@app.route('/profile/add-сard-item')
+@app.route('/profile/add-product')
 @login_required
 def add_card_item():
     return render_template('add-card-item.html')
 
 
-@app.route('/profile/edit-card-item/<product_id>')
+@app.route('/profile/<product_id>/edit-product')
 @login_required
 def profile_edit_card_item(product_id):
     try:
@@ -101,11 +104,6 @@ def profile_product_catalog():
 
 
 @app.route('/product/<product_id>')
-def product(product_id):
-    return render_template('public/product/product.html')
-
-
-@app.route('/item/<product_id>')
 def card_item(product_id):
     try:
         product = get_product_by_id(product_id)
@@ -115,7 +113,7 @@ def card_item(product_id):
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
-@app.route('/item/photo/<product_id>')
+@app.route('/product/<product_id>/photo')
 def card_item_photo(product_id):
     try:
         product = get_product_by_id(product_id)
@@ -125,7 +123,7 @@ def card_item_photo(product_id):
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
-@app.route('/item/<product_id>/description')  # TODO: Исправить порядок в URL
+@app.route('/product/<product_id>/description')
 def card_item_description(product_id):
     try:
         product = get_product_by_id(product_id)
@@ -135,7 +133,7 @@ def card_item_description(product_id):
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
 
 
-@app.route('/item/about-seller/<product_id>')
+@app.route('/product/<product_id>/about-seller')
 def card_item_about_seller(product_id):
     try:
         product = get_product_by_id(product_id)
