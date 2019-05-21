@@ -24,8 +24,6 @@ from flask_login import logout_user
 
 from werkzeug.security import generate_password_hash
 
-from uuid import uuid1
-
 from loguru import logger
 
 @app.route('/')
