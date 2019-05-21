@@ -2,7 +2,9 @@ import json
 
 import os
 
-from uuid import  uuid1
+import hashlib
+
+from uuid import uuid1
 
 from app import api
 from app import app
@@ -111,7 +113,9 @@ class GetAllProducts(Resource):
 class UploadPhoto(Resource):
     @login_required
     def post(self):
-        path = app.root_path + '/static/uploads/' + str(current_user.id)
+        cur_id_str = str(current_user.id)
+        hash_user_id = hashlib.md5(cur_id_str.encode('UTF-8')).hexdigest()
+        path = app.root_path + '/static/uploads/' + hash_user_id
         if not os.path.exists(path):
             os.makedirs(path)
 
