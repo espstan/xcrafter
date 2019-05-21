@@ -17,8 +17,10 @@ from flask_mail import Mail
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 app.config['ALLOWED_EXTENSIONS'] = ['png', 'jpg', 'jpeg']
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = Api(app)
