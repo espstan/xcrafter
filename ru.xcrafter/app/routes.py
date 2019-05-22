@@ -76,7 +76,21 @@ def recoveryPassword():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile/profile.html',
+    return render_template('profile/dashboard.html', 
+                          current_user=current_user)
+
+
+@app.route('/profile/settings')
+@login_required
+def profile_settings():
+    return render_template('profile/settings.html',
+                           current_user=current_user)
+
+
+@app.route('/profile/orders')
+@login_required
+def profile_orders():
+    return render_template('profile/orders.html',
                            current_user=current_user)
 
 
