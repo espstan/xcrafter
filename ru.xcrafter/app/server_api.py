@@ -138,7 +138,7 @@ class UploadPhoto(Resource):
             allowed_file(file.filename)
             filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
             file.save(os.path.join(path, filename))
-            uploads_photo_in_db(path + filename, cur_id, filename.rsplit('.', 1)[0])
+            uploads_photo_in_db(path + filename, cur_id, product_id)
             return json.dumps({'sucess': 'true', 'path': path + filename})
         except Exception as e:
             if str(e) == 'Файл не правильного формата':
