@@ -34,9 +34,13 @@ from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
 from app.db_utils.users import send_mail
 
+from app.db_utils.subscriptions import get_subscription
+from app.db_utils.subscriptions import add_subscription
+
 from loguru import logger
 
 from app.models import Product
+from app.models import Subscription
 
 
 class GetProductInfoById(Resource):
@@ -167,7 +171,20 @@ class SetViewCount(Resource):
         return product.view_count
 
 
-api.add_resource(Registration, '/api/registration')
+class AddSubscription(Resource):
+    def get(self):
+        email = request.args.get('q')
+        if email:
+            subscription = get_subscription(email)
+            if subscription is None:
+                add_subscription(email)
+            else:
+                if not subscription.is_active:
+                    subscription.set_active()
+        return redirect(url_for('index'))
+
+
+api.add_resource(Registration, '/api/registration') #TODO добавить версию api
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
 api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
@@ -175,3 +192,4 @@ api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
 api.add_resource(UploadPhoto, '/api/v1/uploads/photo')
 api.add_resource(SetViewCount, '/api/<int:product_id>/product_view')
+api.add_resource(AddSubscription, '/api/v1/subscribe')
