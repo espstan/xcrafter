@@ -93,7 +93,7 @@
     <section id="subscription-form">
         <h1>Подписаться на рассылку</h1>
         <form class="mailing-form"
-              action="/api/v1/subscribe"
+              action="{{ url_for('addsubscription') }}"
               method="GET">
             <input type="email"
                    name="q"
