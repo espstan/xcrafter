@@ -125,101 +125,184 @@
             </section>
         </section>
     </section>
-    <section id="frequently-asked-questions">
+    <div class="accordion" id="accordionExample">
         <div class="questions-container">
             <h2 class="question-heading">Часто задаваемые вопросы</h2>
-            <section class="questions-list">
-                <div class="questions-item"
-                     onclick="showAnswer('answer-1', 'question-1', 'btn-show-1')">
-                    <div class="question-name">
-                        <h3 class="question-title"
-                            id="question-1">
-                            Lorem ipsum dolor sit amet?
-                        </h3>
+            <div class="card questions-item"
+                 onclick="showAnswer ( 'btnOne', 'questionOne')">
+                <div class="card-header question-header"
+                     id="headingOne"
+                     data-toggle="collapse"
+                     data-target="#collapseOne">
+                    <h5 class="mb-0 question-name">
+                        <button class="btn btn-link collapsed question-title"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="collapseOne"
+                                id="questionOne"
+                                style="color: black">
+                                Lorem ipsum dolor sit amet?
+                        </button>
                         <img class="question-img-show"
-                             id="btn-show-1"
-                             src="../static/img/Question-show.svg">
+                             id="btnOne"
+                             src="{{ url_for('static', filename='img/Question-show.svg' ) }}">
+                    </h5>
+                    <div id="collapseOne"
+                         class="collapse"
+                         aria-labelledby="headingOne"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
                     </div>
-                    <p class="question-text"
-                       id="answer-1"
-                       style="display: none">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
                 </div>
-                <div class="questions-item"
-                     onclick="showAnswer('answer-2', 'question-2', 'btn-show-2')">
-                    <div class="question-name">
-                        <h3 class="question-title"
-                            id="question-2">
-                            Lorem ipsum dolor sit amet?
-                        </h3>
+            </div>
+            <div class="card questions-item"
+                 onclick="showAnswer ( 'btnTwo', 'questionTwo')">
+                <div class="card-header question-header"
+                     id="headingTwo"
+                     data-toggle="collapse"
+                     data-target="#collapseTwo">
+                    <h5 class="mb-0 question-name">
+                        <button class="btn btn-link collapsed question-title"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="collapseTwo"
+                                id="questionTwo"
+                                style="color: black">
+                                Lorem ipsum dolor sit amet?
+                        </button>
                         <img class="question-img-show"
-                             id="btn-show-2"
-                             src="../static/img/Question-show.svg">
+                             src="{{ url_for('static', filename='img/Question-show.svg' ) }}"
+                             id="btnTwo">
+                    </h5>
+                    <div id="collapseTwo"
+                         class="collapse"
+                         aria-labelledby="headingTwo"
+                         data-parent="#accordionExample">
+                        <div class="card-body question-text">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
                     </div>
-                    <p class="question-text"
-                       id="answer-2"
-                       style="display: none">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
                 </div>
-                <div class="questions-item"
-                     onclick="showAnswer('answer-3', 'question-3', 'btn-show-3')">
-                    <div class="question-name">
-                        <h3 class="question-title"
-                            id="question-3">
-                            Lorem ipsum dolor sit amet?
-                        </h3>
+            </div>
+            <div class="card questions-item"
+                 onclick="showAnswer ( 'btnThree', 'questionThree')">
+                <div class="card-header question-header"
+                     id="headingThree"
+                     data-toggle="collapse"
+                     data-target="#collapseThree">
+                    <h5 class="mb-0 question-name">
+                        <button class="btn btn-link collapsed question-title"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="collapseThree"
+                                id="questionThree"
+                                style="color: black">
+                                Lorem ipsum dolor sit amet?
+                        </button>
                         <img class="question-img-show"
-                             id="btn-show-3"
-                             src="../static/img/Question-show.svg">
+                             src="{{ url_for('static', filename='img/Question-show.svg' ) }}"
+                             id="btnThree">
+                    </h5>
+                    <div id="collapseThree"
+                         class="collapse"
+                         aria-labelledby="headingThree"
+                         data-parent="#accordionExample">
+                        <div class="card-body question-text">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
                     </div>
-                    <p class="question-text"
-                       id="answer-3"
-                       style="display: none">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
                 </div>
-                <div class="questions-item"
-                     onclick="showAnswer('answer-4', 'question-4', 'btn-show-4')">
-                    <div class="question-name">
-                        <h3 class="question-title"
-                            id="question-4">
-                            Lorem ipsum dolor sit amet?
-                        </h3>
+            </div>
+            <div class="card questions-item"
+                 onclick="showAnswer ( 'btnFour', 'questionFour')">
+                <div class="card-header question-header"
+                     id="headingFour"
+                     data-toggle="collapse"
+                     data-target="#collapseFour">
+                    <h5 class="mb-0 question-name">
+                        <button class="btn btn-link collapsed question-title"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="collapseFour"
+                                id="questionFour"
+                                style="color: black">
+                                Lorem ipsum dolor sit amet?
+                        </button>
                         <img class="question-img-show"
-                             id="btn-show-4"
-                             src="../static/img/Question-show.svg">
+                             src="{{ url_for('static', filename='img/Question-show.svg' ) }}"
+                             id="btnFour">
+                    </h5>
+                    <div id="collapseFour"
+                         class="collapse"
+                         aria-labelledby="headingFour"
+                         data-parent="#accordionExample">
+                        <div class="card-body question-text">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
                     </div>
-                    <p class="question-text"
-                       id="answer-4"
-                       style="display: none">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
                 </div>
-                <div class="questions-item"
-                     onclick="showAnswer('answer-5', 'question-5', 'btn-show-5')">
-                    <div class="question-name">
-                        <h3 class="question-title"
-                            id="question-5">
-                            Lorem ipsum dolor sit amet?
-                        </h3>
+            </div>
+            <div class="card questions-item"
+                 onclick="showAnswer ( 'btnFive', 'questionFive')">
+                <div class="card-header question-header"
+                     id="headingFive"
+                     data-toggle="collapse"
+                     data-target="#collapseFive">
+                    <h5 class="mb-0 question-name">
+                        <button class="btn btn-link collapsed question-title"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="collapseFive"
+                                id="questionFive"
+                                style="color: black">
+                                Lorem ipsum dolor sit amet?
+                        </button>
                         <img class="question-img-show"
-                             id="btn-show-5"
-                             src="../static/img/Question-show.svg">
+                             src="{{ url_for('static', filename='img/Question-show.svg' ) }}"
+                             id="btnFive">
+                    </h5>
+                    <div id="collapseFive"
+                         class="collapse"
+                         aria-labelledby="headingFive"
+                         data-parent="#accordionExample">
+                        <div class="card-body question-text">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
+                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                            single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
+                            beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
+                            lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
+                            probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
                     </div>
-                    <p class="question-text"
-                       id="answer-5"
-                       style="display: none">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
                 </div>
-            </section>
+            </div>
             <section class="questions-more">
                 <p class="question-more-text">Still have questions?
                     <a class="question-more-link"
@@ -229,7 +312,7 @@
                 </p>
             </section>
         </div>
-    </section>
+    </div>
     <section id="subscription-form">
         <h1>Подписаться на рассылку</h1>
         <form class="mailing-form"
@@ -244,14 +327,14 @@
         </form>
     </section>
     <footer class="products-footer">
-        <div class="m-auto container m-5">    
+        <div class="m-auto container m-5">
             <div class="d-grid container row content align-items-center">
                 <div class="col-6 justify-content-start pl-0 description">
                     <h3>XCrafter</h3>
                     <p class="about">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Pariatur hic quasi, mollitia cumque, soluta unde iusto 
-                        excepturi veniam facere aspernatur aut cupiditate sint 
+                        Pariatur hic quasi, mollitia cumque, soluta unde iusto
+                        excepturi veniam facere aspernatur aut cupiditate sint
                         amet veritatis nisi blanditiis a nobis omnis!
                     </p>
                 </div>
@@ -261,7 +344,7 @@
                         <li><a class="" href="#">Profile</a></li>
                         <li><a class="" href="#">Settings</a></li>
                         <li><a class="" href="#">Billing</a></li>
-                        <li><a class="" href="#">Notifications</a></li>                                                            
+                        <li><a class="" href="#">Notifications</a></li>
                     </ul>
                     <ul class="col-4">
                         <spanp>About</span>
@@ -289,10 +372,10 @@
                         <a href="#"><i class="fab fa-instagram mr-4"></i></a>
                         <a href="#"><i class="fab fa-github mr-4"></i></a>
                         <a href="#"><i class="fab fa-facebook-square mr-4 pr-4"></i></a>
-                    </div>      
+                    </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </footer>
     <div id="popup-window" class="closed"></div>
     <div class="modal-overlay closed" id="modal-overlay"></div>
