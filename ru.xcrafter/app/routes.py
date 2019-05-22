@@ -10,6 +10,9 @@ from app.db_utils.users import get_user_products
 
 from app.models import User
 
+import os
+
+from flask import abort
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -25,6 +28,13 @@ from flask_login import logout_user
 from werkzeug.security import generate_password_hash
 
 from loguru import logger
+
+
+@app.before_request
+def check_for_maintenance():
+    if os.path.exists('maintenance'):
+        abort(503)
+
 
 @app.route('/')
 def index() -> 'html':
@@ -42,6 +52,11 @@ def index() -> 'html':
 @app.route('/robots.txt')
 def get_robots_txt():
     return send_from_directory('static', 'robots.txt')
+
+
+@app.errorhandler(503)
+def maintenance_on_server(e):
+    return '<h2>На сервере ведутся технические работы.</h2>'
 
 
 @app.errorhandler(404)
