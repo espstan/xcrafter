@@ -24,7 +24,13 @@ from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
 from app.db_utils.users import send_mail
 
+from app.db_utils.subscriptions import get_subscription
+from app.db_utils.subscriptions import add_subscription
+
 from app.models import Product
+from app.models import Subscription
+
+from app.forms import AddSubscriptionRequestForm
 
 
 class GetProductInfoById(Resource):
@@ -109,6 +115,18 @@ class SetViewCount(Resource):
         return product.view_count
 
 
+class AddSubscription(Resource):
+    def post(self):
+        form = AddSubscriptionRequestForm()
+        if form.validate_on_submit():
+            email = form.email.data
+            subscription = get_subscription(email)
+            if subscription is None:
+                add_subscription(email)
+            else:
+                subscription.set_active()
+
+
 api.add_resource(Registration, '/api/registration')
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
@@ -116,3 +134,4 @@ api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
 api.add_resource(SetViewCount, '/api/<int:product_id>/product_view')
+api.add_resource(AddSubscription, '/api/subcribe/<email>')
