@@ -35,6 +35,7 @@ js = Bundle('script/toggle-sign-mode.js',
             'script/modal-windows.js',
             'script/main-page.js',
             'script/count-view-product.js',
+            'script/show-frequently-asked-question.js',
             filters='jsmin', output='bundle.min.js')
 assets.register('js_all', js)
 
@@ -49,6 +50,7 @@ css = Bundle('css/main-page.css',
              'css/popup-window.css',
              'css/profile.css',
              'css/advantage-marketplace.css',
+             'css/frequently-asked-questions.css',
              filters='cssmin', output='bundle.min.css')
 assets.register('css_all', css)
 
