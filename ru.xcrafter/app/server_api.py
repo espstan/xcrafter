@@ -28,6 +28,7 @@ from app.db_utils.products import add_product
 from app.db_utils.products import delete_product_by_id
 from app.db_utils.products import edit_product
 from app.db_utils.products import get_all_products
+from app.db_utils.products import add_product_photo
 
 from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
@@ -118,7 +119,7 @@ class UploadPhoto(Resource):
     def post(self):
         cur_id = str(current_user.id)
         hash_user_id = hashlib.md5(cur_id.encode('UTF-8')).hexdigest()
-        path = os.path.join(app.root_path, 'static/uploads/', hash_user_id)
+        path = os.path.join(app.root_path, 'static', 'uploads', hash_user_id)
         if not os.path.exists(path):
             os.makedirs(path)
 
@@ -134,10 +135,12 @@ class UploadPhoto(Resource):
             return jsonify({'sucess': 'false', 'error': 'Нет файла'})
 
         try:
+            product_id = request.form["product_id"]
             allowed_file(file.filename)
             filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
             file.save(os.path.join(path, filename))
-            return json.dumps({'sucess': 'true', 'path': path + filename})
+            add_product_photo(os.path.join(path, filename), cur_id, product_id)
+            return jsonify({'sucess': 'true', 'path': os.path.join(path, filename)})
         except Exception as e:
             if str(e) == 'Файл не правильного формата':
                 return jsonify({'sucess': 'false', 'error': 'Файл должен быть формата png, jpg или jpeg'})
