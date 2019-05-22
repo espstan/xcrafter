@@ -55,10 +55,13 @@ def get_product(product_id: int):
     return product
 
 
-def add_product(product: {}) -> str:
+def add_product(product: {}, user_id) -> str:
     """Записывает новый товар в бд(в таблицу товаров).
     Принимает словарь {'title': '', 'description': '', 'price': '', 'photo': '', 'seller_id': ''}.
     Возвращает строку ok/err -  добавилось/база не доступна"""
+
+    if check_number_product(user_id):
+        raise Exception('Большое количество товаров')
 
     product_for_add = Product(product['title'],
                               product['description'],
@@ -70,9 +73,9 @@ def add_product(product: {}) -> str:
 
     try:
         db.session.commit()
-    except OperationalError:
+    except OperationalError as e:
         db.session.rollback()
-        return 'err'
+        raise Exception(str(e))
 
     return 'ok'
 
@@ -138,4 +141,9 @@ def add_product_photo(path, user_id, product_id):
 def check_number_product_photo(product_id):
     photos = Photo.query.filter(Photo.product_id == product_id).all()
     return len(photos) > 5
+
+
+def check_number_product(user_id):
+    photos = Product.query.filter(Product.seller_id == user_id).all()
+    return len(photos) > 10
 
