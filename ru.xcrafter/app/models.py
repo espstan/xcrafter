@@ -177,3 +177,24 @@ class Photo(db.Model):
         self.owner_id = owner_id
         self.path = path
         self.created_time = datetime.datetime.today()
+
+
+class Subscription(db.Model):
+    __tablename__ = 'subcription'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.Text, unique=True, nullable=False)
+    is_active = db.Column(db.Boolean, nullable=False)
+
+    def __init__(self, email):
+        self.email = email
+        self.is_active = True
+
+    def set_active(self):
+        try:
+            self.is_active = True
+            db.session.commit()
+        except SQLAlchemyError as e:
+            error = str(e.__class__.__name__)
+            print("SQLAlchemy error: " + error)
+        return self.is_active
