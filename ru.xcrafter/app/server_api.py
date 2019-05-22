@@ -135,6 +135,7 @@ class UploadPhoto(Resource):
             return jsonify({'sucess': 'false', 'error': 'Нет файла'})
 
         try:
+            product_id = request.form["product_id"]
             allowed_file(file.filename)
             filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
             file.save(os.path.join(path, filename))
