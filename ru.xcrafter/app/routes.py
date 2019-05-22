@@ -12,6 +12,7 @@ from app.db_utils.users import get_user_products
 
 from app.models import User
 
+from flask import abort
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -32,7 +33,10 @@ from loguru import logger
 @app.before_request
 def check_for_maintenance():
     if os.path.exists(os.path.join(app.root_path, 'maintenance')):
-        return render_template('public/maintenance.html'), 503
+        if request.path != url_for('maintenance'):
+            return redirect(url_for('maintenance')), 307
+    elif request.path == url_for('maintenance'):
+        abort(404)
 
 
 @app.route('/')
@@ -51,6 +55,11 @@ def index() -> 'html':
 @app.route('/robots.txt')
 def get_robots_txt():
     return send_from_directory('static', 'robots.txt')
+
+
+@app.route('/maintenance')
+def maintenance():
+    return render_template('public/maintenance.html'), 503
 
 
 @app.errorhandler(404)
