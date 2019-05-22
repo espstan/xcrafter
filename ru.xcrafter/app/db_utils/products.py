@@ -118,7 +118,7 @@ def edit_product(item: {}):
         pass
 
 
-def uploads_photo_in_db(path, user_id, product_id):
+def upload_photo_in_db(path, user_id, product_id):
     photo = Photo(product_id, user_id, path)
     db.session.add(photo)
 
