@@ -49,6 +49,7 @@ css = Bundle('css/main-page.css',
              'css/popup-window.css',
              'css/profile.css',
              'css/advantage-marketplace.css',
+             'css/frequently-asked-questions.css',
              filters='cssmin', output='bundle.min.css')
 assets.register('css_all', css)
 
