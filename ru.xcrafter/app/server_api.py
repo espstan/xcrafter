@@ -7,6 +7,7 @@ from flask import url_for
 from flask import abort
 from flask import jsonify
 from flask import Response
+from flask import request
 
 from flask_login import login_required
 
@@ -29,8 +30,6 @@ from app.db_utils.subscriptions import add_subscription
 
 from app.models import Product
 from app.models import Subscription
-
-from app.forms import AddSubscriptionRequestForm
 
 
 class GetProductInfoById(Resource):
@@ -116,31 +115,23 @@ class SetViewCount(Resource):
 
 
 class AddSubscription(Resource):
-    def post(self, email):
-        # form = AddSubscriptionRequestForm()  #TODO реализовать при готовности frontend
-        # if form.validate_on_submit():
-        #     email = form.email.data
-        #     subscription = get_subscription(email)
-        #     if subscription is None:
-        #         add_subscription(email)
-        #     else:
-        #         subscription.set_active()
-        subscription = get_subscription(email)
-        if subscription is None:
-            res = add_subscription(email)
-            return res
-        else:
-            if subscription.is_active:
-                return True
+    def get(self):
+        email = request.args.get('q')
+        if email:
+            subscription = get_subscription(email)
+            if subscription is None:
+                add_subscription(email)
             else:
-                return subscription.set_active()
+                if not subscription.is_active:
+                    subscription.set_active()
+        return redirect(url_for('index'))
 
 
-api.add_resource(Registration, '/api/registration')
+api.add_resource(Registration, '/api/registration') #TODO добавить версию api
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
 api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
 api.add_resource(SetViewCount, '/api/<int:product_id>/product_view')
-api.add_resource(AddSubscription, '/api/subcribe/<email>')
+api.add_resource(AddSubscription, '/api/v1/subscribe')
