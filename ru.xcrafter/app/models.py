@@ -194,7 +194,8 @@ class Subscription(db.Model):
         try:
             self.is_active = True
             db.session.commit()
+            return True
         except SQLAlchemyError as e:
             error = str(e.__class__.__name__)
             print("SQLAlchemy error: " + error)
-        return self.is_active
+            return False
