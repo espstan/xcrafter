@@ -1,6 +1,13 @@
 import json
 
+import os
+
+import hashlib
+
+from uuid import uuid1
+
 from app import api
+from app import app
 
 from flask import redirect
 from flask import url_for
@@ -10,6 +17,7 @@ from flask import Response
 from flask import request
 
 from flask_login import login_required
+from flask_login import current_user
 
 from flask_restful import Resource
 from flask_restful import reqparse
@@ -20,6 +28,7 @@ from app.db_utils.products import add_product
 from app.db_utils.products import delete_product_by_id
 from app.db_utils.products import edit_product
 from app.db_utils.products import get_all_products
+from app.db_utils.products import add_product_photo
 
 from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
@@ -27,6 +36,8 @@ from app.db_utils.users import send_mail
 
 from app.db_utils.subscriptions import get_subscription
 from app.db_utils.subscriptions import add_subscription
+
+from loguru import logger
 
 from app.models import Product
 from app.models import Subscription
@@ -48,8 +59,15 @@ class AddItemInCatalog(Resource):
         parser.add_argument('photo')
         parser.add_argument('seller_id')
         args = parser.parse_args()
-        result = add_product(args)
-        return result
+        try:
+            result = add_product(args, current_user)
+            return jsonify({'sucess': 'true', 'product': result})
+        except Exception as e:
+            if str(e) == 'Большое количество товаров':
+                return jsonify({'sucess': 'false', 'error': 'Можно добавить не более 10 товаров'})
+            logger.warning('Ошибка при добавлении пользователем нового товара: {}'.format(e))
+            return jsonify({'sucess': 'false', 'error': 'По техническим причинам мы не можем сейчас добавить Ваш'
+                                                        'товар. Попробуйте, пожалуйста, попозже.'})
 
 
 class DeleteItemInDB(Resource):
@@ -107,6 +125,45 @@ class GetAllProducts(Resource):
         return json.dumps(result)
 
 
+class UploadPhoto(Resource):
+    @login_required
+    def post(self):
+        cur_id = str(current_user.id)
+        hash_user_id = hashlib.md5(cur_id.encode('UTF-8')).hexdigest()
+        path = os.path.join(app.root_path, 'static', 'uploads', hash_user_id)
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        def allowed_file(filenames):
+            files = filenames.lower()
+            if '.' in files and files.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']:
+                return True
+            raise Exception('Файл не правильного формата')
+
+        file = request.files['file']
+
+        if not file.filename:
+            return jsonify({'sucess': 'false', 'error': 'Нет файла'})
+
+        try:
+            product_id = request.form["product_id"]
+            allowed_file(file.filename)
+            filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
+            file.save(os.path.join(path, filename))
+            add_product_photo(os.path.join(path, filename), cur_id, product_id)
+            return jsonify({'sucess': 'true', 'path': os.path.join(path, filename)})
+        except Exception as e:
+            if str(e) == 'Файл не правильного формата':
+                return jsonify({'sucess': 'false', 'error': 'Файл должен быть формата png, jpg или jpeg'})
+            elif str(e) == 'Большое количество фотогорафий':
+                return jsonify({'sucess': 'false', 'error': 'Можно добавлять не более 5 фотографий'})
+            else:
+                logger.warning('Ошибка при сохранении фотографии пользователем: {}'.format(e))
+                return jsonify({'sucess': 'false',
+                                'error': 'По техническим причинам сейчас нет возможности сохранить '
+                                         'Вашу фотографию, попробуйте, пожалуйста, позже.'})
+
+              
 class SetViewCount(Resource):
     def get(self, product_id):
         product = get_product(product_id)
@@ -133,5 +190,6 @@ api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
 api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
+api.add_resource(UploadPhoto, '/api/v1/uploads/photo')
 api.add_resource(SetViewCount, '/api/<int:product_id>/product_view')
 api.add_resource(AddSubscription, '/api/v1/subscribe')

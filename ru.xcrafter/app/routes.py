@@ -1,3 +1,5 @@
+import os
+
 from app import app
 from app import db
 
@@ -10,6 +12,7 @@ from app.db_utils.users import get_user_products
 
 from app.models import User
 
+from flask import abort
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -25,6 +28,16 @@ from flask_login import logout_user
 from werkzeug.security import generate_password_hash
 
 from loguru import logger
+
+
+@app.before_request
+def check_for_maintenance():
+    if os.path.exists(os.path.join(app.root_path, 'maintenance')):
+        if request.path != url_for('maintenance'):
+            return redirect(url_for('maintenance')), 307
+    elif request.path == url_for('maintenance'):
+        abort(404)
+
 
 @app.route('/')
 def index() -> 'html':
@@ -44,6 +57,11 @@ def get_robots_txt():
     return send_from_directory('static', 'robots.txt')
 
 
+@app.route('/maintenance')
+def maintenance():
+    return render_template('public/maintenance.html'), 503
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('public/error404.html')
@@ -58,6 +76,15 @@ def page_not_found(e):
 def contacts():
     return render_template('public/contacts.html')
 
+@app.route('/registration')
+def get_registration():
+    return render_template('public/registration.html')
+
+
+@app.route('/sign-in')
+def get_sign_in():
+    return render_template('public/sign-in.html')
+
 
 @app.route('/password-recovery')
 def recoveryPassword():
@@ -67,7 +94,21 @@ def recoveryPassword():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile/profile.html',
+    return render_template('profile/dashboard.html', 
+                          current_user=current_user)
+
+
+@app.route('/profile/settings')
+@login_required
+def profile_settings():
+    return render_template('profile/settings.html',
+                           current_user=current_user)
+
+
+@app.route('/profile/orders')
+@login_required
+def profile_orders():
+    return render_template('profile/orders.html',
                            current_user=current_user)
 
 
