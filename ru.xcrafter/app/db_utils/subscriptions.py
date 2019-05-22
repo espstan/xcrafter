@@ -1,5 +1,3 @@
-import sqlalchemy
-
 from app import db
 
 from sqlalchemy.exc import InvalidRequestError
@@ -22,8 +20,6 @@ def add_subscription(email):
         subscription = Subscription(email)
         db.session.add(subscription)
         db.session.commit()
-        return True
     except SQLAlchemyError as e:
         error = str(e.__class__.__name__)
         print("SQLAlchemy error: " + error)
-        return False
