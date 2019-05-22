@@ -69,7 +69,7 @@
 .question-more-link::after {
     content: '';
     position: absolute;
-    background-image: url('../img/More-question-icon.svg');
+    background-image: url('../img/more_question_icon.svg');
     width: 14px;
     height: 14px;
     top: 50%;
