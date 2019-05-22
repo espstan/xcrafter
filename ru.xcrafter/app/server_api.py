@@ -55,8 +55,15 @@ class AddItemInCatalog(Resource):
         parser.add_argument('photo')
         parser.add_argument('seller_id')
         args = parser.parse_args()
-        result = add_product(args)
-        return result
+        try:
+            result = add_product(args, current_user)
+            return jsonify({'sucess': 'true', 'product': result})
+        except Exception as e:
+            if str(e) == 'Большое количество товаров':
+                return jsonify({'sucess': 'false', 'error': 'Можно добавить не более 10 товаров'})
+            logger.warning('Ошибка при добавлении пользователем нового товара: {}'.format(e))
+            return jsonify({'sucess': 'false', 'error': 'По техническим причинам мы не можем сейчас добавить Ваш'
+                                                        'товар. Попробуйте, пожалуйста, попозже.'})
 
 
 class DeleteItemInDB(Resource):
