@@ -116,15 +116,24 @@ class SetViewCount(Resource):
 
 
 class AddSubscription(Resource):
-    def post(self):
-        form = AddSubscriptionRequestForm()
-        if form.validate_on_submit():
-            email = form.email.data
-            subscription = get_subscription(email)
-            if subscription is None:
-                add_subscription(email)
+    def post(self, email):
+        # form = AddSubscriptionRequestForm()  #TODO реализовать при готовности frontend
+        # if form.validate_on_submit():
+        #     email = form.email.data
+        #     subscription = get_subscription(email)
+        #     if subscription is None:
+        #         add_subscription(email)
+        #     else:
+        #         subscription.set_active()
+        subscription = get_subscription(email)
+        if subscription is None:
+            res = add_subscription(email)
+            return res
+        else:
+            if subscription.is_active:
+                return True
             else:
-                subscription.set_active()
+                return subscription.set_active()
 
 
 api.add_resource(Registration, '/api/registration')
