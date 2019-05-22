@@ -140,7 +140,7 @@ class UploadPhoto(Resource):
             filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
             file.save(os.path.join(path, filename))
             upload_photo(os.path.join(path, filename), cur_id, product_id)
-            return jsonify({'sucess': 'true', 'path': path + filename})
+            return jsonify({'sucess': 'true', 'path': os.path.join(path, filename)})
         except Exception as e:
             if str(e) == 'Файл не правильного формата':
                 return jsonify({'sucess': 'false', 'error': 'Файл должен быть формата png, jpg или jpeg'})
