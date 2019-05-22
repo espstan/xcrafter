@@ -166,7 +166,7 @@ class Photo(db.Model):
     __tablename__ = 'photos'
 
     id = db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, nullable=False)
+    product_id = db.Column(db.Text, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
     path = db.Column(db.Text, nullable=False)
     created_time = db.Column(DateTime(timezone=True), nullable=False)
