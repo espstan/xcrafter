@@ -1,6 +1,7 @@
 from app import db
 
 from app.models import Product
+from app.models import Photo
 
 from flask_login import current_user
 
@@ -115,3 +116,17 @@ def edit_product(item: {}):
     except NoResultFound:
         # пока не знаю как обработать
         pass
+
+
+def uploads_photo_in_db(path, user_id, product_id):
+    photo = Photo(product_id, user_id, path)
+    db.session.add(photo)
+
+    try:
+        db.session.commit()
+    except OperationalError as e:
+        db.session.rollback()
+        raise Exception(str(e))
+
+    return 'ok'
+
