@@ -120,6 +120,10 @@ def edit_product(item: {}):
 
 def add_product_photo(path, user_id, product_id):
     photo = Photo(product_id, user_id, path)
+
+    if check_number_product_photo(product_id):
+        raise Exception('Большое количество фотогорафий')
+
     db.session.add(photo)
 
     try:
@@ -129,4 +133,9 @@ def add_product_photo(path, user_id, product_id):
         raise Exception(str(e))
 
     return 'ok'
+
+
+def check_number_product_photo(product_id):
+    photos = Photo.query.filter(Photo.product_id == product_id).all()
+    return len(photos) > 5
 
