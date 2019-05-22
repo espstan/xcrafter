@@ -95,7 +95,7 @@ class Product(db.Model):
         self.price = price
         self.photo = photo
         self.seller_id = seller_id
-        self.created_time = datetime.datetime.today()
+        self.created_time = datetime.datetime.now()
         self.last_changed_time = self.created_time
         self.available = True
         self.view_count = 0
