@@ -1,3 +1,5 @@
+import os
+
 from app import app
 from app import db
 
@@ -9,8 +11,6 @@ from app.db_utils.users import sign_in
 from app.db_utils.users import get_user_products
 
 from app.models import User
-
-import os
 
 from flask import abort
 from flask import redirect
@@ -32,7 +32,7 @@ from loguru import logger
 
 @app.before_request
 def check_for_maintenance():
-    if os.path.exists('maintenance'):
+    if os.path.exists(os.path.join(app.root_path, 'maintenance')):
         abort(503)
 
 
@@ -56,7 +56,7 @@ def get_robots_txt():
 
 @app.errorhandler(503)
 def maintenance_on_server(e):
-    return '<h2>На сервере ведутся технические работы.</h2>'
+    return render_template('public/error500.html')
 
 
 @app.errorhandler(404)
