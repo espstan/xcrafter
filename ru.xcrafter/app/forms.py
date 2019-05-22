@@ -6,6 +6,8 @@ from wtforms import BooleanField
 from wtforms import SubmitField 
 
 from wtforms.validators import DataRequired
+from wtforms.validators import Email
+
 
 class LoginForm(FlaskForm):
     user_first_name = StringField('Имя', validators=[DataRequired()])
@@ -14,3 +16,9 @@ class LoginForm(FlaskForm):
     user_phone_number = StringField('Телефон', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
     submit = SubmitField('Отправить')
+
+
+class AddSubscriptionRequestForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Apply')
+
