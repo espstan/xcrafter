@@ -167,13 +167,13 @@ class Photo(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, nullable=False)
-    owner_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
     path = db.Column(db.Text, nullable=False)
     created_time = db.Column(DateTime(timezone=True), nullable=False)
     file_size = db.Column(db.Integer)
 
-    def __init__(self, product_id, owner_id, path):
+    def __init__(self, product_id, user_id, path):
         self.product_id = product_id
-        self.owner_id = owner_id
+        self.user_id = user_id
         self.path = path
         self.created_time = datetime.datetime.today()
