@@ -93,9 +93,11 @@
     <section id="subscription-form">
         <h1>Подписаться на рассылку</h1>
         <form class="mailing-form"
-              action="URL"
-              method="post">
+              action="/api/v1/subscribe"
+              method="GET">
             <input type="email"
+                   name="q"
+                   value="{{ request.args.get('q','') }}"
                    placeholder="Ваша почта"
                    maxlength="100"
                    required>
