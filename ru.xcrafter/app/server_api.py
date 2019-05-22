@@ -28,7 +28,7 @@ from app.db_utils.products import add_product
 from app.db_utils.products import delete_product_by_id
 from app.db_utils.products import edit_product
 from app.db_utils.products import get_all_products
-from app.db_utils.products import upload_photo
+from app.db_utils.products import add_product_photo
 
 from app.db_utils.users import sign_up
 from app.db_utils.users import get_user_by_id
@@ -139,7 +139,7 @@ class UploadPhoto(Resource):
             allowed_file(file.filename)
             filename = str(uuid1()) + '.' + file.filename.rsplit('.', 1)[1]
             file.save(os.path.join(path, filename))
-            upload_photo(os.path.join(path, filename), cur_id, product_id)
+            add_product_photo(os.path.join(path, filename), cur_id, product_id)
             return jsonify({'sucess': 'true', 'path': os.path.join(path, filename)})
         except Exception as e:
             if str(e) == 'Файл не правильного формата':
