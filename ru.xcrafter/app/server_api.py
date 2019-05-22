@@ -144,6 +144,8 @@ class UploadPhoto(Resource):
         except Exception as e:
             if str(e) == 'Файл не правильного формата':
                 return jsonify({'sucess': 'false', 'error': 'Файл должен быть формата png, jpg или jpeg'})
+            elif str(e) == 'Большое количество фотогорафий':
+                return jsonify({'sucess': 'false', 'error': 'Можно добавлять не более 5 фотографий'})
             else:
                 logger.warning('Ошибка при сохранении фотографии пользователем: {}'.format(e))
                 return jsonify({'sucess': 'false',
