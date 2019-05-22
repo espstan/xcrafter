@@ -19,9 +19,11 @@ def get_subscription(email):
 
 def add_subscription(email):
     try:
-        db.session.add(Subscription(email))
+        subscription = Subscription(email)
+        db.session.add(subscription)
         db.session.commit()
+        return True
     except SQLAlchemyError as e:
         error = str(e.__class__.__name__)
         print("SQLAlchemy error: " + error)
-    print("Success")
+        return False
