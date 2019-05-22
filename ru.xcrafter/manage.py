@@ -11,6 +11,8 @@ from app.models import Product
 from app.models import Order
 from app.models import Address
 from app.models import Photo
+from app.models import Subscription
+
 
 migrate = Migrate(app, db)
 
