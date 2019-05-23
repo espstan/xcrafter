@@ -41,6 +41,7 @@ assets.register('js_all', js)
 
 js_vendors = Bundle('lib/bootstrap/4.3.1/js/bootstrap.min.js',
                     'lib/jquery/3.4.0/jquery-3.4.0.min.js',
+                    'lib/pace/1.0.2/js/pace.min.js',
                     filters='jsmin', output='vendors.min.js')
 assets.register('js_vendors', js_vendors)
 
