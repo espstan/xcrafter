@@ -162,7 +162,7 @@ def send_new_password_on_email(email, password):
 
 def gen_random_password(len=12):
     passwordSymbols = ";*()_+=-,.[]{}1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    result = ""
+    result = None
     for i in range(len):
         result = result + random.choice(passwordSymbols)
     return result
