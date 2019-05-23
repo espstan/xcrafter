@@ -74,16 +74,16 @@ def internal_server_error(e):
 
 @app.route('/contacts')
 def contacts():
-    return render_template('public/contacts.html')
+    return render_template('public/contacts.html', is_contact_page=True)
 
 @app.route('/registration')
 def get_registration():
-    return render_template('public/registration.html')
+    return render_template('public/registration.html', is_registration_page=True)
 
 
 @app.route('/sign-in')
 def get_sign_in():
-    return render_template('public/sign-in.html')
+    return render_template('public/sign-in.html', is_sign_in_page=True)
 
 
 @app.route('/password-recovery')
@@ -94,8 +94,8 @@ def recoveryPassword():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile/dashboard.html', 
-                          current_user=current_user)
+    return render_template('profile/dashboard.html',
+                           current_user=current_user, is_profile_page=True)
 
 
 @app.route('/profile/settings')
@@ -183,7 +183,7 @@ def card_item_about_seller(product_id):
 
 @app.route('/cart')
 def cart():
-    return render_template('public/cart.html')
+    return render_template('public/cart.html', is_cart_page=True)
 
 
 @app.route('/search')
