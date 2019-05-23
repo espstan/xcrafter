@@ -1,7 +1,7 @@
-from app import db
+from xcrafter import db
 
-from app.models import Product
-from app.models import Photo
+from xcrafter.models import Product
+from xcrafter.models import Photo
 
 from flask_login import current_user
 
