@@ -55,30 +55,64 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Каталог</a>
+                        {% if is_catalog_page == True %}
+                            <a class="nav-link" href="#">Каталог</a>
+                        {% else %}
+                            <a class="nav-link" href="#">Каталог</a>
+                        {% endif %}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Популярные</a>
+                        {% if is_popular_page == True %}
+                            <a class="nav-link" href="#">Популярные</a>
+                        {% else %}
+                            <a class="nav-link" href="#">Популярные</a>
+                        {% endif %}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Свежие</a>
+                        {% if is_new_page == True %}
+                            <a class="nav-link" href="#">Свежие</a>
+                        {% else %}
+                            <a class="nav-link" href="#">Свежие</a>
+                        {% endif %}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('profile') }}">Личный кабинет</a>
+                        {% if is_profile_page == True %}
+                            <a class="nav-link" href="#">Личный кабинет</a>
+                        {% else %}
+                            <a class="nav-link" href="{{ url_for('profile') }}">Личный кабинет</a>
+                        {% endif %}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('get_sign_in') }}">Войти</a>
+                        {% if is_sign_in_page == True %}
+                            <a class="nav-link" href="#">Войти</a>
+                        {% else %}
+                            <a class="nav-link" href="{{ url_for('get_sign_in') }}">Войти</a>
+                        {% endif %}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('get_registration') }}">Зарегистрироваться</a>
+                        {% if is_registration_page == True %}
+                            <a class="nav-link" href="#">Зарегистрироваться</a>
+                        {% else %}
+                            <a class="nav-link" href="{{ url_for('get_registration') }}">Зарегистрироваться</a>
+                        {% endif %}
                     </li>
                     <li class="nav-item nav-basket">
-                        <a class="nav-link" href="{{ url_for('cart') }}">Корзина
-                            <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
-                        </a>
+                        {% if is_cart_page == True %}
+                            <a class="nav-link" href="#">Корзина
+                                <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
+                            </a>
+                        {% else %}
+                            <a class="nav-link" href="{{ url_for('cart') }}">Корзина
+                                <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
+                            </a>
+                        {% endif %}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('contacts') }}">Контакты</a>
+                        {% if is_contact_page == True %}
+                            <a class="nav-link" href="#">Контакты</a>
+                        {% else %}
+                            <a class="nav-link" href="{{ url_for('contacts') }}">Контакты</a>
+                        {% endif %}
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -371,7 +405,11 @@
                     <ul class="col-4">
                         <spanp>About</span>
                         <li><a class="" href="#">Services</a></li>
-                        <li><a class="" href="{{ url_for('contacts') }}">Contact</a></li>
+                        {% if is_contact_page == True %}
+                            <li><a class="" href="#">Contact</a></li>
+                        {% else %}
+                            <li><a class="" href="{{ url_for('contacts') }}">Contact</a></li>
+                        {% endif %}
                         <li><a class="" href="#">Careers</a></li>
                     </ul>
                     <ul class="col-4">
