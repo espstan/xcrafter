@@ -112,6 +112,16 @@ class Product(db.Model):
             print("SQLAlchemy error: " + error)
         return self.view_count
 
+    def get_info(self):
+        product = {}
+        product['id'] = self.id
+        product['title'] = self.title
+        product['description'] = self.description
+        product['price'] = self.price
+        product['photo'] = self.photo
+        product['seller_id'] = self.seller_id
+        return product
+
 
 class Order(db.Model):
 
