@@ -2,8 +2,8 @@ import click
 
 import json
 
-from app import app
-from app import db
+from xcrafter import app
+from xcrafter import db
 
 from werkzeug.security import generate_password_hash
 
@@ -11,8 +11,8 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from os.path import join
 
-from app.models import User
-from app.models import Product
+from xcrafter.models import User
+from xcrafter.models import Product
 
 
 @click.command()
