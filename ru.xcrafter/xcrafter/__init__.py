@@ -55,7 +55,7 @@ css = Bundle('css/main-page.css',
 assets.register('css_all', css)
 
 
-from app import routes
-from app import models
-from app import server_api
+from xcrafter import routes
+from xcrafter import models
+from xcrafter import server_api
 

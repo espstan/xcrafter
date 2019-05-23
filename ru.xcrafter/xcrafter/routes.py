@@ -1,16 +1,16 @@
 import os
 
-from app import app
-from app import db
+from xcrafter import app
+from xcrafter import db
 
-from app.db_utils.products import get_all_products
-from app.db_utils.products import get_product_by_id
+from xcrafter.db_utils.products import get_all_products
+from xcrafter.db_utils.products import get_product_by_id
 
-from app.db_utils.users import activate
-from app.db_utils.users import sign_in
-from app.db_utils.users import get_user_products
+from xcrafter.db_utils.users import activate
+from xcrafter.db_utils.users import sign_in
+from xcrafter.db_utils.users import get_user_products
 
-from app.models import User
+from xcrafter.models import User
 
 from flask import abort
 from flask import redirect

@@ -1,8 +1,8 @@
 import datetime
 import uuid
 
-from app import db
-from app import login
+from xcrafter import db
+from xcrafter import login
 
 from sqlalchemy import JSON
 from sqlalchemy import DateTime
