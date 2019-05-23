@@ -2,8 +2,7 @@
 
 {% block content %}
 <div class="main card-item-photo" data-about="photo">
-    {% for photo in product.photo %}
-        <div class="photo-item"><img src="{{photo}}"></div>
-    {% endfor %}
+    <div class="photo-item"><img src="{{ product.photo }}">
+    </div>
 </div>
 {% endblock %}
