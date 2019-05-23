@@ -171,7 +171,7 @@ def gen_random_password(len=12):
 def send_password_reset_email(user):
     try:
         token = user.get_reset_password_token()
-        msg = Message("test", sender="juniorlabtest@gmail.com", recipients=['juniorlabtest@gmail.com'])
+        msg = Message("XCrafter. Изменение пароля", sender="juniorlabtest@gmail.com", recipients=['juniorlabtest@gmail.com'])
         msg.body = 'reset password'
         link = "http://localhost:5000/api/v1/reset-password/" + token
         msg.html = render_template('public/mail-list/reset-password.html', token=token)
