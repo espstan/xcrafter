@@ -3,15 +3,15 @@ from flask_script import Manager
 from flask_migrate import Migrate
 from flask_migrate import MigrateCommand
 
-from app import app
-from app import db
+from xcrafter import app
+from xcrafter import db
 
-from app.models import User
-from app.models import Product
-from app.models import Order
-from app.models import Address
-from app.models import Photo
-from app.models import Subscription
+from xcrafter.models import User
+from xcrafter.models import Product
+from xcrafter.models import Order
+from xcrafter.models import Address
+from xcrafter.models import Photo
+from xcrafter.models import Subscription
 
 
 migrate = Migrate(app, db)

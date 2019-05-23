@@ -1,4 +1,4 @@
-from app import app
+from xcrafter import app
 
 import os
 
