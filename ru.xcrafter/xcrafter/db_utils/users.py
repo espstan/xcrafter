@@ -1,10 +1,13 @@
 import sqlalchemy
 
+import random
+
 from sqlalchemy.exc import InvalidRequestError
 
 from sqlalchemy.orm.exc import NoResultFound
 
 from flask import url_for
+from flask import render_template
 
 from flask_mail import Message
 
@@ -123,3 +126,56 @@ def activate(activate_hash: str):
     if not user.active:
         user.active = True
         db.session.commit()
+
+
+def get_user_by_email(email: str) -> User:
+    """Получение пользователя из бд по email"""
+
+    try:
+        user = User.query.filter(User.email == email).one()
+        return user
+    except NoResultFound:
+        raise Exception('Не удалось найти пользователя')
+
+
+def change_password(password, user):
+    try:
+        new_password_hash = generate_password_hash(password)
+        user.password_hash = new_password_hash
+        db.session.add(user)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        raise Exception(str(e))
+
+
+def send_new_password_on_email(email, password):
+    try:
+        msg = Message("xCrafter new password",
+                      sender='juniorlabtest@gmail.com',
+                      recipients=['juniorlabtest@gmail.com'])
+        msg.html = '<p>Ваш новый пароль: {}</p>'.format(password)
+        mail.send(msg)
+    except Exception as e:
+        raise Exception('Не удалось отправить письмо', e)
+
+
+def gen_random_password(len=12):
+    passwordSymbols = ";*()_+=-,.[]{}1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    result = ""
+    for i in range(len):
+        result = result + random.choice(passwordSymbols)
+    return result
+
+
+def send_password_reset_email(user):
+    try:
+        token = user.get_reset_password_token()
+        msg = Message("test", sender="juniorlabtest@gmail.com", recipients=['juniorlabtest@gmail.com'])
+        msg.body = 'reset password'
+        link = "http://localhost:5000/api/v1/reset-password/" + token
+        msg.html = render_template('public/mail-list/reset-password.html', token=token)
+        mail.send(msg)
+    except Exception as e:
+        raise Exception(e)
+
