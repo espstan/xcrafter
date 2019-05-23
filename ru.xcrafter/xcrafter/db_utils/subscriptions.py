@@ -1,10 +1,10 @@
-from app import db
+from xcrafter import db
 
 from sqlalchemy.exc import InvalidRequestError
 
 from sqlalchemy.orm.exc import NoResultFound
 
-from app.models import Subscription
+from xcrafter.models import Subscription
 
 
 def get_subscription(email):

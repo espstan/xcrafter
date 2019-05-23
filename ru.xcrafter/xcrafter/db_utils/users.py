@@ -11,11 +11,11 @@ from flask_mail import Message
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
-from app.models import User
-from app.models import Product
+from xcrafter.models import User
+from xcrafter.models import Product
 
-from app import db
-from app import mail
+from xcrafter import db
+from xcrafter import mail
 
 
 def sign_up(sign_up_data: {}) -> {}:
