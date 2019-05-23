@@ -33,6 +33,11 @@ from xcrafter.db_utils.products import add_product_photo
 from xcrafter.db_utils.users import sign_up
 from xcrafter.db_utils.users import get_user_by_id
 from xcrafter.db_utils.users import send_mail
+from xcrafter.db_utils.users import get_user_by_email
+from xcrafter.db_utils.users import send_new_password_on_email
+from xcrafter.db_utils.users import gen_random_password
+from xcrafter.db_utils.users import change_password
+from xcrafter.db_utils.users import send_password_reset_email
 
 from xcrafter.db_utils.subscriptions import get_subscription
 from xcrafter.db_utils.subscriptions import add_subscription
@@ -40,6 +45,7 @@ from xcrafter.db_utils.subscriptions import add_subscription
 from loguru import logger
 
 from xcrafter.models import Product
+from xcrafter.models import User
 from xcrafter.models import Subscription
 
 
@@ -184,6 +190,41 @@ class AddSubscription(Resource):
         return redirect(url_for('index'))
 
 
+class RecoveryPassword(Resource):
+    def post(self):
+        if current_user.is_authenticated:
+            return redirect(url_for('index'))
+        try:
+            email_user = request.form['email']
+            user = get_user_by_email(email_user)
+            send_password_reset_email(user)
+            return jsonify({'success': 'true'})
+        except Exception as e:
+            if str(e) == 'Не удалось найти пользователя':
+                return jsonify({'success': 'false', 'error': 'Пользователя с таким email нет'})
+            logger.warning('Не удалось отправить письмо: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности поменять '
+                                                         'пароль, попробуйте, пожалуйста, позже.'})
+
+
+class ResetPassword(Resource):
+    def get(self, token):
+        if current_user.is_authenticated:
+            return redirect(url_for('index'))
+        user = User.verify_reset_password_token(token)
+        if not user:
+            return redirect(url_for('index'))
+        try:
+            password = gen_random_password()
+            change_password(password, user)
+            send_new_password_on_email(user.email, password)
+            return jsonify({'success': 'true'})
+        except Exception as e:
+            logger.warning('Не удалось отправить письмо: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности поменять'
+                                                         'пароль, попробуйте, пожалуйста, позже.'})
+
+
 api.add_resource(Registration, '/api/registration') #TODO добавить версию api
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
@@ -193,3 +234,6 @@ api.add_resource(GetAllProducts, '/api/v1/products/all')
 api.add_resource(UploadPhoto, '/api/v1/uploads/photo')
 api.add_resource(SetViewCount, '/api/<int:product_id>/product_view')
 api.add_resource(AddSubscription, '/api/v1/subscribe')
+api.add_resource(RecoveryPassword, '/api/v1/recovery-password')
+api.add_resource(ResetPassword, '/api/v1/reset-password/<string:token>')
+
