@@ -101,6 +101,22 @@ button:active, button:focus {
     top: 15px;
 }
 
+.subscribe-main {
+    max-width: 400px;
+}
+
+.subscribe-h {
+    font-size: 20px;
+} 
+
+.subscribe-logo {
+    font-size: 60px;
+}
+
+.subscribe-text {
+    font-size: 15px;
+}
+
 .products-footer {
     min-height: 310px;
     font-family: 'Open Sans', sans-serif;

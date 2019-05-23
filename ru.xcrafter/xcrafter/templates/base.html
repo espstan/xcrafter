@@ -317,19 +317,35 @@
             </section>
         </div>
     </div>
-    <section id="subscription-form">
-        <h1>Подписаться на рассылку</h1>
-        <form class="mailing-form"
+    <section class="subscribe-main m-auto container">
+        <h1 class="text-center text-info subscribe-logo">
+            <i class="far fa-envelope-open"></i>
+        </h1>
+        <p class="text-center subscribe-h">
+            Подпишитесь на нашу рассылку
+        </p>
+        <p class="text-center text-muted subscribe-text">
+            Чтобы быть в курсе последних новостей, 
+            новинок <br>и специальных предложений
+        </p>
+        <form class="input-group mt-3 mb-3"
               action="{{ url_for('addsubscription') }}"
               method="GET">
-            <input type="email"
+            <input type="email" 
                    name="q"
                    value="{{ request.args.get('q','') }}"
-                   placeholder="Ваша почта"
+                   class="form-control" 
+                   id="sign-up-email" 
                    maxlength="100"
-                   required>
-            <input type="submit"
-                   value="Подписаться">
+                   placeholder="name@example.com"
+                   required> 
+            <div class="input-group-append">
+                <button class="btn btn-outline-info btn-sm" 
+                        type="submit" 
+                        id="button-addon2">
+                        Подписаться
+                </button>
+            </div>
         </form>
     </section>
     <footer class="products-footer">
