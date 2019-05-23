@@ -4,7 +4,7 @@ from xcrafter import app
 from xcrafter import db
 
 from xcrafter.db_utils.products import get_all_products
-from xcrafter.db_utils.products import get_product_by_id
+from xcrafter.db_utils.products import get_product
 
 from xcrafter.db_utils.users import activate
 from xcrafter.db_utils.users import sign_in
@@ -122,7 +122,7 @@ def add_card_item():
 @login_required
 def profile_edit_card_item(product_id):
     try:
-        product = get_product_by_id(product_id)
+        product = get_product(product_id)
         return render_template('profile/profile-edit-card-item.html',
                                product=product)
     except Exception as e:
@@ -144,7 +144,7 @@ def profile_product_catalog():
 @app.route('/product/<product_id>')
 def card_item(product_id):
     try:
-        product = get_product_by_id(product_id)
+        product = get_product(product_id)
         return render_template('public/product/card-item.html',
                                product=product)
     except Exception as e:
@@ -154,7 +154,7 @@ def card_item(product_id):
 @app.route('/product/<product_id>/photo')
 def card_item_photo(product_id):
     try:
-        product = get_product_by_id(product_id)
+        product = get_product(product_id)
         return render_template('public/product/card-item-photo.html',
                                product=product)
     except Exception as e:
@@ -164,7 +164,7 @@ def card_item_photo(product_id):
 @app.route('/product/<product_id>/description')
 def card_item_description(product_id):
     try:
-        product = get_product_by_id(product_id)
+        product = get_product(product_id)
         return render_template('public/product/card-item-description.html',
                                product=product)
     except Exception as e:
@@ -174,7 +174,7 @@ def card_item_description(product_id):
 @app.route('/product/<product_id>/about-seller')
 def card_item_about_seller(product_id):
     try:
-        product = get_product_by_id(product_id)
+        product = get_product(product_id)
         return render_template('public/product/card-item-about-seller.html',
                                product=product)
     except Exception as e:
