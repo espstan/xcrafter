@@ -22,7 +22,6 @@ from flask_login import current_user
 from flask_restful import Resource
 from flask_restful import reqparse
 
-from xcrafter.db_utils.products import get_product_by_id
 from xcrafter.db_utils.products import get_product
 from xcrafter.db_utils.products import add_product
 from xcrafter.db_utils.products import delete_product_by_id
@@ -45,8 +44,8 @@ from xcrafter.models import Subscription
 
 class GetProductInfoById(Resource):
     def get(self, id):
-        product_info = get_product_by_id(id)
-        return json.dumps(product_info)
+        product = get_product(id)
+        return json.dumps(product.get_info())
 
 
 class AddItemInCatalog(Resource):
