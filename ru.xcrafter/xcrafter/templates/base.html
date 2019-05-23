@@ -125,11 +125,13 @@
             </section>
         </section>
     </section>
-    <div class="accordion" id="accordionExample">
-        <div class="questions-container">
+    <div class="accordion"
+         id="accordionExample">
+        <div class="questions-container"
+             id="frequently-asked-question">
             <h2 class="question-heading">Часто задаваемые вопросы</h2>
             <div class="card questions-item"
-                 onclick="showAnswer ( 'showButtonOne', 'questionOne')">
+                 onclick="showAnswer ('1')">
                 <div class="card-header question-header"
                      id="headingOne"
                      data-toggle="collapse"
@@ -138,13 +140,10 @@
                         <button class="btn btn-link collapsed question-title"
                                 type="button"
                                 aria-expanded="false"
-                                aria-controls="collapseOne"
-                                id="questionOne"
-                                style="color: black">
-                                Lorem ipsum dolor sit amet?
+                                aria-controls="collapseOne">
+                            Lorem ipsum dolor sit amet?
                         </button>
                         <img class="question-img-show"
-                             id="showButtonOne"
                              src="{{ url_for('static', filename='img/question_show.svg' ) }}">
                     </h5>
                     <div id="collapseOne"
@@ -164,7 +163,7 @@
                 </div>
             </div>
             <div class="card questions-item"
-                 onclick="showAnswer ( 'showButtonTwo', 'questionTwo')">
+                 onclick="showAnswer ('2')">
                 <div class="card-header question-header"
                      id="headingTwo"
                      data-toggle="collapse"
@@ -173,14 +172,11 @@
                         <button class="btn btn-link collapsed question-title"
                                 type="button"
                                 aria-expanded="false"
-                                aria-controls="collapseTwo"
-                                id="questionTwo"
-                                style="color: black">
-                                Lorem ipsum dolor sit amet?
+                                aria-controls="collapseTwo">
+                            Lorem ipsum dolor sit amet?
                         </button>
                         <img class="question-img-show"
-                             src="{{ url_for('static', filename='img/question_show.svg' ) }}"
-                             id="showButtonTwo">
+                             src="{{ url_for('static', filename='img/question_show.svg' ) }}">
                     </h5>
                     <div id="collapseTwo"
                          class="collapse"
@@ -199,7 +195,7 @@
                 </div>
             </div>
             <div class="card questions-item"
-                 onclick="showAnswer ( 'showButtonThree', 'questionThree')">
+                 onclick="showAnswer ( '3')">
                 <div class="card-header question-header"
                      id="headingThree"
                      data-toggle="collapse"
@@ -208,14 +204,11 @@
                         <button class="btn btn-link collapsed question-title"
                                 type="button"
                                 aria-expanded="false"
-                                aria-controls="collapseThree"
-                                id="questionThree"
-                                style="color: black">
-                                Lorem ipsum dolor sit amet?
+                                aria-controls="collapseThree">
+                            Lorem ipsum dolor sit amet?
                         </button>
                         <img class="question-img-show"
-                             src="{{ url_for('static', filename='img/question_show.svg' ) }}"
-                             id="showButtonThree">
+                             src="{{ url_for('static', filename='img/question_show.svg' ) }}">
                     </h5>
                     <div id="collapseThree"
                          class="collapse"
@@ -234,7 +227,7 @@
                 </div>
             </div>
             <div class="card questions-item"
-                 onclick="showAnswer ( 'showButtonFour', 'questionFour')">
+                 onclick="showAnswer ( '4')">
                 <div class="card-header question-header"
                      id="headingFour"
                      data-toggle="collapse"
@@ -243,14 +236,11 @@
                         <button class="btn btn-link collapsed question-title"
                                 type="button"
                                 aria-expanded="false"
-                                aria-controls="collapseFour"
-                                id="questionFour"
-                                style="color: black">
-                                Lorem ipsum dolor sit amet?
+                                aria-controls="collapseFour">
+                            Lorem ipsum dolor sit amet?
                         </button>
                         <img class="question-img-show"
-                             src="{{ url_for('static', filename='img/question_show.svg' ) }}"
-                             id="showButtonFour">
+                             src="{{ url_for('static', filename='img/question_show.svg' ) }}">
                     </h5>
                     <div id="collapseFour"
                          class="collapse"
@@ -269,7 +259,7 @@
                 </div>
             </div>
             <div class="card questions-item"
-                 onclick="showAnswer ( 'showButtonFive', 'questionFive')">
+                 onclick="showAnswer ( '5')">
                 <div class="card-header question-header"
                      id="headingFive"
                      data-toggle="collapse"
@@ -278,14 +268,11 @@
                         <button class="btn btn-link collapsed question-title"
                                 type="button"
                                 aria-expanded="false"
-                                aria-controls="collapseFive"
-                                id="questionFive"
-                                style="color: black">
-                                Lorem ipsum dolor sit amet?
+                                aria-controls="collapseFive">
+                            Lorem ipsum dolor sit amet?
                         </button>
                         <img class="question-img-show"
-                             src="{{ url_for('static', filename='img/question_show.svg' ) }}"
-                             id="showButtonFive">
+                             src="{{ url_for('static', filename='img/question_show.svg' ) }}">
                     </h5>
                     <div id="collapseFive"
                          class="collapse"
