@@ -6,8 +6,8 @@ import hashlib
 
 from uuid import uuid1
 
-from app import api
-from app import app
+from xcrafter import api
+from xcrafter import app
 
 from flask import redirect
 from flask import url_for
@@ -22,25 +22,25 @@ from flask_login import current_user
 from flask_restful import Resource
 from flask_restful import reqparse
 
-from app.db_utils.products import get_product_by_id
-from app.db_utils.products import get_product
-from app.db_utils.products import add_product
-from app.db_utils.products import delete_product_by_id
-from app.db_utils.products import edit_product
-from app.db_utils.products import get_all_products
-from app.db_utils.products import add_product_photo
+from xcrafter.db_utils.products import get_product_by_id
+from xcrafter.db_utils.products import get_product
+from xcrafter.db_utils.products import add_product
+from xcrafter.db_utils.products import delete_product_by_id
+from xcrafter.db_utils.products import edit_product
+from xcrafter.db_utils.products import get_all_products
+from xcrafter.db_utils.products import add_product_photo
 
-from app.db_utils.users import sign_up
-from app.db_utils.users import get_user_by_id
-from app.db_utils.users import send_mail
+from xcrafter.db_utils.users import sign_up
+from xcrafter.db_utils.users import get_user_by_id
+from xcrafter.db_utils.users import send_mail
 
-from app.db_utils.subscriptions import get_subscription
-from app.db_utils.subscriptions import add_subscription
+from xcrafter.db_utils.subscriptions import get_subscription
+from xcrafter.db_utils.subscriptions import add_subscription
 
 from loguru import logger
 
-from app.models import Product
-from app.models import Subscription
+from xcrafter.models import Product
+from xcrafter.models import Subscription
 
 
 class GetProductInfoById(Resource):
