@@ -153,7 +153,7 @@ def send_new_password_on_email(email, password):
     try:
         msg = Message("xCrafter new password",
                       sender='juniorlabtest@gmail.com',
-                      recipients=['juniorlabtest@gmail.com'])
+                      recipients=[email])
         msg.html = '<p>Ваш новый пароль: {}</p>'.format(password)
         mail.send(msg)
     except Exception as e:
@@ -171,9 +171,10 @@ def gen_random_password(len=12):
 def send_password_reset_email(user):
     try:
         token = user.get_reset_password_token()
-        msg = Message("XCrafter. Изменение пароля", sender="juniorlabtest@gmail.com", recipients=['juniorlabtest@gmail.com'])
+        msg = Message("XCrafter. Изменение пароля",
+                      sender="juniorlabtest@gmail.com",
+                      recipients=[user.email])
         msg.body = 'reset password'
-        link = "http://localhost:5000/api/v1/reset-password/" + token
         msg.html = render_template('public/mail-list/reset-password.html', token=token)
         mail.send(msg)
     except Exception as e:
