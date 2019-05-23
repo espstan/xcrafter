@@ -43,8 +43,8 @@ from xcrafter.models import Subscription
 
 
 class GetProductInfoById(Resource):
-    def get(self, id):
-        product = get_product(id)
+    def get(self, product_id):
+        product = get_product(product_id)
         return json.dumps(product.get_info())
 
 
