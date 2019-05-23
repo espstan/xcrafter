@@ -28,25 +28,6 @@ def get_all_products() -> []:
     return products
 
 
-def get_product_by_id(product_id: int) -> {}: #TODO переименовать функцию -> внести ясноть, когда запускать get_product_by_id()
-                                              # TODO а когда get_product(), или объединить эти функции
-    """Возвращает словарь с информацией о товаре с определённым id.
-    При запросе по не существующему id - возвращает пустой словарь."""
-
-    try:
-        data = Product.query.filter(Product.id == product_id).one()
-        product = {'id': data.id,
-                   'title': data.title,
-                   'description': data.description,
-                   'price': data.price,
-                   'photo': [data.photo],
-                   'seller_id': data.seller_id}
-    except NoResultFound:
-        product = {}
-
-    return product
-
-
 def get_product(product_id: int):
     try:
         product = Product.query.filter(Product.id == product_id).one()
