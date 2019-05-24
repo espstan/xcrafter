@@ -56,30 +56,30 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item {% if is_catalog_page %} active {% endif %}">
                     <a class="nav-link" href="#">Каталог</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if is_popular_page %} active {% endif %}">
                     <a class="nav-link" href="#">Популярные</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if is_new_page %} active {% endif %}">
                     <a class="nav-link" href="#">Свежие</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if is_profile_page %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('profile') }}">Личный кабинет</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if is_sign_in_page %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('get_sign_in') }}">Войти</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if is_registration_page %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('get_registration') }}">Зарегистрироваться</a>
                 </li>
-                <li class="nav-item nav-basket">
+                <li class="nav-item nav-basket {% if is_cart_page %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('cart') }}">Корзина
                         <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if is_contact_page %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('contacts') }}">Контакты</a>
                 </li>
             </ul>
