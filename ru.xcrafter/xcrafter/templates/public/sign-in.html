@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post"
-                          action="api/v1/sign-in"
+                          action="{{ url_for('signin') }}"
                           id="sign-in">
                         <div class="form-group">
                             <label for="email">Электронная почта</label>
