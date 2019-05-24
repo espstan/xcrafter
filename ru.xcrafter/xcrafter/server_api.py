@@ -24,7 +24,7 @@ from flask_restful import reqparse
 
 from xcrafter.db_utils.products import get_product
 from xcrafter.db_utils.products import add_product
-from xcrafter.db_utils.products import delete_product_by_id
+from xcrafter.db_utils.products import delete_product
 from xcrafter.db_utils.products import edit_product
 from xcrafter.db_utils.products import get_all_products
 from xcrafter.db_utils.products import add_product_photo
@@ -69,10 +69,11 @@ class AddItemInCatalog(Resource):
                                                         'товар. Попробуйте, пожалуйста, попозже.'})
 
 
-class DeleteItemInDB(Resource):
+class DeleteProduct(Resource):
     @login_required
-    def delete(self, id):
-        delete_product_by_id(id)
+    def post(self, product_id):
+        return delete_product(product_id)
+
 
 
 class EditCardItem(Resource):
@@ -186,7 +187,7 @@ class AddSubscription(Resource):
 api.add_resource(Registration, '/api/registration') #TODO добавить версию api
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
-api.add_resource(DeleteItemInDB, '/api/delete-item/<int:id>')
+api.add_resource(DeleteProduct, '/api/v1/delete-product/<int:product_id>')
 api.add_resource(EditCardItem, '/api/edit-card-item')
 api.add_resource(GetAllProducts, '/api/v1/products/all')
 api.add_resource(UploadPhoto, '/api/v1/uploads/photo')
