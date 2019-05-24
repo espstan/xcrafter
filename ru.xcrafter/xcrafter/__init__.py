@@ -55,7 +55,9 @@ css = Bundle('css/main-page.css',
              filters='cssmin', output='bundle.min.css')
 assets.register('css_all', css)
 
-css_vendors = Bundle('lib/pace/1.0.2/css/pace-theme-minimal.css')
+css_vendors = Bundle('lib/pace/1.0.2/css/pace-theme-minimal.css',
+                     'lib/fancybox/3.5.7/css/jquery.fancybox.min.css',
+                     'lib/bootstrap/4.3.1/css/bootstrap.min.css')
 assets.register('css_vendors', css_vendors)
 
 
