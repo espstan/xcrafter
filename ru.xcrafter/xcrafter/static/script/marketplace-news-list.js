@@ -1,7 +1,7 @@
 const News = [
   {
     id: 1,
-    date: '2019 12 25',
+    date: '2019-12-25',
     title: 'New 1',
     flag: false,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -13,7 +13,7 @@ const News = [
   },
   {
     id: 2,
-    date: '2019 01 01',
+    date: '2019-01-01',
     title: 'New 2',
     flag: true,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -25,7 +25,7 @@ const News = [
   },
   {
     id: 3,
-    date: '2018 11 05',
+    date: '2018-11-05',
     title: 'New 3',
     flag: true,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -37,7 +37,7 @@ const News = [
   },
   {
     id: 4,
-    date: '2019 09 05',
+    date: '2019-09-05',
     title: 'New 4',
     flag: true,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -49,7 +49,7 @@ const News = [
   },
   {
     id: 5,
-    date: '2019 04 25',
+    date: '2019-04-25',
     title: 'New 5',
     flag: false,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -61,7 +61,7 @@ const News = [
   },
   {
     id: 6,
-    date: '2019 07 17',
+    date: '2019-07-17',
     title: 'New 6',
     flag: true,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -73,7 +73,7 @@ const News = [
   },
   {
     id: 7,
-    date: '2019 11 21',
+    date: '2019-11-21',
     title: 'New 7',
     flag: true,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -85,7 +85,7 @@ const News = [
   },
   {
     id: 8,
-    date: '2019 03 03',
+    date: '2019-03-03',
     title: 'New 8',
     flag: true,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
