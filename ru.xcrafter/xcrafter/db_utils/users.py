@@ -136,6 +136,8 @@ def get_user_by_email(email: str) -> User:
         return user
     except NoResultFound:
         raise Exception('Не удалось найти пользователя')
+    except Exception as e:
+        raise Exception(str(e))
 
 
 def change_password(password, user):
@@ -179,4 +181,14 @@ def send_password_reset_email(user):
         mail.send(msg)
     except Exception as e:
         raise Exception(e)
+
+
+def password_verification(user, user_password):
+    try:
+        if check_password_hash(user.password_hash, user_password):
+            return True
+        return False
+    except Exception as e:
+        raise Exception(str(e))
+
 
