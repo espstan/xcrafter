@@ -84,9 +84,9 @@ class User(UserMixin, db.Model):
 
 
 @login.user_loader
-def load_user(id):
+def load_user(user_id):
     try:
-        return User.query.filter(User.id == int(id)).first()
+        return User.query.filter(User.id == int(user_id)).first()
     except Exception as e:
         logger.warning('Ошибка при обращении к БД пользователей: {}'.format(e))
         raise Exception(str(e))
