@@ -18,6 +18,7 @@ from flask import request
 
 from flask_login import login_required
 from flask_login import current_user
+from flask_login import login_user
 
 from flask_restful import Resource
 from flask_restful import reqparse
@@ -37,11 +38,14 @@ from xcrafter.db_utils.users import send_new_password_on_email
 from xcrafter.db_utils.users import gen_random_password
 from xcrafter.db_utils.users import change_password
 from xcrafter.db_utils.users import send_password_reset_email
+from xcrafter.db_utils.users import password_verification
 
 from xcrafter.db_utils.subscriptions import get_subscription
 from xcrafter.db_utils.subscriptions import add_subscription
 
 from loguru import logger
+
+from werkzeug.urls import url_parse
 
 from xcrafter.models import Product
 from xcrafter.models import User
@@ -79,7 +83,6 @@ class DeleteProduct(Resource):
     @login_required
     def post(self, product_id):
         return delete_product(product_id)
-
 
 
 class EditCardItem(Resource):
@@ -169,7 +172,7 @@ class UploadPhoto(Resource):
                                 'error': 'По техническим причинам сейчас нет возможности сохранить '
                                          'Вашу фотографию, попробуйте, пожалуйста, позже.'})
 
-              
+
 class SetViewCount(Resource):
     def get(self, product_id):
         product = get_product(product_id)
@@ -230,7 +233,47 @@ class ResetPassword(Resource):
                                                          'пароль, попробуйте, пожалуйста, позже.'})
 
 
-api.add_resource(Registration, '/api/registration') #TODO добавить версию api
+class SignIn(Resource):
+    def post(self):
+        try:
+            email_user = request.form['email']
+            password_user = request.form['password']
+            remember_user = request.form.getlist('remember-check')
+            next_page = request.form['next_page']
+        except Exception as e:
+            logger.warning('Не удалось получить логин и/или пароль при авторизации: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности Вас '
+                                                         'авторизовать, попробуйте, пожалуйста, позже.'})
+        try:
+            user = get_user_by_email(email_user)
+        except Exception as e:
+            if e == 'Не удалось найти пользователя':
+                return jsonify({'success': 'false', 'error': 'Пользователя с таким email нет'})
+            logger.warning('Не удалось получить пользователя из БД: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности Вас '
+                                                         'авторизовать, попробуйте, пожалуйста, позже.'})
+        try:
+            result_password_verification = password_verification(user, password_user)
+        except Exception as e:
+            logger.warning('Не удалось проверить пароль: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности Вас '
+                                                         'авторизовать, попробуйте, пожалуйста, позже.'})
+
+        if result_password_verification:
+            try:
+                login_user(user, remember=remember_user)
+            except Exception as e:
+                logger.warning('Не удалось авторизировать пользователя: {}'.format(str(e)))
+                return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности Вас '
+                                                             'авторизовать, попробуйте, пожалуйста, позже.'})
+            if next_page == 'None' or url_parse(next_page).netloc != '':
+                next_page = url_for('index')
+            return redirect(next_page)
+        else:
+            return jsonify({'success': 'false', 'message': 'Не верный пароль'})
+
+
+api.add_resource(Registration, '/api/registration')  # TODO добавить версию api
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
 api.add_resource(DeleteProduct, '/api/v1/delete-product/<int:product_id>')
@@ -241,4 +284,5 @@ api.add_resource(SetViewCount, '/api/<int:product_id>/product_view')
 api.add_resource(AddSubscription, '/api/v1/subscribe')
 api.add_resource(RecoveryPassword, '/api/v1/recovery-password')
 api.add_resource(ResetPassword, '/api/v1/reset-password/<string:token>')
+api.add_resource(SignIn, '/api/v1/sign-in')
 
