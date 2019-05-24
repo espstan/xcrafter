@@ -14,7 +14,7 @@ const News = [
   {
     id: 2,
     date: '15 января 2019',
-    title: 'New 3',
+    title: 'New 2',
     flag: true,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. ',
@@ -38,7 +38,7 @@ const News = [
   {
     id: 4,
     date: '01 января 2019',
-    title: 'New 4,
+    title: 'New 4',
     flag: true,
     preview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. ',
@@ -96,3 +96,14 @@ const News = [
       'sunt in culpa qui officia deserunt mollit anim id est laborum.'
   }
 ]
+
+const marketplaceNews = document.getElementById( 'marketplace-news' );
+newsList = '<ul>';
+News.forEach( function ( item ) {
+  let newTitle = '<h2>' + item.title + '</h2>';
+  let newDate = '<p>' + item.date + '</p>';
+  let newContent = '<p>' + item.content + '</p>';
+  newsList += '<li>' + newTitle + ' ' + newDate + ' ' + newContent + '</li>';
+} );
+newsList += '</ul>';
+marketplaceNews.innerHTML = newsList;
