@@ -1,15 +1,19 @@
 window.onload = function () {
-  if ( markerCardPage === true ) {
+  try {
+    if ( markerCardPage === true ) {
 
-    fetch( 'URL', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify( {
-          productId: location.pathname.split( '/' ).pop()
-        }
-      )
-    })
+      fetch( 'URL', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify( {
+            productId: location.pathname.split( '/' ).pop()
+          }
+        )
+      } )
+    }
+  } catch (e) {
+    return false;
   }
 };
