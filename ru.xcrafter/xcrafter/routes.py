@@ -145,7 +145,7 @@ def profile_product_catalog():
 def card_item(product_id):
     try:
         product = get_product(product_id)
-        return render_template('public/product/card-item.html',
+        return render_template('public/product/base-card-item.html',
                                product=product)
     except Exception as e:
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
