@@ -87,7 +87,7 @@ def get_sign_in():
 
 
 @app.route('/password-recovery')
-def recoveryPassword():
+def recovery_password():
     return render_template('public/recovery-password.html')
 
 
