@@ -98,10 +98,20 @@ const News = [
 ];
 
 Date.prototype.toShowFormatDate = function () {
-  const month_names = ["Января", "Февраля", "Марта",
-    "Апреля", "Мая", "Июня",
-    "Июля", "Августа", "Сентября",
-    "Октября", "Ноября", "Декабря"];
+  const month_names = [
+    "Января",
+    "Февраля",
+    "Марта",
+    "Апреля",
+    "Мая",
+    "Июня",
+    "Июля",
+    "Августа",
+    "Сентября",
+    "Октября",
+    "Ноября",
+    "Декабря"
+  ];
   let day = this.getDate();
   let month_index = this.getMonth();
   let year = this.getFullYear();
