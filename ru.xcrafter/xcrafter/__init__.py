@@ -1,3 +1,6 @@
+from flask import Flask
+
+from flask_assets import Environment
 from flask_assets import Bundle
 
 from config import Config
