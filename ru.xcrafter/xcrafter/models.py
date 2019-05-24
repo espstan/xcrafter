@@ -75,8 +75,8 @@ class User(UserMixin, db.Model):
         try:
             id = jwt.decode(token, Config.SECRET_KEY,
                             algorithms=['HS256'])['reset_password']
-        except:
-            return
+        except Exception as e:
+            raise Exception(str(e))
         return User.query.get(id)
 
     def __repr__(self):
