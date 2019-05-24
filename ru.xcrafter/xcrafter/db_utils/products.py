@@ -8,6 +8,8 @@ from flask_login import current_user
 from sqlalchemy.orm.exc import NoResultFound
 
 from sqlalchemy.exc import OperationalError
+from sqlalchemy.exc import SQLAlchemyError
+
 
 
 def get_all_products() -> []:
@@ -26,25 +28,6 @@ def get_all_products() -> []:
         products.append(products_for_add)
 
     return products
-
-
-def get_product_by_id(product_id: int) -> {}: #TODO переименовать функцию -> внести ясноть, когда запускать get_product_by_id()
-                                              # TODO а когда get_product(), или объединить эти функции
-    """Возвращает словарь с информацией о товаре с определённым id.
-    При запросе по не существующему id - возвращает пустой словарь."""
-
-    try:
-        data = Product.query.filter(Product.id == product_id).one()
-        product = {'id': data.id,
-                   'title': data.title,
-                   'description': data.description,
-                   'price': data.price,
-                   'photo': [data.photo],
-                   'seller_id': data.seller_id}
-    except NoResultFound:
-        product = {}
-
-    return product
 
 
 def get_product(product_id: int):
@@ -80,20 +63,20 @@ def add_product(product: {}, user_id) -> str:
     return 'ok'
 
 
-def delete_product_by_id(product_id: int):
+def delete_product(product_id: int):
     """Удаляет продукт из базы. Принимает id товара."""
-
     try:
-        product_for_delete = Product.query.filter(Product.id == product_id).one()
-    except NoResultFound:
-        # Пока не знаю как обработать
-        return
-
-    # Кажется тут должна быть проверка(действительно ли данный товар принадлежит current_user'у) перед удалением
-    if product_for_delete.seller_id == current_user.id:
-
-        db.session.delete(product_for_delete)
-        db.session.commit()
+        product = Product.query.filter(Product.id == product_id).one()
+        if product.seller_id == current_user.id:
+            db.session.delete(product)
+            db.session.commit()
+            return True
+        else:
+            print("Продукт не может быть удалён текущим пользователем")
+    except SQLAlchemyError as e:
+        err = str(e.__class__.__name__)
+        print("SQLAlchemy error: " + err)
+    return False
 
 
 def edit_product(item: {}):

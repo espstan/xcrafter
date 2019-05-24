@@ -1,5 +1,8 @@
 import datetime
 import uuid
+import jwt
+
+from time import time
 
 from xcrafter import db
 from xcrafter import login
@@ -16,6 +19,8 @@ from werkzeug.security import check_password_hash
 from flask_login import UserMixin
 
 from loguru import logger
+
+from config import Config
 
 
 class User(UserMixin, db.Model):
@@ -60,16 +65,31 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def get_reset_password_token(self, expires_in=300):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
+            Config.SECRET_KEY, algorithm='HS256').decode('utf-8')
+
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            id = jwt.decode(token, Config.SECRET_KEY,
+                            algorithms=['HS256'])['reset_password']
+        except Exception as e:
+            raise Exception(str(e))
+        return User.query.get(id)
+
     def __repr__(self):
         return '<User {}>'.format(self.first_name)
 
 
 @login.user_loader
-def load_user(id):
+def load_user(user_id):
     try:
-        return Users.query.filter(Users.id == int(id)).first()
+        return User.query.filter(User.id == int(user_id)).first()
     except Exception as e:
         logger.warning('Ошибка при обращении к БД пользователей: {}'.format(e))
+        raise Exception(str(e))
 
 
 class Product(db.Model):
@@ -111,6 +131,16 @@ class Product(db.Model):
             error = str(e.__class__.__name__)
             print("SQLAlchemy error: " + error)
         return self.view_count
+
+    def get_info(self):
+        product = {}
+        product['id'] = self.id
+        product['title'] = self.title
+        product['description'] = self.description
+        product['price'] = self.price
+        product['photo'] = self.photo
+        product['seller_id'] = self.seller_id
+        return product
 
 
 class Order(db.Model):

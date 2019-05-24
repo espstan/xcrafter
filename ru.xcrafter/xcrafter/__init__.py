@@ -25,7 +25,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = Api(app)
 login = LoginManager(app)
-login.login_view = 'index'
+login.login_view = 'get_sign_in'
 mail = Mail(app)
 
 assets = Environment(app)
@@ -36,11 +36,13 @@ js = Bundle('script/toggle-sign-mode.js',
             'script/main-page.js',
             'script/count-view-product.js',
             'script/show-frequently-asked-question.js',
+            'script/marketplace-news-list.js',
             filters='jsmin', output='bundle.min.js')
 assets.register('js_all', js)
 
 js_vendors = Bundle('lib/bootstrap/4.3.1/js/bootstrap.min.js',
                     'lib/jquery/3.4.0/jquery-3.4.0.min.js',
+                    'lib/pace/1.0.2/js/pace.min.js',
                     filters='jsmin', output='vendors.min.js')
 assets.register('js_vendors', js_vendors)
 
@@ -54,8 +56,12 @@ css = Bundle('css/main-page.css',
              filters='cssmin', output='bundle.min.css')
 assets.register('css_all', css)
 
+css_vendors = Bundle('lib/pace/1.0.2/css/pace-theme-minimal.css',
+                     'lib/fancybox/3.5.7/css/jquery.fancybox.min.css',
+                     'lib/bootstrap/4.3.1/css/bootstrap.min.css')
+assets.register('css_vendors', css_vendors)
+
 
 from xcrafter import routes
 from xcrafter import models
 from xcrafter import server_api
-
