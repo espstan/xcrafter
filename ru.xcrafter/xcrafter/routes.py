@@ -142,30 +142,10 @@ def profile_product_catalog():
 
 
 @app.route('/product/<product_id>')
-def card_item(product_id):
+def base_card_item(product_id):
     try:
         product = get_product(product_id)
-        return render_template('public/product/card-item.html',
-                               product=product)
-    except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
-
-
-@app.route('/product/<product_id>/photo')
-def card_item_photo(product_id):
-    try:
-        product = get_product(product_id)
-        return render_template('public/product/card-item-photo.html',
-                               product=product)
-    except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
-
-
-@app.route('/product/<product_id>/description')
-def card_item_description(product_id):
-    try:
-        product = get_product(product_id)
-        return render_template('public/product/card-item-description.html',
+        return render_template('public/product/base-card-item.html',
                                product=product)
     except Exception as e:
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))

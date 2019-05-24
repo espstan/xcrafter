@@ -6,26 +6,75 @@
   const markerCardPage = true;
 </script>
 {% endif %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card-item.css') }}">
-<div class="wrapper" data-item-id="{{ product.id }}">
-    <div class="menu-actions">
-        <div class="menu">
-            <div class="menu-item card-item"><a href="/item/{{product.id}}">Home</a></div>
-            <div class="menu-item about-seller"><a href="/item/about-seller/{{product.id}}">О продавце</a></div>
-            <div class="menu-item description"><a href="/item/{{product.id}}/description">Описание</a></div>
-            <div class="menu-item photo"><a href="/item/photo/{{product.id}}">Фотографии</a></div>
-            <div class="menu-item"><a href="/">На главную</a></div>
-        </div>
-        <div class="actions">
-            {% if request.cookies.get('next_version_mode') %}
-                <a href="#" class="btn btn-danger">Пожаловаться</a>
-            {% endif %}
-            <div class="price">{{ product.price }}&nbsp;₽</div>
-            <div class="card-item-buy-btn" onclick="storeProductInLS({{ product }})">Купить</div>
-        </div>
-    </div>
-    {% block content_card_item %}
-    {% endblock %}
+<div class="container m-auto" data-item-id="{{ product.id }}">
+    <main class="card mt-5">
+      <div class="row no-gutters">
+        <aside class="col-sm-6 imglist">
+          <div class="m-auto">
+            <a href="{{product.photo}}" data-fancybox="images">
+                <img src="{{product.photo}}" class="m-auto card-img">
+            </a>
+          </div>
+          <div class="row d-flex flex-wrap justify-content-center align-self-end mt-3 mb-3">
+            <a class="mr-3" 
+               href="{{ url_for('static', filename='img/placeholder.jpg') }}" 
+               data-fancybox="images"> 
+              <img src="{{ url_for('static', filename='img/placeholder.jpg') }}" 
+                   class="img-card-gallery">
+            </a>
+            <a class="mr-3" 
+               href="{{ url_for('static', filename='img/placeholder.jpg') }}" 
+               data-fancybox="images"> 
+              <img src="{{ url_for('static', filename='img/placeholder.jpg') }}" 
+                   class="img-card-gallery">
+            </a>
+            <a class="mr-3" 
+               href="{{ url_for('static', filename='img/placeholder.jpg') }}" 
+               data-fancybox="images"> 
+              <img src="{{ url_for('static', filename='img/placeholder.jpg') }}" 
+                   class="img-card-gallery">
+            </a>
+            <a class="" 
+               href="{{ url_for('static', filename='img/placeholder.jpg') }}" 
+               data-fancybox="images"> 
+              <img src="{{ url_for('static', filename='img/placeholder.jpg') }}" 
+                   class="img-card-gallery">
+            </a>
+          </div> 
+        </aside>
+        <aside class="col-sm-6">
+          <article class="card-body">
+            <h3 class="title mb-3">{{ product.title }}</h3>
+              <span class="mb-3 price h3 text-warning"> 
+                <span class="currency">RU ₽&nbsp;</span>
+                <span class="num">{{ product.price }}</span>
+              </span> 
+                <dl class="mt-3">
+                  <dt>Описание</dt>
+                  <dd><p>
+                    {{ product.description }}
+                  </p></dd>
+                </dl>
+                <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <dl class="dlist-inline">
+                        <dt>Количество: </dt>
+                        <dd> 
+                            <span class = "d-flex w-50 mt-3">
+                                <input type="number" min="0" max="10" class="form-control" id="" value = "1">    
+                            </span>
+                        </dd>
+                      </dl>
+                    </div>
+                  </div> 
+                  <hr>
+                  <a href="{{ url_for('card_item_about_seller', product_id=product.id) }}" class="btn btn-outline-warning">Информация о продавце</a>
+                  <a href="#" class="btn  btn-warning" onclick="buy( {{ product.id }} )">Добавить в корзину </a>
+          </article> 
+        </aside> 
+      </div> 
+    </main>
+  </div>
 </div>
-<script src="{{ url_for('static', filename='script/card-item.js') }}"></script>
 {% endblock %}

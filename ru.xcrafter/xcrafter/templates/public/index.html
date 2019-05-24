@@ -27,7 +27,7 @@
         <div class="container d-flex flex-wrap justify-content-around">
             {% for product in products %}
             <div class="card product-item mt-5 text-center">
-                    <a href="{{ url_for('card_item', product_id=product.id) }}">
+                    <a href="{{ url_for('base_card_item', product_id=product.id) }}">
                     <img class="card-img-top img-background" src="{{ product.photo }}" alt="">
                     </a> 
                     <div class="card-body">
