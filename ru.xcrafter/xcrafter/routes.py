@@ -267,3 +267,8 @@ def cookie_next_version_mode_remove():
     res = make_response('Next version mode: off')
     res.set_cookie('next_version_mode', 'off', max_age=0)
     return res
+
+#
+# @app.template_filter('count')
+# def reverse_filter():
+#     return len(get_all_products)
