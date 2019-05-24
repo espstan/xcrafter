@@ -282,10 +282,10 @@
         новинок <br>и специальных предложений
     </p>
     <form class="input-group mt-3 mb-3" 
-          action="/api/v1/subscribe" 
+          action="{{ url_for('addsubscription') }}"
           method="GET">
         <input type="email" 
-               name="q" 
+               name="email_address"
                value="" 
                class="form-control" 
                id="sign-up-email" 

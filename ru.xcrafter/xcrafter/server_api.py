@@ -182,7 +182,7 @@ class SetViewCount(Resource):
 
 class AddSubscription(Resource):
     def get(self):
-        email = request.args.get('q')
+        email = request.args.get('email_address')
         if email:
             subscription = get_subscription(email)
             if subscription is None:
