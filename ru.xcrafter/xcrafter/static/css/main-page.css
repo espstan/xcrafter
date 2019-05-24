@@ -101,7 +101,7 @@ button:active, button:focus {
     top: 15px;
 }
 
-.subscribe-main {
+section.subscribe-main {
     max-width: 400px;
 }
 
