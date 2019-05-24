@@ -6,7 +6,6 @@
   const markerCardPage = true;
 </script>
 {% endif %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card-item.css') }}">
 <div class="container m-auto" data-item-id="{{ product.id }}">
     <main class="card mt-5">
       <div class="row no-gutters">
@@ -21,7 +20,9 @@
                href="{{ url_for('static', filename='img/placeholder.jpg') }}" 
                data-fancybox="images"> 
               <img src="{{ url_for('static', filename='img/placeholder.jpg') }}" 
-                   class="img-card-gallery">
+                   class="img-card-gallery"  style="border: 1px solid rgba(0,0,0,.125);
+                   width: 60px;
+                   height: 60px;">
             </a>
             <a class="mr-3" 
                href="{{ url_for('static', filename='img/placeholder.jpg') }}" 
@@ -46,11 +47,11 @@
         <aside class="col-sm-6">
           <article class="card-body">
             <h3 class="title mb-3">{{ product.title }}</h3>
-              <div class="mb-3 price h3 text-warning"> 
+              <span class="mb-3 price h3 text-warning"> 
                 <span class="currency">RU ₽&nbsp;</span>
                 <span class="num">{{ product.price }}</span>
-              </div> 
-                <dl>
+              </span> 
+                <dl class="mt-3">
                   <dt>Описание</dt>
                   <dd><p>
                     {{ product.description }}
@@ -62,18 +63,16 @@
                       <dl class="dlist-inline">
                         <dt>Количество: </dt>
                         <dd> 
-                          <select class="form-control form-control-sm">
-                            <option> 1 </option>
-                            <option> 2 </option>
-                            <option> 3 </option>
-                          </select>
+                            <span class = "d-flex w-50 mt-3">
+                                <input type="number" min="0" max="10" class="form-control" id="" value = "1">    
+                            </span>
                         </dd>
                       </dl>
                     </div>
                   </div> 
                   <hr>
-                  <a href="/item/about-seller/{{product.id}}" class="btn  btn-warning">Информация о продавце</a>
-                  <a href="#" class="btn  btn-outline-warning" onclick="buy({{ product }})">Добавить в корзину </a>
+                  <a href="{{ url_for('card_item_about_seller', product_id=product.id) }}" class="btn btn-outline-warning">Информация о продавце</a>
+                  <a href="#" class="btn  btn-warning" onclick="buy( {{ product.id }} )">Добавить в корзину </a>
           </article> 
         </aside> 
       </div> 
