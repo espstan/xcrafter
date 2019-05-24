@@ -200,6 +200,10 @@ def subscription_mail_success():
 def subscription_mail_error():
     return render_template('public/mail-list/subscription-mail-error.html')
 
+@app.route('/blog')
+def marketplace_news():
+    return render_template('public/marketplace-news.html')
+
 
 # Роуты для api
 
