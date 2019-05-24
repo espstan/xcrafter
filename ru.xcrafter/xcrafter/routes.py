@@ -76,6 +76,7 @@ def internal_server_error(e):
 def contacts():
     return render_template('public/contacts.html', is_contact_page=True)
 
+
 @app.route('/registration')
 def get_registration():
     return render_template('public/registration.html', is_registration_page=True)
@@ -180,6 +181,7 @@ def subscription_mail_success():
 def subscription_mail_error():
     return render_template('public/mail-list/subscription-mail-error.html')
 
+
 @app.route('/blog')
 def marketplace_news():
     return render_template('public/marketplace-news.html')
@@ -207,38 +209,6 @@ def user():
 @app.route('/jsons/document.json')
 def products():
     return send_from_directory('static', 'jsons/document.json')
-
-
-@app.route('/api/1/login', methods=['POST'])
-def login():
-    try:
-        if request.method == "POST":
-            if "login" in request.form:
-                if "password-sign" in request.form:
-                    email = request.form["login"]
-                    password = request.form["password-sign"]
-                    # remember_me = request.form["remember"]
-                    remember_me = True  # TODO: временное решение - пока в форме нет флага "Запомнить меня"
-
-                    # проверяем правильность сочетания email/password
-                    check_result = sign_in({"email": email, "password": password})
-                    if check_result['password'] == 'ok':
-                        # если проверка соответствия email/password прошла успешно -
-                        # авторизуем и делаем редирект
-                        user_for_login = User.query.filter(User.email == email).first()
-                        login_user(user_for_login, remember=remember_me)
-                        return redirect(url_for('profile'))
-        # при неудачной попытке - пока перенаправляем на главную
-        return redirect(url_for('index'))
-    except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
-        return redirect(url_for('index'))
-
-
-@app.route('/api/1/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
 
 
 @app.route('/api/v1/activate-user-account/<string:activate_key>')

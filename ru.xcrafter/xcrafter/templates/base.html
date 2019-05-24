@@ -68,9 +68,15 @@
                 <li class="nav-item {% if is_profile_page %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('profile') }}">Личный кабинет</a>
                 </li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Выйти</a>
+                </li>
+                {% else %}
                 <li class="nav-item {% if is_sign_in_page %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('get_sign_in') }}">Войти</a>
                 </li>
+                {% endif %}
                 <li class="nav-item {% if is_registration_page %} active {% endif %}">
                     <a class="nav-link" href="{{ url_for('get_registration') }}">Зарегистрироваться</a>
                 </li>

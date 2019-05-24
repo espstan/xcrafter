@@ -19,6 +19,7 @@ from flask import request
 from flask_login import login_required
 from flask_login import current_user
 from flask_login import login_user
+from flask_login import logout_user
 
 from flask_restful import Resource
 from flask_restful import reqparse
@@ -273,6 +274,16 @@ class SignIn(Resource):
             return jsonify({'success': 'false', 'message': 'Не верный пароль'})
 
 
+class Logout(Resource):
+    def get(self):
+        try:
+            logout_user()
+            return redirect(url_for('index'))
+        except Exception as e:
+            logger.warning('Не удалось сделать logout пользователю: {}'.format(str(e)))
+            return jsonify({'success': 'false'})
+
+
 api.add_resource(Registration, '/api/registration')  # TODO добавить версию api
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
@@ -285,4 +296,5 @@ api.add_resource(AddSubscription, '/api/v1/subscribe')
 api.add_resource(RecoveryPassword, '/api/v1/recovery-password')
 api.add_resource(ResetPassword, '/api/v1/reset-password/<string:token>')
 api.add_resource(SignIn, '/api/v1/sign-in')
+api.add_resource(Logout, '/api/v1/logout')
 
