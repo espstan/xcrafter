@@ -1,6 +1,3 @@
-from flask import Flask
-
-from flask_assets import Environment
 from flask_assets import Bundle
 
 from config import Config
@@ -25,7 +22,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = Api(app)
 login = LoginManager(app)
-login.login_view = 'index'
+login.login_view = 'get_sign_in'
 mail = Mail(app)
 
 assets = Environment(app)
