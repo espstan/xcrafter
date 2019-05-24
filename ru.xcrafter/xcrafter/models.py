@@ -86,9 +86,10 @@ class User(UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     try:
-        return Users.query.filter(Users.id == int(id)).first()
+        return User.query.filter(User.id == int(id)).first()
     except Exception as e:
         logger.warning('Ошибка при обращении к БД пользователей: {}'.format(e))
+        raise Exception(str(e))
 
 
 class Product(db.Model):
