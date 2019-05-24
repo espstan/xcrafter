@@ -211,7 +211,12 @@ class ResetPassword(Resource):
     def get(self, token):
         if current_user.is_authenticated:
             return redirect(url_for('index'))
-        user = User.verify_reset_password_token(token)
+        try:
+            user = User.verify_reset_password_token(token)
+        except Exception as e:
+            logger.warning('Не удалось получить user при декоде токена: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности поменять'
+                                                         'пароль, попробуйте, пожалуйста, позже.'})
         if not user:
             return redirect(url_for('index'))
         try:
