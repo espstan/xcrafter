@@ -55,50 +55,50 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        {% if is_catalog_page == True %}
-                            <a class="nav-link" href="#">Каталог</a>
+                        {% if is_catalog_page %}
+                            <a class="nav-link active" href="#">Каталог</a>
                         {% else %}
                             <a class="nav-link" href="#">Каталог</a>
                         {% endif %}
                     </li>
                     <li class="nav-item">
-                        {% if is_popular_page == True %}
-                            <a class="nav-link" href="#">Популярные</a>
+                        {% if is_popular_page %}
+                            <a class="nav-link active" href="#">Популярные</a>
                         {% else %}
                             <a class="nav-link" href="#">Популярные</a>
                         {% endif %}
                     </li>
                     <li class="nav-item">
-                        {% if is_new_page == True %}
-                            <a class="nav-link" href="#">Свежие</a>
+                        {% if is_new_page %}
+                            <a class="nav-link active" href="#">Свежие</a>
                         {% else %}
                             <a class="nav-link" href="#">Свежие</a>
                         {% endif %}
                     </li>
                     <li class="nav-item">
-                        {% if is_profile_page == True %}
-                            <a class="nav-link" href="#">Личный кабинет</a>
+                        {% if is_profile_page %}
+                            <a class="nav-link active" href="#">Личный кабинет</a>
                         {% else %}
                             <a class="nav-link" href="{{ url_for('profile') }}">Личный кабинет</a>
                         {% endif %}
                     </li>
                     <li class="nav-item">
-                        {% if is_sign_in_page == True %}
-                            <a class="nav-link" href="#">Войти</a>
+                        {% if is_sign_in_page %}
+                            <a class="nav-link active" href="#">Войти</a>
                         {% else %}
                             <a class="nav-link" href="{{ url_for('get_sign_in') }}">Войти</a>
                         {% endif %}
                     </li>
                     <li class="nav-item">
-                        {% if is_registration_page == True %}
-                            <a class="nav-link" href="#">Зарегистрироваться</a>
+                        {% if is_registration_page %}
+                            <a class="nav-link active" href="#">Зарегистрироваться</a>
                         {% else %}
                             <a class="nav-link" href="{{ url_for('get_registration') }}">Зарегистрироваться</a>
                         {% endif %}
                     </li>
                     <li class="nav-item nav-basket">
-                        {% if is_cart_page == True %}
-                            <a class="nav-link" href="#">Корзина
+                        {% if is_cart_page %}
+                            <a class="nav-link active" href="#">Корзина
                                 <span class="badge badge-pill badge-info" id="countOfProductInBadge"></span>
                             </a>
                         {% else %}
@@ -108,8 +108,8 @@
                         {% endif %}
                     </li>
                     <li class="nav-item">
-                        {% if is_contact_page == True %}
-                            <a class="nav-link" href="#">Контакты</a>
+                        {% if is_contact_page %}
+                            <a class="nav-link active" href="#">Контакты</a>
                         {% else %}
                             <a class="nav-link" href="{{ url_for('contacts') }}">Контакты</a>
                         {% endif %}
@@ -405,7 +405,7 @@
                     <ul class="col-4">
                         <spanp>About</span>
                         <li><a class="" href="#">Services</a></li>
-                        {% if is_contact_page == True %}
+                        {% if is_contact_page %}
                             <li><a class="" href="#">Contact</a></li>
                         {% else %}
                             <li><a class="" href="{{ url_for('contacts') }}">Contact</a></li>
