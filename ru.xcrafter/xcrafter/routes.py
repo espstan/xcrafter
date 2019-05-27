@@ -1,14 +1,17 @@
 import os
 
+import time
+
 from xcrafter import app
 from xcrafter import db
 
-from xcrafter.db_utils.products import get_all_products
+from xcrafter.db_utils.products import get_cached_products
 from xcrafter.db_utils.products import get_product
 
 from xcrafter.db_utils.users import activate
 from xcrafter.db_utils.users import sign_in
 from xcrafter.db_utils.users import get_user_products
+
 
 from xcrafter.models import User
 
@@ -41,7 +44,7 @@ def check_for_maintenance():
 
 @app.route('/')
 def index() -> 'html':
-    products = get_all_products()
+    products = get_cached_products(time.time())
     return render_template('public/index.html',
                            products=products,
                            meta_title='XCrafter - маркетплейс хендмейд товаров')
@@ -69,19 +72,19 @@ def internal_server_error(e):
 
 @app.route('/contacts')
 def contacts():
-    products = get_all_products()
+    products = get_cached_products(time.time())
     return render_template('public/contacts.html', is_contact_page=True, products=products)
 
 
 @app.route('/registration')
 def get_registration():
-    products = get_all_products()
+    products = get_cached_products(time.time())
     return render_template('public/registration.html', is_registration_page=True, products=products)
 
 
 @app.route('/sign-in')
 def get_sign_in():
-    products = get_all_products()
+    products = get_cached_products(time.time())
     return render_template('public/sign-in.html', is_sign_in_page=True, products=products)
 
 
@@ -93,7 +96,7 @@ def recovery_password():
 @app.route('/profile')
 @login_required
 def profile():
-    products = get_all_products()
+    products = get_cached_products(time.time())
     return render_template('profile/dashboard.html',
                            current_user=current_user, is_profile_page=True)
 
@@ -163,7 +166,7 @@ def card_item_about_seller(product_id):
 
 @app.route('/cart')
 def cart():
-    products = get_all_products()
+    products = get_cached_products(124)
     return render_template('public/cart.html', is_cart_page=True, products=products)
 
 
