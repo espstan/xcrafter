@@ -46,6 +46,8 @@ from xcrafter.db_utils.subscriptions import add_subscription
 
 from loguru import logger
 
+from werkzeug.utils import secure_filename
+
 from werkzeug.urls import url_parse
 
 from xcrafter.models import Product
@@ -102,26 +104,36 @@ class EditCardItem(Resource):
 
 class Registration(Resource):
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('name')
-        parser.add_argument('surname')
-        parser.add_argument('email')
-        parser.add_argument('phone')
-        parser.add_argument('password')
-        parser.add_argument('agreement')
-        args = parser.parse_args()
-        if args['agreement'] == "True":
-            args['agreement'] = True
+        try:
+            surname = secure_filename(request.form['surname'])
+            name = secure_filename(request.form['name'])
+            email = request.form['email']
+            phone = secure_filename(request.form['phone'])
+            password = request.form['password']
+            is_agree = request.form.getlist('agreement')
+            if not is_agree:
+                raise Exception('Отсутствует согласие на обработку персональных данных')
+            else:
+                agreement = True
 
-        sign_up_result = sign_up(args)
+        except Exception as e:
+            logger.warning('Получены не корректные данные при регистрации: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'Не корректные данные'})
 
-        if sign_up_result is not None:
-            user = get_user_by_id(sign_up_result)
-            if user is not None:
-                send_mail(user.email, user.activate_key)
-                return Response(status=201)
+        try:
+            registered_user = sign_up({'name': name, 'surname': surname, 'email': email,
+                                      'phone': phone, 'password': password, 'agreement': agreement})
+        except Exception as e:
+            logger.warning('Ошибка записи нового пользователя в БД: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'Ошибка записи в БД'})
 
-        return abort(403)
+        try:
+            send_mail(registered_user.email, registered_user.activate_key)
+        except Exception as e:
+            logger.warning('Ошибка при отправки активационного письма: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'Ошибка отправки активационного письма'})
+
+        return redirect(url_for('get_sign_in'))
 
 
 class GetAllProducts(Resource):
