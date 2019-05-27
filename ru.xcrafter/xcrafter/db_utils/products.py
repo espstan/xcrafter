@@ -14,19 +14,21 @@ from sqlalchemy.exc import SQLAlchemyError
 
 def get_all_products() -> []:
     """Возвращает массив словарей(товаров)"""
+    try:
+        data = Product.query.all()
+        products = []
 
-    data = Product.query.all()
-    products = []
-
-    for product in data:
-        products_for_add = {'id': product.id,
+        for product in data:
+            products_for_add = {'id': product.id,
                             'title': product.title,
                             'description': product.description,
                             'price': product.price,
                             'photo': product.photo,
                             'seller_id': product.seller_id}
-        products.append(products_for_add)
-
+            products.append(products_for_add)
+    except SQLAlchemyError as e:
+        err = str(e.__class__.__name__)
+        print("SQLAlchemy error: " + err)
     return products
 
 
