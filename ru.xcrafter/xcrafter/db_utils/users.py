@@ -21,10 +21,10 @@ from xcrafter import db
 from xcrafter import mail
 
 
-def sign_up(sign_up_data: {}) -> {}:
-    """Регистрация(принимает словарь{'firstName':'', 'secondName':'', 'email':'', 'phone':'',
+def sign_up(sign_up_data: {}) -> User:
+    """Регистрация(принимает словарь{'name':'', 'surname':'', 'email':'', 'phone':'',
      'password':'', 'agreement': ''}),
-     возвращает id юзера при успешной регистрации/ None при не успешной
+     возвращает User при успешной регистрации / raise Exception при не успешной
     """
     # возвращает словать({"email": "(строка ok/err)", "phone": "(строка ok/err)"})"""
 
@@ -32,17 +32,17 @@ def sign_up(sign_up_data: {}) -> {}:
 
     password_hash = generate_password_hash(sign_up_data['password'])
     user = User(first_name=sign_up_data['name'], surname=sign_up_data['surname'], email=sign_up_data['email'],
-                 phone_number=sign_up_data['phone'], password_hash=password_hash,
-                 agree_to_processing_personal_data=sign_up_data['agreement'])
+                phone_number=sign_up_data['phone'], password_hash=password_hash,
+                agree_to_processing_personal_data=sign_up_data['agreement'])
 
     db.session.add(user)
     try:
         db.session.commit()
-    except sqlalchemy.exc.IntegrityError as e:
+    except Exception as e:
         db.session.rollback()
-        return None
+        raise Exception(str(e))
 
-    return user.id
+    return user
 
 
 def sign_in(sign_in_data) -> {}:
