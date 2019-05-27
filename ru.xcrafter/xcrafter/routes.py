@@ -41,17 +41,10 @@ def check_for_maintenance():
 
 @app.route('/')
 def index() -> 'html':
-    try:
-        products = get_all_products()
-        count = len(products)
-    except Exception as e:
-        logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
-        products = []
-    finally:
-        return render_template('public/index.html',
-                               products=products,
-                               count=count,
-                               meta_title='XCrafter - маркетплейс хендмейд товаров')
+    products = get_all_products()
+    return render_template('public/index.html',
+                           products=products,
+                           meta_title='XCrafter - маркетплейс хендмейд товаров')
 
 
 @app.route('/robots.txt')
@@ -76,17 +69,20 @@ def internal_server_error(e):
 
 @app.route('/contacts')
 def contacts():
-    return render_template('public/contacts.html', is_contact_page=True)
+    products = get_all_products()
+    return render_template('public/contacts.html', is_contact_page=True, products=products)
 
 
 @app.route('/registration')
 def get_registration():
-    return render_template('public/registration.html', is_registration_page=True)
+    products = get_all_products()
+    return render_template('public/registration.html', is_registration_page=True, products=products)
 
 
 @app.route('/sign-in')
 def get_sign_in():
-    return render_template('public/sign-in.html', is_sign_in_page=True)
+    products = get_all_products()
+    return render_template('public/sign-in.html', is_sign_in_page=True, products=products)
 
 
 @app.route('/password-recovery')
@@ -97,6 +93,7 @@ def recovery_password():
 @app.route('/profile')
 @login_required
 def profile():
+    products = get_all_products()
     return render_template('profile/dashboard.html',
                            current_user=current_user, is_profile_page=True)
 
@@ -166,7 +163,8 @@ def card_item_about_seller(product_id):
 
 @app.route('/cart')
 def cart():
-    return render_template('public/cart.html', is_cart_page=True)
+    products = get_all_products()
+    return render_template('public/cart.html', is_cart_page=True, products=products)
 
 
 @app.route('/search')
