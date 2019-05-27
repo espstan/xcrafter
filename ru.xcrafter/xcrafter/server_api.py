@@ -296,6 +296,32 @@ class Logout(Resource):
             return jsonify({'success': 'false'})
 
 
+class ChangePassword(Resource):
+    @login_required
+    def post(self):
+        old_password = request.form['old-password']
+        new_password = request.form['new-password']
+        new_password_repeat = request.form['new-password-repeat']
+        if new_password != new_password_repeat:
+            return jsonify({'success': 'false', 'error': 'Пароли не совпадают'})
+        try:
+            result_password_verification = password_verification(current_user, old_password)
+        except Exception as e:
+            logger.warning('Не удалось проверить пароль: {}'.format(str(e)))
+            return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности сменить '
+                                                         'пароль, попробуйте, пожалуйста, позже.'})
+        if result_password_verification:
+            try:
+                change_password(new_password, current_user)
+                return jsonify({'success': 'true'})
+            except Exception as e:
+                logger.warning('Не удалось сменить пароль: {}'.format(str(e)))
+                return jsonify({'success': 'false', 'error': 'По техническим причинам сейчас нет возможности сменить '
+                                                             'пароль, попробуйте, пожалуйста, позже.'})
+        else:
+            return jsonify({'success': 'false', 'error': 'Введен неверный пароль'})
+
+
 api.add_resource(Registration, '/api/registration')  # TODO добавить версию api
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
@@ -309,4 +335,5 @@ api.add_resource(RecoveryPassword, '/api/v1/recovery-password')
 api.add_resource(ResetPassword, '/api/v1/reset-password/<string:token>')
 api.add_resource(SignIn, '/api/v1/sign-in')
 api.add_resource(Logout, '/api/v1/logout')
+api.add_resource(ChangePassword, '/api/v1/change-password')
 
