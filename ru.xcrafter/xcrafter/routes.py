@@ -43,12 +43,14 @@ def check_for_maintenance():
 def index() -> 'html':
     try:
         products = get_all_products()
+        count = len(products)
     except Exception as e:
         logger.warning('Ошибка при обращении к БД товаров: {}'.format(e))
         products = []
     finally:
         return render_template('public/index.html',
                                products=products,
+                               count=count,
                                meta_title='XCrafter - маркетплейс хендмейд товаров')
 
 
@@ -235,4 +237,3 @@ def cookie_next_version_mode_remove():
     res = make_response('Next version mode: off')
     res.set_cookie('next_version_mode', 'off', max_age=0)
     return res
-
