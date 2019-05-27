@@ -1,4 +1,4 @@
-const productsList = document.querySelector('.list-group');
+const productsList = document.querySelector('.product-group');
 const clearBtn = document.querySelector('.clear-btn');
 const totalPayment = document.getElementById('total-payment');
 const productBadge = document.getElementById('countOfProductInBadge');
@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', getProductsFromLS);
 productsList.addEventListener('click', deleteProduct);
 clearBtn.addEventListener('click', clearCart);
 
-const cartIsEmpty = document.createElement('h5');
-cartIsEmpty.innerHTML = 'В корзине пусто:(';
+const cartIsEmpty = document.createElement('tr');
+cartIsEmpty.innerHTML = `<td colspan="4" class="text-center"><h5>В корзине пусто</h5></td>`;
 productsList.appendChild(cartIsEmpty);
 
 const popupWindow = document.getElementById('popup-window');
@@ -30,7 +30,7 @@ function calculateProductBadge() {
 function buy(product) {
     // popupWindowActive(product);
     let cart = {};
-    let item = { 'id': product.id, 'title': product.title, 'price': product.price };
+    let item = { 'id': product.id, 'title': product.title, 'price': product.price, 'photo': product.photo };
     if (localStorage.getItem('cart')) {
         cart = JSON.parse(localStorage.getItem('cart'));
         if (cart[product.id]) {
@@ -51,32 +51,47 @@ function getProductsFromLS() {
     if (!cart) { return false }
     for (const product in cart) {
         cartIsEmpty.remove();
-        const li = document.createElement('li');
-        li.className = 'list-group-item col-12 d-flex';
-        li.setAttribute('id', product);
-        const inLi = document.createElement('span');
-        inLi.className = 'input-group'
-        inLi.innerHTML =
-            `<span>
-            <span>${cart[product]['title']}:
-                <span class = "prod-price${product}"></span>
-                руб
-            </span>
-            <span class = "d-flex float-right w-50">
-                <span class = "minus${product} btn" w-10 >-</span>
-                <input class="form-control col-3 " id="quantity${product}" value = "${cart[product]['count']}"disabled>
-                <span class = "plus${product} btn" w-10" >+
+        const tr = document.createElement('tr');
+        tr.setAttribute('id', product);
+        tr.innerHTML = `
+            <td>
+                <span class="d-flex">
+                    <img src="${cart[product]['photo']}" width="80" height="80"> 
+                    <span class="ml-1">${cart[product]['title']}</span>
                 </span>
-            </span>
-        </span>`;
-
-        const link = document.createElement('a');
-        link.className = 'delete-product secondary-content';
-        link.style = 'color: tomato; float: right; cursor: pointer'
-        link.innerHTML = '&#10006;';
-        li.appendChild(inLi);
-        li.appendChild(link);
-        productsList.appendChild(li);
+            </td>
+            <td> 
+                <div class="btn-group">
+                    <button type="button" 
+                            class="minus${product} btn btn-outline-secondary btn-sm">
+                    -
+                    </button>
+                    <input class="form-control col-6 btn btn-outline-dark text-center" 
+                           id="quantity${product}" 
+                           value = "${cart[product]['count']}" 
+                           disabled>
+                    <button type="button" 
+                            class = "plus${product} btn btn-outline-secondary btn-sm">
+                    +
+                    </button>
+                </div>
+            </td>
+            <td> 
+                <div class="price-wrap"> 
+                  <var class="prod-price${product}"></var> 
+                  &nbsp;₽
+                </div> 
+            </td>
+            `;
+        const td = document.createElement('td');
+        td.className = 'text-right';
+        const a = document.createElement('a');
+        a.className = 'delete-product secondary-content btn btn-outline-danger';
+        a.innerHTML = '×';
+        
+        td.appendChild(a);
+        tr.appendChild(td);
+        productsList.appendChild(tr);
         calculateTotalPayment(cart[product])
 
         let count = cart[product]['count'];
@@ -91,6 +106,7 @@ function getProductsFromLS() {
         minus.addEventListener('click', minusProduct);
 
         function plusProduct() {
+            if (count > 9) { return false }
             count++;
             quantity.value = count;
             totalProductPrice.innerHTML = cart[product]['price'] * quantity.value;
@@ -114,20 +130,29 @@ function getProductsFromLS() {
             localStorage.setItem('cart', JSON.stringify(cart));
             calculateProductBadge()
         }  
-
     }
     calculateProductBadge()
 }
 
-function calculateTotalPayment(product){
-    totalPayment.value = totalPayment.value * 1 + product.price * product.count;
+function calculateTotalPayment(){
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    if (!cart) { return false }
+    let sum = [];
+    let totalsum = 0;
+    for (let item in cart) {
+        sum.push(cart[item]['price']*cart[item]['count']);
+    }
+    for (let i = 0; i < sum.length; i++) {
+        totalsum += sum[i]
+    }
+    totalPayment.value = totalsum
 }
 
 function deleteProduct(e) {
     if (e.target.classList.contains('delete-product')) {
-        e.target.parentElement.remove();
+        e.target.parentElement.parentElement.remove();
     }
-    removeProductFromLS(e.target.parentElement);
+    removeProductFromLS(e.target.parentElement.parentElement);
 }
 
 function removeProductFromLS(element) {
@@ -135,10 +160,11 @@ function removeProductFromLS(element) {
     const id = element.id;
     for (const product in cart) {
         if (cart[product]['id'] == id) {
+            totalPayment.value = totalPayment.value * 1 - cart[product]['price'] * cart[product]['count'];
             delete cart[product];
             localStorage.setItem('cart', JSON.stringify(cart));
         }
-    }
+    }    
 }
 
 function clearCart() {
