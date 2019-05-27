@@ -1,3 +1,5 @@
+import time
+
 from xcrafter import db
 
 from xcrafter.models import Product
@@ -10,6 +12,8 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.exc import SQLAlchemyError
 
+first_time = 0
+product_count = 0
 
 
 def get_all_products() -> []:
@@ -30,6 +34,18 @@ def get_all_products() -> []:
         err = str(e.__class__.__name__)
         print("SQLAlchemy error: " + err)
     return products
+
+
+def get_cached_products(current_time):
+    global first_time
+    if first_time == 0:
+        first_time = int(round(time.time()))
+    second_time = int(round(current_time))
+    global product_count
+
+    if product_count == 0 or second_time - first_time > 600:
+        product_count = get_all_products()
+    return product_count
 
 
 def get_product(product_id: int):
