@@ -23,15 +23,27 @@
                 <h5 class="text text-center mb-3 mt-3">Основная информация</h5>
                 <input type="text" name="firstname" class="form-control mb-3" id="firstname" placeholder="Мария">
                 <input type="text" name="lastname" class="form-control mb-3" id="lastname" placeholder="Петрова">
-                <input type="tel" name="tel" class="form-control mb-3" id="tel" placeholder="+7 999 444-44-44">
+                <input type="tel" name="tel" class="form-control mb-3" id="tel" placeholder="+7 999 999-99-99">
                 <input type="text" name="address" class="form-control mb-3" id="address" placeholder="СПб, ул. Ленина, д.11, корп.1, кв.11">
-                <input type="email" name="email" class="form-control mb-3" id="email" placeholder="petrova@yandex.ru">
+                <input type="email" name="email" class="form-control mb-3" id="email" placeholder="name@example.com">
             </div>
             <div class="form-group col-md-6">
-                <div class="container mb-3">
+                <div class="mb-3">
                     <h5 class="product-title text-center mb-3 mt-3">Корзина</h5>
-                    <ul class="list-group list-group-flush mb-3">
-                    </ul>
+                    <div class="card">
+                       <table class="table table-hover shopping-cart-wrap">
+                            <thead class="text-muted">
+                                <tr>
+                                    <th scope="col">Товар</th>
+                                    <th scope="col" width="120">Количество</th>
+                                    <th scope="col" width="120">Цена</th>
+                                    <th scope="col" class="text-right" width="200">Удалить</th>
+                                </tr>
+                            </thead>
+                            <tbody class="product-group">
+                            </tbody>
+                    </table>
+                    </div>
                 </div>
                 <button class="clear-btn btn btn-dark float-right mb-3 mr-3">
                     Очистить корзину
