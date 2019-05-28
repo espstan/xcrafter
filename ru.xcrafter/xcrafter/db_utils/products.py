@@ -2,8 +2,6 @@ import time
 
 from flask import g
 
-from werkzeug.local import LocalProxy
-
 from xcrafter import db
 
 from xcrafter.models import Product
@@ -16,6 +14,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.exc import SQLAlchemyError
 
+from werkzeug.local import LocalProxy
 
 def get_all_products() -> []:
     """Возвращает массив словарей(товаров)"""
@@ -152,7 +151,8 @@ def get_first_request_time():
 def get_cached_products():
     cached_products = getattr(g, 'cached_products', None)
     start = get_first_request_time()
-    finish = int(round(time.time()))
+    finish = get_current_time()
+    print(str(finish-start))
     if cached_products is None or finish-start > 1000:
         cached_products = g.cached_products = get_all_products()
 
