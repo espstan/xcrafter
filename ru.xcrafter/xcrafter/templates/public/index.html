@@ -26,13 +26,13 @@
     <section class="catalog">
         <div class="container d-flex flex-wrap justify-content-around">
             {% for product in products %}
-            <div class="card product-item mt-5 text-center">
+            <div class="card product-item mt-5 text-center" id="product-{{ product.id }}">
                     <a href="{{ url_for('base_card_item', product_id=product.id) }}">
                     <img class="card-img-top img-background" src="{{ product.photo }}" alt="">
                     </a> 
                     <div class="card-body">
                         <h3 class="card-text">{{product.price}} ₽</h3>
-                        <span class="btn btn-dark product-buy" onclick="buy({{ product }})">Добавить в корзину</span>
+                        <span class="btn btn-dark product-buy" onclick="buy({{ product }}, event)">Добавить в корзину</span>
                     </div>
             </div>
             {% endfor %}
