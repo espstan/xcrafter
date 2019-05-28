@@ -152,7 +152,6 @@ def get_cached_products():
     cached_products = getattr(g, 'cached_products', None)
     start = get_first_request_time()
     finish = get_current_time()
-    print(str(finish-start))
     if cached_products is None or finish-start > 1000:
         cached_products = g.cached_products = get_all_products()
 
