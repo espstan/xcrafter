@@ -5,6 +5,7 @@ const productBadge = document.getElementById('countOfProductInBadge');
 calculateProductBadge();
 
 document.addEventListener('DOMContentLoaded', getProductsFromLS);
+document.addEventListener('DOMContentLoaded', changeAllTagSpan);
 productsList.addEventListener('click', deleteProduct);
 clearBtn.addEventListener('click', clearCart);
 
@@ -32,7 +33,7 @@ function calculateProductBadge() {
     }
 }
 
-function buy(product) {
+function buy(product, event) {
     // popupWindowActive(product);
     let cart = {};
     let item = { 'id': product.id, 'title': product.title, 'price': product.price, 'photo': product.photo };
@@ -49,7 +50,8 @@ function buy(product) {
         cart[product.id]['count'] = 1;
     }
     localStorage.setItem('cart', JSON.stringify(cart));
-    calculateProductBadge()
+    calculateProductBadge();
+    changeTagSpan(product.id);
 }
 
 function getProductsFromLS() {
@@ -230,3 +232,21 @@ function popupWindowHideSetTimeout() {
     timeoutEz = setTimeout(popupWindowHide, 5000);
 }
 
+function changeTagSpan(id) {
+    const element = document.getElementById('product-' + id);
+    const elementSpan = element.getElementsByTagName('span')[0];
+    elementSpan.outerHTML = `
+        <a href="cart"
+           style="background-color: #17a2b8;"
+           class="btn product-buy">
+           Перейти в корзину
+        </a>`
+}
+
+function changeAllTagSpan() {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    if (!cart) {return false}
+    for (let item in cart) {
+        changeTagSpan(cart[item]['id']);
+    }
+}
