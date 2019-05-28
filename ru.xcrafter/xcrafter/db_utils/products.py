@@ -1,5 +1,9 @@
 import time
 
+from flask import g
+
+from werkzeug.local import LocalProxy
+
 from xcrafter import db
 
 from xcrafter.models import Product
@@ -11,9 +15,6 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.exc import SQLAlchemyError
-
-first_time = 0
-product_count = 0
 
 
 def get_all_products() -> []:
@@ -34,18 +35,6 @@ def get_all_products() -> []:
         err = str(e.__class__.__name__)
         print("SQLAlchemy error: " + err)
     return products
-
-
-def get_cached_products(current_time):
-    global first_time
-    if first_time == 0:
-        first_time = int(round(time.time()))
-    second_time = int(round(current_time))
-    global product_count
-
-    if product_count == 0 or second_time - first_time > 600:
-        product_count = get_all_products()
-    return product_count
 
 
 def get_product(product_id: int):
@@ -126,7 +115,7 @@ def add_product_photo(path, user_id, product_id):
     photo = Photo(product_id, user_id, path)
 
     if check_number_product_photo(product_id):
-        raise Exception('Большое количество фотогорафий')
+        raise Exception('Большое количество фотографий')
 
     db.session.add(photo)
 
@@ -148,3 +137,27 @@ def check_number_product(user_id):
     photos = Product.query.filter(Product.seller_id == user_id).all()
     return len(photos) > 10
 
+
+def get_current_time():
+    return int(round(time.time()))
+
+
+def get_first_request_time():
+    first_request_time = getattr(g, 'first_request', None)
+    if first_request_time is None:
+        first_request_time = g.first_request = get_current_time()
+    return first_request_time
+
+
+def get_cached_products():
+    cached_products = getattr(g, 'cached_products', None)
+    start = get_first_request_time()
+    finish = int(round(time.time()))
+    if cached_products is None or finish-start > 1000:
+        cached_products = g.cached_products = get_all_products()
+
+    return cached_products
+
+
+first_request_time = LocalProxy(get_first_request_time)
+cached_products = LocalProxy(get_cached_products)
