@@ -2,6 +2,7 @@ const productsList = document.querySelector('.product-group');
 const clearBtn = document.querySelector('.clear-btn');
 const totalPayment = document.getElementById('total-payment');
 const productBadge = document.getElementById('countOfProductInBadge');
+calculateProductBadge();
 
 document.addEventListener('DOMContentLoaded', getProductsFromLS);
 productsList.addEventListener('click', deleteProduct);
@@ -24,7 +25,11 @@ function calculateProductBadge() {
     for (let i = 0; i < sum.length; i++) {
         totalsum += sum[i]
     }
-    productBadge.innerHTML = `${totalsum}`
+    if (totalsum === 0) {
+        productBadge.innerHTML = ''
+    } else {
+        productBadge.innerHTML = `${totalsum}`
+    }
 }
 
 function buy(product) {
@@ -44,6 +49,7 @@ function buy(product) {
         cart[product.id]['count'] = 1;
     }
     localStorage.setItem('cart', JSON.stringify(cart));
+    calculateProductBadge()
 }
 
 function getProductsFromLS() {
@@ -153,6 +159,7 @@ function deleteProduct(e) {
         e.target.parentElement.parentElement.remove();
     }
     removeProductFromLS(e.target.parentElement.parentElement);
+    calculateProductBadge();
 }
 
 function removeProductFromLS(element) {
