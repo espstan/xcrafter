@@ -225,181 +225,6 @@
 {% if products == [] %}
 <h3>У нас есть проблемы с базой данных из-за чего не удалось загрузить товары. Попробуйте обновить страницу.</h3>
 {% endif %}
-<div class="accordion"
-     id="accordionExample">
-    <div class="questions-container"
-         id="frequently-asked-question">
-        <h2 class="question-heading">Часто задаваемые вопросы</h2>
-        <div class="card questions-item"
-             onclick="showAnswer ('1')">
-            <div class="card-header question-header"
-                 id="headingOne"
-                 data-toggle="collapse"
-                 data-target="#collapseOne">
-                <h5 class="mb-0 question-name">
-                    <button class="btn btn-link collapsed question-title"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="collapseOne">
-                        Lorem ipsum dolor sit amet?
-                    </button>
-                    <img class="question-img-show"
-                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
-                </h5>
-                <div id="collapseOne"
-                     class="collapse"
-                     aria-labelledby="headingOne"
-                     data-parent="#accordionExample">
-                    <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                        squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                        nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                        single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                        beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-                        lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-                        probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card questions-item"
-             onclick="showAnswer ('2')">
-            <div class="card-header question-header"
-                 id="headingTwo"
-                 data-toggle="collapse"
-                 data-target="#collapseTwo">
-                <h5 class="mb-0 question-name">
-                    <button class="btn btn-link collapsed question-title"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="collapseTwo">
-                        Lorem ipsum dolor sit amet?
-                    </button>
-                    <img class="question-img-show"
-                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
-                </h5>
-                <div id="collapseTwo"
-                     class="collapse"
-                     aria-labelledby="headingTwo"
-                     data-parent="#accordionExample">
-                    <div class="card-body question-text">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                        squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                        nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                        single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                        beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-                        lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-                        probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card questions-item"
-             onclick="showAnswer ( '3')">
-            <div class="card-header question-header"
-                 id="headingThree"
-                 data-toggle="collapse"
-                 data-target="#collapseThree">
-                <h5 class="mb-0 question-name">
-                    <button class="btn btn-link collapsed question-title"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="collapseThree">
-                        Lorem ipsum dolor sit amet?
-                    </button>
-                    <img class="question-img-show"
-                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
-                </h5>
-                <div id="collapseThree"
-                     class="collapse"
-                     aria-labelledby="headingThree"
-                     data-parent="#accordionExample">
-                    <div class="card-body question-text">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                        squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                        nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                        single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                        beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-                        lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-                        probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card questions-item"
-             onclick="showAnswer ( '4')">
-            <div class="card-header question-header"
-                 id="headingFour"
-                 data-toggle="collapse"
-                 data-target="#collapseFour">
-                <h5 class="mb-0 question-name">
-                    <button class="btn btn-link collapsed question-title"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="collapseFour">
-                        Lorem ipsum dolor sit amet?
-                    </button>
-                    <img class="question-img-show"
-                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
-                </h5>
-                <div id="collapseFour"
-                     class="collapse"
-                     aria-labelledby="headingFour"
-                     data-parent="#accordionExample">
-                    <div class="card-body question-text">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                        squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                        nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                        single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                        beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-                        lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-                        probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card questions-item"
-             onclick="showAnswer ( '5')">
-            <div class="card-header question-header"
-                 id="headingFive"
-                 data-toggle="collapse"
-                 data-target="#collapseFive">
-                <h5 class="mb-0 question-name">
-                    <button class="btn btn-link collapsed question-title"
-                            type="button"
-                            aria-expanded="false"
-                            aria-controls="collapseFive">
-                        Lorem ipsum dolor sit amet?
-                    </button>
-                    <img class="question-img-show"
-                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
-                </h5>
-                <div id="collapseFive"
-                     class="collapse"
-                     aria-labelledby="headingFive"
-                     data-parent="#accordionExample">
-                    <div class="card-body question-text">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
-                        squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                        nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                        single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft
-                        beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice
-                        lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you
-                        probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <section class="questions-more">
-            <p class="question-more-text">Still have questions?
-                <a class="question-more-link"
-                   href="#">
-                    Get in touch
-                </a>
-            </p>
-        </section>
-    </div>
-</div>
 <section class="container m-auto subscribe-main">
     <h1 class="text-center text-info subscribe-logo">
         <i class="far fa-envelope-open"></i>
@@ -408,23 +233,23 @@
         Подпишитесь на нашу рассылку
     </p>
     <p class="text-center text-muted subscribe-text">
-        Будьте в курсе последних новостей, 
+        Будьте в курсе последних новостей,
         новинок <br>и специальных предложений
     </p>
-    <form class="input-group mt-3 mb-3" 
+    <form class="input-group mt-3 mb-3"
           action="{{ url_for('addsubscription') }}"
           method="GET">
-        <input type="email" 
+        <input type="email"
                name="email_address"
-               value="" 
-               class="form-control" 
-               id="sign-up-email" 
-               maxlength="100" 
-               placeholder="name@example.com" 
-               required=""> 
+               value=""
+               class="form-control"
+               id="sign-up-email"
+               maxlength="100"
+               placeholder="name@example.com"
+               required="">
         <div class="input-group-append">
-            <button class="btn btn-outline-info btn-sm" 
-                    type="submit" 
+            <button class="btn btn-outline-info btn-sm"
+                    type="submit"
                     id="button-addon2">
                     Подписаться
             </button>
@@ -437,10 +262,7 @@
             <div class="col-6 justify-content-start pl-0 description">
                 <h3>XCrafter</h3>
                 <p class="about">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Pariatur hic quasi, mollitia cumque, soluta unde iusto
-                    excepturi veniam facere aspernatur aut cupiditate sint
-                    amet veritatis nisi blanditiis a nobis omnis!
+                    Новый интернет-магазин для покупки и продажи изделий ручной работы.
                 </p>
                 <div class="row mt-3 mb-3 ml-1">
                     <a href="#">
@@ -473,10 +295,10 @@
                 </ul>
                 <ul class="col-4">
                     <span>Покупателю</span>
-                        <li><a class="" href="#">Доставка</a></li>
-                        <li><a class="" href="#">Оплата</a></li>
-                        <li><a class="" href="#">Возврат</a></li>
-                        <li><a class="" href="#">Гарантии</a></li>
+                    <li><a class="" href="#">Доставка</a></li>
+                    <li><a class="" href="#">Оплата</a></li>
+                    <li><a class="" href="#">Возврат</a></li>
+                    <li><a class="" href="#">Гарантии</a></li>
                 </ul>
                 <ul class="col-4">
                     <span>Аккаунт</span>

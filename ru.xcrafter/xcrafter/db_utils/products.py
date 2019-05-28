@@ -1,3 +1,7 @@
+import time
+
+from flask import session
+
 from xcrafter import db
 
 from xcrafter.models import Product
@@ -10,23 +14,25 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.exc import SQLAlchemyError
 
-
+from werkzeug.local import LocalProxy
 
 def get_all_products() -> []:
     """Возвращает массив словарей(товаров)"""
+    try:
+        data = Product.query.all()
+        products = []
 
-    data = Product.query.all()
-    products = []
-
-    for product in data:
-        products_for_add = {'id': product.id,
+        for product in data:
+            products_for_add = {'id': product.id,
                             'title': product.title,
                             'description': product.description,
                             'price': product.price,
                             'photo': product.photo,
                             'seller_id': product.seller_id}
-        products.append(products_for_add)
-
+            products.append(products_for_add)
+    except SQLAlchemyError as e:
+        err = str(e.__class__.__name__)
+        print("SQLAlchemy error: " + err)
     return products
 
 
@@ -108,7 +114,7 @@ def add_product_photo(path, user_id, product_id):
     photo = Photo(product_id, user_id, path)
 
     if check_number_product_photo(product_id):
-        raise Exception('Большое количество фотогорафий')
+        raise Exception('Большое количество фотографий')
 
     db.session.add(photo)
 
@@ -130,3 +136,21 @@ def check_number_product(user_id):
     photos = Product.query.filter(Product.seller_id == user_id).all()
     return len(photos) > 10
 
+
+def get_current_time():
+    return int(round(time.time()))
+
+
+def get_cached_products():
+    if not 'start' in session:
+        session['start'] = get_current_time()
+    current_time = get_current_time()
+
+    if not 'cached_products' in session:
+        session['cached_products'] = get_all_products()
+
+    if current_time - session['start'] > 1000:
+        session['start'] = current_time
+        session['cached_products'] = get_all_products()
+
+    return session['cached_products']

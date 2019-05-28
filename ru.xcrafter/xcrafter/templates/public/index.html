@@ -26,59 +26,59 @@
     <section class="catalog">
         <div class="container d-flex flex-wrap justify-content-around">
             {% for product in products %}
-            <div class="card product-item mt-5 text-center">
+            <div class="card product-item mt-5 text-center" id="product-{{ product.id }}">
                     <a href="{{ url_for('base_card_item', product_id=product.id) }}">
                     <img class="card-img-top img-background" src="{{ product.photo }}" alt="">
                     </a> 
                     <div class="card-body">
                         <h3 class="card-text">{{product.price}} ₽</h3>
-                        <a href="#" class="btn btn-dark product-buy" onclick="buy({{ product }})">Добавить в корзину</a>              
+                        <span class="btn btn-dark product-buy" onclick="buy({{ product }}, event)">Добавить в корзину</span>
                     </div>
             </div>
             {% endfor %}
         </div>
     </section>
     <section id="advantage-marketplace" class="advantage-marketplace">
-        <button disabled class="advantage-tool">Lorem</button>
-        <h3 class="advantage-title">Lorem ipsum loren</h3>
+        <button disabled class="advantage-tool">Xcrafter</button>
+        <h3 class="advantage-title">С заботой о вас</h3>
         <p class="advantage-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Мы всегда стремимся к лучшему, чтобы радовать вас
+            высоким&nbsp;качеством сервиса, обслуживания и самым
+            широким ассортиментом&nbsp;товаров
         </p>
         <section class="advantage-list">
             <section class="advantage-item">
                 <div class="advantage-item-name">
                     <div class="circle circle-purple"></div>
-                    <h3 class="advantage-item-title">Lorem ipsum dolor sit amet</h3>
+                    <h3 class="advantage-item-title">Покупать и продавать просто</h3>
                 </div>
                 <p class="advantage-item-text">
-                    Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
+                    В нашем интернет-магазине вы можете не только купить нужный вам товар, но и продать ваши
+                    hand-made изделия по выгодным ценам.
                 </p>
             </section>
             <section class="advantage-item">
                 <div class="advantage-item-name">
                     <div class="circle circle-yellow"></div>
-                    <h3 class="advantage-item-title">Lorem ipsum dolor sit amet</h3>
+                    <h3 class="advantage-item-title">Контроль качества товара</h3>
                 </div>
                 <p class="advantage-item-text">
-                    Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
+                    Мы работаем с прошедшими проверку продавцами. Качество продукции,
+                    представленной в магазине, гарантируется проверками соответствия.
                 </p>
             </section>
             <section class="advantage-item">
                 <div class="advantage-item-name">
                     <div class="circle circle-blue"></div>
-                    <h3 class="advantage-item-title">Lorem ipsum dolor sit amet</h3>
+                    <h3 class="advantage-item-title">Безопасность личных данных</h3>
                 </div>
                 <p class="advantage-item-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.
+                    Все личные данные покупателей и продавцов, а также данные операций по
+                    банковским картам пересылаются посредством безопасных соединений.
                 </p>
             </section>
         </section>
     </section>
+    {% include 'public/frequently-asked-questions.html' %}
 </div>
 {% endblock %}

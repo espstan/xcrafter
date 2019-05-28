@@ -332,3 +332,7 @@ section.subscribe-main {
         margin: auto;
     }
 }
+
+a.link-on-cart {
+    background-color: #17a2b8;
+}

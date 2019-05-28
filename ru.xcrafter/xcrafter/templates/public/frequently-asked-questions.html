@@ -1,0 +1,159 @@
+<div class="accordion"
+     id="accordionExample">
+    <div class="questions-container"
+         id="frequently-asked-question">
+        <h2 class="question-heading">Часто задаваемые вопросы</h2>
+        <div class="card questions-item"
+             onclick="showAnswer ('1')">
+            <div class="card-header question-header"
+                 id="headingOne"
+                 data-toggle="collapse"
+                 data-target="#collapseOne">
+                <h5 class="mb-0 question-name">
+                    <button class="btn btn-link collapsed question-title"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="collapseOne">
+                        Как зарегистрироваться в интернет-магазине для продажи своих товаров?
+                    </button>
+                    <img class="question-img-show"
+                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
+                </h5>
+                <div id="collapseOne"
+                     class="collapse"
+                     aria-labelledby="headingOne"
+                     data-parent="#accordionExample">
+                    <div class="card-body">
+                        Чтобы совершать продажу своих товаров не нужна дополнительная регистрация в роли
+                        продавца. Необходимо пройти обычную регистрацию, нажав на кнопку регистрации, а
+                        затем вписать все необходимые данные. После отправки данных вам будет выслана на указанный
+                        е-mail ссылка
+                        для активации аккаунта. После нажатия на ссылку вы можете начать выставлять свои товары и
+                        совершать покупки.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card questions-item"
+             onclick="showAnswer ('2')">
+            <div class="card-header question-header"
+                 id="headingTwo"
+                 data-toggle="collapse"
+                 data-target="#collapseTwo">
+                <h5 class="mb-0 question-name">
+                    <button class="btn btn-link collapsed question-title"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="collapseTwo">
+                        Какие формы оплаты доступны в интернет-магазине?
+                    </button>
+                    <img class="question-img-show"
+                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
+                </h5>
+                <div id="collapseTwo"
+                     class="collapse"
+                     aria-labelledby="headingTwo"
+                     data-parent="#accordionExample">
+                    <div class="card-body question-text">
+                        Заплатить за товар, купленный в интернет-магазине, вы можете наличными денежными средствами или
+                        банковской картой.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card questions-item"
+             onclick="showAnswer ( '3')">
+            <div class="card-header question-header"
+                 id="headingThree"
+                 data-toggle="collapse"
+                 data-target="#collapseThree">
+                <h5 class="mb-0 question-name">
+                    <button class="btn btn-link collapsed question-title"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="collapseThree">
+                        Что делать, если я потерял пароль?
+                    </button>
+                    <img class="question-img-show"
+                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
+                </h5>
+                <div id="collapseThree"
+                     class="collapse"
+                     aria-labelledby="headingThree"
+                     data-parent="#accordionExample">
+                    <div class="card-body question-text">
+                        В случае, если вы забыли свой пароль, необходимо нажать кнопку "Забыли пароль" и ввести свой
+                        е-mail адрес, который был указан в процессе регистрации. На указанный вами адрес будет
+                        отправлена ссылка, по которой необходимо перейти для подтверждения смены пароля. После
+                        подтверждения, на ваш
+                        электронный адрес будет отправлен новый пароль.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card questions-item"
+             onclick="showAnswer ( '4')">
+            <div class="card-header question-header"
+                 id="headingFour"
+                 data-toggle="collapse"
+                 data-target="#collapseFour">
+                <h5 class="mb-0 question-name">
+                    <button class="btn btn-link collapsed question-title"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="collapseFour">
+                        Нужны ли мне логин и пароль для того, чтобы делать покупки?
+                    </button>
+                    <img class="question-img-show"
+                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
+                </h5>
+                <div id="collapseFour"
+                     class="collapse"
+                     aria-labelledby="headingFour"
+                     data-parent="#accordionExample">
+                    <div class="card-body question-text">
+                        Нет, логин и пароль не обязательны. Можно делать покупки без регистрации. Однако, выбирая
+                        покупку без регистрации, нет возможности проверять историю заказов. При очередных заказах
+                        придется заново заполнять данные для доставки.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card questions-item"
+             onclick="showAnswer ( '5')">
+            <div class="card-header question-header"
+                 id="headingFive"
+                 data-toggle="collapse"
+                 data-target="#collapseFive">
+                <h5 class="mb-0 question-name">
+                    <button class="btn btn-link collapsed question-title"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="collapseFive">
+                        Все ли продукты предлагаемые в интернет-магазине доступны?
+                    </button>
+                    <img class="question-img-show"
+                         src="{{ url_for('static', filename='img/question_show.svg' ) }}">
+                </h5>
+                <div id="collapseFive"
+                     class="collapse"
+                     aria-labelledby="headingFive"
+                     data-parent="#accordionExample">
+                    <div class="card-body question-text">
+                        На сайте интернет-магазина предлагаются все доступные цветовые версии и размеры данного
+                        продукта. Цвет и размер можно выбирать только из цветовой гаммы и списка размеров. После
+                        добавления продукта в корзину, высвечивается главная фотография продукта.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="questions-more">
+            <p class="question-more-text">Остались вопросы?
+                <a class="question-more-link"
+                   href="#">
+                    Задать вопрос
+                </a>
+            </p>
+        </section>
+    </div>
+</div>

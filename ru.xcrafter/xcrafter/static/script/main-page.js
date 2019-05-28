@@ -2,8 +2,10 @@ const productsList = document.querySelector('.product-group');
 const clearBtn = document.querySelector('.clear-btn');
 const totalPayment = document.getElementById('total-payment');
 const productBadge = document.getElementById('countOfProductInBadge');
+calculateProductBadge();
 
 document.addEventListener('DOMContentLoaded', getProductsFromLS);
+document.addEventListener('DOMContentLoaded', changeAllTagSpan);
 productsList.addEventListener('click', deleteProduct);
 clearBtn.addEventListener('click', clearCart);
 
@@ -24,10 +26,14 @@ function calculateProductBadge() {
     for (let i = 0; i < sum.length; i++) {
         totalsum += sum[i]
     }
-    productBadge.innerHTML = `${totalsum}`
+    if (totalsum === 0) {
+        productBadge.innerHTML = ''
+    } else {
+        productBadge.innerHTML = `${totalsum}`
+    }
 }
 
-function buy(product) {
+function buy(product, event) {
     // popupWindowActive(product);
     let cart = {};
     let item = { 'id': product.id, 'title': product.title, 'price': product.price, 'photo': product.photo };
@@ -44,6 +50,8 @@ function buy(product) {
         cart[product.id]['count'] = 1;
     }
     localStorage.setItem('cart', JSON.stringify(cart));
+    calculateProductBadge();
+    changeTagSpan(product.id);
 }
 
 function getProductsFromLS() {
@@ -153,6 +161,7 @@ function deleteProduct(e) {
         e.target.parentElement.parentElement.remove();
     }
     removeProductFromLS(e.target.parentElement.parentElement);
+    calculateProductBadge();
 }
 
 function removeProductFromLS(element) {
@@ -223,3 +232,20 @@ function popupWindowHideSetTimeout() {
     timeoutEz = setTimeout(popupWindowHide, 5000);
 }
 
+function changeTagSpan(id) {
+    const element = document.getElementById('product-' + id);
+    const elementSpan = element.getElementsByTagName('span')[0];
+    elementSpan.outerHTML = `
+        <a href="cart"
+           class="btn product-buy link-on-cart">
+           Перейти в корзину
+        </a>`
+}
+
+function changeAllTagSpan() {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    if (!cart) {return false}
+    for (let item in cart) {
+        changeTagSpan(cart[item]['id']);
+    }
+}
