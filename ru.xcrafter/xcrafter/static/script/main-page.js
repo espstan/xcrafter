@@ -237,8 +237,7 @@ function changeTagSpan(id) {
     const elementSpan = element.getElementsByTagName('span')[0];
     elementSpan.outerHTML = `
         <a href="cart"
-           style="background-color: #17a2b8;"
-           class="btn product-buy">
+           class="btn product-buy link-on-cart">
            Перейти в корзину
         </a>`
 }
