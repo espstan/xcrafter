@@ -1,6 +1,6 @@
 import time
 
-from flask import g
+from flask import session
 
 from xcrafter import db
 
@@ -141,22 +141,16 @@ def get_current_time():
     return int(round(time.time()))
 
 
-def get_first_request_time():
-    first_request_time = getattr(g, 'first_request', None)
-    if first_request_time is None:
-        first_request_time = g.first_request = get_current_time()
-    return first_request_time
-
-
 def get_cached_products():
-    cached_products = getattr(g, 'cached_products', None)
-    start = get_first_request_time()
-    finish = get_current_time()
-    if cached_products is None or finish-start > 1000:
-        cached_products = g.cached_products = get_all_products()
+    if not 'start' in session:
+        session['start'] = get_current_time()
+    current_time = get_current_time()
 
-    return cached_products
+    if not 'cached_products' in session:
+        session['cached_products'] = get_all_products()
 
+    if current_time - session['start'] > 1000:
+        session['start'] = current_time
+        session['cached_products'] = get_all_products()
 
-first_request_time = LocalProxy(get_first_request_time)
-cached_products = LocalProxy(get_cached_products)
+    return session['cached_products']
