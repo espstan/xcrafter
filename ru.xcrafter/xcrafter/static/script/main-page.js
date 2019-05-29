@@ -14,8 +14,6 @@ const cartIsEmpty = document.createElement('tr');
 cartIsEmpty.innerHTML = `<td colspan="4" class="text-center"><h5>В корзине пусто</h5></td>`;
 productsList.appendChild(cartIsEmpty);
 
-// const popupWindow = document.getElementById('popup-window');
-
 function calculateProductBadge() {
     let cart = JSON.parse(localStorage.getItem('cart'));
     if (!cart) { return false }
