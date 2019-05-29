@@ -1,4 +1,4 @@
-const sendChangePassword = ( ) => {
+const sendUserQuestion = ( ) => {
 
   fetch( 'URL', {
     method: 'post',
