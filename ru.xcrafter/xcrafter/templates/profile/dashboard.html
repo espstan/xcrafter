@@ -1,4 +1,99 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container">
+    <div class="form-group" id="signupModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title">Регистрационные данные пользователя</h5>
+                </div>
+                <div class="modal-body">
+                    <span class="form-group d-flex align-items-center justify-content-between">
+                        <span> Фамилия:</span>
+                        <input type="text"
+                               name="surname"
+                               class="form-control ml-2 col-8"
+                               id="surname"
+                               placeholder="Нет данных"
+                               value="{{ current_user.surname }}">
+                    </span>
+
+                    <span class="form-group d-flex align-items-center justify-content-between">
+                            <span> Имя:</span>
+                            <input type="text"
+                                   name="name"
+                                   class="form-control ml-2 col-8"
+                                   id="name"
+                                   placeholder="Нет данных"
+                                   value="{{ current_user.first_name }}">
+                        </span>
+
+                    <span class="form-group d-flex align-items-center justify-content-between">
+                            <span>Электронная почта:</span>
+                            <input type="text"
+                                   name="email"
+                                   class="form-control ml-2 col-8"
+                                   id="email"
+                                   placeholder="Нет данных"
+                                   value="{{ current_user.email }}">
+                        </span>
+
+                    <span class="form-group d-flex align-items-center justify-content-between">
+                            <span>Телефон:</span>
+                            <input type="text"
+                                   name="phone"
+                                   class="form-control ml-2 col-8"
+                                   id="phone"
+                                   placeholder="Нет данных"
+                                   value="{{ current_user.phone_number }}">
+                    </span>
+
+                    <span class="form-group d-flex align-items-center justify-content-between">
+                            <span>Введите пароль</span>
+                            <input class="form-control is-invalid ml-2 col-8"
+                                   type="password"
+                                   name="password">
+                    </span>
+
+                    <span class="form-group d-flex align-items-center justify-content-between">
+                            <span>Подтвердите пароль</span>
+                            <input class="form-control is-invalid ml-2 col-8"
+                                   type="password"
+                                   name="password2">
+                    </span>
+
+                    <div class="form-group d-flex align-items-center justify-content-between">
+                        <div class="form-check">
+                            {% if subscription %}
+                                <input class="form-check-input"
+                                   type="checkbox"
+                                   id="gridCheck"
+                                   name="subscription"
+                                   value="is_active_subscription" checked>
+                            {% else %}
+                                <input class="form-check-input"
+                                   type="checkbox"
+                                   id="gridCheck"
+                                   name="subscription"
+                                   value="is_active_subscription">
+                            {% endif %}
+                            <label class="form-check-label" for="gridCheck">Подписка на рассылку</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button class="btn btn-success"
+                                    type="submit">Сохранить изменения
+                            </button>
+
+                            <button class="btn btn-dark"
+                                    type="submit">Удалить аккаунт
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
