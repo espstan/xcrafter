@@ -15,7 +15,6 @@
                                name="surname"
                                class="form-control ml-2 col-8"
                                id="surname"
-                               placeholder="Нет данных"
                                value="{{ current_user.surname }}">
                     </span>
 
@@ -25,7 +24,6 @@
                                    name="name"
                                    class="form-control ml-2 col-8"
                                    id="name"
-                                   placeholder="Нет данных"
                                    value="{{ current_user.first_name }}">
                         </span>
 
@@ -35,7 +33,6 @@
                                    name="email"
                                    class="form-control ml-2 col-8"
                                    id="email"
-                                   placeholder="Нет данных"
                                    value="{{ current_user.email }}">
                         </span>
 
@@ -45,7 +42,6 @@
                                    name="phone"
                                    class="form-control ml-2 col-8"
                                    id="phone"
-                                   placeholder="Нет данных"
                                    value="{{ current_user.phone_number }}">
                     </span>
 
@@ -59,24 +55,18 @@
                     <span class="form-group d-flex align-items-center justify-content-between">
                             <span>Подтвердите пароль</span>
                             <input class="form-control is-invalid ml-2 col-8"
-                                   type="password"
+                                   type="password_confirmation"
                                    name="password2">
                     </span>
 
                     <div class="form-group d-flex align-items-center justify-content-between">
                         <div class="form-check">
+                                <input class="form-check-input"
+                                   type="checkbox"
+                                   id="gridCheck"
+                                   name="subscription"
                             {% if subscription %}
-                                <input class="form-check-input"
-                                   type="checkbox"
-                                   id="gridCheck"
-                                   name="subscription"
                                    value="is_active_subscription" checked>
-                            {% else %}
-                                <input class="form-check-input"
-                                   type="checkbox"
-                                   id="gridCheck"
-                                   name="subscription"
-                                   value="is_active_subscription">
                             {% endif %}
                             <label class="form-check-label" for="gridCheck">Подписка на рассылку</label>
                         </div>
