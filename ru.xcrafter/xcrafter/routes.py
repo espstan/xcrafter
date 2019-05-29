@@ -194,6 +194,11 @@ def marketplace_news():
     return render_template('public/marketplace-news.html')
 
 
+@app.route('/user-question')
+def user_question():
+    return render_template('public/user-question.html')
+
+
 # Роуты для api
 
 @app.route('/api/1/user', methods=['POST'])
