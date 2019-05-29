@@ -97,10 +97,13 @@ def recovery_password():
 @login_required
 def profile():
     products = get_cached_products()
-    subscrition_is_active = get_subscription(current_user.email).is_active
+    subscrition = get_subscription(current_user.email)
+    if subscrition:
+        subscrition_is_active = subscrition.is_active
+    else:
+        subscrition_is_active = False
     return render_template('profile/dashboard.html',
                            current_user=current_user,
-                           is_profile_page=True,
                            products=products,
                            subscription=subscrition_is_active)
 
