@@ -7,11 +7,11 @@ from xcrafter.db_utils.products import get_product
 from xcrafter.db_utils.products import get_cached_products
 from xcrafter.db_utils.products import search_products_by_name
 
+from xcrafter.db_utils.subscriptions import get_subscription
 
 from xcrafter.db_utils.users import activate
 from xcrafter.db_utils.users import sign_in
 from xcrafter.db_utils.users import get_user_products
-
 
 from xcrafter.models import User
 
@@ -93,19 +93,16 @@ def recovery_password():
     return render_template('public/recovery-password.html')
 
 
-@app.route('/profile')
+@app.route('/profile/settings')
 @login_required
 def profile():
     products = get_cached_products()
+    subscrition_is_active = get_subscription(current_user.email).is_active
     return render_template('profile/dashboard.html',
-                           current_user=current_user, is_profile_page=True)
-
-
-@app.route('/profile/settings')
-@login_required
-def profile_settings():
-    return render_template('profile/settings.html',
-                           current_user=current_user)
+                           current_user=current_user,
+                           is_profile_page=True,
+                           products=products,
+                           subscription=subscrition_is_active)
 
 
 @app.route('/profile/orders')
