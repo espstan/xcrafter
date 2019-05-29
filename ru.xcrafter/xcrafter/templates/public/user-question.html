@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<form class="container col-5 question-form">
+    <div class="form-group text-center">
+        <label for="exampleFormControlTextarea1" class="mb-4 question-form-title">Введите интересующий Вас вопрос:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <div class="text-center mt-5">
+        <button type="submit" class="btn btn-dark btn-lg btn-block">Задать вопрос</button>
+    </div>
+</form>
 {% endblock %}
