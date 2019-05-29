@@ -16,6 +16,8 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from werkzeug.local import LocalProxy
 
+from loguru import logger
+
 def get_all_products() -> []:
     """Возвращает массив словарей(товаров)"""
     try:
@@ -154,3 +156,16 @@ def get_cached_products():
         session['cached_products'] = get_all_products()
 
     return session['cached_products']
+
+
+def search_products_by_name(product_name_search):
+    search_result = []
+    try:
+        products = get_all_products()
+    except Exception as e:
+        logger.warning('Не удалось получить список продуктов из БД: {}'.format(str(e)))
+        raise Exception('Проблема с БД')
+    for product in products:
+        if product_name_search in product['title'].lower():
+            search_result.append(product)
+    return search_result

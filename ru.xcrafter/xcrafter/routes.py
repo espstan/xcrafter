@@ -5,6 +5,7 @@ from xcrafter import db
 
 from xcrafter.db_utils.products import get_product
 from xcrafter.db_utils.products import get_cached_products
+from xcrafter.db_utils.products import search_products_by_name
 
 
 from xcrafter.db_utils.users import activate
@@ -169,9 +170,13 @@ def cart():
     return render_template('public/cart.html', is_cart_page=True, products=products)
 
 
-@app.route('/search')
+@app.route('/search', methods=['POST'])
 def search():
-    return render_template('search.html')
+    search_name_product = request.form['search-product']
+    search_result = search_products_by_name(search_name_product.lower())
+    return render_template('public/index.html',
+                    products=search_result,
+                    meta_title='XCrafter - маркетплейс хендмейд товаров')
 
 
 @app.route('/subscription-mail-success')
