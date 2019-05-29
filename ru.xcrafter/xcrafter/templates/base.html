@@ -132,16 +132,18 @@
                     </a>
                 </li>
                 <li class="nav-item row">
-                    <div class="input-group col">
-                        <input type="text" class="form-control" placeholder="Я ищу ...">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" 
-                                    type="button" 
-                                    id="button-addon2">
-                                    <i class="fas fa-search"></i>
-                            </button>
+                    <form method="post" action="/search">
+                        <div class="input-group col">
+                                <input type="text" class="form-control" placeholder="Я ищу ..." name="search-product">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary"
+                                            type="submit"
+                                            id="button-addon2">
+                                            <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
                         </div>
-                    </div>
+                    </form>
                 </li>
             </ul>
             <ul class="navbar-nav justify-content-end">  
