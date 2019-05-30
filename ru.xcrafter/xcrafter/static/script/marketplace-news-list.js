@@ -125,17 +125,16 @@ function SortByDate( a, b ) {
   return 0;
 }
 
-
 News.sort( SortByDate );
 const marketplaceNews = document.getElementById( 'marketplace-news' );
 newsList = '<ul>';
 News.forEach( function ( item ) {
   if ( item.flag && item.title !== undefined && item.date !== undefined && item.content !== undefined ) {
     let showDate = new Date( item.date ).toShowFormatDate();
-    let newTitle = '<h5 class=\'card-title\'>' + item.title + '</h5>';
+    let newTitle = '<h4 class=\'card-title\'>' + item.title + '</h4>';
     let newDate = '<p class=\'text-muted\'>' + showDate + '</p>';
     let newContent = '<p class=\'card-text\'>' + item.content + '</p>';
-    newsList += '<li class=\'card-body mb-5\'>' + newTitle + ' ' + newContent + ' ' + newDate + '</li>';
+    newsList += '<li class=\'card-body mb-5 border-bottom\'>' + newTitle + ' ' + newContent + ' ' + newDate + '</li>';
   }
 } );
 newsList += '</ul>';
