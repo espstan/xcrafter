@@ -239,8 +239,8 @@ class UserQuestion(db.Model):
     created_date = db.Column(DateTime(timezone=False), nullable=False)
     created_time = db.Column(DateTime(timezone=False), nullable=False)
     status = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, unique=True)
-    email = db.Column(db.Text, unique=True, nullable=False)
+    user_id = db.Column(db.Integer, unique=True, nullable=False)
+    email = db.Column(db.Text, nullable=False)
 
     def __init__(self, theme, text, email, user_id):
         self.theme = theme
