@@ -333,12 +333,11 @@ class GetAnswerTheQuestion(Resource):
             email = current_user.email
             user_id = current_user.id
         else:
-            email = request.args.get('email_address')
+            email = request.args.get('userEmail')
             user_id = get_userquestion_id()
 
-        theme = request.args.get('theme')
-
-        text = request.args.get('text')
+        theme = request.args.get('questionCategory')
+        text = request.args.get('userQuestion')
         userquestion = add_userquestion(theme, text, email, user_id)
 
         if userquestion:
