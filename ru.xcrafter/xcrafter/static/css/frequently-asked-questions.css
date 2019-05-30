@@ -78,11 +78,10 @@
 }
 
 .question-form {
-    height: 300px;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
     margin-top: 120px;
 }
 
 .question-form-title {
-    font-size: 24px;
+    font-size: 32px;
 }

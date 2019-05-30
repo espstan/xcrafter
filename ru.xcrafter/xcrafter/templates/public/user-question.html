@@ -2,17 +2,43 @@
 
 {% block content %}
 <form class="container col-5 question-form"
-      action="URL"
-      method="post"
+      action="{{ url_for('getanswerthequestion') }}"
+      method="GET"
       onsubmit="sendUserQuestion()">
     <div class="form-group text-center">
         <label for="userQuestion"
                class="mb-4 question-form-title">
-                Введите интересующий Вас вопрос:
+                Задать вопрос:
         </label>
-        <textarea class="form-control"
+        {% if current_user.is_authenticated %}
+        {% else %}
+        <div class="form-group">
+            <input type="email"
+                   class="form-control"
+                   id="unsavedEmail1"
+                   aria-describedby="emailHelp"
+                   placeholder="Введите свой E-mail"
+                   name="userEmail"
+                   required>
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <select id="questionCategory"
+                    class="form-control"
+                    name="questionCategory">
+                <option selected>Информация о товаре</option>
+                <option>Оплата</option>
+                <option>Доставка</option>
+                <option>Наличие товара</option>
+                <option>Другое</option>
+            </select>
+        </div>
+        <textarea placeholder="Введите интересующий Вас вопрос..."
+                  class="form-control"
+                  required
+                  rows="3"
                   id="userQuestion"
-                  rows="3">
+                  name="userQuestion">
         </textarea>
     </div>
     <div class="text-center mt-5">
