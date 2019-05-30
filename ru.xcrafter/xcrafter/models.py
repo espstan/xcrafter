@@ -229,3 +229,24 @@ class Subscription(db.Model):
             error = str(e.__class__.__name__)
             print("SQLAlchemy error: " + error)
             return False
+
+
+class UserQuestion(db.Model):
+    __tablename__ = 'userquestion'
+    id = db.Column(db.Integer, primary_key=True)
+    theme = db.Column(db.Text, nullable=False)
+    text = db.Column(db.Text, nullable=False)
+    created_date = db.Column(DateTime(timezone=False), nullable=False)
+    created_time = db.Column(DateTime(timezone=False), nullable=False)
+    status = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, unique=True, nullable=False)
+    email = db.Column(db.Text, unique=True, nullable=False)
+
+    def __init__(self, theme, text,  email, ):
+        self.theme = theme
+        self.text = text
+        self.text = text
+
+
+        self.email = email
+        self.is_active = True

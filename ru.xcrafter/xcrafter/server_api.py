@@ -322,6 +322,13 @@ class ChangePassword(Resource):
             return jsonify({'success': 'false', 'error': 'Введен неверный пароль'})
 
 
+class GetAnswerTheQuestion(Resource):
+    def get(self):
+
+
+        pass
+
+
 api.add_resource(Registration, '/api/registration')  # TODO добавить версию api
 api.add_resource(GetProductInfoById, '/get-product-by-id/<int:id>')
 api.add_resource(AddItemInCatalog, '/api/add-card-item-in-catalog')
@@ -336,4 +343,5 @@ api.add_resource(ResetPassword, '/api/v1/reset-password/<string:token>')
 api.add_resource(SignIn, '/api/v1/sign-in')
 api.add_resource(Logout, '/api/v1/logout')
 api.add_resource(ChangePassword, '/api/v1/change-password')
+api.add_resource(GetAnswerTheQuestion, '/api/v1/get-answer')
 
