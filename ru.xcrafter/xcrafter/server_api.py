@@ -24,6 +24,14 @@ from flask_login import logout_user
 from flask_restful import Resource
 from flask_restful import reqparse
 
+from loguru import logger
+
+from werkzeug.utils import secure_filename
+
+from werkzeug.urls import url_parse
+
+from xcrafter.db_utils import email_utils
+
 from xcrafter.db_utils.products import get_product
 from xcrafter.db_utils.products import add_product
 from xcrafter.db_utils.products import delete_product
@@ -44,11 +52,8 @@ from xcrafter.db_utils.users import password_verification
 from xcrafter.db_utils.subscriptions import get_subscription
 from xcrafter.db_utils.subscriptions import add_subscription
 
-from loguru import logger
-
-from werkzeug.utils import secure_filename
-
-from werkzeug.urls import url_parse
+from xcrafter.db_utils.userquestions import add_userquestion
+from xcrafter.db_utils.userquestions import get_userquestion_id
 
 from xcrafter.models import Product
 from xcrafter.models import User
@@ -324,9 +329,28 @@ class ChangePassword(Resource):
 
 class GetAnswerTheQuestion(Resource):
     def get(self):
+        if current_user.is_authenticated:
+            email = current_user.email
+            user_id = current_user.id
+        else:
+            email = request.args.get('email_address')
+            user_id = get_userquestion_id()
 
+        theme = request.args.get('theme')
 
-        pass
+        text = request.args.get('text')
+        userquestion = add_userquestion(theme, text, email, user_id)
+
+        if userquestion:
+            message_theme = "XCrafter: " + userquestion.theme
+            message_body = str(userquestion.created_date) +\
+                " Вы задали вопрос: \n" + userquestion.body + \
+                "\n\n" + "Мы получили его, вопрос находится в обработке\n" +\
+                "C Вами свяжутся в течение суток"
+
+            email_utils.send_mail(message_theme, message_body, "juniorlabtest@gmail.com", [userquestion.email])
+        else:
+            print("Некорректные данные, сообщение не было отправлено")
 
 
 api.add_resource(Registration, '/api/registration')  # TODO добавить версию api
