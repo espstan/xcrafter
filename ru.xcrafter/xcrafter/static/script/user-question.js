@@ -1,7 +1,7 @@
 const sendUserQuestion = ( ) => {
 
-  fetch( 'URL', {
-    method: 'post',
+  fetch( '/getanswerthequestion', {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json'
     },

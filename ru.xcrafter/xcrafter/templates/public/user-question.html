@@ -2,8 +2,8 @@
 
 {% block content %}
 <form class="container col-5 question-form"
-      action="URL"
-      method="post"
+      action="{{ url_for('getanswerthequestion') }}"
+      method="GET"
       onsubmit="sendUserQuestion()">
     <div class="form-group text-center">
         <label for="userQuestion"
@@ -18,11 +18,14 @@
                    id="unsavedEmail1"
                    aria-describedby="emailHelp"
                    placeholder="Введите свой E-mail"
+                   name="userEmail"
                    required>
         </div>
         {% endif %}
         <div class="form-group">
-            <select id="questionCategory" class="form-control">
+            <select id="questionCategory"
+                    class="form-control"
+                    name="questionCategory">
                 <option selected>Информация о товаре</option>
                 <option>Оплата</option>
                 <option>Доставка</option>
@@ -34,7 +37,9 @@
                   class="form-control"
                   required
                   rows="3"
-                  id="userQuestion"></textarea>
+                  id="userQuestion"
+                  name="userQuestion">
+        </textarea>
     </div>
     <div class="text-center mt-5">
         <button type="submit"
