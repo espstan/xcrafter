@@ -17,7 +17,6 @@ const popupWindow = document.getElementById('popup-window');
 
 function calculateProductBadge() {
     let cart = JSON.parse(localStorage.getItem('cart'));
-    if (!cart) { return false }
     let sum = [];
     let totalsum = 0;
     for (let item in cart) {
@@ -180,6 +179,7 @@ function clearCart() {
     productsList.innerHTML = '';
     localStorage.clear();
     totalPayment.value = '';
+    calculateProductBadge();
 }
 
 let timeoutEz = undefined;
