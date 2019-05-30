@@ -232,21 +232,21 @@ class Subscription(db.Model):
 
 
 class UserQuestion(db.Model):
-    __tablename__ = 'userquestion'
+    __tablename__ = 'user_question'
     id = db.Column(db.Integer, primary_key=True)
     theme = db.Column(db.Text, nullable=False)
-    text = db.Column(db.Text, nullable=False)
+    body = db.Column(db.Text, nullable=False)
     created_date = db.Column(DateTime(timezone=False), nullable=False)
     created_time = db.Column(DateTime(timezone=False), nullable=False)
     status = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, unique=True, nullable=False)
+    user_id = db.Column(db.Integer, unique=True)
     email = db.Column(db.Text, unique=True, nullable=False)
 
-    def __init__(self, theme, text,  email, ):
+    def __init__(self, theme, text, email, user_id):
         self.theme = theme
-        self.text = text
-        self.text = text
-
-
+        self.body = text
+        self.created_date = datetime.datetime.date()
+        self.created_time = datetime.datetime.time()
         self.email = email
-        self.is_active = True
+        self.user_id = user_id
+        self.status = "not read"
