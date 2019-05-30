@@ -10,9 +10,12 @@
                class="mb-4 question-form-title">
                 Задать вопрос:
         </label>
+        {% if current_user.is_authenticated %}
+        {% else %}
         <div class="form-group">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите свой E-mail" required>
         </div>
+        {% endif %}
         <div class="form-group">
             <select id="inputState" class="form-control">
                 <option selected>Информация о товаре</option>
