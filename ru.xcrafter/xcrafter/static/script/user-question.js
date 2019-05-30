@@ -6,13 +6,11 @@ const sendUserQuestion = ( ) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify( {
-      userQuestion: userQuestion.value
+      userQuestion: userQuestion.value,
+      userEmail: unregisteredUserEmail1.value,
+      categoryOfQuestion: categoryOfQuestion.value
     } )
   } ).then( function ( response ) {
     return response.json();
-  } ).then( function ( data ) {
-    alert( JSON.stringify( data ) )
-  } ).catch( function ( err ) {
-    alert( err )
   } )
 };

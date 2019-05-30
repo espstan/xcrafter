@@ -13,11 +13,11 @@
         {% if current_user.is_authenticated %}
         {% else %}
         <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите свой E-mail" required>
+            <input type="email" class="form-control" id="unregisteredUserEmail1" aria-describedby="emailHelp" placeholder="Введите свой E-mail" required>
         </div>
         {% endif %}
         <div class="form-group">
-            <select id="inputState" class="form-control">
+            <select id="categoryOfQuestion" class="form-control">
                 <option selected>Информация о товаре</option>
                 <option>Оплата</option>
                 <option>Доставка</option>
