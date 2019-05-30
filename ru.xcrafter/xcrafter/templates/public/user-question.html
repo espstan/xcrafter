@@ -13,11 +13,16 @@
         {% if current_user.is_authenticated %}
         {% else %}
         <div class="form-group">
-            <input type="email" class="form-control" id="unregisteredUserEmail1" aria-describedby="emailHelp" placeholder="Введите свой E-mail" required>
+            <input type="email"
+                   class="form-control"
+                   id="unsavedEmail1"
+                   aria-describedby="emailHelp"
+                   placeholder="Введите свой E-mail"
+                   required>
         </div>
         {% endif %}
         <div class="form-group">
-            <select id="categoryOfQuestion" class="form-control">
+            <select id="questionCategory" class="form-control">
                 <option selected>Информация о товаре</option>
                 <option>Оплата</option>
                 <option>Доставка</option>
@@ -25,7 +30,11 @@
                 <option>Другое</option>
             </select>
         </div>
-        <textarea class="form-control" placeholder="Введите интересующий Вас вопрос..." required rows="3" id="userQuestion"></textarea>
+        <textarea placeholder="Введите интересующий Вас вопрос..."
+                  class="form-control"
+                  required
+                  rows="3"
+                  id="userQuestion"></textarea>
     </div>
     <div class="text-center mt-5">
         <button type="submit"
