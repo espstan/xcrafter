@@ -12,6 +12,7 @@ from xcrafter.models import Order
 from xcrafter.models import Address
 from xcrafter.models import Photo
 from xcrafter.models import Subscription
+from xcrafter.models import UserQuestion
 
 
 migrate = Migrate(app, db)
