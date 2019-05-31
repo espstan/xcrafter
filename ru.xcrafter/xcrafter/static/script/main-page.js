@@ -2,6 +2,7 @@ const productsList = document.querySelector('.product-group');
 const clearBtn = document.querySelector('.clear-btn');
 const totalPayment = document.getElementById('total-payment');
 const productBadge = document.getElementById('countOfProductInBadge');
+const toast = document.getElementById('add-item-to-cart')
 calculateProductBadge();
 
 document.addEventListener('DOMContentLoaded', getProductsFromLS);
@@ -13,11 +14,8 @@ const cartIsEmpty = document.createElement('tr');
 cartIsEmpty.innerHTML = `<td colspan="4" class="text-center"><h5>В корзине пусто</h5></td>`;
 productsList.appendChild(cartIsEmpty);
 
-const popupWindow = document.getElementById('popup-window');
-
 function calculateProductBadge() {
     let cart = JSON.parse(localStorage.getItem('cart'));
-    if (!cart) { return false }
     let sum = [];
     let totalsum = 0;
     for (let item in cart) {
@@ -34,7 +32,7 @@ function calculateProductBadge() {
 }
 
 function buy(product, event) {
-    // popupWindowActive(product);
+    popupWindowActive(product);
     let cart = {};
     let item = { 'id': product.id, 'title': product.title, 'price': product.price, 'photo': product.photo };
     if (localStorage.getItem('cart')) {
@@ -180,56 +178,27 @@ function clearCart() {
     productsList.innerHTML = '';
     localStorage.clear();
     totalPayment.value = '';
+    calculateProductBadge();
 }
-
-let timeoutEz = undefined;
 
 function popupWindowActive(product) {
-    if (!popupWindow.classList.contains('closed')) {
-        popupWindow.classList.toggle('closed');
-        if (timeoutEz) {
-            clearTimeout(timeoutEz);
-        }
-    }
-    popupWindow.innerHTML =
-        `<header class="popup-window-header">
-            <div class="popup-window-header-title">
-                Товар добавлен в корзину!
-            </div>
-            <div class="popup-window-close-btn" onclick="popupWindowHide()">
-                X
-            </div>
-        </header>
-        <main class="popup-window-main">
-            <div class="popup-window-main-photo">
-                <img class="popup-window-main-photo-img" src="${product.photo}">
-            </div>
-            <div class="popup-window-main-description">
-                <h3><b>${product.price} руб.</b></h3>
-                <span>${product.title}</span>
-            </div>
-        </main>
-        <div class="popup-window-btn">
-            <a href="/cart">Перейти в корзину</a>
-        </div>`
-
-    popupWindow.classList.toggle('closed');
-    timeoutEz = setTimeout(popupWindowHide, 5000);
-    popupWindow.addEventListener('mouseenter', () => {
-        clearTimeout(timeoutEz);
-    })
-    popupWindow.addEventListener('mouseleave', popupWindowHideSetTimeout)
-}
-
-function popupWindowHide() {
-    if (!popupWindow.classList.contains('closed')) {
-        popupWindow.classList.toggle('closed');
-    }
-    popupWindow.removeEventListener('mouseleave', popupWindowHideSetTimeout)
-}
-
-function popupWindowHideSetTimeout() {
-    timeoutEz = setTimeout(popupWindowHide, 5000);
+    toast.innerHTML = 
+    `
+    <div class="toast-header alert-light">
+        <h6>
+            Товар добавлен в 
+            <a href="cart" class="alert-link">корзину</a>
+        </h6>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body alert-light">
+        <img src="${product.photo}" width="80" height="80" class="mr-3">
+        &nbsp;${product.title}
+    </div>
+    `
+    $('#add-item-to-cart').toast('show');
 }
 
 function changeTagSpan(id) {

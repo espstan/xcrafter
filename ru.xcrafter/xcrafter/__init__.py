@@ -49,7 +49,7 @@ js_vendors = Bundle('lib/jquery/3.4.0/jquery-3.4.0.min.js',
 assets.register('js_vendors', js_vendors)
 
 css = Bundle('css/main-page.css',
-             'css/signup-form.css',
+             'css/sign-form.css',
              'css/cart.css',
              'css/popup-window.css',
              'css/profile.css',

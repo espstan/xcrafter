@@ -308,6 +308,12 @@ section.subscribe-main {
     opacity: 0.8;
 }
 
+.toast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
 @media (max-width: 768px) {
     .products-footer .content .about {
         display: none;

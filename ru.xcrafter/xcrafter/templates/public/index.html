@@ -35,7 +35,7 @@
                         <span class="btn btn-dark product-buy" onclick="buy({{ product }}, event)">Добавить в корзину</span>
                     </div>
             </div>
-            {% endfor %}
+            {% endfor %}  
         </div>
     </section>
     <section id="advantage-marketplace" class="advantage-marketplace">
@@ -79,6 +79,13 @@
             </section>
         </section>
     </section>
+    <div id="add-item-to-cart" 
+         class="toast"
+         role="alert" 
+         aria-live="assertive" 
+         aria-atomic="true" 
+         data-delay="3000">   
+    </div>
     {% include 'public/frequently-asked-questions.html' %}
 </div>
 {% endblock %}
