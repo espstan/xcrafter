@@ -53,7 +53,6 @@ from xcrafter.db_utils.subscriptions import get_subscription
 from xcrafter.db_utils.subscriptions import add_subscription
 
 from xcrafter.db_utils.userquestions import add_userquestion
-from xcrafter.db_utils.userquestions import get_userquestion_id
 
 from xcrafter.models import Product
 from xcrafter.models import User
@@ -334,22 +333,21 @@ class GetAnswerTheQuestion(Resource):
             user_id = current_user.id
         else:
             email = request.args.get('userEmail')
-            user_id = get_userquestion_id()
+            user_id = None
 
         theme = request.args.get('questionCategory')
         text = request.args.get('userQuestion')
         userquestion = add_userquestion(theme, text, email, user_id)
 
         if userquestion:
-            message_theme = "XCrafter: " + userquestion.theme
-            message_body = str(userquestion.created_date) +\
-                " Вы задали вопрос: \n" + userquestion.body + \
-                "\n\n" + "Мы получили его, вопрос находится в обработке\n" +\
-                "C Вами свяжутся в течение суток"
-
-            email_utils.send_mail(message_theme, message_body, "juniorlabtest@gmail.com", [userquestion.email])
+            message_theme = "XCrafter: Вопрос из раздела " + "\"" + userquestion.theme +"\""
+            message_html = "<p>" + str(userquestion.created_time)[:19] + " Вы задали вопрос:</p>" + userquestion.body + \
+                           "<br>" + "<p>Мы получили его. Вопрос находится в обработке</p>" + \
+                           "<p>C Вами свяжутся в течение суток</p>"
+            email_utils.send_mail(message_theme, message_html, email)
         else:
             print("Некорректные данные, сообщение не было отправлено")
+        return redirect(url_for('index'))
 
 
 api.add_resource(Registration, '/api/registration')  # TODO добавить версию api
@@ -367,4 +365,3 @@ api.add_resource(SignIn, '/api/v1/sign-in')
 api.add_resource(Logout, '/api/v1/logout')
 api.add_resource(ChangePassword, '/api/v1/change-password')
 api.add_resource(GetAnswerTheQuestion, '/api/v1/get-answer')
-
