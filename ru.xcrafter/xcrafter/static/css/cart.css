@@ -6,3 +6,8 @@
     z-index: 1010;
     background-color: #C6D6EF;
 }
+
+.cart-container {
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
