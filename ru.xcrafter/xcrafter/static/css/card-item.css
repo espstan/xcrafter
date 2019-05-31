@@ -3,3 +3,7 @@
     width: 60px;
     height: 60px;
 }
+
+.card-container {
+    padding-bottom: 20px;
+}
