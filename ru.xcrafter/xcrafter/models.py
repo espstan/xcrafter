@@ -239,14 +239,14 @@ class UserQuestion(db.Model):
     created_date = db.Column(DateTime(timezone=False), nullable=False)
     created_time = db.Column(DateTime(timezone=False), nullable=False)
     status = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, unique=True, nullable=False)
+    user_id = db.Column(db.Integer)
     email = db.Column(db.Text, nullable=False)
 
     def __init__(self, theme, text, email, user_id):
         self.theme = theme
         self.body = text
-        self.created_date = datetime.datetime.date()
-        self.created_time = datetime.datetime.time()
+        self.created_date = datetime.date.today()
+        self.created_time = datetime.datetime.now()
         self.email = email
         self.user_id = user_id
         self.status = "not read"
