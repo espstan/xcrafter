@@ -340,7 +340,7 @@ class GetAnswerTheQuestion(Resource):
         userquestion = add_userquestion(theme, text, email, user_id)
 
         if userquestion:
-            message_theme = "XCrafter: Вопрос из раздела " + "\"" + userquestion.theme +"\""
+            message_theme = "XCrafter: вопрос пользователя"
             message_html = "<p>" + str(userquestion.created_time)[:19] + " Вы задали вопрос:</p>" + userquestion.body + \
                            "<br>" + "<p>Мы получили его. Вопрос находится в обработке</p>" + \
                            "<p>C Вами свяжутся в течение суток</p>"
