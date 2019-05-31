@@ -1,15 +1,15 @@
 const password = document.getElementById('password');
-const passwordRepeat = document.getElementById('password2')
+// const passwordRepeat = document.getElementById('password2')
 
 password.addEventListener('keyup', checkPassword);
-password2.addEventListener('keyup', checkRepeatPassword);
+// password2.addEventListener('keyup', checkRepeatPassword);
 
 function checkPassword(event) {
-    if (event.target.value.length === 0) {
-        password2.classList.remove('is-invalid')
-    } else {
-        password2.classList.add('is-invalid')
-    }
+    // if (event.target.value.length === 0) {
+    //     password2.classList.remove('is-invalid')
+    // } else {
+    //     password2.classList.add('is-invalid')
+    // }
     if (event.target.value.length < 6 || event.target.value.length > 100 || !event.target.value.match( /[0-9]/g ) ||
        !event.target.value.match( /[a-z]/g ) || !event.target.value.match( /[A-Z]/g )) {
         password.classList.add('is-invalid')
@@ -17,14 +17,14 @@ function checkPassword(event) {
         password.classList.remove('is-invalid')
     }
 }
-
-function checkPassword2(event) {
-    if (event.target.value === password.value) {
-        password2.classList.remove('is-invalid')
-    } else {
-        password2.classList.add('is-invalid')
-    }
-}
+//
+// function checkPassword2(event) {
+//     if (event.target.value === password.value) {
+//         password2.classList.remove('is-invalid')
+//     } else {
+//         password2.classList.add('is-invalid')
+//     }
+// }
 
 // Workaround. Код ниже еще будет использоваться, надо будет оптимизировать под измененную страницу
 //
